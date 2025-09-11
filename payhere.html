@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>PayHere Simple</title>
+    <script src="https://www.payhere.lk/lib/payhere.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/blueimp-md5/2.19.0/js/md5.min.js"></script>
+    <style>
+        body {
+            background: #0d1117;
+            font-family: 'Segoe UI', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .card {
+            background: #161b22;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(0, 255, 128, 0.2);
+            text-align: center;
+            color: #e6f6ec;
+            opacity: 0;
+            transform: translateY(50px);
+            animation: fadeIn 0.8s ease-in-out forwards, glowPulse 3s infinite;
+        }
+
+        .card h2 {
+            color: #00ff88;
+            margin-bottom: 15px;
+            font-size: 24px;
+        }
+
+        .card p strong {
+            color: #00e676;
+            font-size: 18px;
+        }
+
+        .btn {
+            background: linear-gradient(90deg, #00ff88, #00cc66);
+            color: #0d1117;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            margin-top: 20px;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 10px rgba(0, 255, 128, 0.6);
+        }
+
+        .btn:hover {
+            background: linear-gradient(90deg, #00cc66, #00ff88);
+            transform: scale(1.05);
+            box-shadow: 0 0 20px rgba(0, 255, 128, 0.9);
+        }
+
+        /* Fade in animation */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Green glowing pulse */
+        @keyframes glowPulse {
+            0% { box-shadow: 0 0 15px rgba(0, 255, 128, 0.2); }
+            50% { box-shadow: 0 0 25px rgba(0, 255, 128, 0.7); }
+            100% { box-shadow: 0 0 15px rgba(0, 255, 128, 0.2); }
+        }
+    </style>
+</head>
+<body>
+
+<div class="card">
+    <h2>Activate Verify Batch ✅</h2>
+    <p>Amount: <strong>LKR 7,500 💸</strong></p>
+    <button class="btn" onclick="payNow()">Pay with PayHere ➡</button>
+</div>
+
+<script>
+
+    const amount = 7500;
+    const merchant_id = "1231933";
+    const order_id = Date.now().toString(); // unique ID for each order
+    const merchant_secret = "NjU5NDUwMDAyOTU2OTU2MzYyMTkwOTM2NzgzNzQwOTQ2MzIyMjk=";
+    const currency = "LKR";
+
+    function payNow() {
+        const secret_hash = md5(merchant_secret).toUpperCase();
+        const amount_formatted = amount.toFixed(2);
+        const raw_string = merchant_id + order_id + amount_formatted + currency + secret_hash;
+        const hash = md5(raw_string).toUpperCase();
+
+        const payment = {
+            "sandbox": true,
+            "merchant_id": merchant_id,
+            "return_url": "http://localhost/success",
+            "cancel_url": "http://localhost/cancel",
+            "notify_url": "http://localhost/notify",
+            "order_id": order_id,
+            "items": "Simple Product",
+            "amount": amount_formatted,
+            "currency": currency,
+            "hash": hash,
+            "first_name": "Nethushi",
+            "last_name": "Navodya",
+            "email": "nethushiperera03@gmail.com",
+            "phone": "+94786080732",
+            "address": "Hirana",
+            "city": "Panadura",
+            "country": "Sri Lanka"
+        };
+
+        payhere.startPayment(payment);
+    }
+
+    payhere.onCompleted = function(orderId) {
+        alert("Payment successful! Order ID: " + orderId);
+    };
+
+    payhere.onDismissed = function() {
+        alert("Payment dismissed by user");
+    };
+
+    payhere.onError = function(error) {
+        alert("Error: " + error);
+    };
+</script>
+
+</body>
+</html>
