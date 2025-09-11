@@ -1,0 +1,463 @@
+:root {
+  --primary-color: #22c55e;
+  --primary-secondary: #16a34a;
+  --primary-light: #4ade80;
+  --dark-bg: #0a0a0f;
+  --darker-bg: #060608;
+  --card-bg: #0f0f1a;
+  --border-color: #1a1a2e;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background: linear-gradient(135deg, var(--darker-bg) 0%, var(--dark-bg) 25%, #1a0a2e 50%, var(--dark-bg) 75%, var(--darker-bg) 100%);
+    background-size: 400% 400%;
+    animation: gradientShift 15s ease infinite;
+    overflow-x: hidden;
+}
+
+@keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+.gradient-text {
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-secondary) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+.neon-text {
+    color: var(--primary-color);
+}
+
+.pulse-glow {
+    border: 2px solid var(--primary-color);
+}
+
+.nav-link {
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -2px;
+    left: 50%;
+    background: var(--primary-color);
+    transition: all 0.3s ease;
+    transform: translateX(-50%);
+}
+
+.nav-link:hover::after {
+    width: 100%;
+}
+
+.nav-link:hover {
+    color: var(--primary-color);
+    transform: translateY(-2px);
+}
+/* User Profile Styling */
+#userProfile {
+    display: flex !important;
+    align-items: center;
+    gap: 10px;
+    padding: 2px 20px;
+    min-width: 180px;
+    width: auto;
+    border-radius: 50px;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+}
+
+/*
+#userProfile:hover {
+    background: rgba(34, 197, 94, 0.15);
+    border-color: rgba(34, 197, 94, 0.4);
+    transform: translateY(-2px);
+}
+*/
+
+#usernameDisplay {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #00ff57;
+    font-size: 20px;
+    font-weight: 500;
+    letter-spacing: 0.025em;
+    transition: color 0.3s ease;
+}
+
+#usernameDisplay:hover {
+    color: #ffffff;
+}
+
+/* User Icon Styling */
+.user-icon {
+    font-size: 16px;
+    color: #00ffcc;
+    padding: 6px 8px;
+    background: rgba(0, 255, 204, 0.1);
+    border-radius: 50%;
+    border: 1px solid rgba(0, 255, 204, 0.3);
+    transition: all 0.3s ease;
+    text-shadow: 0 0 10px rgba(0, 255, 204, 0.5);
+    display: inline-block;
+}
+
+.user-icon:hover {
+    background: rgba(0, 255, 204, 0.2);
+    border-color: rgba(0, 255, 204, 0.5);
+    transform: scale(1.1);
+    text-shadow: 0 0 15px rgba(0, 255, 204, 0.7);
+}
+
+/* Force show when not hidden */
+#userProfile:not(.hidden) {
+    display: flex !important;
+}
+
+/* Hidden state handling */
+#userProfile.hidden {
+    display: none !important;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    #userProfile {
+        padding: 6px 12px;
+        gap: 8px;
+    }
+
+    #usernameDisplay {
+        font-size: 13px;
+        gap: 6px;
+    }
+
+    .user-icon {
+        font-size: 14px;
+        padding: 4px 6px;
+    }
+}
+.card-glow {
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    background: linear-gradient(135deg, var(--card-bg) 0%, rgba(15, 15, 26, 0.8) 100%);
+    border: 1px solid rgba(34, 197, 94, 0.3);
+}
+
+.card-glow:hover {
+    transform: translateY(-8px) scale(1.02);
+    background: linear-gradient(135deg, rgba(34, 197, 94, 0.1) 0%, var(--card-bg) 100%);
+    border-color: var(--primary-color);
+}
+
+.hero-section {
+    min-height: 90vh;
+    background: linear-gradient(
+            135deg,
+            rgba(14, 14, 27, 0.9) 0%,
+            rgb(20, 5, 39) 50%,
+            rgba(10, 10, 15, 0.9) 100%
+    );
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hero-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background:
+            radial-gradient(circle at 20% 50%, rgba(34, 197, 94, 0.1) 0%, transparent 50%),
+            radial-gradient(circle at 80% 20%, rgb(20, 9, 32) 0%, transparent 50%),
+            radial-gradient(circle at 40% 80%, rgba(59, 130, 246, 0.1) 0%, transparent 50%);
+    animation: floatingOrbs 20s ease-in-out infinite;
+}
+
+@keyframes floatingOrbs {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    33% { transform: translate(30px, -30px) scale(1.1); }
+    66% { transform: translate(-20px, 20px) scale(0.9); }
+}
+
+.animated-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background:
+            linear-gradient(45deg, transparent 30%, rgba(4, 128, 83, 0.1) 50%, transparent 70%);
+    animation: backgroundShift 10s linear infinite;
+}
+
+@keyframes backgroundShift {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+}
+
+.fade-in {
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeInUp 0.8s ease forwards;
+}
+
+.fade-in:nth-child(1) { animation-delay: 0.2s; }
+.fade-in:nth-child(2) { animation-delay: 0.4s; }
+.fade-in:nth-child(3) { animation-delay: 0.6s; }
+
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.float-animation {
+    animation: floating 3s ease-in-out infinite;
+}
+
+.float-animation:nth-child(1) { animation-delay: 0s; }
+.float-animation:nth-child(2) { animation-delay: 0.5s; }
+.float-animation:nth-child(3) { animation-delay: 1s; }
+
+@keyframes floating {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+}
+
+.marquee-container {
+    overflow: hidden;
+    background: linear-gradient(90deg, var(--card-bg) 0%, rgba(15, 15, 26, 0.5) 50%, var(--card-bg) 100%);
+}
+
+.marquee-content {
+    display: flex;
+    animation: marqueeScroll 25s linear infinite;
+    gap: 1rem;
+}
+
+@keyframes marqueeScroll {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
+
+.marquee-container:hover .marquee-content {
+    animation-play-state: paused;
+}
+
+.match-card {
+    transition: all 0.3s ease;
+    background: rgba(35, 35, 72, 0.6);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(34, 197, 94, 0.3);
+}
+
+.match-card:hover {
+    transform: scale(1.05);
+    background: rgba(34, 197, 94, 0.1);
+    border-color: var(--primary-color);
+}
+
+.header-blur {
+    backdrop-filter: blur(20px);
+    background: rgba(10, 10, 15, 0.8);
+}
+
+.section-title {
+    background: linear-gradient(135deg, #ffffff 0%, var(--primary-color) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.cta-section {
+    background: linear-gradient(135deg, rgba(34, 197, 94, 0.1) 0%, rgba(147, 51, 234, 0.1) 100%);
+    border: 1px solid rgba(34, 197, 94, 0.3);
+}
+
+/* Particle animation for hero section */
+.particle {
+    position: absolute;
+    background: linear-gradient(45deg, rgba(34, 255, 0, 0.68), rgba(0, 212, 106, 0.55), rgba(255, 255, 255, 0.56));
+    border-radius: 50%;
+    opacity: 0.2;
+    bottom: -50px; /* Start below visible area */
+    width: var(--size, 10px);
+    height: var(--size, 10px);
+    animation: floatUp linear infinite;
+    box-shadow: 0 0 10px rgba(0, 255, 34, 0.5);
+    transform: scale(0.3); /* Start small */
+}
+
+/* Animation to float from bottom to top and grow */
+@keyframes floatUp {
+    0% {
+        transform: translateY(0) translateX(0) rotate(0deg) scale(0.3);
+        opacity: 0;
+    }
+    10% {
+        opacity: 0.8;
+    }
+    50% {
+        transform: translateY(-50vh) translateX(var(--drift, 0px)) rotate(180deg) scale(1); /* Grow */
+    }
+    90% {
+        opacity: 0.8;
+    }
+    100% {
+        transform: translateY(-100vh) translateX(var(--drift, 0px)) rotate(360deg) scale(1.2); /* Slightly bigger before disappearing */
+        opacity: 0;
+    }
+}
+.logo-spin {
+    animation: logoSpin 2s ease-in-out;
+}
+.logo-glow {
+    animation: logoSpin 2s ease-in-out;
+}
+
+@keyframes logoSpin {
+    0%, 100% { transform: rotate(0deg); }
+    50% { transform: rotate(180deg); }
+}
+
+/* Modal Styles */
+.modal-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(10px);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+.modal-backdrop.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal {
+    background: linear-gradient(135deg, var(--card-bg) 0%, rgba(15, 15, 26, 0.95) 100%);
+    border: 1px solid var(--primary-color);
+    border-radius: 16px;
+    padding: 2rem;
+    width: 90%;
+    max-width: 400px;
+    transform: scale(0.8) translateY(50px);
+    transition: all 0.3s ease;
+}
+
+.modal-backdrop.active .modal {
+    transform: scale(1) translateY(0);
+}
+
+.form-input {
+    background: #111111 !important; /* Black background */
+    border: 1px solid #22c55e !important; /* Green border */
+    border-radius: 8px !important;
+    padding: 12px 16px !important;
+    color: #ffffff !important; /* White text */
+    width: 100% !important;
+    transition: all 0.3s ease !important;
+}
+
+.form-input:focus {
+    outline: none !important;
+    border-color: #06b6d4 !important; /* Change to your desired focus color */
+    background: #111111 !important; /* Slightly lighter black */
+}
+
+.form-input::placeholder {
+    color: rgba(255, 255, 255, 0.5) !important;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-secondary) 100%);
+    color: #000;
+    border: none;
+    border-radius: 8px;
+    padding: 12px 24px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    background: linear-gradient(135deg, var(--primary-light) 0%, var(--primary-color) 100%);
+}
+
+.btn-secondary {
+    background: transparent;
+    color: var(--primary-color);
+    border: 1px solid var(--primary-color);
+    border-radius: 8px;
+    padding: 12px 24px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-secondary:hover {
+    background: rgba(34, 197, 94, 0.1);
+    transform: translateY(-2px);
+}
+
+.text-link {
+    color: var(--primary-color);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.text-link:hover {
+    text-decoration: underline;
+}
+
+select.form-input {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+select.form-input option {
+    background: var(--card-bg);
+    color: white;
+}
+
+/* Desktop responsive adjustments */
+@media (min-width: 768px) {
+    .hero-section {
+        padding: 4rem 2rem;
+    }
+
+    .modal {
+        max-width: 500px;
+        padding: 3rem;
+    }
+}
+
+@media (min-width: 1024px) {
+    .hero-section {
+        padding: 6rem 4rem;
+    }
+}
