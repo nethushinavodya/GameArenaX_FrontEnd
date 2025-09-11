@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>GameArenaX - Admin Panel</title>
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+
+  <!-- jQuery & Toastr -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet"/>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
+  <!-- Font Awesome -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" rel="stylesheet"/>
+
+  <style>
+    :root {
+      --primary-color: #22c55e;
+      --primary-secondary: #16a34a;
+      --primary-light: #4ade80;
+      --dark-bg: #0a0a0f;
+      --darker-bg: #060608;
+      --card-bg: #0f0f1a;
+      --border-color: #1a1a2e;
+      --accent-cyan: #00ffcc;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Space Grotesk', sans-serif;
+      background: linear-gradient(135deg, var(--darker-bg) 0%, var(--dark-bg) 25%, #1a0a2e 50%, var(--dark-bg) 75%, var(--darker-bg) 100%);
+      background-size: 400% 400%;
+      animation: gradientShift 15s ease infinite;
+      color: #ffffff;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    @keyframes gradientShift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    .header-blur {
+      backdrop-filter: blur(20px);
+      background: rgba(10, 10, 15, 0.95);
+      border-bottom: 1px solid rgba(34, 197, 94, 0.3);
+    }
+
+    .neon-text {
+      color: var(--accent-cyan);
+      text-shadow: 0 0 10px rgba(0, 255, 204, 0.5);
+    }
+
+    .text-link {
+      color: var(--primary-color);
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .text-link:hover {
+      text-decoration: underline;
+    }
+
+    .nav-link {
+      position: relative;
+      transition: all 0.3s ease;
+    }
+
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: -2px;
+      left: 50%;
+      background: var(--primary-color);
+      transition: all 0.3s ease;
+      transform: translateX(-50%);
+    }
+
+    .nav-link:hover::after {
+      width: 100%;
+    }
+
+    .nav-link:hover {
+      color: white;
+      transform: translateY(-2px);
+    }
+
+    .user-icon {
+      font-size: 16px;
+      color: var(--accent-cyan);
+      padding: 6px 8px;
+      background: rgba(0, 255, 204, 0.1);
+      border-radius: 50%;
+      border: 1px solid rgba(0, 255, 204, 0.3);
+      transition: all 0.3s ease;
+      text-shadow: 0 0 10px rgba(0, 255, 204, 0.5);
+      display: inline-block;
+    }
+
+    .user-icon:hover {
+      background: rgba(0, 255, 204, 0.2);
+      border-color: rgba(0, 255, 204, 0.5);
+      transform: scale(1.1);
+      text-shadow: 0 0 15px rgba(0, 255, 204, 0.7);
+    }
+
+    .profile-btn {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      cursor: pointer;
+      padding: 6px 12px;
+      border-radius: 12px;
+      background: rgba(34, 197, 94, 0.1);
+      transition: all 0.2s;
+    }
+
+    .profile-btn:hover {
+      background: rgba(34, 197, 94, 0.2);
+    }
+
+    .btn-primary {
+      color: #00ff67;
+      border-radius: 12px;
+      padding: 5px 10px;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+
+    .btn-primary:hover {
+      color: #16a34a;
+    }
+
+    .Stats {
+      background: linear-gradient(135deg, #0f172a, #0e0e22, #1f2327, #1b2129);
+      border-radius: 12px;
+      padding: 15px;
+      box-shadow: 0 8px 20px rgba(34,197,94,0.2);
+    }
+
+    .charts-tables {
+      background: linear-gradient(135deg, #1f2937, #0e0e22, #1f2327, #1b2129);
+      border-radius: 12px;
+      padding: 15px;
+      box-shadow: 0 8px 20px rgba(16,185,129,0.2);
+    }
+
+    .recent-players {
+      background: linear-gradient(135deg, #1f2937, #0e0e22, #1f2327, #1b2129);
+      border-radius: 12px;
+      padding: 15px;
+      box-shadow: 0 8px 20px rgba(16,185,129,0.2);
+    }
+
+    .view-all {
+      background-color: #1f2937;
+      border-radius: 20px;
+      padding: 8px 10px;
+      width: 100px;
+      color: #00ffcc;
+      text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .manage-players {
+      background-color: #1f2937;
+      border-radius: 20px;
+      padding: 8px 10px;
+      width: 200px;
+      color: #00ffcc;
+      text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+  </style>
+</head>
+<body>
+<!-- Header / Navbar -->
+<header class="flex items-center px-8 py-4 shadow-lg sticky top-0 header-blur z-50">
+  <div class="flex items-center gap-4">
+    <div class="w-10 h-10 text-[#00ffcc]">
+      <svg viewBox="0 0 48 48" fill="currentColor" class="w-10 h-10">
+        <path d="M24 18.4228L42 11.475V34.3663C42 34.7796 41.7457 35.1504 41.3601 35.2992L24 42V18.4228Z"/>
+        <path d="M24 8.18819L33.4123 11.574L24 15.2071L14.5877 11.574L24 8.18819Z"/>
+      </svg>
+    </div>
+    <h2 class="text-white text-xl font-bold neon-text">Admin Panel</h2>
+  </div>
+  <div class="flex items-center ml-auto gap-6">
+    <nav class="flex items-center gap-6">
+      <a href="adminDashboard.html" class="text-green-400 font-semibold nav-link">Dashboard</a>
+      <a href="adminManage.html" class="text-gray-300  nav-link">Users</a>
+      <a href="game.html" class="text-gray-300 nav-link">Games</a>
+      <a href="tournamentDetails.html" class="text-gray-300 nav-link">Tournaments</a>
+      <a href="viewPlayers.html" class="text-gray-300 nav-link">Players</a>
+      <a href="streamers.html" class="text-gray-300 nav-link">Streamers</a>
+    </nav>
+    <div class="flex items-center gap-4">
+      <div class="profile-btn" id="adminProfile">
+        <i class="fas fa-user-circle user-icon"></i>
+        <span id="adminName" class="text-[#00ffcc]">AdminUser</span>
+      </div>
+      <button id="logoutBtn" class="text-red-400 hover:text-red-300 transition-colors">
+        <i class="fas fa-sign-out-alt text-xl"></i>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- Main Dashboard Content -->
+<main class="p-8 space-y-8" >
+  <!-- Stats Section -->
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 Stats" >
+    <div class="bg-gray-900 p-6 rounded-xl shadow-md">
+      <p class="text-gray-400 text-sm font-medium">Active Players</p>
+      <h3 class="text-2xl font-bold text-white mt-2">24,567</h3>
+      <p class="text-green-400 text-sm mt-1"><i class="fas fa-arrow-up"></i> +12.5%</p>
+    </div>
+
+    <div class="bg-gray-900 p-6 rounded-xl shadow-md">
+      <p class="text-gray-400 text-sm font-medium">Live Tournaments</p>
+      <h3 class="text-2xl font-bold text-white mt-2">47</h3>
+      <p class="text-cyan-400 text-sm mt-1"><i class="fas fa-arrow-up"></i> +8.2%</p>
+    </div>
+
+    <div class="bg-gray-900 p-6 rounded-xl shadow-md">
+      <p class="text-gray-400 text-sm font-medium">Revenue Today</p>
+      <h3 class="text-2xl font-bold text-white mt-2">$18,420</h3>
+      <p class="text-green-400 text-sm mt-1"><i class="fas fa-arrow-up"></i> +15.8%</p>
+    </div>
+
+    <div class="bg-gray-900 p-6 rounded-xl shadow-md">
+      <p class="text-gray-400 text-sm font-medium">Server Load</p>
+      <h3 class="text-2xl font-bold text-white mt-2">67%</h3>
+      <p class="text-yellow-400 text-sm mt-1"><i class="fas fa-exclamation-triangle"></i> Moderate</p>
+    </div>
+  </div>
+
+  <!-- Charts and Tables Row -->
+  <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8 charts-tables" >
+    <!-- Live Matches -->
+    <div class="card-glow p-6">
+      <div class="flex items-center justify-between mb-6">
+        <h2 class="text-xl font-bold text-white">Live Matches</h2>
+        <button class="text-cyan-400 hover:text-cyan-300 text-sm view-all">View All</button>
+      </div>
+      <div class="space-y-4">
+        <div class="flex items-center justify-between p-4 bg-gray-800/50 rounded-lg">
+          <div class="flex items-center gap-3">
+            <div class="w-3 h-3 bg-red-500 rounded-full animate-pulse"></div>
+            <div>
+              <p class="text-white font-medium">Team Alpha vs Team Beta</p>
+              <p class="text-gray-400 text-sm">Valorant Championship</p>
+            </div>
+          </div>
+          <div class="text-right">
+            <p class="text-cyan-400 font-bold">2,341</p>
+            <p class="text-gray-400 text-sm">viewers</p>
+          </div>
+        </div>
+
+        <div class="flex items-center justify-between p-4 bg-gray-800/50 rounded-lg">
+          <div class="flex items-center gap-3">
+            <div class="w-3 h-3 bg-red-500 rounded-full animate-pulse"></div>
+            <div>
+              <p class="text-white font-medium">Dragons vs Phoenix</p>
+              <p class="text-gray-400 text-sm">League of Legends</p>
+            </div>
+          </div>
+          <div class="text-right">
+            <p class="text-cyan-400 font-bold">1,875</p>
+            <p class="text-gray-400 text-sm">viewers</p>
+          </div>
+        </div>
+
+        <div class="flex items-center justify-between p-4 bg-gray-800/50 rounded-lg">
+          <div class="flex items-center gap-3">
+            <div class="w-3 h-3 bg-red-500 rounded-full animate-pulse"></div>
+            <div>
+              <p class="text-white font-medium">Elite vs Pro Squad</p>
+              <p class="text-gray-400 text-sm">CS:GO Major</p>
+            </div>
+          </div>
+          <div class="text-right">
+            <p class="text-cyan-400 font-bold">3,102</p>
+            <p class="text-gray-400 text-sm">viewers</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Recent Players -->
+    <div class="card-glow p-6">
+      <div class="flex items-center justify-between mb-6 recent-players" >
+        <h2 class="text-xl font-bold text-white">Recent Player Activity</h2>
+        <button class="text-cyan-400 hover:text-cyan-300 text-sm manage-players">Manage Players</button>
+      </div>
+      <div class="space-y-4">
+        <div class="flex items-center justify-between p-3 hover:bg-gray-800/30 rounded-lg transition-colors">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 bg-gradient-to-r from-green-400 to-cyan-400 rounded-full flex items-center justify-center font-bold text-black">
+              GP
+            </div>
+            <div>
+              <p class="text-white font-medium">GamerPro2024</p>
+              <p class="text-gray-400 text-sm">Just won a tournament</p>
+            </div>
+          </div>
+          <span class="status-badge status-online">online</span>
+        </div>
+
+        <div class="flex items-center justify-between p-3 hover:bg-gray-800/30 rounded-lg transition-colors">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 bg-gradient-to-r from-purple-400 to-pink-400 rounded-full flex items-center justify-center font-bold text-black">
+              EG
+            </div>
+            <div>
+              <p class="text-white font-medium">EliteGamer</p>
+              <p class="text-gray-400 text-sm">Streaming live match</p>
+            </div>
+          </div>
+          <span class="status-badge status-online">online</span>
+        </div>
+
+        <div class="flex items-center justify-between p-3 hover:bg-gray-800/30 rounded-lg transition-colors">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 bg-gradient-to-r from-orange-400 to-red-400 rounded-full flex items-center justify-center font-bold text-black">
+              NX
+            </div>
+            <div>
+              <p class="text-white font-medium">NoobXtreme</p>
+              <p class="text-gray-400 text-sm">Joined 5 minutes ago</p>
+            </div>
+          </div>
+          <span class="status-badge status-pending">new</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<script>
+  $(document).ready(function() {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      window.location.href = "index.html";
+      return;
+    }
+
+    let adminName = localStorage.getItem("username") || "AdminUser";
+    $("#adminName").text(adminName);
+  });
+
+  // Logout confirmation
+  $("#logoutBtn").click(function() {
+    if(confirm("Do you really want to logout?")) {
+      localStorage.removeItem("token");
+      localStorage.removeItem("username");
+      localStorage.removeItem("role");
+      window.location.href = "index.html";
+    }
+  });
+</script>
+</body>
+</html>
