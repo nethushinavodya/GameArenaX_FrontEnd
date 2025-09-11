@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>GameArenaX - Tournament Details</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" rel="stylesheet"/>
+
+    <style>
+        :root {
+            --primary-color: #22c55e;
+            --primary-secondary: #16a34a;
+            --primary-light: #4ade80;
+            --dark-bg: #0a0a0f;
+            --darker-bg: #060608;
+            --card-bg: #0f0f1a;
+            --border-color: #0f0f19;
+            --accent-cyan: #00ffcc;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+            background: linear-gradient(135deg, var(--darker-bg) 0%, var(--dark-bg) 25%, #1a0a2e 50%, var(--dark-bg) 75%, var(--darker-bg) 100%);
+            background-size: 400% 400%;
+            animation: gradientShift 15s ease infinite;
+            color: #ffffff;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .header-blur {
+            backdrop-filter: blur(20px);
+            background: rgba(10, 10, 15, 0.95);
+            border-bottom: 1px solid rgba(34, 197, 94, 0.3);
+        }
+
+        .neon-text {
+            color: var(--accent-cyan);
+            text-shadow: 0 0 10px rgba(0, 255, 204, 0.5);
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-secondary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .tournament-card {
+            background: linear-gradient(135deg, rgba(15, 15, 26, 0.9) 0%, rgba(26, 26, 46, 0.8) 100%);
+            border: 1px solid rgba(34, 197, 94, 0.3);
+            border-radius: 16px;
+            padding: 24px;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+            margin-bottom: 24px;
+        }
+
+        .tournament-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            border-color: var(--primary-color);
+            box-shadow: 0 20px 40px rgba(34, 197, 94, 0.2);
+        }
+
+        .tournament-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 20px;
+        }
+
+        .tournament-title {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 8px;
+        }
+
+        .tournament-game {
+            color: var(--accent-cyan);
+            font-size: 1rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .status-badge {
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .status-upcoming {
+            background: rgba(59, 130, 246, 0.2);
+            color: #3b82f6;
+            border: 1px solid #3b82f6;
+        }
+
+        .status-ongoing {
+            background: rgba(34, 197, 94, 0.2);
+            color: var(--primary-color);
+            border: 1px solid var(--primary-color);
+        }
+
+        .status-completed {
+            background: rgba(107, 114, 128, 0.2);
+            color: #6b7280;
+            border: 1px solid #6b7280;
+        }
+
+        .status-cancelled {
+            background: rgba(239, 68, 68, 0.2);
+            color: #ef4444;
+            border: 1px solid #ef4444;
+        }
+
+        .registration-open {
+            background: rgba(34, 197, 94, 0.2);
+            color: var(--primary-color);
+            border: 1px solid var(--primary-color);
+        }
+
+        .registration-closed {
+            background: rgba(239, 68, 68, 0.2);
+            color: #ef4444;
+            border: 1px solid #ef4444;
+        }
+
+        .tournament-details {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .detail-item {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 16px;
+            border-radius: 12px;
+            border: 1px solid rgba(34, 197, 94, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .detail-item:hover {
+            border-color: var(--primary-color);
+            background: rgba(34, 197, 94, 0.05);
+        }
+
+        .detail-label {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.875rem;
+            margin-bottom: 4px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .detail-value {
+            color: #ffffff;
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        .prize-pool {
+            color: #fbbf24;
+            font-size: 1.3rem;
+            font-weight: bold;
+        }
+
+        .tournament-description {
+            background: rgba(0, 0, 0, 0.2);
+            padding: 16px;
+            border-radius: 12px;
+            border-left: 4px solid var(--primary-color);
+            margin: 20px 0;
+        }
+
+        .tournament-description p {
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        .search-box {
+            position: relative;
+            max-width: 400px;
+            margin-bottom: 30px;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 12px 45px 12px 15px;
+            border-radius: 25px;
+            border: 1px solid rgba(34, 197, 94, 0.3);
+            background: rgba(26, 26, 46, 0.6);
+            color: #ffffff;
+            font-size: 14px;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        .search-box input:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 10px rgba(34, 197, 94, 0.3);
+        }
+
+        .search-box i {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: rgba(255, 255, 255, 0.5);
+            transition: all 0.3s ease;
+        }
+
+        .profile-btn {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            cursor: pointer;
+            padding: 6px 12px;
+            border-radius: 12px;
+            background: rgba(34, 197, 94, 0.1);
+            transition: all 0.2s;
+        }
+
+        .profile-btn:hover {
+            background: rgba(34, 197, 94, 0.2);
+        }
+
+        .nav-link {
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -2px;
+            left: 50%;
+            background: var(--primary-color);
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .nav-link:hover {
+            transform: translateY(-2px);
+        }
+
+        .user-icon {
+            font-size: 16px;
+            color: var(--accent-cyan);
+            padding: 6px 8px;
+            background: rgba(0, 255, 204, 0.1);
+            border-radius: 50%;
+            border: 1px solid rgba(0, 255, 204, 0.3);
+            transition: all 0.3s ease;
+            text-shadow: 0 0 10px rgba(0, 255, 204, 0.5);
+            display: inline-block;
+        }
+
+        .user-icon:hover {
+            background: rgba(0, 255, 204, 0.2);
+            border-color: rgba(0, 255, 204, 0.5);
+            transform: scale(1.1);
+            text-shadow: 0 0 15px rgba(0, 255, 204, 0.7);
+        }
+
+        .type-badge {
+            display: inline-block;
+            padding: 6px 12px;
+            border-radius: 15px;
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            background: rgba(147, 51, 234, 0.2);
+            color: #9333ea;
+            border: 1px solid #9333ea;
+        }
+
+        .participants-info {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .participants-count {
+            color: var(--primary-color);
+            font-weight: bold;
+        }
+
+        @media (max-width: 768px) {
+            .tournament-header {
+                flex-direction: column;
+                gap: 12px;
+            }
+
+            .tournament-details {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+<!-- Header / Navbar -->
+<header class="flex items-center px-8 py-4 shadow-lg sticky top-0 header-blur z-50">
+    <div class="flex items-center gap-4">
+        <div class="w-10 h-10 text-[#00ffcc]">
+            <svg viewBox="0 0 48 48" fill="currentColor" class="w-10 h-10">
+                <path d="M24 18.4228L42 11.475V34.3663C42 34.7796 41.7457 35.1504 41.3601 35.2992L24 42V18.4228Z"/>
+                <path d="M24 8.18819L33.4123 11.574L24 15.2071L14.5877 11.574L24 8.18819Z"/>
+            </svg>
+        </div>
+        <h2 class="text-white text-xl font-bold neon-text">Admin Panel</h2>
+    </div>
+    <div class="flex items-center ml-auto gap-6">
+        <nav class="flex items-center gap-6">
+            <a href="adminDashboard.html" class="text-gray-300 nav-link">Dashboard</a>
+            <a href="adminManage.html" class="text-gray-300 nav-link">Users</a>
+            <a href="game.html" class="text-gray-300 nav-link">Games</a>
+            <a href="tournamentDetails.html" class="text-green-400 font-semibold nav-link">Tournaments</a>
+            <a href="viewPlayers.html" class="text-gray-300 nav-link">Players</a>
+            <a href="streamers.html" class="text-gray-300 nav-link">Streamers</a>
+        </nav>
+        <div class="flex items-center gap-4">
+            <div class="profile-btn" id="adminProfile">
+                <i class="fas fa-user-circle user-icon"></i>
+                <span id="adminName" class="text-[#00ffcc]">admin</span>
+            </div>
+            <button id="logoutBtn" class="text-red-400 hover:text-red-300 transition-colors">
+                <i class="fas fa-sign-out-alt text-xl"></i>
+            </button>
+        </div>
+    </div>
+</header>
+
+<!-- Main Content -->
+<main class="p-8">
+    <div class="mb-8">
+        <h1 class="text-4xl font-bold gradient-text mb-4">Tournament Details</h1>
+        <p class="text-gray-400 mb-6">View all tournaments and their comprehensive details</p>
+
+        <div class="search-box">
+            <input type="text" id="searchInput" placeholder="Search tournaments by name or game...">
+            <i class="fas fa-search"></i>
+        </div>
+    </div>
+
+    <div id="tournamentsContainer">
+        <!-- Tournaments will be populated here -->
+    </div>
+</main>
+
+<script>
+    $(document).ready(function() {
+        const token = localStorage.getItem("token");
+        if (!token) {
+            window.location.href = "index.html";
+            return;
+        }
+
+        let adminName = localStorage.getItem("username") || "AdminUser";
+        $("#adminName").text(adminName);
+
+        // Load tournaments
+        loadTournaments();
+
+        // Search functionality
+        $("#searchInput").on("input", function() {
+            const searchTerm = $(this).val().toLowerCase();
+            filterTournaments(searchTerm);
+        });
+    });
+
+    $("#logoutBtn").click(function() {
+        if (confirm("Do you really want to logout?")) {
+            localStorage.removeItem("token");
+            localStorage.removeItem("username");
+            window.location.href = "index.html";
+        }
+    });
+
+    function loadTournaments() {
+        $.ajax({
+            url: "http://localhost:8080/api/v1/tournament/getAllTournaments",
+            method: "GET",
+            contentType: "application/json",
+            success: function(response) {
+                console.log("Tournaments API response:", response);
+
+                if (response.code === 201 && Array.isArray(response.data)) {
+                    displayTournaments(response.data);
+                } else {
+                    toastr.warning('No tournaments found');
+                }
+            },
+            error: function(xhr, status, error) {
+                console.error("Error fetching tournaments:", error);
+                toastr.error("Failed to load tournaments");
+            }
+        });
+    }
+
+    function displayTournaments(tournaments) {
+        const container = $("#tournamentsContainer");
+        container.empty();
+
+        if (tournaments.length === 0) {
+            container.html(`
+            <div class="text-center py-12">
+                <i class="fas fa-trophy text-6xl text-gray-600 mb-4"></i>
+                <p class="text-gray-400 text-lg">No tournaments found</p>
+            </div>
+        `);
+            return;
+        }
+
+        tournaments.forEach(tournament => {
+            const tournamentCard = createTournamentCard(tournament);
+            container.append(tournamentCard);
+        });
+    }
+
+    function formatDate(dateStr) {
+        const date = new Date(dateStr);
+        if (isNaN(date)) return dateStr; // fallback if invalid date
+        return date.toLocaleDateString("en-US", {
+            year: "numeric",
+            month: "short",
+            day: "numeric"
+        });
+    }
+
+    // 🔹 Status badge classes
+    function getStatusClass(status) {
+        switch ((status || "").toUpperCase()) {
+            case "UPCOMING": return "status-upcoming";
+            case "ONGOING": return "status-ongoing";
+            case "COMPLETED": return "status-completed";
+            case "CANCELLED": return "status-cancelled";
+            default: return "";
+        }
+    }
+
+    // 🔹 Registration badge classes
+    function getRegistrationClass(regStatus) {
+        switch ((regStatus || "").toUpperCase()) {
+            case "OPEN": return "registration-open";
+            case "CLOSED": return "registration-closed";
+            default: return "";
+        }
+    }
+
+    function createTournamentCard(tournament) {
+        const statusClass = getStatusClass(tournament.status);
+        const registrationClass = getRegistrationClass(tournament.registrationStatus);
+
+        return `
+        <div class="tournament-card"
+             data-tournament-name="${tournament.name.toLowerCase()}"
+             data-game-name="${tournament.game.name.toLowerCase()}">
+
+            <div class="tournament-header">
+                <div>
+                    <h2 class="tournament-title">${tournament.name}</h2>
+                    <div class="tournament-game">
+                        <img src="${tournament.game.logoUrl}" alt="${tournament.game.name}"
+                             class="w-6 h-6 rounded-full inline-block mr-2"/>
+                        ${tournament.game.name}
+                    </div>
+                </div>
+                <div class="flex flex-col gap-2 items-end">
+                    <span class="status-badge ${statusClass}">${tournament.status}</span>
+                    <span class="status-badge ${registrationClass}">${tournament.registrationStatus}</span>
+                    <span class="type-badge">${tournament.type}</span>
+                </div>
+            </div>
+
+            ${tournament.description ? `
+            <div class="tournament-description">
+                <p>${tournament.description}</p>
+            </div>` : ''}
+
+            <div class="tournament-details">
+                <div class="detail-item">
+                    <div class="detail-label">Start Date</div>
+                    <div class="detail-value">
+                        <i class="fas fa-calendar-alt mr-2"></i>
+                        ${formatDate(tournament.startDate)}
+                    </div>
+                </div>
+
+                <div class="detail-item">
+                    <div class="detail-label">End Date</div>
+                    <div class="detail-value">
+                        <i class="fas fa-calendar-check mr-2"></i>
+                        ${formatDate(tournament.endDate)}
+                    </div>
+                </div>
+
+                <div class="detail-item">
+                    <div class="detail-label">Prize Pool</div>
+                    <div class="detail-value prize-pool">
+                        <i class="fas fa-trophy mr-2"></i>
+                        $${tournament.prizePool.toLocaleString()}
+                    </div>
+                </div>
+
+                <div class="detail-item">
+                    <div class="detail-label">Max Participants</div>
+                    <div class="detail-value participants-info">
+                        <i class="fas fa-users mr-2"></i>
+                        <span class="participants-count">${tournament.maxParticipants}</span> players
+                    </div>
+                </div>
+            </div>
+        </div>
+    `;
+    }
+
+    function filterTournaments(searchTerm) {
+        const cards = $(".tournament-card");
+
+        cards.each(function() {
+            const tournamentName = $(this).data("tournament-name");
+            const gameName = $(this).data("game-name");
+
+            if (tournamentName.includes(searchTerm) || gameName.includes(searchTerm)) {
+                $(this).show();
+            } else {
+                $(this).hide();
+            }
+        });
+    }
+
+</script>
+</body>
+</html>
