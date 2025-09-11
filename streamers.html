@@ -1,0 +1,1014 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>GameArenaX - Streamers</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" rel="stylesheet"/>
+
+    <style>
+        :root {
+            --primary-color: #22c55e;
+            --primary-secondary: #16a34a;
+            --primary-light: #4ade80;
+            --dark-bg: #0a0a0f;
+            --darker-bg: #060608;
+            --card-bg: #0f0f1a;
+            --border-color: #0f0f19;
+            --accent-cyan: #00ffcc;
+            --live-color: #ef4444;
+            --offline-color: #6b7280;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+            background: linear-gradient(135deg, var(--darker-bg) 0%, var(--dark-bg) 25%, #1a0a2e 50%, var(--dark-bg) 75%, var(--darker-bg) 100%);
+            background-size: 400% 400%;
+            animation: gradientShift 15s ease infinite;
+            color: #ffffff;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .header-blur {
+            backdrop-filter: blur(20px);
+            background: rgba(10, 10, 15, 0.95);
+            border-bottom: 1px solid rgba(34, 197, 94, 0.3);
+        }
+
+        .neon-text {
+            color: var(--accent-cyan);
+            text-shadow: 0 0 10px rgba(0, 255, 204, 0.5);
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-secondary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-secondary) 100%);
+            color: #000;
+            border: none;
+            border-radius: 8px;
+            padding: 12px 24px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            background: linear-gradient(135deg, var(--primary-light) 0%, var(--primary-color) 100%);
+            box-shadow: 0 10px 20px rgba(34, 197, 94, 0.3);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--primary-color);
+            border: 1px solid var(--primary-color);
+            border-radius: 8px;
+            padding: 8px 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(34, 197, 94, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .status-badge {
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+            text-transform: uppercase;
+            text-align: center;
+            display: inline-block;
+            min-width: 80px;
+        }
+
+        .status-live {
+            background: rgba(239, 68, 68, 0.2);
+            color: #ef4444;
+            border: 1px solid #ef4444;
+            animation: pulse 2s infinite;
+        }
+
+        .status-offline {
+            background: rgba(107, 114, 128, 0.2);
+            color: #6b7280;
+            border: 1px solid #6b7280;
+        }
+
+        .verified-badge {
+            background: rgba(34, 197, 94, 0.2);
+            color: var(--primary-color);
+            border: 1px solid var(--primary-color);
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+
+        .profile-btn {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            cursor: pointer;
+            padding: 6px 12px;
+            border-radius: 12px;
+            background: rgba(34, 197, 94, 0.1);
+            transition: all 0.2s;
+        }
+
+        .profile-btn:hover {
+            background: rgba(34, 197, 94, 0.2);
+        }
+
+        .streamer-profile-picture {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--primary-color);
+        }
+
+        .banner-image {
+            width: 100%;
+            height: 120px;
+            object-fit: cover;
+            border-radius: 12px;
+            margin-bottom: 16px;
+        }
+
+        .nav-link {
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -2px;
+            left: 50%;
+            background: var(--primary-color);
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .nav-link:hover {
+            transform: translateY(-2px);
+        }
+
+        .user-icon {
+            font-size: 16px;
+            color: var(--accent-cyan);
+            padding: 6px 8px;
+            background: rgba(0, 255, 204, 0.1);
+            border-radius: 50%;
+            border: 1px solid rgba(0, 255, 204, 0.3);
+            transition: all 0.3s ease;
+            text-shadow: 0 0 10px rgba(0, 255, 204, 0.5);
+            display: inline-block;
+        }
+
+        .user-icon:hover {
+            background: rgba(0, 255, 204, 0.2);
+            border-color: rgba(0, 255, 204, 0.5);
+            transform: scale(1.1);
+            text-shadow: 0 0 15px rgba(0, 255, 204, 0.7);
+        }
+
+        .controls-section {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            margin: 25px 0;
+            gap: 15px;
+        }
+
+        .search-box {
+            position: relative;
+            flex: 1;
+            max-width: 500px;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 12px 45px 12px 15px;
+            border-radius: 25px;
+            border: 1px solid rgba(69, 248, 130, 0.3);
+            background: rgba(26, 26, 46, 0.6);
+            color: #ffffff;
+            font-size: 14px;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        .search-box input:focus {
+            border-color: #45f882;
+            box-shadow: 0 0 10px rgba(69, 248, 130, 0.3);
+        }
+
+        /* Streamer Cards Styles */
+        .streamers-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+            gap: 24px;
+            margin-top: 20px;
+        }
+
+        .streamer-card {
+            background: linear-gradient(135deg, rgba(15, 15, 26, 0.9) 0%, rgba(26, 26, 46, 0.8) 100%);
+            border: 1px solid rgba(34, 197, 94, 0.3);
+            border-radius: 16px;
+            padding: 24px;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+        }
+
+
+        .streamer-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .streamer-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            border-color: var(--primary-color);
+            box-shadow: 0 20px 40px rgba(34, 197, 94, 0.2);
+        }
+
+        .streamer-card:hover::before {
+            opacity: 1;
+        }
+
+        .streamer-header {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 20px;
+        }
+
+        .streamer-info {
+            flex: 1;
+        }
+
+        .streamer-name {
+            font-size: 1.25rem;
+            font-weight: bold;
+            color: #ffffff;
+            margin-bottom: 4px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .streamer-email {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.875rem;
+            margin-bottom: 8px;
+        }
+
+        .streamer-platform {
+            color: var(--accent-cyan);
+            font-size: 0.875rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        /* Compact Streamer Cards CSS */
+
+        /* Grid Layout - More cards per row */
+        .streamers-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 16px;
+            margin-top: 20px;
+        }
+
+        /* Compact Card Container */
+        .streamer-card-compact {
+            background: linear-gradient(135deg, rgba(15, 15, 26, 0.9) 0%, rgba(26, 26, 46, 0.8) 100%);
+            border: 1px solid rgba(34, 197, 94, 0.3);
+            border-radius: 12px;
+            padding: 16px;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+            height: fit-content;
+            min-height: 200px;
+        }
+
+        .streamer-card-compact::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-secondary) 100%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .streamer-card-compact:hover {
+            transform: translateY(-6px) scale(1.02);
+            border-color: var(--primary-color);
+            box-shadow: 0 15px 30px rgba(34, 197, 94, 0.2);
+        }
+
+        .streamer-card-compact:hover::before {
+            opacity: 1;
+        }
+
+        /* Compact Header */
+        .compact-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 12px;
+        }
+
+        .compact-avatar {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid var(--primary-color);
+            flex-shrink: 0;
+        }
+
+        .compact-info {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .compact-name {
+            font-size: 1rem;
+            font-weight: bold;
+            color: #ffffff;
+            margin: 0 0 2px 0;
+            display: flex;
+            align-items: center;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .compact-platform {
+            color: var(--accent-cyan);
+            font-size: 0.75rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .compact-status {
+            flex-shrink: 0;
+        }
+
+        /* Small Status Badge */
+        .status-badge-small {
+            padding: 3px 8px;
+            border-radius: 12px;
+            font-size: 10px;
+            font-weight: bold;
+            text-transform: uppercase;
+            text-align: center;
+            display: inline-block;
+            min-width: 50px;
+        }
+
+        .status-badge-small.status-live {
+            background: rgba(239, 68, 68, 0.2);
+            color: #ef4444;
+            border: 1px solid #ef4444;
+            animation: pulse 2s infinite;
+        }
+
+        .status-badge-small.status-offline {
+            background: rgba(107, 114, 128, 0.2);
+            color: #6b7280;
+            border: 1px solid #6b7280;
+        }
+
+        /* Compact Stats */
+        .compact-stats {
+            display: flex;
+            justify-content: space-between;
+            margin: 12px 0;
+            gap: 8px;
+        }
+
+        .stat-compact {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            font-size: 0.75rem;
+            color: rgba(255, 255, 255, 0.8);
+            flex: 1;
+            justify-content: center;
+            padding: 6px 4px;
+            background: rgba(34, 197, 94, 0.1);
+            border-radius: 6px;
+            border: 1px solid rgba(34, 197, 94, 0.2);
+        }
+
+        .stat-compact span {
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+
+        /* Compact Games */
+        .compact-games {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 4px;
+            margin: 12px 0;
+            min-height: 24px;
+            align-items: center;
+        }
+
+        .game-tag-small {
+            background: rgba(0, 255, 204, 0.1);
+            color: var(--accent-cyan);
+            padding: 2px 6px;
+            border-radius: 8px;
+            font-size: 10px;
+            font-weight: 500;
+            border: 1px solid rgba(0, 255, 204, 0.3);
+            white-space: nowrap;
+        }
+
+        /* Compact Footer */
+        .compact-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 12px;
+            padding-top: 12px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .footer-left {
+            flex: 1;
+        }
+
+        .stream-link-compact {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            color: var(--primary-color);
+            text-decoration: none;
+            font-size: 0.75rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .stream-link-compact:hover {
+            color: var(--primary-light);
+            transform: translateX(2px);
+        }
+
+        .footer-actions {
+            display: flex;
+            gap: 6px;
+        }
+
+        .action-btn-compact {
+            background: rgba(34, 197, 94, 0.1);
+            color: var(--primary-color);
+            border: 1px solid rgba(34, 197, 94, 0.3);
+            border-radius: 6px;
+            padding: 6px;
+            width: 28px;
+            height: 28px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 10px;
+        }
+
+        .action-btn-compact:hover {
+            background: rgba(34, 197, 94, 0.2);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(34, 197, 94, 0.2);
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .streamer-card-compact {
+                height: 90px;
+                padding: 8px 12px;
+                flex-wrap: wrap;
+            }
+
+            .compact-header {
+                gap: 8px;
+                min-width: 120px;
+            }
+
+            .compact-avatar {
+                width: 40px;
+                height: 40px;
+            }
+
+            .compact-name {
+                font-size: 0.9rem;
+            }
+
+            .compact-stats {
+                gap: 8px;
+                flex-wrap: wrap;
+            }
+
+            .stat-compact {
+                padding: 3px 6px;
+                font-size: 0.7rem;
+            }
+
+            .compact-games {
+                max-width: 150px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .streamer-card-compact {
+                height: 100px;
+                flex-direction: column;
+                gap: 8px;
+                padding: 8px;
+            }
+
+            .compact-header {
+                width: 100%;
+                justify-content: space-between;
+            }
+
+            .compact-stats,
+            .compact-games,
+            .compact-footer {
+                width: 100%;
+                justify-content: space-between;
+            }
+        }
+
+        /* Loading Animation for Cards */
+        .streamer-card-compact.loading {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.5s ease forwards;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Search No Results - Compact Version */
+        .no-results-compact {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 40px 20px;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .no-results-compact i {
+            font-size: 3rem;
+            margin-bottom: 16px;
+            color: rgba(255, 255, 255, 0.3);
+        }
+
+        .no-results-compact h3 {
+            font-size: 1.25rem;
+            margin-bottom: 8px;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        /* Hover Effects */
+        .compact-avatar:hover {
+            transform: scale(1.1);
+            border-color: var(--primary-light);
+        }
+
+        .game-tag-small:hover {
+            background: rgba(0, 255, 204, 0.2);
+            transform: translateY(-1px);
+        }
+
+        /* Status Indicators */
+        .compact-header::after {
+            content: '';
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--offline-color);
+        }
+
+        .streamer-card-compact[data-live="true"] .compact-header::after {
+            background: var(--live-color);
+            animation: pulse 2s infinite;
+        }
+
+        /* Verified Badge Styling */
+        .compact-name .fa-check-circle {
+            color: var(--primary-color);
+            filter: drop-shadow(0 0 4px rgba(34, 197, 94, 0.5));
+        }
+
+        .streamer-stats {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin: 20px 0;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 12px;
+            background: rgba(34, 197, 94, 0.1);
+            border-radius: 8px;
+            border: 1px solid rgba(34, 197, 94, 0.2);
+        }
+
+        .stat-value {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            display: block;
+        }
+
+        .stat-label {
+            font-size: 0.75rem;
+            color: rgba(255, 255, 255, 0.7);
+            text-transform: uppercase;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        .streamer-bio {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 12px;
+            border-radius: 8px;
+            margin: 16px 0;
+            border-left: 3px solid var(--primary-color);
+        }
+
+        .streamer-bio p {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.875rem;
+            line-height: 1.4;
+            margin: 0;
+        }
+
+        .streamer-badges {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin: 16px 0;
+        }
+
+        .platform-badge {
+            background: linear-gradient(135deg, #8b5cf6 0%, #5a12d5 100%);
+            color: white;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        .featured-games {
+            margin: 16px 0;
+        }
+
+        .games-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 8px;
+        }
+
+        .game-tag {
+            background: rgba(0, 255, 204, 0.1);
+            color: var(--accent-cyan);
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 12px;
+            border: 1px solid rgba(0, 255, 204, 0.3);
+        }
+
+        .stream-url {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            color: var(--primary-color);
+            text-decoration: none;
+            font-size: 0.875rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        .icon{
+          color: rgba(255, 255, 255, 0.6);
+        }
+        .stream-url:hover {
+            color: var(--primary-light);
+            transform: translateX(4px);
+        }
+
+        .last-live {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.75rem;
+            margin-top: 8px;
+        }
+
+        .country-info {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            color: var(--accent-cyan);
+            font-size: 0.875rem;
+            margin-top: 4px;
+        }
+
+        @media (max-width: 768px) {
+            .streamers-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .streamer-stats {
+                grid-template-columns: 1fr;
+                gap: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+<!-- Header / Navbar -->
+<header class="flex items-center px-8 py-4 shadow-lg sticky top-0 header-blur z-50">
+    <div class="flex items-center gap-4">
+        <div class="w-10 h-10 text-[#00ffcc]">
+            <svg viewBox="0 0 48 48" fill="currentColor" class="w-10 h-10">
+                <path d="M24 18.4228L42 11.475V34.3663C42 34.7796 41.7457 35.1504 41.3601 35.2992L24 42V18.4228Z"/>
+                <path d="M24 8.18819L33.4123 11.574L24 15.2071L14.5877 11.574L24 8.18819Z"/>
+            </svg>
+        </div>
+        <h2 class="text-white text-xl font-bold neon-text">Admin Panel</h2>
+    </div>
+    <div class="flex items-center ml-auto gap-6">
+        <nav class="flex items-center gap-6">
+            <a href="adminDashboard.html" class="text-gray-300 nav-link">Dashboard</a>
+            <a href="adminManage.html" class="text-gray-300 nav-link">Users</a>
+            <a href="game.html" class="text-gray-300 nav-link">Games</a>
+            <a href="tournamentDetails.html" class="text-gray-300 nav-link">Tournaments</a>
+            <a href="viewPlayers.html" class="text-gray-300 nav-link">Players</a>
+            <a href="streamers.html" class="text-green-400 font-semibold nav-link">Streamers</a>
+        </nav>
+        <div class="flex items-center gap-4">
+            <div class="profile-btn" id="adminProfile">
+                <i class="fas fa-user-circle user-icon"></i>
+                <span id="adminName" class="text-[#00ffcc]">admin</span>
+            </div>
+            <button id="logoutBtn" class="text-red-400 hover:text-red-300 transition-colors">
+                <i class="fas fa-sign-out-alt text-xl"></i>
+            </button>
+        </div>
+    </div>
+</header>
+
+<!-- Main Content -->
+<main class="p-8">
+    <div class="flex justify-between items-center mb-8">
+        <div>
+            <h1 class="text-4xl font-bold gradient-text">View Streamers</h1>
+            <p class="text-gray-400">Admin can view all streamer details here</p>
+        </div>
+        <div class="controls-section">
+            <div class="search-box">
+                <input type="text" id="searchInput" placeholder="Search streamers by name or platform">
+            </div>
+        </div>
+    </div>
+
+    <!-- Streamers Cards Grid -->
+    <div class="streamers-grid" id="streamersGrid">
+        <!-- Dynamic streamer cards will be loaded here -->
+    </div>
+</main>
+
+<script>
+    $(document).ready(function() {
+        const token = localStorage.getItem("token");
+        if (!token) {
+            window.location.href = "index.html";
+            return;
+        }
+
+        let adminName = localStorage.getItem("username") || "AdminUser";
+        $("#adminName").text(adminName);
+
+        // Search functionality
+        $("#searchInput").on("input", function() {
+            const searchTerm = $(this).val().toLowerCase();
+            $(".streamer-card").each(function() {
+                const streamerName = $(this).find(".streamer-name").text().toLowerCase();
+                const streamerEmail = $(this).find(".streamer-email").text().toLowerCase();
+                const streamerPlatform = $(this).find(".streamer-platform").text().toLowerCase();
+
+                if (streamerName.includes(searchTerm) || streamerEmail.includes(searchTerm) || streamerPlatform.includes(searchTerm)) {
+                    $(this).show();
+                } else {
+                    $(this).hide();
+                }
+            });
+        });
+
+        // Load streamers data (you'll need to implement this function)
+        loadStreamers();
+    });
+
+    $("#logoutBtn").click(function() {
+        if (confirm("Do you really want to logout?")) {
+            localStorage.removeItem("token");
+            localStorage.removeItem("username");
+            window.location.href = "index.html";
+            toastr.success('Logout successful!');
+        }
+    });
+
+    function loadStreamers() {
+        console.log("Loading streamers...");
+        $.ajax({
+            url: 'http://localhost:8080/api/v1/streamers/getAll',
+            method: 'GET',
+            contentType: 'application/json',
+            success: function(response) {
+                console.log("Streamers loaded:", response);
+                if (response && response.data) {
+                    displayStreamers(response.data);
+                } else {
+                    toastr.warning('No streamers found');
+                }
+            },
+            error: function(xhr, status, error) {
+                toastr.error('Failed to load streamers');
+            }
+        });
+    }
+
+
+    // Function to display streamers in cards
+    function displayStreamers(streamers) {
+        const grid = $("#streamersGrid");
+        grid.empty();
+
+        streamers.forEach(streamer => {
+            const streamerCard = createStreamerCard(streamer);
+            grid.append(streamerCard);
+        });
+    }
+
+    // Function to create streamer card HTML
+    function createStreamerCard(streamer) {
+        const liveStatus = streamer.isLive ? 'status-live' : 'status-offline';
+        const liveText = streamer.isLive ? 'LIVE' : 'OFFLINE';
+        const verifiedBadge = streamer.isVerified ? '<i class="fas fa-check-circle text-green-400"></i>' : '';
+
+        const featuredGamesHtml = streamer.featuredGames ?
+            streamer.featuredGames.map(game => `<span class="game-tag">${game}</span>`).join('') :
+            '<span class="text-gray-500 text-sm">No featured games</span>';
+
+        const lastLiveText = streamer.lastLiveAt ?
+            `Last live: ${new Date(streamer.lastLiveAt).toLocaleDateString()}` :
+            'Never went live';
+
+        const bannerHtml = streamer.bannerImageUrl ?
+            `<img src="${streamer.bannerImageUrl}" alt="Banner" class="banner-image">` : '';
+
+        return `
+            <div class="streamer-card">
+                ${bannerHtml}
+                <div class="streamer-header">
+                    <img src="${streamer.profileImageUrl || '/assets/images/default-avatar.png'}"
+                         alt="${streamer.displayName}" class="streamer-profile-picture">
+                    <div class="streamer-info">
+                        <h3 class="streamer-name">
+                            ${streamer.displayName} ${verifiedBadge}
+                        </h3>
+                        <div class="country-info">
+                            <i class="fas fa-map-marker-alt icon"></i>
+                            ${streamer.country || 'Unknown'}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="streamer-badges">
+                    <span class="status-badge ${liveStatus}">${liveText}</span>
+                    <span class="platform-badge">${streamer.platform}</span>
+                    ${streamer.isVerified ? '<span class="status-badge verified-badge">VERIFIED</span>' : ''}
+                </div>
+
+                <div class="streamer-stats">
+                    <div class="stat-item">
+                        <span class="stat-value">${(streamer.followerCount || 0).toLocaleString()}</span>
+                        <span class="stat-label">Followers</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-value">${streamer.featuredGames ? streamer.featuredGames.length : 0}</span>
+                        <span class="stat-label">Games</span>
+                    </div>
+                </div>
+
+                ${streamer.bio ? `
+                    <div class="streamer-bio">
+                        <p>${streamer.bio}</p>
+                    </div>
+                ` : ''}
+
+                <div class="featured-games">
+                    <h4 class="text-sm font-semibold text-gray-300 mb-2">Featured Games:</h4>
+                    <div class="games-list">
+                        ${featuredGamesHtml}
+                    </div>
+                </div>
+
+                <div class="flex justify-between items-center mt-4">
+                    <div>
+                        ${streamer.streamUrl ? `
+                            <a href="${streamer.streamUrl}" target="_blank" class="stream-url">
+                                <i class="fas fa-external-link-alt"></i>
+                                Visit Stream
+                            </a>
+                        ` : '<span class="text-gray-500 text-sm">No stream URL</span>'}
+                        <div class="last-live">${lastLiveText}</div>
+                    </div>
+                    <div class="text-xs text-gray-500 ">
+                        Joined: ${new Date(streamer.joinedAt).toLocaleDateString()}
+                    </div>
+                </div>
+            </div>
+        `;
+    }
+</script>
+</body>
+</html>
