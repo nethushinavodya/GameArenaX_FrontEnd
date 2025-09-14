@@ -1,0 +1,770 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GameArenaX - Clan Hub</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 50%, #16213e 100%);
+            color: #e0e6ed;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* Animated Background */
+        .bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: radial-gradient(circle at 20% 50%, rgba(124, 58, 237, 0.1) 0%, transparent 50%),
+            radial-gradient(circle at 80% 20%, rgba(34, 197, 94, 0.1) 0%, transparent 50%),
+            radial-gradient(circle at 40% 80%, rgba(168, 85, 247, 0.05) 0%, transparent 50%);
+            animation: float 20s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            33% { transform: translateY(-20px) rotate(1deg); }
+            66% { transform: translateY(10px) rotate(-1deg); }
+        }
+
+        /* Header */
+        .header {
+            background: rgba(15, 15, 35, 0.9);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(124, 58, 237, 0.3);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: bold;
+            background: linear-gradient(45deg, #7c3aed, #22c55e);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-link {
+            color: #9ca3af;
+            text-decoration: none;
+            transition: color 0.3s;
+            cursor: pointer;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            color: #22c55e;
+        }
+
+        /* Main Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .page-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .page-title h1 {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(45deg, #7c3aed, #22c55e);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .page-title p {
+            color: #9ca3af;
+            font-size: 1.2rem;
+        }
+
+        /* Tabs */
+        .tab-container {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 3rem;
+        }
+
+        .tab-buttons {
+            display: flex;
+            background: rgba(31, 41, 55, 0.6);
+            border-radius: 12px;
+            padding: 0.5rem;
+            border: 1px solid rgba(124, 58, 237, 0.3);
+        }
+
+        .tab-button {
+            padding: 0.8rem 2rem;
+            background: none;
+            border: none;
+            color: #9ca3af;
+            cursor: pointer;
+            border-radius: 8px;
+            transition: all 0.3s;
+            font-size: 1rem;
+        }
+
+        .tab-button.active {
+            background: linear-gradient(45deg, #7c3aed, #8b5cf6);
+            color: white;
+            box-shadow: 0 4px 15px rgba(124, 58, 237, 0.3);
+        }
+
+        .tab-button:hover:not(.active) {
+            background: rgba(124, 58, 237, 0.2);
+            color: #e0e6ed;
+        }
+
+        /* Tab Content */
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        /* Forms */
+        .form-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: rgba(31, 41, 55, 0.7);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 2.5rem;
+            border: 1px solid rgba(124, 58, 237, 0.3);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #e0e6ed;
+            font-weight: 600;
+        }
+
+        .form-input, .form-select, .form-textarea {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            background: rgba(15, 15, 35, 0.8);
+            border: 1px solid rgba(75, 85, 99, 0.5);
+            border-radius: 10px;
+            color: #e0e6ed;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+
+        .form-input:focus, .form-select:focus, .form-textarea:focus {
+            outline: none;
+            border-color: #7c3aed;
+            box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.2);
+        }
+
+        .form-textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .file-upload {
+            position: relative;
+            display: inline-block;
+            width: 100%;
+        }
+
+        .file-upload input[type=file] {
+            position: absolute;
+            opacity: 0;
+            width: 100%;
+            height: 100%;
+            cursor: pointer;
+        }
+
+        .file-upload-label {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+            background: rgba(15, 15, 35, 0.8);
+            border: 2px dashed rgba(124, 58, 237, 0.5);
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s;
+            min-height: 60px;
+        }
+
+        .file-upload-label:hover {
+            border-color: #7c3aed;
+            background: rgba(124, 58, 237, 0.1);
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 1rem 2rem;
+            background: linear-gradient(45deg, #22c55e, #16a34a);
+            border: none;
+            border-radius: 12px;
+            color: white;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: 1rem;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(34, 197, 94, 0.3);
+        }
+
+        /* Clan List */
+        .clan-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .clan-card {
+            background: rgba(31, 41, 55, 0.7);
+            backdrop-filter: blur(10px);
+            border-radius: 16px;
+            padding: 1.5rem;
+            border: 1px solid rgba(124, 58, 237, 0.3);
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .clan-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(124, 58, 237, 0.2);
+            border-color: #7c3aed;
+        }
+
+        .clan-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .clan-logo {
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
+            background: linear-gradient(45deg, #7c3aed, #22c55e);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-right: 1rem;
+        }
+
+        .clan-info h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .clan-type {
+            display: inline-block;
+            padding: 0.2rem 0.6rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .clan-type.open {
+            background: rgba(34, 197, 94, 0.2);
+            color: #22c55e;
+        }
+
+        .clan-type.closed {
+            background: rgba(239, 68, 68, 0.2);
+            color: #ef4444;
+        }
+
+        .clan-type.request {
+            background: rgba(245, 158, 11, 0.2);
+            color: #f59e0b;
+        }
+
+        .clan-stats {
+            display: flex;
+            justify-content: space-between;
+            margin: 1rem 0;
+            font-size: 0.9rem;
+            color: #9ca3af;
+        }
+
+        .join-btn {
+            width: 100%;
+            padding: 0.7rem;
+            background: linear-gradient(45deg, #7c3aed, #8b5cf6);
+            border: none;
+            border-radius: 8px;
+            color: white;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .join-btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 5px 15px rgba(124, 58, 237, 0.3);
+        }
+
+        .join-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(5px);
+            z-index: 1000;
+        }
+
+        .modal-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(31, 41, 55, 0.95);
+            border-radius: 20px;
+            padding: 2rem;
+            max-width: 500px;
+            width: 90%;
+            border: 1px solid rgba(124, 58, 237, 0.3);
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .close-btn {
+            background: none;
+            border: none;
+            color: #9ca3af;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .close-btn:hover {
+            color: #ef4444;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .nav-links {
+                gap: 1rem;
+            }
+
+            .page-title h1 {
+                font-size: 2rem;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .tab-buttons {
+                flex-direction: column;
+                width: 100%;
+            }
+
+            .container {
+                padding: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="bg-animation"></div>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">GameArenaX</div>
+        <div class="nav-links">
+            <a href="#" class="nav-link active">Clans</a>
+            <a href="#" class="nav-link">Tournaments</a>
+            <a href="#" class="nav-link">Leaderboard</a>
+            <a href="#" class="nav-link">Profile</a>
+        </div>
+    </nav>
+</header>
+
+<div class="container">
+    <div class="page-title">
+        <h1>⚔ Clan Hub</h1>
+        <p>Create your elite gaming clan or join the battle with existing warriors</p>
+    </div>
+
+    <div class="tab-container">
+        <div class="tab-buttons">
+            <button class="tab-button active" onclick="showTab('create')">Create Clan</button>
+            <button class="tab-button" onclick="showTab('browse')">Browse Clans</button>
+        </div>
+    </div>
+
+    <!-- Create Clan Tab -->
+    <div id="create-tab" class="tab-content active">
+        <div class="form-container">
+            <h2 style="text-align: center; margin-bottom: 2rem; color: #22c55e;">🛡 Create Your Clan</h2>
+
+            <form id="create-clan-form">
+                <div class="form-group">
+                    <label class="form-label">Clan Name *</label>
+                    <input type="text" class="form-input" id="clan-name" required>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Description</label>
+                    <textarea class="form-textarea" id="clan-description" placeholder="Tell others about your clan..."></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Contact Email *</label>
+                    <input type="email" class="form-input" id="clan-email" required>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label">Clan Type *</label>
+                        <select class="form-select" id="clan-type" required>
+                            <option value="">Select Type</option>
+                            <option value="OPEN">Open (Anyone can join)</option>
+                            <option value="REQUEST">Request (Approval required)</option>
+                            <option value="CLOSED">Closed (Invite only)</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Member Limit</label>
+                        <input type="number" class="form-input" id="member-limit" value="50" min="5" max="100">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Clan Logo</label>
+                    <div class="file-upload">
+                        <input type="file" id="clan-logo" accept="image/*">
+                        <label for="clan-logo" class="file-upload-label">
+                            📁 Choose logo image
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Banner Image</label>
+                    <div class="file-upload">
+                        <input type="file" id="clan-banner" accept="image/*">
+                        <label for="clan-banner" class="file-upload-label">
+                            🖼 Choose banner image
+                        </label>
+                    </div>
+                </div>
+
+                <button type="submit" class="submit-btn">⚔ Create Clan</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Browse Clans Tab -->
+    <div id="browse-tab" class="tab-content">
+        <div class="form-container" style="max-width: 800px; margin-bottom: 2rem;">
+            <h2 style="text-align: center; margin-bottom: 1.5rem; color: #7c3aed;">🔍 Find Your Clan</h2>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <input type="text" class="form-input" id="search-clans" placeholder="Search clans...">
+                </div>
+                <div class="form-group">
+                    <select class="form-select" id="filter-type">
+                        <option value="">All Types</option>
+                        <option value="OPEN">Open</option>
+                        <option value="REQUEST">Request</option>
+                        <option value="CLOSED">Closed</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div class="clan-list" id="clan-list">
+            <!-- Clans will be populated here -->
+        </div>
+    </div>
+</div>
+
+<!-- Join Request Modal -->
+<div id="join-modal" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h3 id="modal-clan-name">Join Clan</h3>
+            <button class="close-btn" onclick="closeModal()">&times;</button>
+        </div>
+        <form id="join-request-form">
+            <div class="form-group">
+                <label class="form-label">Message to Clan Leaders</label>
+                <textarea class="form-textarea" id="join-message" placeholder="Tell them why you want to join..."></textarea>
+            </div>
+            <button type="submit" class="submit-btn">Send Join Request</button>
+        </form>
+    </div>
+</div>
+
+<script>
+    // Sample clan data
+    const clans = [
+        {
+            id: "1",
+            name: "Shadow Hunters",
+            description: "Elite FPS players dominating the battlefield",
+            clanType: "REQUEST",
+            members: 25,
+            memberLimit: 50,
+            rankingPoints: 2450,
+            leader: "ShadowMaster",
+            logo: "🏹"
+        },
+        {
+            id: "2",
+            name: "Cyber Wolves",
+            description: "Strategic MOBA champions",
+            clanType: "OPEN",
+            members: 18,
+            memberLimit: 30,
+            rankingPoints: 1890,
+            leader: "WolfLeader",
+            logo: "🐺"
+        },
+        {
+            id: "3",
+            name: "Dragon's Fire",
+            description: "Hardcore RPG guild",
+            clanType: "CLOSED",
+            members: 40,
+            memberLimit: 40,
+            rankingPoints: 3200,
+            leader: "DragonLord",
+            logo: "🐲"
+        },
+        {
+            id: "4",
+            name: "Storm Raiders",
+            description: "Battle royale specialists",
+            clanType: "REQUEST",
+            members: 35,
+            memberLimit: 50,
+            rankingPoints: 2150,
+            leader: "StormKing",
+            logo: "⚡"
+        }
+    ];
+
+    let currentClanForJoin = null;
+
+    // Tab switching
+    function showTab(tabName) {
+        // Hide all tabs
+        document.querySelectorAll('.tab-content').forEach(tab => {
+            tab.classList.remove('active');
+        });
+
+        // Remove active class from all buttons
+        document.querySelectorAll('.tab-button').forEach(btn => {
+            btn.classList.remove('active');
+        });
+
+        // Show selected tab
+        document.getElementById(tabName + '-tab').classList.add('active');
+
+        // Add active class to clicked button
+        event.target.classList.add('active');
+
+        if (tabName === 'browse') {
+            renderClans();
+        }
+    }
+
+    // Create clan form submission
+    document.getElementById('create-clan-form').addEventListener('submit', function(e) {
+        e.preventDefault();
+
+        const formData = {
+            name: document.getElementById('clan-name').value,
+            description: document.getElementById('clan-description').value,
+            email: document.getElementById('clan-email').value,
+            clanType: document.getElementById('clan-type').value,
+            memberLimit: parseInt(document.getElementById('member-limit').value),
+            clanLogoUrl: '', // Would be uploaded file URL
+            bannerUrl: '' // Would be uploaded file URL
+        };
+
+        // Simulate API call
+        console.log('Creating clan:', formData);
+        alert('🎉 Clan created successfully! Welcome to the arena!');
+
+        // Reset form
+        this.reset();
+    });
+
+    // Render clans
+    function renderClans() {
+        const clanList = document.getElementById('clan-list');
+        const searchTerm = document.getElementById('search-clans').value.toLowerCase();
+        const typeFilter = document.getElementById('filter-type').value;
+
+        let filteredClans = clans.filter(clan => {
+            const matchesSearch = clan.name.toLowerCase().includes(searchTerm) ||
+                clan.description.toLowerCase().includes(searchTerm);
+            const matchesType = !typeFilter || clan.clanType === typeFilter;
+            return matchesSearch && matchesType;
+        });
+
+        clanList.innerHTML = filteredClans.map(clan => `
+                <div class="clan-card" onclick="showJoinModal('${clan.id}')">
+                    <div class="clan-header">
+                        <div class="clan-logo">${clan.logo}</div>
+                        <div class="clan-info">
+                            <h3>${clan.name}</h3>
+                            <span class="clan-type ${clan.clanType.toLowerCase()}">${clan.clanType}</span>
+                        </div>
+                    </div>
+                    <p style="color: #9ca3af; margin-bottom: 1rem; font-size: 0.9rem;">${clan.description}</p>
+                    <div class="clan-stats">
+                        <span>👥 ${clan.members}/${clan.memberLimit}</span>
+                        <span>⭐ ${clan.rankingPoints}</span>
+                        <span>👑 ${clan.leader}</span>
+                    </div>
+                    <button class="join-btn" ${clan.members >= clan.memberLimit ? 'disabled' : ''}>
+                        ${clan.clanType === 'OPEN' ? '⚡ Join Now' : '📩 Request Join'}
+                    </button>
+                </div>
+            `).join('');
+    }
+
+    // Show join modal
+    function showJoinModal(clanId) {
+        const clan = clans.find(c => c.id === clanId);
+        if (!clan || clan.members >= clan.memberLimit) return;
+
+        currentClanForJoin = clan;
+        document.getElementById('modal-clan-name').textContent = Join ${clan.name};
+        document.getElementById('join-modal').style.display = 'block';
+    }
+
+    // Close modal
+    function closeModal() {
+        document.getElementById('join-modal').style.display = 'none';
+        document.getElementById('join-message').value = '';
+        currentClanForJoin = null;
+    }
+
+    // Join request form submission
+    document.getElementById('join-request-form').addEventListener('submit', function(e) {
+        e.preventDefault();
+
+        if (!currentClanForJoin) return;
+
+        const joinData = {
+            clanId: currentClanForJoin.id,
+            message: document.getElementById('join-message').value,
+            status: 'PENDING'
+        };
+
+        // Simulate API call
+        console.log('Sending join request:', joinData);
+
+        if (currentClanForJoin.clanType === 'OPEN') {
+            alert('🎉 Welcome to the clan! You have been added immediately!');
+        } else {
+            alert('📩 Join request sent! The clan leaders will review your request.');
+        }
+
+        closeModal();
+    });
+
+    // Search and filter functionality
+    document.getElementById('search-clans').addEventListener('input', renderClans);
+    document.getElementById('filter-type').addEventListener('change', renderClans);
+
+    // File upload labels update
+    document.getElementById('clan-logo').addEventListener('change', function(e) {
+        const label = this.nextElementSibling;
+        label.textContent = e.target.files[0] ? 📁 ${e.target.files[0].name} : '📁 Choose logo image';
+    });
+
+    document.getElementById('clan-banner').addEventListener('change', function(e) {
+        const label = this.nextElementSibling;
+        label.textContent = e.target.files[0] ? 🖼 ${e.target.files[0].name} : '🖼 Choose banner image';
+    });
+
+    // Close modal when clicking outside
+    window.addEventListener('click', function(e) {
+        const modal = document.getElementById('join-modal');
+        if (e.target === modal) {
+            closeModal();
+        }
+    });
+
+    // Initialize
+    renderClans();
+</script>
+</body>
+</html>

@@ -211,7 +211,9 @@ function updateHeaderUI() {
     const registerBtn = document.getElementById("registerBtn");
     const logoutBtn = document.getElementById("logoutBtn");
     const userProfile = document.getElementById("userProfile");
+/*
     const usernameDisplay = document.getElementById("usernameDisplay");
+*/
 
     if (token) {
         if (loginBtn) loginBtn.style.display = "none";
@@ -223,7 +225,7 @@ function updateHeaderUI() {
             userProfile.classList.remove("hidden");  // remove Tailwind hidden class
         }
 
-        if (usernameDisplay) usernameDisplay.innerHTML = `<span class="user-icon">👤</span> ${username || "User"}`;
+        if (usernameDisplay) usernameDisplay.innerHTML = `<img src="https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=64&h=64&fit=crop" alt="Player Avatar" class="w-8 h-8 rounded-full border-2 border-primary shadow-glow-primary" onerror="this.src='https://images.unsplash.com/photo-1584824486509-112e4181ff6b?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'; this.onerror=null;" />`;
     } else {
         if (loginBtn) loginBtn.style.display = "flex";
         if (registerBtn) registerBtn.style.display = "flex";
