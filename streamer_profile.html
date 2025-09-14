@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Streamer Profile - User Dashboard</title>
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <link rel="stylesheet" href="assets/css/tailwind.css" />
+    <link rel="stylesheet" href="assets/css/home.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <script type="module" src="https://static.rocket.new/rocket-web.js?_cfg=https%3A%2F%2Fgamingpro2929back.builtwithrocket.new&_be=https%3A%2F%2Fapplication.rocket.new&_v=0.1.8"></script>
+</head>
+<body class="bg-background min-h-screen text-text-primary font-inter">
+<!-- Navigation Header -->
+<nav class="bg-surface border-b border-surface-700 sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between items-center h-16">
+            <!-- Logo -->
+            <div class="flex items-center">
+                <svg class="w-10 h-10 text-primary" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="40" height="40" rx="8" fill="currentColor"/>
+                    <path d="M12 16L20 24L28 16" stroke="#0F172A" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                    <circle cx="20" cy="12" r="3" fill="#0F172A"/>
+                </svg>
+                <span class="ml-3 text-xl font-bold text-gaming-heading">GameHub</span>
+            </div>
+
+            <!-- Navigation Links -->
+            <div class="hidden md:flex items-center space-x-8">
+                <a href="streamer_profile.html" class="text-primary font-medium hover:text-primary-600 transition-colors">Profile</a>
+                <a href="stream_dashboard.html" class="text-text-secondary hover:text-text-primary transition-colors">Dashboard</a>
+                <a href="tournaments.html" class="text-text-secondary hover:text-text-primary transition-colors">Tournaments</a>
+            </div>
+
+            <!-- Mobile Menu Button -->
+            <div class="md:hidden">
+                <button type="button" class="text-text-secondary hover:text-text-primary p-2">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<!-- Main Content -->
+<main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <!-- Page Header -->
+    <div class="mb-8">
+        <h1 class="text-3xl font-bold text-gaming-heading mb-2">Streamer Profile</h1>
+        <p class="text-text-secondary">Your streaming profile and channel statistics</p>
+    </div>
+
+    <!-- Profile Card -->
+    <div class="bg-surface rounded-gaming-card shadow-gaming-lg border border-surface-700 overflow-hidden mb-8">
+        <!-- Profile Header -->
+        <div class="bg-gradient-to-r from-primary/10 to-accent/10 px-6 py-8 sm:px-8">
+            <div class="flex flex-col sm:flex-row items-center sm:items-start gap-6">
+                <!-- Profile Picture -->
+                <div class="relative group">
+                    <div class="w-32 h-32 rounded-full overflow-hidden border-4 border-primary glow-primary group-hover:glow-primary-strong transition-all duration-gaming">
+                        <img src="https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Profile Picture" class="w-full h-full object-cover" onerror="this.src='https://images.unsplash.com/photo-1584824486509-112e4181ff6b?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'; this.onerror=null;" loading="lazy" />
+                    </div>
+                    <!-- Live Status -->
+                    <div class="absolute -bottom-2 -right-2 bg-error text-background text-xs font-bold px-3 py-1 rounded-full border-2 border-surface flex items-center">
+                        <div class="w-2 h-2 bg-error rounded-full mr-1"></div>
+                        Live
+                    </div>
+                    <!-- Verified Badge -->
+                    <div class="absolute -top-2 -right-2 bg-primary text-white text-xs font-bold p-1 rounded-full border-2 border-surface">
+                        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                        </svg>
+                    </div>
+                </div>
+
+                <!-- Profile Info -->
+                <div class="flex-1 text-center sm:text-left">
+                    <h2 class="text-2xl font-bold text-gaming-heading mb-2 flex items-center justify-center sm:justify-start gap-2">
+                        StreamMaster2025
+                        <span class="text-primary text-sm bg-primary/20 px-2 py-1 rounded-full">Verified</span>
+                    </h2>
+                    <p class="text-text-secondary mb-4" id="username">@StreamMaster2025</p>
+
+                    <!-- Streamer Stats -->
+                    <div class="flex flex-wrap justify-center sm:justify-start gap-4 mb-4">
+                        <div class="bg-surface-800 px-3 py-1 rounded-gaming text-sm">
+                            <span class="text-text-secondary">Platform:</span>
+                            <span class="text-primary font-medium ml-1">Twitch</span>
+                        </div>
+                        <div class="bg-surface-800 px-3 py-1 rounded-gaming text-sm">
+                            <span class="text-text-secondary">Followers:</span>
+                            <span class="text-accent font-medium ml-1">125.7K</span>
+                        </div>
+                        <div class="bg-surface-800 px-3 py-1 rounded-gaming text-sm">
+                            <span class="text-text-secondary">Status:</span>
+                            <span class="text-red-400 font-medium ml-1">🔴 Live</span>
+                        </div>
+                        <div class="bg-surface-800 px-3 py-1 rounded-gaming text-sm">
+                            <span class="text-text-secondary">Last Stream:</span>
+                            <span class="text-success font-medium ml-1">Today</span>
+                        </div>
+                    </div>
+                    <div class="bg-surface-800 px-3 py-3 rounded-gaming text-sm group">
+                    <div class="mt-6 pt-6 border-t border-surface-700">
+                        <h3 class="text-lg font-semibold text-gaming-heading mb-4 flex items-center">
+                            <svg class="w-5 h-5 text-secondary-700 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/>
+                            </svg>
+                            About
+                        </h3>
+                        <p class="text-text-primary leading-relaxed">
+                            Professional streamer specializing in competitive FPS games and educational content. Been streaming for over 4 years with a focus on high-level gameplay analysis and viewer interaction. Join the community for daily streams featuring Valorant, CS2, and occasional variety games. Always happy to help viewers improve their gameplay!
+                        </p>
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Profile Details -->
+        <div class="px-6 py-6 sm:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Streamer Information -->
+                <div class="space-y-4">
+                    <h3 class="text-lg font-semibold text-gaming-heading mb-4 flex items-center">
+                        <svg class="w-5 h-5 text-primary mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"/>
+                        </svg>
+                        Streamer Information
+                    </h3>
+
+                    <div class="space-y-3">
+                        <div class="flex justify-between items-center py-2 border-b border-surface-700">
+                            <span class="text-text-secondary">Streamer ID</span>
+                            <span class="text-gaming-data text-sm text-text-primary">550e8400-e29b-41d4-a716</span>
+                        </div>
+                        <div class="flex justify-between items-center py-2 border-b border-surface-700">
+                            <span class="text-text-secondary">Email</span>
+                            <span class="text-text-primary">streamer@example.com</span>
+                        </div>
+                        <div class="flex justify-between items-center py-2 border-b border-surface-700">
+                            <span class="text-text-secondary">Display Name</span>
+                            <span class="text-text-primary font-medium">StreamMaster2025</span>
+                        </div>
+                        <div class="flex justify-between items-center py-2 border-b border-surface-700">
+                            <span class="text-text-secondary">Stream URL</span>
+                            <a href="#" class="text-primary hover:underline">twitch.tv/streammaster2025</a>
+                        </div>
+                        <div class="flex justify-between items-center py-2 border-b border-surface-700">
+                            <span class="text-text-secondary">Country</span>
+                            <span class="text-text-primary flex items-center">
+                                🇺🇸 United States
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Channel Status & Stats -->
+                <div class="space-y-4">
+                    <h3 class="text-lg font-semibold text-gaming-heading mb-4 flex items-center">
+                        <svg class="w-5 h-5 text-accent mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
+                        </svg>
+                        Channel Status
+                    </h3>
+
+                    <div class="space-y-3">
+                        <div class="flex justify-between items-center py-2 border-b border-surface-700">
+                            <span class="text-text-secondary">Verification Status</span>
+                            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-success/20 text-success border border-success/30">
+                                <div class="w-2 h-2 bg-success rounded-full mr-1.5"></div>
+                                Verified
+                            </span>
+                        </div>
+                        <div class="flex justify-between items-center py-2 border-b border-surface-700">
+                            <span class="text-text-secondary">Stream Status</span>
+                            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-error/20 text-white border border-error/30">
+                                <div class="w-2 h-2 bg-error rounded-full mr-1.5"></div>
+                                Live Now
+                            </span>
+                        </div>
+                        <div class="flex justify-between items-center py-2 border-b border-surface-700">
+                            <span class="text-text-secondary">Followers</span>
+                            <span class="text-accent font-medium">125,742</span>
+                        </div>
+                        <div class="flex justify-between items-center py-2 border-b border-surface-700">
+                            <span class="text-text-secondary">Joined Date</span>
+                            <span class="text-primary font-medium">March 2021</span>
+                        </div>
+                        <div class="flex justify-between items-center py-2 border-b border-surface-700">
+                            <span class="text-text-secondary">Platform</span>
+                            <span class="text-warning font-medium">Twitch</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Featured Games & Stream Info Section -->
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
+        <!-- Featured Games Section -->
+        <div class="bg-surface rounded-gaming-card shadow-gaming border border-surface-700 p-6 sm:p-8">
+            <h3 class="text-xl font-semibold text-gaming-heading mb-6 flex items-center">
+                <svg class="w-6 h-6 text-warning mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"/>
+                </svg>
+                Featured Games
+            </h3>
+
+            <div class="grid grid-cols-2 gap-3">
+                <div class="bg-surface-800 rounded-gaming p-4 text-center border border-warning/30">
+                    <div class="w-8 h-8 bg-primary/20 rounded-full flex items-center justify-center mx-auto mb-2">
+                        <span class="text-warning text-lg">🎮</span>
+                    </div>
+                    <h4 class="font-medium text-text-primary text-sm">Valorant</h4>
+                    <p class="text-text-secondary text-xs">Main Game</p>
+                </div>
+
+                <div class="bg-surface-800 rounded-gaming p-4 text-center border border-primary/30">
+                    <div class="w-8 h-8 bg-primary/20 rounded-full flex items-center justify-center mx-auto mb-2">
+                        <span class="text-primary text-lg">🎯</span>
+                    </div>
+                    <h4 class="font-medium text-text-primary text-sm">CS2</h4>
+                    <p class="text-text-secondary text-xs">Main Game</p>
+                </div>
+
+                <div class="bg-surface-800 rounded-gaming p-4 text-center border border-accent/30">
+                    <div class="w-8 h-8 bg-primary/20 rounded-full flex items-center justify-center mx-auto mb-2">
+                        <span class="text-accent text-lg">🏆</span>
+                    </div>
+                    <h4 class="font-medium text-text-primary text-sm">Apex Legends</h4>
+                    <p class="text-text-secondary text-xs">Weekly</p>
+                </div>
+
+                <div class="bg-surface-800 rounded-gaming p-4 text-center border border-success/30">
+                    <div class="w-8 h-8 bg-primary/20 rounded-full flex items-center justify-center mx-auto mb-2">
+                        <span class="text-success text-lg">🎲</span>
+                    </div>
+                    <h4 class="font-medium text-text-primary text-sm">Variety Games</h4>
+                    <p class="text-text-secondary text-xs">Weekend</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Stream Schedule -->
+        <div class="bg-surface rounded-gaming-card shadow-gaming border border-surface-700 p-6 sm:p-8">
+            <h3 class="text-xl font-semibold text-gaming-heading mb-6 flex items-center">
+                <svg class="w-6 h-6 text-accent mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                </svg>
+                Stream Schedule
+            </h3>
+
+            <div class="space-y-3">
+                <div class="flex justify-between items-center p-3 bg-surface-800 rounded-gaming border border-primary/30">
+                    <div>
+                        <span class="text-text-primary font-medium">Monday - Friday</span>
+                        <p class="text-text-secondary text-sm">Competitive Gaming</p>
+                    </div>
+                    <span class="text-primary font-medium">7PM - 11PM EST</span>
+                </div>
+
+                <div class="flex justify-between items-center p-3 bg-surface-800 rounded-gaming border border-accent/30">
+                    <div>
+                        <span class="text-text-primary font-medium">Saturday</span>
+                        <p class="text-text-secondary text-sm">Variety & Community</p>
+                    </div>
+                    <span class="text-accent font-medium">2PM - 8PM EST</span>
+                </div>
+
+                <div class="flex justify-between items-center p-3 bg-surface-800 rounded-gaming border border-warning/30">
+                    <div>
+                        <span class="text-text-primary font-medium">Sunday</span>
+                        <p class="text-text-secondary text-sm">Subscriber Games</p>
+                    </div>
+                    <span class="text-warning font-medium">6PM - 10PM EST</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Action Buttons Section -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+        <!-- Edit Profile Button -->
+        <div class="bg-surface rounded-gaming-card shadow-gaming border border-surface-700 p-6 hover:shadow-gaming-md transition-all duration-gaming">
+            <div class="text-center">
+                <div class="w-12 h-12 bg-primary/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/>
+                    </svg>
+                </div>
+                <h3 class="text-lg font-semibold text-gaming-heading mb-2">Edit Profile</h3>
+                <p class="text-text-secondary text-sm mb-4">Update your streaming profile and settings</p>
+                <a href="streamer_profile_edit.html" class="inline-flex items-center justify-center w-full px-4 py-2 bg-primary text-background font-medium rounded-gaming btn-gaming hover:bg-primary-600 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-surface">
+                    Edit Profile
+                </a>
+            </div>
+        </div>
+
+        <!-- Stream Dashboard Button -->
+        <div class="bg-surface rounded-gaming-card shadow-gaming border border-surface-700 p-6 hover:shadow-gaming-md transition-all duration-gaming">
+            <div class="text-center">
+                <div class="w-12 h-12 bg-accent/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <svg class="w-6 h-6 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"/>
+                    </svg>
+                </div>
+                <h3 class="text-lg font-semibold text-gaming-heading mb-2">Go Live</h3>
+                <p class="text-text-secondary text-sm mb-4">Start streaming to your audience</p>
+                <button class="inline-flex items-center justify-center w-full px-4 py-2 bg-error border-error text-background font-medium rounded-gaming btn-gaming hover:bg-error-600 focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-surface">
+                    🔴 Start Stream
+                </button>
+            </div>
+        </div>
+    </div>
+
+</main>
+
+<!-- Footer -->
+<footer class="bg-surface border-t border-surface-700 mt-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <div class="text-center">
+            <p class="text-text-secondary text-sm">© 2025 GameHub. All Rights Reserved.</p>
+            <p class="text-text-secondary text-xs mt-2">Empowering streamers worldwide</p>
+        </div>
+    </div>
+</footer>
+
+<!-- Mobile Navigation Menu (Hidden by default) -->
+<div class="md:hidden fixed inset-0 z-50 hidden" id="mobile-menu">
+    <div class="fixed inset-0 bg-background/80 backdrop-blur-sm"></div>
+    <div class="fixed top-0 right-0 w-64 h-full bg-surface border-l border-surface-700 p-6">
+        <div class="flex justify-between items-center mb-8">
+            <span class="text-lg font-bold text-gaming-heading">Menu</span>
+            <button type="button" class="text-text-secondary hover:text-text-primary">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                </svg>
+            </button>
+        </div>
+        <nav class="space-y-4">
+            <a href="streamer_profile_view.html" class="block text-primary font-medium py-2">Profile</a>
+            <a href="stream_dashboard.html" class="block text-text-secondary hover:text-text-primary py-2">Dashboard</a>
+            <a href="tournaments.html" class="block text-text-secondary hover:text-text-primary py-2">Tournaments</a>
+        </nav>
+    </div>
+</div>
+</body>
+</html>
