@@ -16,6 +16,21 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" rel="stylesheet"/>
     <!--css-->
     <link href="assets/css/home.css" rel="stylesheet" type="text/css"/>
+    <link href="assets/css/main2.css" rel="stylesheet" type="text/css"/>
+    <style>
+        /* Add this to your CSS to improve the dropdown appearance */
+        #userDropdown {
+            z-index: 1000;
+            border: 1px solid #374151;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+
+        #userDropdown a:hover {
+            background-color: #374151 !important;
+            color: #00ffcc !important;
+        }
+    </style>
 </head>
 <body>
 <!--header-->
@@ -68,17 +83,29 @@
                 </button>
 
                 <!-- User profile (only visible after login) -->
-                <div id="userProfile" class="hidden flex items-center gap-6" style="display: none;">
-                    <span class="text-gray-300 hover:text-white text-base font-medium leading-normal" id="usernameDisplay">
-                        <span class="user-icon">👤</span> Username
-                    </span>
-                </div>
 
-                <!-- Logout button (only visible after login) -->
-                <div class="flex items-center gap-4">
-                    <button id="logoutBtn" class="text-red-400 hover:text-red-300 transition-colors">
-                        <i class="fas fa-sign-out-alt text-xl"></i>
-                    </button>
+                <div class="flex items-center space-x-3" id="userProfile" style="display: none">
+                    <span class="hidden sm:block text-sm font-medium" id="usernameDisplay"></span>
+                    <!--user dropdown menu for edit profile,Apply as a streamer,Apply as a player and logout-->
+                    <div class="relative inline-block text-left">
+                        <div>
+                            <button id="userDropdownBtn" type="button" class="text-green-400 hover:text-green-300 transition-colors">
+                                <i class="fas fa-chevron-down text-sm transition-transform duration-200" id="dropdownArrow"></i>                            </button>
+                        </div>
+                        <div id="userDropdown" class="hidden absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-black">
+                            <a href="user_profile_view.html" class="block px-4 py-2 text-sm text-white hover:bg-gray-700">User Profile</a>
+                            <a href="streamer_application.html" class="block px-4 py-2 text-sm text-white hover:bg-gray-700">Apply as a Streamer</a>
+                            <a href="player_application.html" class="block px-4 py-2 text-sm text-white hover:bg-gray-700">Apply as a Player</a>
+                            <a href=""  id="logoutBtn" class="block px-4 py-2 text-sm text-red-400 hover:bg-gray-700">Logout</a>
+                           <!-- &lt;!&ndash; Logout button (only visible after login) &ndash;&gt;
+                            <div class="flex items-center gap-4">
+                                <button id="logoutBtn" class="text-red-400 hover:text-red-300 transition-colors">
+                                    <span class="hidden sm:block">Logout</span>
+                                    <i class="fas fa-sign-out-alt text-xl"></i>
+                                </button>
+                            </div>-->
+                        </div>
+                    </div>
                 </div>
             </nav>
         </header>
@@ -548,6 +575,61 @@
             header.style.background = 'rgba(10, 10, 15, 0.8)';
         }
     });
+    // Add this JavaScript code to make the user dropdown work
+
+    // User dropdown functionality
+    document.addEventListener('DOMContentLoaded', function() {
+        const userDropdownBtn = document.getElementById('userDropdownBtn');
+        const userDropdown = document.getElementById('userDropdown');
+        const logoutBtn = document.getElementById('logoutBtn');
+
+        // Toggle dropdown when clicking the user icon
+        userDropdownBtn.addEventListener('click', function(e) {
+            e.stopPropagation();
+            userDropdown.classList.toggle('hidden');
+        });
+
+        // Close dropdown when clicking outside
+        document.addEventListener('click', function(e) {
+            if (!userDropdown.contains(e.target) && !userDropdownBtn.contains(e.target)) {
+                userDropdown.classList.add('hidden');
+            }
+        });
+
+        // Logout functionality
+        logoutBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            // Add your logout logic here
+            console.log('User logged out');
+
+            // Hide user profile and show login button
+            document.getElementById('userProfile').style.display = 'none';
+            document.getElementById('loginBtnNav').style.display = 'block';
+
+            // Close dropdown
+            userDropdown.classList.add('hidden');
+
+            // Optional: Show logout confirmation
+            // toastr.success('Successfully logged out');
+        });
+
+        // Close dropdown when clicking on menu items (optional)
+        const dropdownLinks = userDropdown.querySelectorAll('a');
+        dropdownLinks.forEach(link => {
+            link.addEventListener('click', function() {
+                userDropdown.classList.add('hidden');
+            });
+        });
+    });
+
+    // Function to show user profile after successful login
+    function showUserProfile(username) {
+        document.getElementById('usernameDisplay').textContent = username;
+        document.getElementById('userProfile').style.display = 'flex';
+        document.getElementById('loginBtnNav').style.display = 'none';
+    }
 </script>
 <script src="assets/js/signup.js"></script>
 <script src="assets/js/forgotPassword.js"></script>
