@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Streamer Application - GameHub</title>
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <link rel="stylesheet" href="assets/css/tailwind.css" />
+    <link rel="stylesheet" href="assets/css/home.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<script type="module" src="https://static.rocket.new/rocket-web.js?_cfg=https%3A%2F%2Fgamingpro2929back.builtwithrocket.new&_be=https%3A%2F%2Fapplication.rocket.new&_v=0.1.8"></script>
+</head>
+<body class="bg-background min-h-screen text-text-primary font-inter">
+    <!-- Navigation Header -->
+    <nav class="bg-surface border-b border-surface-700 sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <!-- Logo -->
+                <div class="flex items-center">
+                    <svg class="w-10 h-10 text-primary" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect width="40" height="40" rx="8" fill="currentColor"/>
+                        <path d="M12 16L20 24L28 16" stroke="#0F172A" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                        <circle cx="20" cy="12" r="3" fill="#0F172A"/>
+                    </svg>
+                    <span class="ml-3 text-xl font-bold text-gaming-heading">GameHub</span>
+                </div>
+                
+                <!-- Navigation Links -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="user_profile_view.html" class="text-text-secondary hover:text-text-primary transition-colors">Profile</a>
+                    <a href="streamer_application.html" class="text-primary font-medium hover:text-primary-600 transition-colors">Streamer</a>
+                    <a href="player_application.html" class="text-text-secondary hover:text-text-primary transition-colors">Player</a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden">
+                    <button type="button" class="text-text-secondary hover:text-text-primary p-2" onclick="toggleMobileMenu()">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+
+        <!-- Page Header -->
+        <div class="mb-8">
+            <div class="flex items-center mb-4">
+                <a href="user_profile_view.html" class="text-text-secondary hover:text-primary transition-colors mr-4">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+                    </svg>
+                </a>
+                <div>
+                    <h1 class="text-3xl font-bold text-gaming-heading">Streamer Application</h1>
+                    <p class="text-text-secondary">Join our streaming community and showcase your gaming skills</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Progress Indicator -->
+        <div class="bg-surface rounded-gaming-card shadow-gaming border border-surface-700 p-6 mb-8">
+            <div class="flex items-center justify-between mb-4">
+                <h3 class="text-lg font-semibold text-gaming-heading">Application Progress</h3>
+                <span class="text-sm text-text-secondary" id="progress-text">0% Complete</span>
+            </div>
+            <div class="w-full bg-surface-800 rounded-full h-2">
+                <div class="bg-gradient-to-r from-primary to-accent h-2 rounded-full transition-all duration-gaming" style="width: 0%" id="progress-bar"></div>
+            </div>
+        </div>
+
+        <!-- Application Form -->
+        <form class="space-y-8" id="streamer-application-form" onsubmit="handleSubmit(event)">
+            <!-- Basic Information Section -->
+            <section class="bg-surface rounded-gaming-card shadow-gaming border border-surface-700 p-6 sm:p-8">
+                <div class="flex items-center mb-6">
+                    <div class="w-8 h-8 bg-primary/20 rounded-full flex items-center justify-center mr-3">
+                        <span class="text-primary font-bold text-sm">1</span>
+                    </div>
+                    <h2 class="text-xl font-semibold text-gaming-heading">Basic Information</h2>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <label for="display-name" class="block text-sm font-medium text-text-primary mb-2">Display Name *</label>
+                        <input type="text" id="display-name" name="display-name" required class="w-full px-4 py-3 bg-surface-800 border border-surface-700 rounded-gaming text-text-primary placeholder-text-secondary focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all duration-gaming" placeholder="Your streaming display name" oninput="updateProgress()" />
+                    </div>
+                    
+                    <div>
+                        <label for="primary-game" class="block text-sm font-medium text-text-primary mb-2">Primary Game *</label>
+                        <select id="primary-game" name="primary-game" required class="w-full px-4 py-3 bg-surface-800 border border-surface-700 rounded-gaming text-text-primary focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all duration-gaming" onchange="updateProgress()">
+                            <option value>Select your primary game</option>
+                            <option value="valorant">Valorant</option>
+                            <option value="league-of-legends">League of Legends</option>
+                            <option value="csgo">CS:GO</option>
+                            <option value="apex-legends">Apex Legends</option>
+                            <option value="fortnite">Fortnite</option>
+                            <option value="minecraft">Minecraft</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Streaming Platform Links Section -->
+            <section class="bg-surface rounded-gaming-card shadow-gaming border border-surface-700 p-6 sm:p-8">
+                <div class="flex items-center mb-6">
+                    <div class="w-8 h-8 bg-primary/20 rounded-full flex items-center justify-center mr-3">
+                        <span class="text-primary font-bold text-sm">2</span>
+                    </div>
+                    <h2 class="text-xl font-semibold text-gaming-heading">Streaming Platforms</h2>
+                </div>
+                
+                <div class="space-y-4">
+                    <div>
+                        <label for="twitch-url" class="block text-sm font-medium text-text-primary mb-2">Twitch Channel URL *</label>
+                        <div class="relative">
+                            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                <svg class="w-5 h-5 text-text-secondary" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M11.571 4.714h1.715v5.143H11.57zm4.715 0H18v5.143h-1.714zM6 0L1.714 4.286v15.428h5.143V24l4.286-4.286h3.428L22.286 12V0zm14.571 11.143l-3.428 3.428h-3.429l-3 3v-3H6.857V1.714h13.714Z"/>
+                                </svg>
+                            </div>
+                            <input type="url" id="twitch-url" name="twitch-url" required class="w-full pl-10 pr-4 py-3 bg-surface-800 border border-surface-700 rounded-gaming text-text-primary placeholder-text-secondary focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all duration-gaming" placeholder="https://twitch.tv/yourusername" oninput="updateProgress(); validateURL(this)" />
+                        </div>
+                        <div class="text-xs text-error mt-1 hidden" id="twitch-url-error">Please enter a valid Twitch URL</div>
+                    </div>
+                    
+                    <div>
+                        <label for="youtube-url" class="block text-sm font-medium text-text-primary mb-2">YouTube Channel URL</label>
+                        <div class="relative">
+                            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                <svg class="w-5 h-5 text-text-secondary" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                                </svg>
+                            </div>
+                            <input type="url" id="youtube-url" name="youtube-url" class="w-full pl-10 pr-4 py-3 bg-surface-800 border border-surface-700 rounded-gaming text-text-primary placeholder-text-secondary focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all duration-gaming" placeholder="https://youtube.com/@yourusername" oninput="updateProgress(); validateURL(this)" />
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Content & Audience Section -->
+            <section class="bg-surface rounded-gaming-card shadow-gaming border border-surface-700 p-6 sm:p-8">
+                <div class="flex items-center mb-6">
+                    <div class="w-8 h-8 bg-primary/20 rounded-full flex items-center justify-center mr-3">
+                        <span class="text-primary font-bold text-sm">3</span>
+                    </div>
+                    <h2 class="text-xl font-semibold text-gaming-heading">Content & Audience</h2>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                    <div>
+                        <label for="content-categories" class="block text-sm font-medium text-text-primary mb-2">Content Categories *</label>
+                        <div class="space-y-2" id="content-categories">
+                            <label class="flex items-center">
+                                <input type="checkbox" name="content-categories" value="gameplay" class="rounded border-surface-700 text-primary focus:ring-primary focus:ring-offset-surface bg-surface-800" onchange="updateProgress()" />
+                                <span class="ml-2 text-text-primary">Gameplay</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="checkbox" name="content-categories" value="tutorials" class="rounded border-surface-700 text-primary focus:ring-primary focus:ring-offset-surface bg-surface-800" onchange="updateProgress()" />
+                                <span class="ml-2 text-text-primary">Tutorials</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="checkbox" name="content-categories" value="reviews" class="rounded border-surface-700 text-primary focus:ring-primary focus:ring-offset-surface bg-surface-800" onchange="updateProgress()" />
+                                <span class="ml-2 text-text-primary">Reviews</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="checkbox" name="content-categories" value="esports" class="rounded border-surface-700 text-primary focus:ring-primary focus:ring-offset-surface bg-surface-800" onchange="updateProgress()" />
+                                <span class="ml-2 text-text-primary">Esports</span>
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <label for="average-viewers" class="block text-sm font-medium text-text-primary mb-2">Average Viewers *</label>
+                        <select id="average-viewers" name="average-viewers" required class="w-full px-4 py-3 bg-surface-800 border border-surface-700 rounded-gaming text-text-primary focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all duration-gaming" onchange="updateProgress()">
+                            <option value>Select viewer range</option>
+                            <option value="0-10">0-10 viewers</option>
+                            <option value="11-50">11-50 viewers</option>
+                            <option value="51-100">51-100 viewers</option>
+                            <option value="101-500">101-500 viewers</option>
+                            <option value="500+">500+ viewers</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div>
+                    <label for="streaming-experience" class="block text-sm font-medium text-text-primary mb-2">Streaming Experience *</label>
+                    <textarea id="streaming-experience" name="streaming-experience" rows="4" required maxlength="500" class="w-full px-4 py-3 bg-surface-800 border border-surface-700 rounded-gaming text-text-primary placeholder-text-secondary focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all duration-gaming resize-none" placeholder="Tell us about your streaming experience, community engagement, and what makes your content unique..." oninput="updateProgress(); updateCharCount(this, 'experience-count')"></textarea>
+                    <div class="flex justify-between items-center mt-2">
+                        <span class="text-xs text-text-secondary">Describe your streaming journey and community</span>
+                        <span class="text-xs text-text-secondary" id="experience-count">0/500</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Schedule & Equipment Section -->
+            <section class="bg-surface rounded-gaming-card shadow-gaming border border-surface-700 p-6 sm:p-8">
+                <div class="flex items-center mb-6">
+                    <div class="w-8 h-8 bg-primary/20 rounded-full flex items-center justify-center mr-3">
+                        <span class="text-primary font-bold text-sm">4</span>
+                    </div>
+                    <h2 class="text-xl font-semibold text-gaming-heading">Schedule & Equipment</h2>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                    <div>
+                        <label for="streaming-schedule" class="block text-sm font-medium text-text-primary mb-2">Streaming Schedule *</label>
+                        <select id="streaming-schedule" name="streaming-schedule" required class="w-full px-4 py-3 bg-surface-800 border border-surface-700 rounded-gaming text-text-primary focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all duration-gaming" onchange="updateProgress()">
+                            <option value>Select schedule</option>
+                            <option value="daily">Daily (7 days/week)</option>
+                            <option value="weekdays">Weekdays (5 days/week)</option>
+                            <option value="weekends">Weekends (2 days/week)</option>
+                            <option value="flexible">Flexible schedule</option>
+                        </select>
+                    </div>
+                    
+                    <div>
+                        <label for="hours-per-week" class="block text-sm font-medium text-text-primary mb-2">Hours per Week *</label>
+                        <input type="number" id="hours-per-week" name="hours-per-week" min="1" max="168" required class="w-full px-4 py-3 bg-surface-800 border border-surface-700 rounded-gaming text-text-primary placeholder-text-secondary focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all duration-gaming" placeholder="e.g., 20" oninput="updateProgress()" />
+                    </div>
+                </div>
+                
+                <div>
+                    <label for="equipment-specs" class="block text-sm font-medium text-text-primary mb-2">Equipment Specifications *</label>
+                    <textarea id="equipment-specs" name="equipment-specs" rows="3" required maxlength="300" class="w-full px-4 py-3 bg-surface-800 border border-surface-700 rounded-gaming text-text-primary placeholder-text-secondary focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all duration-gaming resize-none" placeholder="List your streaming equipment: PC specs, camera, microphone, streaming software..." oninput="updateProgress(); updateCharCount(this, 'equipment-count')"></textarea>
+                    <div class="flex justify-between items-center mt-2">
+                        <span class="text-xs text-text-secondary">Include PC specs, camera, microphone, and software</span>
+                        <span class="text-xs text-text-secondary" id="equipment-count">0/300</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Portfolio Upload Section -->
+            <section class="bg-surface rounded-gaming-card shadow-gaming border border-surface-700 p-6 sm:p-8">
+                <div class="flex items-center mb-6">
+                    <div class="w-8 h-8 bg-primary/20 rounded-full flex items-center justify-center mr-3">
+                        <span class="text-primary font-bold text-sm">5</span>
+                    </div>
+                    <h2 class="text-xl font-semibold text-gaming-heading">Portfolio Submission</h2>
+                </div>
+                
+                <div class="space-y-6">
+                    <div>
+                        <label for="highlight-reel" class="block text-sm font-medium text-text-primary mb-2">Highlight Reel (Optional)</label>
+                        <div class="border-2 border-dashed border-surface-700 rounded-gaming p-6 text-center hover:border-primary/50 transition-colors duration-gaming">
+                            <input type="file" id="highlight-reel" name="highlight-reel" accept="video/*" class="hidden" onchange="handleFileUpload(this, 'reel-preview')" />
+                            <label for="highlight-reel" class="cursor-pointer">
+                                <svg class="w-12 h-12 text-text-secondary mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"/>
+                                </svg>
+                                <p class="text-text-primary font-medium">Upload your best streaming moments</p>
+                                <p class="text-text-secondary text-sm mt-1">MP4, MOV, AVI up to 100MB</p>
+                            </label>
+                            <div id="reel-preview" class="mt-4 hidden">
+                                <div class="bg-surface-800 rounded-gaming p-3 flex items-center justify-between">
+                                    <span class="text-text-primary text-sm" id="reel-filename"></span>
+                                    <button type="button" onclick="removeFile('highlight-reel', 'reel-preview')" class="text-error hover:text-error-600">
+                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                                        </svg>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <label for="screenshots" class="block text-sm font-medium text-text-primary mb-2">Screenshots (Optional)</label>
+                        <div class="border-2 border-dashed border-surface-700 rounded-gaming p-6 text-center hover:border-primary/50 transition-colors duration-gaming">
+                            <input type="file" id="screenshots" name="screenshots" accept="image/*" multiple class="hidden" onchange="handleFileUpload(this, 'screenshots-preview')" />
+                            <label for="screenshots" class="cursor-pointer">
+                                <svg class="w-12 h-12 text-text-secondary mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                                </svg>
+                                <p class="text-text-primary font-medium">Upload gameplay screenshots</p>
+                                <p class="text-text-secondary text-sm mt-1">PNG, JPG up to 10MB each</p>
+                            </label>
+                            <div id="screenshots-preview" class="mt-4 hidden">
+                                <div class="grid grid-cols-2 sm:grid-cols-3 gap-3" id="screenshots-grid"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Submit Section -->
+            <div class="bg-surface rounded-gaming-card shadow-gaming border border-surface-700 p-6 sm:p-8">
+                <div class="text-center">
+                    <div class="mb-6">
+                        <h3 class="text-lg font-semibold text-gaming-heading mb-2">Ready to Submit?</h3>
+                        <p class="text-text-secondary">Review your application and submit for approval. Our team will review within 24-48 hours.</p>
+                    </div>
+                    
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                        <button type="button" onclick="window.location.href='user_profile_view.html'" class="px-6 py-3 bg-surface-800 text-text-primary font-medium rounded-gaming border border-surface-700 hover:bg-surface-700 transition-all duration-gaming">
+                            Cancel
+                        </button>
+                        <button type="submit" class="px-8 py-3 bg-gradient-to-r from-primary to-accent text-background font-medium rounded-gaming btn-gaming hover:from-primary-600 hover:to-accent-600 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-surface glow-primary" id="submit-btn">
+                            <span class="flex items-center justify-center">
+                                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/>
+                                </svg>
+                                Submit Application
+                            </span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </main>
+
+    <!-- Success Modal -->
+    <div id="success-modal" class="fixed inset-0 z-50 hidden">
+        <div class="fixed inset-0 bg-background/80 backdrop-blur-sm"></div>
+        <div class="fixed inset-0 flex items-center justify-center p-4">
+            <div class="bg-surface rounded-gaming-card shadow-gaming-xl border border-surface-700 p-8 max-w-md w-full">
+                <div class="text-center">
+                    <div class="w-16 h-16 bg-success/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <svg class="w-8 h-8 text-success" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-gaming-heading mb-2">Application Submitted!</h3>
+                    <p class="text-text-secondary mb-6">Your streamer application has been successfully submitted. Our team will review it within 24-48 hours and notify you via email.</p>
+                    <button onclick="closeSuccessModal()" class="w-full px-4 py-2 bg-primary text-background font-medium rounded-gaming btn-gaming hover:bg-primary-600 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-surface">
+                        Continue
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-surface border-t border-surface-700 mt-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+            <div class="text-center">
+                <p class="text-text-secondary text-sm">© 2025 GameHub. All Rights Reserved.</p>
+                <p class="text-text-secondary text-xs mt-2">Empowering gamers worldwide</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Mobile Navigation Menu -->
+    <div class="md:hidden fixed inset-0 z-50 hidden" id="mobile-menu">
+        <div class="fixed inset-0 bg-background/80 backdrop-blur-sm" onclick="toggleMobileMenu()"></div>
+        <div class="fixed top-0 right-0 w-64 h-full bg-surface border-l border-surface-700 p-6">
+            <div class="flex justify-between items-center mb-8">
+                <span class="text-lg font-bold text-gaming-heading">Menu</span>
+                <button type="button" class="text-text-secondary hover:text-text-primary" onclick="toggleMobileMenu()">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                    </svg>
+                </button>
+            </div>
+            <nav class="space-y-4">
+                <a href="user_profile_view.html" class="block text-text-secondary hover:text-text-primary py-2">Profile</a>
+                <a href="streamer_application.html" class="block text-primary font-medium py-2">Streamer</a>
+                <a href="player_application.html" class="block text-text-secondary hover:text-text-primary py-2">Player</a>
+            </nav>
+        </div>
+    </div>
+
+    <script>
+        // Progress tracking
+        function updateProgress() {
+            const form = document.getElementById('streamer-application-form');
+            const requiredFields = form.querySelectorAll('[required]');
+            const checkboxGroups = form.querySelectorAll('input[type="checkbox"][name="content-categories"]');
+            
+            let filledFields = 0;
+            let totalFields = requiredFields.length;
+            
+            // Check regular required fields
+            requiredFields.forEach(field => {
+                if (field.type === 'checkbox') return; // Skip checkboxes, handle separately
+                if (field.value.trim() !== '') filledFields++;
+            });
+            
+            // Check if at least one content category is selected
+            const hasCheckedCategory = Array.from(checkboxGroups).some(cb => cb.checked);
+            if (hasCheckedCategory) filledFields++;
+            
+            const progress = Math.round((filledFields / totalFields) * 100);
+            document.getElementById('progress-bar').style.width = progress + '%';
+            document.getElementById('progress-text').textContent = progress + '% Complete';
+        }
+
+        // Character count update
+        function updateCharCount(textarea, counterId) {
+            const count = textarea.value.length;
+            const max = textarea.maxLength;
+            document.getElementById(counterId).textContent = count + '/' + max;
+        }
+
+        // URL validation
+        function validateURL(input) {
+            const errorElement = document.getElementById(input.id + '-error');
+            const url = input.value;
+            
+            if (url && !isValidURL(url)) {
+                errorElement.classList.remove('hidden');
+                input.classList.add('border-error');
+            } else {
+                errorElement.classList.add('hidden');
+                input.classList.remove('border-error');
+            }
+        }
+
+        function isValidURL(string) {
+            try {
+                new URL(string);
+                return true;
+            } catch (_) {
+                return false;
+            }
+        }
+
+        // File upload handling
+        function handleFileUpload(input, previewId) {
+            const preview = document.getElementById(previewId);
+            const files = input.files;
+            
+            if (files.length > 0) {
+                preview.classList.remove('hidden');
+                
+                if (input.id === 'highlight-reel') {
+                    document.getElementById('reel-filename').textContent = files[0].name;
+                } else if (input.id === 'screenshots') {
+                    const grid = document.getElementById('screenshots-grid');
+                    grid.innerHTML = '';
+                    
+                    Array.from(files).forEach((file, index) => {
+                        const div = document.createElement('div');
+                        div.className = 'relative bg-surface-800 rounded-gaming p-2';
+                        div.innerHTML = `
+                            <img src="${URL.createObjectURL(file)}" alt="Screenshot ${index + 1}" class="w-full h-20 object-cover rounded">
+                            <button type="button" onclick="removeScreenshot(${index})" class="absolute -top-2 -right-2 w-6 h-6 bg-error rounded-full flex items-center justify-center text-white text-xs">
+                                ×
+                            </button>
+                        `;
+                        grid.appendChild(div);
+                    });
+                }
+            }
+        }
+
+        function removeFile(inputId, previewId) {
+            document.getElementById(inputId).value = '';
+            document.getElementById(previewId).classList.add('hidden');
+        }
+
+        function removeScreenshot(index) {
+            // In a real implementation, you'd remove the specific file
+            // For now, just clear all screenshots
+            document.getElementById('screenshots').value = '';
+            document.getElementById('screenshots-preview').classList.add('hidden');
+        }
+
+        // Form submission
+        function handleSubmit(event) {
+            event.preventDefault();
+            
+            // Show loading state
+            const submitBtn = document.getElementById('submit-btn');
+            const originalText = submitBtn.innerHTML;
+            submitBtn.innerHTML = '<span class="flex items-center justify-center"><svg class="animate-spin -ml-1 mr-3 h-5 w-5 text-background" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>Submitting...</span>';
+            submitBtn.disabled = true;
+            
+            // Simulate API call
+            setTimeout(() => {
+                submitBtn.innerHTML = originalText;
+                submitBtn.disabled = false;
+                document.getElementById('success-modal').classList.remove('hidden');
+            }, 2000);
+        }
+
+        function closeSuccessModal() {
+            document.getElementById('success-modal').classList.add('hidden');
+            window.location.href = 'user_profile_view.html';
+        }
+
+        // Mobile menu toggle
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        }
+
+        // Initialize progress on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            updateProgress();
+        });
+    </script>
+</body>
+</html>
