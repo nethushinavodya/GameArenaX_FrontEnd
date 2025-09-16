@@ -21,8 +21,8 @@ function initializeUI() {
         const currentPage = window.location.pathname.split("/").pop();
         if (role === "Admin" && currentPage !== "adminDashboard.html") {
             window.location.href = "adminDashboard.html";
-        } else if (role === "User" && currentPage !== "index.html") {
-            window.location.href = "index.html";
+        } else if (role === "User" && currentPage !== "index2.html") {
+            window.location.href = "index2.html";
         }
     } else {
         if (loginBtn) loginBtn.style.display = "flex";
@@ -75,8 +75,10 @@ $("#loginBtn").click(function () {
 
             if (data.data.role === "Admin") {
                 window.location.href = "adminDashboard.html";
-            } else {
-                window.location.href = "index.html";
+            } else if (data.data.role === "User") {
+                window.location.href = "index2.html";
+            }else if (data.data.role === "Player") {
+                window.location.href = "index2.html";
             }
         },
         error: function () {
@@ -144,7 +146,7 @@ $("#registerBtn").click(function (e) {
                 extendedTimeOut: 1000,
             };
             updateHeaderUI();
-            window.location.href = "adminDashboard.html";
+            window.location.href = "index2.html";
         },
         error: function (xhr) {
             toastr.error("Registration failed!");
@@ -206,6 +208,7 @@ $("#register-email").on("blur", function () {
 function updateHeaderUI() {
     const token = localStorage.getItem("token");
     const username = localStorage.getItem("username");
+    const role = localStorage.getItem("role");
 
     const loginBtn = document.getElementById("loginBtnNav");
     const registerBtn = document.getElementById("registerBtn");
@@ -240,15 +243,16 @@ function updateHeaderUI() {
     }
 }
 
+
 $("#logoutBtn").click(function () {
+    console.log("logoutBtn clicked");
     let confirmLogout = confirm("Do you really want to log out?");
     if (!confirmLogout) return;
 
     localStorage.removeItem("token");
     localStorage.removeItem("role");
     localStorage.removeItem("username");
-    updateHeaderUI();
-    location.reload();
+    window.location.href = "index2.html";
 });
 
 function openModal(id) {

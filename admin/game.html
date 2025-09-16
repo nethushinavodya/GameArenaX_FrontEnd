@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>GameArenaX - User Management</title>
+    <title>GameArenaX - Games Management</title>
 
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
@@ -121,75 +121,41 @@
             transform: translateY(-2px);
         }
 
-        .btn-warning {
-            background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
-            color: white;
-            border: none;
-            border-radius: 8px;
-            padding: 8px 16px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-        }
-
-        .btn-warning:hover {
-            background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
-            transform: translateY(-2px);
-        }
-
-        .data-table {
+        .game-card {
             background: linear-gradient(135deg, rgba(15, 15, 26, 0.9) 0%, rgba(26, 26, 46, 0.8) 100%);
             border: 1px solid rgba(34, 197, 94, 0.3);
             border-radius: 16px;
+            padding: 24px;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
             overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
         }
 
-        .data-table table {
-            width: 100%;
-            border-collapse: collapse;
+        .game-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            border-color: var(--primary-color);
+            box-shadow: 0 20px 40px rgba(34, 197, 94, 0.2);
         }
 
-        .data-table thead {
-            background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-secondary) 100%);
+        .game-card.inactive {
+            opacity: 0.6;
+            border-color: rgba(239, 68, 68, 0.3);
         }
 
-        .data-table thead th {
-            padding: 16px;
-            text-align: left;
-            font-weight: bold;
-            color: #000;
-            border-bottom: 2px solid rgba(34, 197, 94, 0.5);
-        }
-
-        .data-table tbody tr {
-            transition: all 0.3s ease;
-            border-bottom: 1px solid rgba(34, 197, 94, 0.1);
-        }
-
-        .data-table tbody tr:hover {
-            background: rgba(34, 197, 94, 0.05);
-            transform: scale(1.01);
-        }
-
-        .data-table tbody td {
-            padding: 16px;
-            vertical-align: middle;
-            color: #ffffff;
+        .game-card.inactive:hover {
+            border-color: #ef4444;
+            box-shadow: 0 20px 40px rgba(239, 68, 68, 0.2);
         }
 
         .status-badge {
+            position: absolute;
+            top: 16px;
+            right: 16px;
             padding: 6px 12px;
             border-radius: 20px;
             font-size: 12px;
             font-weight: bold;
             text-transform: uppercase;
-            text-align: center;
-            display: inline-block;
-            min-width: 80px;
         }
 
         .status-active {
@@ -198,7 +164,7 @@
             border: 1px solid var(--primary-color);
         }
 
-        .status-deactivated {
+        .status-inactive {
             background: rgba(239, 68, 68, 0.2);
             color: #ef4444;
             border: 1px solid #ef4444;
@@ -230,9 +196,9 @@
             background: linear-gradient(135deg, var(--card-bg) 0%, rgba(15, 15, 26, 0.95) 100%);
             border: 1px solid var(--primary-color);
             border-radius: 16px;
-            padding: 1.5rem;
+            padding: 1.5rem; /* Reduced padding to decrease height */
             width: 90%;
-            max-width: 1000px;
+            max-width: 1000px; /* Increased width */
             transform: scale(0.8) translateY(50px);
             transition: all 0.3s ease;
         }
@@ -245,11 +211,11 @@
             background: #111111 !important;
             border: 1px solid var(--primary-color) !important;
             border-radius: 8px !important;
-            padding: 10px 14px !important;
+            padding: 10px 14px !important; /* Reduced padding */
             color: #ffffff !important;
             width: 100% !important;
             transition: all 0.3s ease !important;
-            margin-bottom: 12px;
+            margin-bottom: 12px; /* Reduced margin */
         }
 
         .form-input:focus {
@@ -287,7 +253,7 @@
             background: rgba(34, 197, 94, 0.2);
         }
 
-        .add-user-btn {
+        .add-game-btn {
             position: fixed;
             bottom: 30px;
             right: 30px;
@@ -304,103 +270,63 @@
             z-index: 100;
         }
 
-        .add-user-btn:hover {
+        .add-game-btn:hover {
             transform: scale(1.1) translateY(-2px);
             box-shadow: 0 15px 30px rgba(34, 197, 94, 0.4);
         }
 
-        .user-profile-picture {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
+        .game-logo {
+            width: 80px;
+            height: 80px;
+            border-radius: 12px;
             object-fit: cover;
             border: 2px solid var(--primary-color);
+            margin-bottom: 16px;
         }
 
+        .game-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 8px;
+        }
 
-        .user-role {
+        .game-genre {
             background: rgba(34, 197, 94, 0.2);
             color: var(--primary-color);
             padding: 4px 12px;
             border-radius: 20px;
             font-size: 12px;
             display: inline-block;
-            font-weight: bold;
-            text-transform: uppercase;
-        }
-        /* Role Color Styles */
-        .user-role {
-            padding: 4px 12px;
-            border-radius: 20px;
-            font-size: 12px;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            display: inline-block;
+            margin-bottom: 12px;
         }
 
-        /* Admin Role - Red/Orange Theme */
-        .role-admin {
-            background-color: #fef2f2;
-            color: #dc2626;
-            border: 1px solid #fecaca;
+        .game-description {
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.6;
+            margin-bottom: 12px;
         }
 
-        /* User Role - Blue Theme */
-        .role-user {
-            background-color: #eff6ff;
-            color: #2563eb;
-            border: 1px solid #bfdbfe;
+        .game-platform {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 14px;
+            margin-bottom: 20px;
         }
 
-        /* Alternative color schemes - uncomment to use */
-
-        /* Green/Blue Alternative */
-        /*
-        .role-admin {
-            background-color: #f0fdf4;
-            color: #16a34a;
-            border: 1px solid #bbf7d0;
+        .game-actions {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
         }
 
-        .role-user {
-            background-color: #f0f9ff;
-            color: #0284c7;
-            border: 1px solid #bae6fd;
-        }
-        */
-
-        /* Purple/Teal Alternative */
-        /*
-        .role-admin {
-            background-color: #faf5ff;
-            color: #9333ea;
-            border: 1px solid #e9d5ff;
+        .text-link {
+            color: var(--primary-color);
+            cursor: pointer;
+            transition: all 0.3s ease;
         }
 
-        .role-user {
-            background-color: #f0fdfa;
-            color: #0d9488;
-            border: 1px solid #a7f3d0;
-        }
-        */
-
-        /* Dark theme support */
-        @media (prefers-color-scheme: dark) {
-            .role-admin {
-                background-color: #052e16;
-                color: #86efac;
-                border: 1px solid #166534;
-            }
-
-            .role-user {
-                background-color: #1e3a8a;
-                color: #93c5fd;
-                border: 1px solid #3b82f6;
-            }
-        }        .user-role.admin {
-            background: rgba(0, 255, 204, 0.2);
-            color: var(--accent-cyan);
+        .text-link:hover {
+            text-decoration: underline;
         }
 
         .nav-link {
@@ -447,6 +373,18 @@
             text-shadow: 0 0 15px rgba(0, 255, 204, 0.7);
         }
 
+        .card-glow {
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            background: linear-gradient(135deg, var(--card-bg) 0%, rgba(15, 15, 26, 0.8) 100%);
+            border: 1px solid rgba(34, 197, 94, 0.3);
+        }
+
+        .card-glow:hover {
+            transform: translateY(-8px) scale(1.02);
+            background: linear-gradient(135deg, rgba(34, 197, 94, 0.1) 0%, var(--card-bg) 100%);
+            border-color: var(--primary-color);
+        }
+        /* ===== Controls Section ===== */
         .controls-section {
             display: flex;
             flex-wrap: wrap;
@@ -479,39 +417,24 @@
             box-shadow: 0 0 10px rgba(69, 248, 130, 0.3);
         }
 
+
+        .search-box input:focus + i {
+            color: #45f882;
+        }
+
         .image-preview {
             max-width: 120px;
             max-height: 120px;
+            border-radius: 8px;
             border: 2px solid var(--primary-color);
             margin-top: 8px;
             object-fit: cover;
         }
 
-        .action-buttons {
-            display: flex;
-            gap: 8px;
-            flex-wrap: wrap;
-        }
-
-        .action-buttons button {
-            padding: 6px 12px;
-            font-size: 12px;
-            min-width: auto;
-        }
-
-        @media (max-width: 768px) {
-            .data-table {
-                overflow-x: auto;
-            }
-
-            .action-buttons {
-                flex-direction: column;
-                gap: 4px;
-            }
-
-            .action-buttons button {
-                font-size: 11px;
-                padding: 4px 8px;
+        @media (min-width: 768px) {
+            .modal {
+                max-width: 1000px; /* Increased width for larger screens */
+                padding: 2rem; /* Adjusted padding */
             }
         }
     </style>
@@ -531,11 +454,11 @@
     <div class="flex items-center ml-auto gap-6">
         <nav class="flex items-center gap-6">
             <a href="adminDashboard.html" class="text-gray-300 nav-link">Dashboard</a>
-            <a href="adminManage.html" class="text-green-400 font-semibold nav-link">Users</a>
-            <a href="game.html" class="text-gray-300 nav-link">Games</a>
+            <a href="adminManage.html" class="text-gray-300  nav-link">Users</a>
+            <a href="game.html" class="text-green-400 font-semibold nav-link">Games</a>
             <a href="tournamentDetails.html" class="text-gray-300 nav-link">Tournaments</a>
             <a href="viewPlayers.html" class="text-gray-300 nav-link">Players</a>
-            <a href="streamers.html" class="text-gray-300 nav-link">Streamers</a>
+            <a href="../streamer/streamers.html" class="text-gray-300 nav-link">Streamers</a>
         </nav>
         <div class="flex items-center gap-4">
             <div class="profile-btn" id="adminProfile">
@@ -553,194 +476,175 @@
 <main class="p-8">
     <div class="flex justify-between items-center mb-8">
         <div>
-            <h1 class="text-4xl font-bold gradient-text">User Management</h1>
-            <p class="text-gray-400">Manage all users in your platform</p>
+            <h1 class="text-4xl font-bold gradient-text">Games Management</h1>
+            <p class="text-gray-400">Manage all games in your platform</p>
         </div>
         <div class="controls-section">
             <div class="search-box">
-                <input type="text" id="searchInput" placeholder="Search users by username, email, or country">
+                <input type="text" id="searchInput" placeholder="Search games by name">
             </div>
             <button class="btn-primary" onclick="openAddModal()">
                 <i class="fas fa-plus"></i>
-                Add New User/Admin
+                Add New Game
             </button>
         </div>
     </div>
-
-    <!-- Users Table -->
-    <div class="data-table">
-        <table id="usersTable">
-            <thead>
-            <tr>
-                <th>Profile</th>
-                <th>Username</th>
-                <th>Email</th>
-                <th>Role</th>
-                <th>Country</th>
-                <th>Status</th>
-                <th>Actions</th>
-            </tr>
-            </thead>
-            <tbody id="usersTableBody">
-            </tbody>
-        </table>
+    <div id="gamesGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+        <!-- Games will be populated here -->
     </div>
 </main>
 
 <!-- Floating Add Button -->
-<button class="add-user-btn" onclick="openAddModal()">
+<button class="add-game-btn" onclick="openAddModal()">
     <i class="fas fa-plus"></i>
 </button>
 
-<!-- Add User Modal -->
-<div class="modal-backdrop" id="addUserModal">
+<!-- Add Game Modal -->
+<div class="modal-backdrop" id="gameModal">
     <div class="modal">
         <div class="flex justify-between items-center mb-4">
-            <h2 id="modalTitle" class="text-2xl font-bold text-white neon-text">Add New User/Admin</h2>
-            <button onclick="closeModal('addUserModal')" class="text-gray-400 hover:text-white text-2xl">&times;</button>
+            <h2 id="modalTitle" class="text-2xl font-bold text-white neon-text">Add New Game</h2>
+            <button onclick="closeModal('gameModal')" class="text-gray-400 hover:text-white text-2xl">&times;</button>
         </div>
-        <form id="addUserForm" enctype="multipart/form-data">
-            <div class="mb-4 flex gap-4">
-                <div class="w-1/2">
-                    <label class="block text-gray-300 text-sm font-medium mb-2">Username</label>
-                    <input type="text" id="username" class="form-input" placeholder="Username" required>
-                    <span id="usernameError" class="text-red-500"></span>
-                </div>
-                <div class="w-1/2">
-                    <label class="block text-gray-300 text-sm font-medium mb-2">Email</label>
-                    <input type="email" id="email" class="form-input" placeholder="Email Address" required>
-                    <span id="emailError" class="text-red-500"></span>
-                </div>
+        <form id="gameForm">
+            <div class="mb-4">
+                <label class="block text-gray-300 text-sm font-medium mb-2">Game Name</label>
+                <input type="text" id="gameName" class="form-input" placeholder="Game Name" required>
             </div>
             <div class="mb-4 flex gap-4">
                 <div class="w-1/2">
-                    <label class="block text-gray-300 text-sm font-medium mb-2">Password</label>
-                    <input type="password" id="password" class="form-input" placeholder="Password" required>
-                </div>
-                <div class="w-1/2">
-                    <label class="block text-gray-300 text-sm font-medium mb-2">Role</label>
-                    <select id="role" class="form-input" required>
-                        <option value="">Select Role</option>
-                        <option value="User">User</option>
-                        <option value="Admin">Admin</option>
-                    </select>
-                </div>
-            </div>
-            <div class="mb-4 flex gap-4">
-                <div class="w-1/2">
-                    <label class="block text-gray-300 text-sm font-medium mb-2">Profile Picture</label>
-                    <input type="file" id="profilePictureFile" class="form-input" accept="image/*">
-                    <img id="profilePicturePreview" class="image-preview hidden" alt="Profile Picture Preview"/>
-                </div>
-                <div class="w-1/2">
-                    <label class="block text-gray-300 text-sm font-medium mb-2">Country</label>
-                    <select class="form-input" id="country" required>
-                        <option value="">Select your country</option>
-                        <option value="Sri Lanka">Sri Lanka</option>
-                        <option value="India">India</option>
-                        <option value="United States">United States</option>
-                        <option value="United Kingdom">United Kingdom</option>
-                        <option value="Canada">Canada</option>
-                        <option value="Australia">Australia</option>
-                        <option value="Germany">Germany</option>
-                        <option value="Japan">Japan</option>
-                        <option value="South Korea">South Korea</option>
-                        <option value="China">China</option>
-                    </select>
-                </div>
-            </div>
-            <div class="flex justify-end gap-4">
-                <button type="button" class="btn-secondary" onclick="closeModal('addUserModal')">
-                    <i class="fas fa-times"></i>
-                    Cancel
-                </button>
-                <button type="submit" class="btn-primary">
-                    <i class="fas fa-plus"></i>
-                    Add User
-                </button>
-            </div>
-        </form>
-    </div>
-</div>
-
-<!-- Edit User Modal -->
-<div class="modal-backdrop" id="editUserModal">
-    <div class="modal">
-        <div class="flex justify-between items-center mb-4">
-            <h2 class="text-2xl font-bold text-white neon-text">Edit User</h2>
-            <button onclick="closeModal('editUserModal')" class="text-gray-400 hover:text-white text-2xl">&times;</button>
-        </div>
-        <form id="editUserForm" enctype="multipart/form-data">
-            <input type="hidden" id="editUserId">
-            <div class="mb-4 flex gap-4">
-                <div class="w-1/2">
-                    <label class="block text-gray-300 text-sm font-medium mb-2">Username</label>
-                    <input type="text" id="editUsername" class="form-input" placeholder="Username" readonly>
-                </div>
-                <div class="w-1/2">
-                    <label class="block text-gray-300 text-sm font-medium mb-2">Email</label>
-                    <input type="email" id="editEmail" class="form-input" placeholder="Email Address" required>
-                </div>
-            </div>
-            <div class="mb-4 flex gap-4">
-                <div class="w-1/2">
-                    <label class="block text-gray-300 text-sm font-medium mb-2">Password</label>
-                    <input type="password" id="editPassword" class="form-input" placeholder="Leave blank to keep current password">
-                </div>
-                <div class="w-1/2">
-                    <label class="block text-gray-300 text-sm font-medium mb-2">Role</label>
-                    <select id="editRole" class="form-input" required>
-                        <option value="">Select Role</option>
-                        <option value="User">User</option>
-                        <option value="Admin">Admin</option>
-                    </select>
-                </div>
-            </div>
-            <div class="mb-4 flex gap-4">
-                <div class="w-1/2">
-                    <label class="block text-gray-300 text-sm font-medium mb-2">Country</label>
-                    <select class="form-input" id="editCountry" required>
-                        <option value="">Select your country</option>
-                        <option value="Sri Lanka">Sri Lanka</option>
-                        <option value="India">India</option>
-                        <option value="United States">United States</option>
-                        <option value="United Kingdom">United Kingdom</option>
-                        <option value="Canada">Canada</option>
-                        <option value="Australia">Australia</option>
-                        <option value="Germany">Germany</option>
-                        <option value="Japan">Japan</option>
-                        <option value="South Korea">South Korea</option>
-                        <option value="China">China</option>
+                    <label class="block text-gray-300 text-sm font-medium mb-2">Genre</label>
+                    <select id="gameGenre" class="form-input" required>
+                        <option value="">Select Genre</option>
+                        <option value="Action">Action</option>
+                        <option value="Adventure">Adventure</option>
+                        <option value="Battle Royale">Battle Royale</option>
+                        <option value="MOBA">MOBA</option>
+                        <option value="RPG">Role Playing</option>
+                        <option value="Racing">Racing</option>
+                        <option value="Fighting">Fighting</option>
+                        <option value="Simulation">Simulation</option>
+                        <option value="Survival">Survival</option>
+                        <option value="Horror">Horror</option>
+                        <option value="Sci-Fi">Sci-Fi</option>
+                        <option value="Other">Other</option>
                     </select>
                 </div>
                 <div class="w-1/2">
-                    <label class="block text-gray-300 text-sm font-medium mb-2">Status</label>
-                    <select id="editStatus" class="form-input" required>
-                        <option value="">Select Status</option>
-                        <option value="active">Active</option>
-                        <option value="deactivated">Deactivated</option>
+                    <label class="block text-gray-300 text-sm font-medium mb-2">Platform</label>
+                    <select id="gamePlatform" class="form-input" required>
+                        <option value="">Select Platform</option>
+                        <option value="PC">PC</option>
+                        <option value="PlayStation">PlayStation</option>
+                        <option value="Xbox">Xbox</option>
+                        <option value="Nintendo Switch">Nintendo Switch</option>
+                        <option value="Mobile">Mobile</option>
+                        <option value="Console">Console</option>
+                        <option value="PC, Mobile">PC & Mobile</option>
+                        <option value="PC, Console">PC & Console</option>
+                        <option value="Mobile, Console">Mobile & Console</option>
+                        <option value="PC, Mobile, Console">All Platforms</option>
                     </select>
                 </div>
             </div>
             <div class="mb-4">
-                <label class="block text-gray-300 text-sm font-medium mb-2">Profile Picture</label>
-                <input type="file" id="editProfilePictureFile" class="form-input" accept="image/*">
-                <img id="editProfilePicturePreview" class="image-preview hidden" alt="Profile Picture Preview"/>
+                <label class="block text-gray-300 text-sm font-medium mb-2">Game Logo</label>
+                <input type="file" id="gameLogoFile" class="form-input" accept="image/*" required>
+                <img id="gameLogoPreview" class="image-preview hidden" alt="Game Logo Preview"/>
+            </div>
+            <div class="mb-4">
+                <label class="block text-gray-300 text-sm font-medium mb-2">Game Description</label>
+                <textarea id="gameDescription" class="form-input" placeholder="Game Description" rows="3" required></textarea>
             </div>
             <div class="flex justify-end gap-4">
-                <button type="button" class="btn-secondary" onclick="closeModal('editUserModal')">
-                    <i class="fas fa-times"></i>
-                    Cancel
+                <!-- Add Game Modal -->
+                <!-- Cancel button -->
+                <button type="button" class="btn-secondary" onclick="closeModal('gameModal')">
+                    <i class="fas fa-times"></i> Cancel
                 </button>
-                <button type="submit" class="btn-primary">
+
+                <button type="submit" class="btn-primary" id="submitBtn">
                     <i class="fas fa-save"></i>
-                    Update User
+                    Save Game
                 </button>
             </div>
         </form>
     </div>
 </div>
-<script src="assets/js/adminManage.js"></script>
+
+<!-- Edit Game Modal -->
+<div class="modal-backdrop" id="gameUpdateModal">
+    <div class="modal">
+        <div class="flex justify-between items-center mb-4">
+            <h2 id="updateModalTitle" class="text-2xl font-bold text-white neon-text">Edit Game</h2>
+            <button onclick="closeModal('gameUpdateModal')" class="text-gray-400 hover:text-white text-2xl">&times;</button>
+        </div>
+        <form id="updateGameForm">
+            <div class="mb-4">
+                <label class="block text-gray-300 text-sm font-medium mb-2">Game Name</label>
+                <input type="text" id="updateGameName" class="form-input" placeholder="Game Name" required>
+            </div>
+            <div class="mb-4 flex gap-4">
+                <div class="w-1/2">
+                    <label class="block text-gray-300 text-sm font-medium mb-2">Genre</label>
+                    <select id="updateGameGenre" class="form-input" required>
+                        <option value="">Select Genre</option>
+                        <option value="Action">Action</option>
+                        <option value="Adventure">Adventure</option>
+                        <option value="Battle Royale">Battle Royale</option>
+                        <option value="MOBA">MOBA</option>
+                        <option value="RPG">Role Playing</option>
+                        <option value="Racing">Racing</option>
+                        <option value="Fighting">Fighting</option>
+                        <option value="Simulation">Simulation</option>
+                        <option value="Survival">Survival</option>
+                        <option value="Horror">Horror</option>
+                        <option value="Sci-Fi">Sci-Fi</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+                <div class="w-1/2">
+                    <label class="block text-gray-300 text-sm font-medium mb-2">Platform</label>
+                    <select id="updateGamePlatform" class="form-input" required>
+                        <option value="">Select Platform</option>
+                        <option value="PC">PC</option>
+                        <option value="PlayStation">PlayStation</option>
+                        <option value="Xbox">Xbox</option>
+                        <option value="Nintendo Switch">Nintendo Switch</option>
+                        <option value="Mobile">Mobile</option>
+                        <option value="Console">Console</option>
+                        <option value="PC, Mobile">PC & Mobile</option>
+                        <option value="PC, Console">PC & Console</option>
+                        <option value="Mobile, Console">Mobile & Console</option>
+                        <option value="PC, Mobile, Console">All Platforms</option>
+                    </select>
+                </div>
+            </div>
+            <div class="mb-4">
+                <label class="block text-gray-300 text-sm font-medium mb-2">Game Logo</label>
+                <input type="file" id="updateGameLogoFile" class="form-input" accept="image/*">
+                <img id="updateGameLogoPreview" class="image-preview hidden" alt="Game Logo Preview"/>
+            </div>
+            <div class="mb-4">
+                <label class="block text-gray-300 text-sm font-medium mb-2">Game Description</label>
+                <textarea id="updateGameDescription" class="form-input" placeholder="Game Description" rows="3" required></textarea>
+            </div>
+            <div class="flex justify-end gap-4">
+                <button type="button" class="btn-secondary" onclick="closeModal('gameUpdateModal')">
+                    <i class="fas fa-times"></i>
+                    Cancel
+                </button>
+                <button type="submit" class="btn-primary" id="editBtn">
+                    <i class="fas fa-save"></i>
+                    Edit Game
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script src="../assets/jq/jquery-3.7.1.min.js"></script>
+<script src="../assets/js/games.js"></script>
 <script>
     $(document).ready(function() {
         const token = localStorage.getItem("token");
@@ -757,10 +661,8 @@
             localStorage.removeItem("token");
             localStorage.removeItem("username");
             window.location.href = "index.html";
-            toastr.success('Logout successful!');
         }
     });
 </script>
-
 </body>
 </html>

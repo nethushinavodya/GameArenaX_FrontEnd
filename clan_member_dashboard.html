@@ -1,0 +1,895 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Clan Dashboard - GameArenaX</title>
+    <link rel="stylesheet" href="assets/css/main3.css" />
+    <link rel="stylesheet" href="assets/css/tailwind.css" />
+    <link rel="stylesheet" href="assets/css/home.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<script type="module" src="https://static.rocket.new/rocket-web.js?_cfg=https%3A%2F%2Fgamearenax1295back.builtwithrocket.new&_be=https%3A%2F%2Fapplication.rocket.new&_v=0.1.8"></script>
+</head>
+<body class="bg-background text-text-primary font-inter min-h-screen">
+    <!-- Header Navigation -->
+    <header class="bg-surface border-b border-gaming-light sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <!-- Logo -->
+                <div class="flex items-center">
+                    <div class="flex-shrink-0">
+                        <svg class="h-8 w-8 text-accent" viewBox="0 0 32 32" fill="currentColor">
+                            <path d="M16 2L20.5 10.5L30 12L22 20L24 30L16 25L8 30L10 20L2 12L11.5 10.5L16 2Z"/>
+                            <circle cx="16" cy="16" r="4" fill="currentColor"/>
+                        </svg>
+                    </div>
+                    <div class="ml-3">
+                        <h1 class="text-xl font-bold text-text-primary">GameArenaX</h1>
+                        <p class="text-xs text-text-secondary">Phoenix Legends</p>
+                    </div>
+                </div>
+
+                <!-- Navigation -->
+                <nav class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-4">
+                        <a href="clan_member_dashboard.html" class="bg-accent text-white px-3 py-2 rounded-md text-sm font-medium">
+                            Dashboard
+                        </a>
+                        <a href="clan_directory.html" class="text-text-secondary hover:text-text-primary hover:bg-surface-800 px-3 py-2 rounded-md text-sm font-medium transition-hover">
+                            Clan Directory
+                        </a>
+                        <a href="clan_profile.html" class="text-text-secondary hover:text-text-primary hover:bg-surface-800 px-3 py-2 rounded-md text-sm font-medium transition-hover">
+                            Clan Profile
+                        </a>
+                    </div>
+                </nav>
+
+                <!-- User Menu -->
+                <div class="flex items-center space-x-4">
+                    <!-- Notifications -->
+                    <button class="relative p-2 text-text-secondary hover:text-text-primary transition-hover">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-3-3V9a6 6 0 10-12 0v5l-3 3h18z"/>
+                        </svg>
+                        <span class="absolute top-1 right-1 block h-2 w-2 rounded-full bg-accent"></span>
+                    </button>
+
+                    <!-- Mobile menu button -->
+                    <div class="md:hidden">
+                        <button type="button" id="mobile-menu-button" class="bg-surface-800 inline-flex items-center justify-center p-2 rounded-md text-text-secondary hover:text-text-primary hover:bg-surface-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-accent">
+                            <svg class="block h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile menu -->
+        <div class="md:hidden hidden" id="mobile-menu">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-surface-800">
+                <a href="clan_member_dashboard.html" class="bg-accent text-white block px-3 py-2 rounded-md text-base font-medium">
+                    Dashboard
+                </a>
+                <a href="clan_directory.html" class="text-text-secondary hover:text-text-primary hover:bg-surface-700 block px-3 py-2 rounded-md text-base font-medium">
+                    Clan Directory
+                </a>
+                <a href="clan_profile.html" class="text-text-secondary hover:text-text-primary hover:bg-surface-700 block px-3 py-2 rounded-md text-base font-medium">
+                    Clan Profile
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+        <!-- Clan Header -->
+        <div class="bg-surface rounded-lg border border-accent/20 p-6 mb-6 shadow-gaming-subtle">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-6">
+                    <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=80&h=80&fit=crop&crop=center" alt="Phoenix Legends Logo" class="w-16 h-16 rounded-lg border-2 border-accent object-cover" />
+                        <div class="absolute -bottom-2 -right-2 bg-accent text-white text-xs font-bold px-2 py-1 rounded-full">
+                            #5
+                        </div>
+                    </div>
+                    <div>
+                        <h1 class="text-2xl font-bold text-text-primary mb-1">Phoenix Legends</h1>
+                        <div class="flex items-center space-x-4 text-sm text-text-secondary">
+                            <span class="flex items-center">
+                                <svg class="w-4 h-4 mr-1 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/>
+                                </svg>
+                                42/50 Members
+                            </span>
+                            <span class="flex items-center">
+                                <svg class="w-4 h-4 mr-1 text-warning" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"/>
+                                </svg>
+                                2,847 RP
+                            </span>
+                            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-accent text-white">
+                                OPEN
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex items-center space-x-2">
+                    <div class="text-right text-sm">
+                        <p class="text-text-primary font-medium">Your Role</p>
+                        <p class="text-accent font-semibold">Member</p>
+                    </div>
+                    <div class="w-10 h-10 bg-accent/10 rounded-lg flex items-center justify-center">
+                        <svg class="w-5 h-5 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Desktop Layout -->
+        <div class="hidden lg:grid lg:grid-cols-12 lg:gap-6">
+            <!-- Left Panel: Live Chat -->
+            <div class="lg:col-span-5 space-y-6">
+                <!-- Live Chat -->
+                <div class="bg-surface rounded-lg border border-accent/20 shadow-gaming-subtle h-[600px] flex flex-col">
+                    <!-- Chat Header -->
+                    <div class="border-b border-gaming-light p-4 flex items-center justify-between">
+                        <div class="flex items-center space-x-3">
+                            <div class="bg-accent/10 rounded-lg p-2">
+                                <svg class="w-5 h-5 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <h3 class="font-semibold text-text-primary">Clan Chat</h3>
+                                <p class="text-xs text-text-secondary">
+                                    <span class="inline-flex items-center">
+                                        <span class="w-2 h-2 bg-accent rounded-full mr-2"></span>
+                                        15 online
+                                    </span>
+                                </p>
+                            </div>
+                        </div>
+                        <button id="chat-settings" class="text-text-secondary hover:text-text-primary transition-hover">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z"/>
+                            </svg>
+                        </button>
+                    </div>
+
+                    <!-- Chat Messages -->
+                    <div id="chat-messages" class="flex-1 overflow-y-auto p-4 space-y-4">
+                        <!-- System Message -->
+                        <div class="text-center">
+                            <div class="bg-accent/10 inline-block px-3 py-1 rounded-full">
+                                <p class="text-xs text-accent">Welcome to Phoenix Legends chat!</p>
+                            </div>
+                        </div>
+
+                        <!-- Messages -->
+                        <div class="flex items-start space-x-3">
+                            <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=32&h=32&fit=crop&crop=face" alt="User" class="w-8 h-8 rounded-full flex-shrink-0" />
+                            <div class="flex-1 min-w-0">
+                                <div class="flex items-center space-x-2 mb-1">
+                                    <span class="text-sm font-medium text-text-primary">DragonSlayer99</span>
+                                    <span class="inline-flex items-center px-1.5 py-0.5 rounded text-xs font-medium bg-warning/10 text-warning">Leader</span>
+                                    <span class="text-xs text-text-secondary">2:30 PM</span>
+                                </div>
+                                <p class="text-sm text-text-primary break-words">Hey everyone! Tournament registration is now open. Let me know if you want to participate 🎮</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start space-x-3">
+                            <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=32&h=32&fit=crop&crop=face" alt="User" class="w-8 h-8 rounded-full flex-shrink-0" />
+                            <div class="flex-1 min-w-0">
+                                <div class="flex items-center space-x-2 mb-1">
+                                    <span class="text-sm font-medium text-text-primary">CyberNinja</span>
+                                    <span class="inline-flex items-center px-1.5 py-0.5 rounded text-xs font-medium bg-accent/10 text-accent">Officer</span>
+                                    <span class="text-xs text-text-secondary">2:32 PM</span>
+                                </div>
+                                <p class="text-sm text-text-primary break-words">Count me in! What's the prize pool?</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start space-x-3">
+                            <img src="https://images.unsplash.com/photo-1494790108755-2616b6e7a515?w=32&h=32&fit=crop&crop=face" alt="User" class="w-8 h-8 rounded-full flex-shrink-0" />
+                            <div class="flex-1 min-w-0">
+                                <div class="flex items-center space-x-2 mb-1">
+                                    <span class="text-sm font-medium text-text-primary">StormRider</span>
+                                    <span class="text-xs text-text-secondary">2:35 PM</span>
+                                </div>
+                                <p class="text-sm text-text-primary break-words">I'm interested too! When is it?</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start space-x-3">
+                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=32&h=32&fit=crop&crop=face" alt="User" class="w-8 h-8 rounded-full flex-shrink-0" />
+                            <div class="flex-1 min-w-0">
+                                <div class="flex items-center space-x-2 mb-1">
+                                    <span class="text-sm font-medium text-text-primary">ThunderBolt</span>
+                                    <span class="text-xs text-text-secondary">2:38 PM</span>
+                                </div>
+                                <p class="text-sm text-text-primary break-words">Let's dominate this tournament! 💪</p>
+                            </div>
+                        </div>
+
+                        <!-- Your message -->
+                        <div class="flex items-start space-x-3">
+                            <img src="https://images.unsplash.com/photo-1568602471122-7832951cc4c5?w=32&h=32&fit=crop&crop=face" alt="You" class="w-8 h-8 rounded-full flex-shrink-0" />
+                            <div class="flex-1 min-w-0">
+                                <div class="flex items-center space-x-2 mb-1">
+                                    <span class="text-sm font-medium text-accent">You</span>
+                                    <span class="text-xs text-text-secondary">2:40 PM</span>
+                                </div>
+                                <p class="text-sm text-text-primary break-words">Sounds great! I'm ready to compete 🔥</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Chat Input -->
+                    <div class="border-t border-gaming-light p-4">
+                        <div class="flex items-center space-x-3">
+                            <div class="flex-1 relative">
+                                <input type="text" id="chat-input" placeholder="Type a message..." class="w-full px-4 py-2 pr-12 border border-gaming bg-surface-800 rounded-lg text-text-primary placeholder-text-secondary focus:outline-none focus:ring-2 focus:ring-accent focus:border-accent transition-gaming" />
+                                <button id="emoji-btn" class="absolute right-3 top-2 text-text-secondary hover:text-text-primary transition-hover">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                    </svg>
+                                </button>
+                            </div>
+                            <button id="send-message" class="bg-accent hover:bg-accent-600 text-white p-2 rounded-lg transition-gaming">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Middle Panel: Members & Activities -->
+            <div class="lg:col-span-4 space-y-6">
+                <!-- Online Members -->
+                <div class="bg-surface rounded-lg border border-accent/20 p-6 shadow-gaming-subtle">
+                    <div class="flex items-center justify-between mb-4">
+                        <h3 class="text-lg font-semibold text-text-primary">Online Members</h3>
+                        <span class="bg-accent/10 text-accent text-sm font-medium px-2 py-1 rounded-full">15 online</span>
+                    </div>
+                    <div class="space-y-3 max-h-60 overflow-y-auto">
+                        <div class="flex items-center space-x-3">
+                            <div class="relative">
+                                <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=40&h=40&fit=crop&crop=face" alt="DragonSlayer99" class="w-10 h-10 rounded-full" />
+                                <div class="absolute -bottom-1 -right-1 w-4 h-4 bg-accent rounded-full border-2 border-surface"></div>
+                            </div>
+                            <div class="flex-1">
+                                <div class="flex items-center space-x-2">
+                                    <p class="text-sm font-medium text-text-primary">DragonSlayer99</p>
+                                    <span class="inline-flex items-center px-1.5 py-0.5 rounded text-xs font-medium bg-warning/10 text-warning">Leader</span>
+                                </div>
+                                <p class="text-xs text-text-secondary">Playing Valorant</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center space-x-3">
+                            <div class="relative">
+                                <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=40&h=40&fit=crop&crop=face" alt="CyberNinja" class="w-10 h-10 rounded-full" />
+                                <div class="absolute -bottom-1 -right-1 w-4 h-4 bg-accent rounded-full border-2 border-surface"></div>
+                            </div>
+                            <div class="flex-1">
+                                <div class="flex items-center space-x-2">
+                                    <p class="text-sm font-medium text-text-primary">CyberNinja</p>
+                                    <span class="inline-flex items-center px-1.5 py-0.5 rounded text-xs font-medium bg-accent/10 text-accent">Officer</span>
+                                </div>
+                                <p class="text-xs text-text-secondary">In lobby</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center space-x-3">
+                            <div class="relative">
+                                <img src="https://images.unsplash.com/photo-1494790108755-2616b6e7a515?w=40&h=40&fit=crop&crop=face" alt="StormRider" class="w-10 h-10 rounded-full" />
+                                <div class="absolute -bottom-1 -right-1 w-4 h-4 bg-accent rounded-full border-2 border-surface"></div>
+                            </div>
+                            <div class="flex-1">
+                                <p class="text-sm font-medium text-text-primary">StormRider</p>
+                                <p class="text-xs text-text-secondary">Online</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center space-x-3">
+                            <div class="relative">
+                                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=40&h=40&fit=crop&crop=face" alt="ThunderBolt" class="w-10 h-10 rounded-full" />
+                                <div class="absolute -bottom-1 -right-1 w-4 h-4 bg-accent rounded-full border-2 border-surface"></div>
+                            </div>
+                            <div class="flex-1">
+                                <p class="text-sm font-medium text-text-primary">ThunderBolt</p>
+                                <p class="text-xs text-text-secondary">Playing CS2</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center space-x-3">
+                            <div class="relative">
+                                <img src="https://images.unsplash.com/photo-1568602471122-7832951cc4c5?w=40&h=40&fit=crop&crop=face" alt="You" class="w-10 h-10 rounded-full" />
+                                <div class="absolute -bottom-1 -right-1 w-4 h-4 bg-accent rounded-full border-2 border-surface"></div>
+                            </div>
+                            <div class="flex-1">
+                                <p class="text-sm font-medium text-accent">You</p>
+                                <p class="text-xs text-text-secondary">Online</p>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="w-full mt-4 text-sm text-accent hover:text-accent-600 font-medium transition-hover">
+                        View All Members
+                    </button>
+                </div>
+
+                <!-- Recent Activity -->
+                <div class="bg-surface rounded-lg border border-accent/20 p-6 shadow-gaming-subtle">
+                    <h3 class="text-lg font-semibold text-text-primary mb-4">Recent Activity</h3>
+                    <div class="space-y-4">
+                        <div class="flex items-start space-x-3">
+                            <div class="w-8 h-8 bg-accent/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                                <svg class="w-4 h-4 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"/>
+                                </svg>
+                            </div>
+                            <div class="flex-1">
+                                <p class="text-sm text-text-primary">
+                                    <span class="font-medium text-accent">ShadowHawk</span> joined the clan
+                                </p>
+                                <p class="text-xs text-text-secondary">2 hours ago</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start space-x-3">
+                            <div class="w-8 h-8 bg-warning/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                                <svg class="w-4 h-4 text-warning" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"/>
+                                </svg>
+                            </div>
+                            <div class="flex-1">
+                                <p class="text-sm text-text-primary">
+                                    Clan reached <span class="font-medium text-warning">Rank #5</span> in leaderboards!
+                                </p>
+                                <p class="text-xs text-text-secondary">5 hours ago</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start space-x-3">
+                            <div class="w-8 h-8 bg-accent/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                                <svg class="w-4 h-4 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                </svg>
+                            </div>
+                            <div class="flex-1">
+                                <p class="text-sm text-text-primary">
+                                    <span class="font-medium text-accent">DragonSlayer99</span> completed weekly challenge
+                                </p>
+                                <p class="text-xs text-text-secondary">1 day ago</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start space-x-3">
+                            <div class="w-8 h-8 bg-accent/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                                <svg class="w-4 h-4 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/>
+                                </svg>
+                            </div>
+                            <div class="flex-1">
+                                <p class="text-sm text-text-primary">
+                                    <span class="font-medium text-accent">CyberNinja</span> was promoted to Officer
+                                </p>
+                                <p class="text-xs text-text-secondary">2 days ago</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Panel: Stats & Settings -->
+            <div class="lg:col-span-3 space-y-6">
+                <!-- Clan Stats -->
+                <div class="bg-surface rounded-lg border border-accent/20 p-6 shadow-gaming-subtle">
+                    <h3 class="text-lg font-semibold text-text-primary mb-4">Clan Stats</h3>
+                    <div class="space-y-4">
+                        <div class="flex justify-between items-center">
+                            <span class="text-text-secondary">Ranking Points</span>
+                            <span class="font-semibold text-accent">2,847</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-text-secondary">Global Rank</span>
+                            <span class="font-semibold text-warning">#5</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-text-secondary">Wins This Week</span>
+                            <span class="font-semibold text-accent">12</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-text-secondary">Win Rate</span>
+                            <span class="font-semibold text-accent">78%</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-text-secondary">Active Members</span>
+                            <span class="font-semibold text-text-primary">38/42</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Upcoming Events -->
+                <div class="bg-surface rounded-lg border border-accent/20 p-6 shadow-gaming-subtle">
+                    <h3 class="text-lg font-semibold text-text-primary mb-4">Upcoming Events</h3>
+                    <div class="space-y-4">
+                        <div class="border border-gaming-light rounded-lg p-3">
+                            <div class="flex items-center justify-between mb-2">
+                                <span class="font-medium text-text-primary text-sm">Weekly Tournament</span>
+                                <span class="bg-accent/10 text-accent text-xs font-medium px-2 py-1 rounded-full">Tomorrow</span>
+                            </div>
+                            <p class="text-xs text-text-secondary">Valorant 5v5 • 8:00 PM EST</p>
+                        </div>
+
+                        <div class="border border-gaming-light rounded-lg p-3">
+                            <div class="flex items-center justify-between mb-2">
+                                <span class="font-medium text-text-primary text-sm">Clan Meeting</span>
+                                <span class="bg-warning/10 text-warning text-xs font-medium px-2 py-1 rounded-full">Friday</span>
+                            </div>
+                            <p class="text-xs text-text-secondary">Strategy Discussion • 7:00 PM EST</p>
+                        </div>
+
+                        <div class="border border-gaming-light rounded-lg p-3">
+                            <div class="flex items-center justify-between mb-2">
+                                <span class="font-medium text-text-primary text-sm">Championship</span>
+                                <span class="bg-error/10 text-error text-xs font-medium px-2 py-1 rounded-full">Next Week</span>
+                            </div>
+                            <p class="text-xs text-text-secondary">Regional Finals • TBD</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quick Actions -->
+                <div class="bg-surface rounded-lg border border-accent/20 p-6 shadow-gaming-subtle">
+                    <h3 class="text-lg font-semibold text-text-primary mb-4">Quick Actions</h3>
+                    <div class="space-y-3">
+                        <button class="w-full bg-accent hover:bg-accent-600 text-white py-2 px-4 rounded-md text-sm font-medium transition-gaming">
+                            Find Match
+                        </button>
+                        <button class="w-full bg-surface-800 hover:bg-surface-700 text-text-primary border border-gaming py-2 px-4 rounded-md text-sm font-medium transition-gaming">
+                            View Statistics
+                        </button>
+                        <button class="w-full bg-surface-800 hover:bg-surface-700 text-text-primary border border-gaming py-2 px-4 rounded-md text-sm font-medium transition-gaming">
+                            Clan Settings
+                        </button>
+                        <button id="leave-clan-btn" class="w-full bg-error hover:bg-error-600 text-white py-2 px-4 rounded-md text-sm font-medium transition-gaming">
+                            Leave Clan
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Layout -->
+        <div class="lg:hidden">
+            <!-- Tab Navigation -->
+            <div class="bg-surface rounded-lg border border-accent/20 p-1 mb-6 shadow-gaming-subtle">
+                <nav class="flex space-x-1">
+                    <button id="tab-chat" class="tab-btn flex-1 px-3 py-2 text-sm font-medium rounded-md bg-accent text-white">
+                        Chat
+                    </button>
+                    <button id="tab-members" class="tab-btn flex-1 px-3 py-2 text-sm font-medium rounded-md text-text-secondary hover:text-text-primary transition-hover">
+                        Members
+                    </button>
+                    <button id="tab-activities" class="tab-btn flex-1 px-3 py-2 text-sm font-medium rounded-md text-text-secondary hover:text-text-primary transition-hover">
+                        Activity
+                    </button>
+                    <button id="tab-settings" class="tab-btn flex-1 px-3 py-2 text-sm font-medium rounded-md text-text-secondary hover:text-text-primary transition-hover">
+                        Settings
+                    </button>
+                </nav>
+            </div>
+
+            <!-- Tab Content -->
+            <div id="mobile-content">
+                <!-- Chat Tab -->
+                <div id="content-chat" class="tab-content">
+                    <div class="bg-surface rounded-lg border border-accent/20 shadow-gaming-subtle h-96 flex flex-col">
+                        <!-- Chat Header -->
+                        <div class="border-b border-gaming-light p-4 flex items-center justify-between">
+                            <div class="flex items-center space-x-3">
+                                <div class="bg-accent/10 rounded-lg p-2">
+                                    <svg class="w-5 h-5 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h3 class="font-semibold text-text-primary">Clan Chat</h3>
+                                    <p class="text-xs text-text-secondary">15 online</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Mobile Chat Messages -->
+                        <div class="flex-1 overflow-y-auto p-4 space-y-3">
+                            <div class="text-center">
+                                <div class="bg-accent/10 inline-block px-3 py-1 rounded-full">
+                                    <p class="text-xs text-accent">Welcome to Phoenix Legends chat!</p>
+                                </div>
+                            </div>
+
+                            <div class="flex items-start space-x-2">
+                                <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=32&h=32&fit=crop&crop=face" alt="User" class="w-6 h-6 rounded-full flex-shrink-0" />
+                                <div class="flex-1 min-w-0">
+                                    <div class="flex items-center space-x-2 mb-1">
+                                        <span class="text-xs font-medium text-text-primary">DragonSlayer99</span>
+                                        <span class="text-xs text-text-secondary">2:30 PM</span>
+                                    </div>
+                                    <p class="text-sm text-text-primary break-words">Tournament registration is open! 🎮</p>
+                                </div>
+                            </div>
+
+                            <div class="flex items-start space-x-2">
+                                <img src="https://images.unsplash.com/photo-1568602471122-7832951cc4c5?w=32&h=32&fit=crop&crop=face" alt="You" class="w-6 h-6 rounded-full flex-shrink-0" />
+                                <div class="flex-1 min-w-0">
+                                    <div class="flex items-center space-x-2 mb-1">
+                                        <span class="text-xs font-medium text-accent">You</span>
+                                        <span class="text-xs text-text-secondary">2:40 PM</span>
+                                    </div>
+                                    <p class="text-sm text-text-primary break-words">I'm ready to compete! 🔥</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Mobile Chat Input -->
+                        <div class="border-t border-gaming-light p-3">
+                            <div class="flex items-center space-x-2">
+                                <input type="text" placeholder="Type a message..." class="flex-1 px-3 py-2 border border-gaming bg-surface-800 rounded-lg text-text-primary placeholder-text-secondary focus:outline-none focus:ring-2 focus:ring-accent focus:border-accent transition-gaming text-sm" />
+                                <button class="bg-accent hover:bg-accent-600 text-white p-2 rounded-lg transition-gaming">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Members Tab -->
+                <div id="content-members" class="tab-content hidden">
+                    <div class="bg-surface rounded-lg border border-accent/20 p-6 shadow-gaming-subtle">
+                        <h3 class="text-lg font-semibold text-text-primary mb-4">Clan Members</h3>
+                        <div class="space-y-3">
+                            <div class="flex items-center space-x-3 p-3 border border-gaming-light rounded-lg">
+                                <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=40&h=40&fit=crop&crop=face" alt="DragonSlayer99" class="w-10 h-10 rounded-full" />
+                                <div class="flex-1">
+                                    <div class="flex items-center space-x-2">
+                                        <p class="text-sm font-medium text-text-primary">DragonSlayer99</p>
+                                        <span class="inline-flex items-center px-1.5 py-0.5 rounded text-xs font-medium bg-warning/10 text-warning">Leader</span>
+                                    </div>
+                                    <p class="text-xs text-text-secondary">Online • Playing Valorant</p>
+                                </div>
+                                <div class="w-3 h-3 bg-accent rounded-full"></div>
+                            </div>
+
+                            <div class="flex items-center space-x-3 p-3 border border-gaming-light rounded-lg">
+                                <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=40&h=40&fit=crop&crop=face" alt="CyberNinja" class="w-10 h-10 rounded-full" />
+                                <div class="flex-1">
+                                    <div class="flex items-center space-x-2">
+                                        <p class="text-sm font-medium text-text-primary">CyberNinja</p>
+                                        <span class="inline-flex items-center px-1.5 py-0.5 rounded text-xs font-medium bg-accent/10 text-accent">Officer</span>
+                                    </div>
+                                    <p class="text-xs text-text-secondary">Online • In lobby</p>
+                                </div>
+                                <div class="w-3 h-3 bg-accent rounded-full"></div>
+                            </div>
+
+                            <div class="flex items-center space-x-3 p-3 border border-gaming-light rounded-lg">
+                                <img src="https://images.unsplash.com/photo-1568602471122-7832951cc4c5?w=40&h=40&fit=crop&crop=face" alt="You" class="w-10 h-10 rounded-full" />
+                                <div class="flex-1">
+                                    <p class="text-sm font-medium text-accent">You</p>
+                                    <p class="text-xs text-text-secondary">Online</p>
+                                </div>
+                                <div class="w-3 h-3 bg-accent rounded-full"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Activities Tab -->
+                <div id="content-activities" class="tab-content hidden">
+                    <div class="bg-surface rounded-lg border border-accent/20 p-6 shadow-gaming-subtle">
+                        <h3 class="text-lg font-semibold text-text-primary mb-4">Recent Activity</h3>
+                        <div class="space-y-4">
+                            <div class="flex items-start space-x-3">
+                                <div class="w-8 h-8 bg-accent/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                                    <svg class="w-4 h-4 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"/>
+                                    </svg>
+                                </div>
+                                <div class="flex-1">
+                                    <p class="text-sm text-text-primary">
+                                        <span class="font-medium text-accent">ShadowHawk</span> joined the clan
+                                    </p>
+                                    <p class="text-xs text-text-secondary">2 hours ago</p>
+                                </div>
+                            </div>
+
+                            <div class="flex items-start space-x-3">
+                                <div class="w-8 h-8 bg-warning/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                                    <svg class="w-4 h-4 text-warning" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"/>
+                                    </svg>
+                                </div>
+                                <div class="flex-1">
+                                    <p class="text-sm text-text-primary">
+                                        Clan reached <span class="font-medium text-warning">Rank #5</span>!
+                                    </p>
+                                    <p class="text-xs text-text-secondary">5 hours ago</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Settings Tab -->
+                <div id="content-settings" class="tab-content hidden">
+                    <div class="space-y-6">
+                        <!-- Clan Stats -->
+                        <div class="bg-surface rounded-lg border border-accent/20 p-6 shadow-gaming-subtle">
+                            <h3 class="text-lg font-semibold text-text-primary mb-4">Clan Stats</h3>
+                            <div class="grid grid-cols-2 gap-4">
+                                <div class="text-center">
+                                    <p class="text-2xl font-bold text-accent">2,847</p>
+                                    <p class="text-xs text-text-secondary">Ranking Points</p>
+                                </div>
+                                <div class="text-center">
+                                    <p class="text-2xl font-bold text-warning">#5</p>
+                                    <p class="text-xs text-text-secondary">Global Rank</p>
+                                </div>
+                                <div class="text-center">
+                                    <p class="text-2xl font-bold text-accent">12</p>
+                                    <p class="text-xs text-text-secondary">Wins This Week</p>
+                                </div>
+                                <div class="text-center">
+                                    <p class="text-2xl font-bold text-accent">78%</p>
+                                    <p class="text-xs text-text-secondary">Win Rate</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Quick Actions -->
+                        <div class="bg-surface rounded-lg border border-accent/20 p-6 shadow-gaming-subtle">
+                            <h3 class="text-lg font-semibold text-text-primary mb-4">Actions</h3>
+                            <div class="space-y-3">
+                                <button class="w-full bg-accent hover:bg-accent-600 text-white py-3 px-4 rounded-md text-sm font-medium transition-gaming">
+                                    Find Match
+                                </button>
+                                <button class="w-full bg-surface-800 hover:bg-surface-700 text-text-primary border border-gaming py-3 px-4 rounded-md text-sm font-medium transition-gaming">
+                                    View Statistics
+                                </button>
+                                <button class="w-full bg-surface-800 hover:bg-surface-700 text-text-primary border border-gaming py-3 px-4 rounded-md text-sm font-medium transition-gaming">
+                                    Clan Settings
+                                </button>
+                                <button id="mobile-leave-clan-btn" class="w-full bg-error hover:bg-error-600 text-white py-3 px-4 rounded-md text-sm font-medium transition-gaming">
+                                    Leave Clan
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Leave Clan Confirmation Modal -->
+    <div id="leave-clan-modal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50 hidden">
+        <div class="bg-surface rounded-lg border border-error/20 max-w-md w-full p-6 shadow-gaming transform transition-all">
+            <div class="text-center">
+                <div class="bg-error/10 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
+                    <svg class="w-8 h-8 text-error" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4.5c-.77-.833-2.694-.833-3.464 0L3.35 16.5c-.77.833.192 2.5 1.732 2.5z"/>
+                    </svg>
+                </div>
+                <h3 class="text-xl font-semibold text-text-primary mb-2">Leave Clan?</h3>
+                <p class="text-text-secondary mb-6">Are you sure you want to leave Phoenix Legends? You'll lose all your clan progress and need to request to rejoin later.</p>
+                <div class="flex flex-col sm:flex-row gap-3">
+                    <button id="cancel-leave" class="flex-1 bg-surface-800 hover:bg-surface-700 text-text-primary border border-gaming font-medium py-2 px-4 rounded-md transition-gaming">
+                        Cancel
+                    </button>
+                    <button id="confirm-leave" class="flex-1 bg-error hover:bg-error-600 text-white font-medium py-2 px-4 rounded-md transition-gaming">
+                        Leave Clan
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-surface border-t border-gaming-light mt-16">
+        <div class="max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8">
+            <div class="text-center">
+                <p class="text-text-secondary text-sm">
+                    © 2025 GameArenaX Clan Portal. All Rights Reserved.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        document.getElementById('mobile-menu-button').addEventListener('click', function() {
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Mobile tab navigation
+        const tabButtons = document.querySelectorAll('.tab-btn');
+        const tabContents = document.querySelectorAll('.tab-content');
+
+        tabButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                const tabId = this.id.replace('tab-', '');
+                
+                // Update active tab button
+                tabButtons.forEach(btn => {
+                    btn.classList.remove('bg-accent', 'text-white');
+                    btn.classList.add('text-text-secondary');
+                });
+                this.classList.add('bg-accent', 'text-white');
+                this.classList.remove('text-text-secondary');
+                
+                // Show corresponding content
+                tabContents.forEach(content => {
+                    content.classList.add('hidden');
+                });
+                document.getElementById(`content-${tabId}`).classList.remove('hidden');
+            });
+        });
+
+        // Chat functionality
+        const chatInput = document.getElementById('chat-input');
+        const sendMessageBtn = document.getElementById('send-message');
+        const chatMessages = document.getElementById('chat-messages');
+
+        function sendMessage() {
+            const message = chatInput.value.trim();
+            if (!message) return;
+
+            // Create new message element
+            const messageDiv = document.createElement('div');
+            messageDiv.className = 'flex items-start space-x-3';
+            messageDiv.innerHTML = `
+                <img src="https://images.unsplash.com/photo-1568602471122-7832951cc4c5?w=32&h=32&fit=crop&crop=face" alt="You" class="w-8 h-8 rounded-full flex-shrink-0" />
+                <div class="flex-1 min-w-0">
+                    <div class="flex items-center space-x-2 mb-1">
+                        <span class="text-sm font-medium text-accent">You</span>
+                        <span class="text-xs text-text-secondary">${new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}</span>
+                    </div>
+                    <p class="text-sm text-text-primary break-words">${message}</p>
+                </div>
+            `;
+
+            chatMessages.appendChild(messageDiv);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+            chatInput.value = '';
+
+            // Simulate other member responses
+            setTimeout(() => {
+                const responses = [
+                    "Great point!",
+                    "I agree!",
+                    "Let's do it!",
+                    "Count me in!",
+                    "Sounds good!",
+                    "👍"
+                ];
+                const randomResponse = responses[Math.floor(Math.random() * responses.length)];
+                const responseDiv = document.createElement('div');
+                responseDiv.className = 'flex items-start space-x-3';
+                responseDiv.innerHTML = `
+                    <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=32&h=32&fit=crop&crop=face" alt="Member" class="w-8 h-8 rounded-full flex-shrink-0" />
+                    <div class="flex-1 min-w-0">
+                        <div class="flex items-center space-x-2 mb-1">
+                            <span class="text-sm font-medium text-text-primary">CyberNinja</span>
+                            <span class="inline-flex items-center px-1.5 py-0.5 rounded text-xs font-medium bg-accent/10 text-accent">Officer</span>
+                            <span class="text-xs text-text-secondary">${new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}</span>
+                        </div>
+                        <p class="text-sm text-text-primary break-words">${randomResponse}</p>
+                    </div>
+                `;
+                chatMessages.appendChild(responseDiv);
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+            }, 1000 + Math.random() * 3000);
+        }
+
+        sendMessageBtn.addEventListener('click', sendMessage);
+        chatInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                sendMessage();
+            }
+        });
+
+        // Auto-scroll chat to bottom
+        if (chatMessages) {
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        // Leave clan modal
+        const leaveClanBtn = document.getElementById('leave-clan-btn');
+        const mobileLeaveClanBtn = document.getElementById('mobile-leave-clan-btn');
+        const leaveClanModal = document.getElementById('leave-clan-modal');
+        const cancelLeaveBtn = document.getElementById('cancel-leave');
+        const confirmLeaveBtn = document.getElementById('confirm-leave');
+
+        function showLeaveModal() {
+            leaveClanModal.classList.remove('hidden');
+        }
+
+        function hideLeaveModal() {
+            leaveClanModal.classList.add('hidden');
+        }
+
+        leaveClanBtn?.addEventListener('click', showLeaveModal);
+        mobileLeaveClanBtn?.addEventListener('click', showLeaveModal);
+        cancelLeaveBtn.addEventListener('click', hideLeaveModal);
+
+        confirmLeaveBtn.addEventListener('click', function() {
+            // Show loading state
+            this.disabled = true;
+            this.innerHTML = '<svg class="animate-spin -ml-1 mr-3 h-4 w-4 text-white inline" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"/><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"/></svg>Leaving...';
+
+            // Simulate API call
+            setTimeout(() => {
+                alert('You have successfully left Phoenix Legends clan.');
+                window.location.href = 'clan_directory.html';
+            }, 2000);
+        });
+
+        // Close modal when clicking outside
+        leaveClanModal.addEventListener('click', function(e) {
+            if (e.target === this) {
+                hideLeaveModal();
+            }
+        });
+
+        // Emoji button functionality
+        document.getElementById('emoji-btn')?.addEventListener('click', function() {
+            const emojis = ['😀', '😁', '😂', '🤣', '😃', '😄', '😅', '😆', '😉', '😊', '😋', '😎', '😍', '😘', '🥰', '😗', '😙', '😚', '🙂', '🤗', '🤩', '🤔', '🤨', '😐', '😑', '😶', '🙄', '😏', '😣', '😥', '😮', '🤐', '😯', '😪', '😫', '😴', '😌', '😛', '😜', '😝', '🤤', '😒', '😓', '😔', '😕', '🙃', '🤑', '😲', '🙁', '😖', '😞', '😟', '😤', '😢', '😭', '😦', '😧', '😨', '😩', '🤯', '😬', '😰', '😱', '🥵', '🥶', '😳', '🤪', '😵', '😡', '😠', '🤬', '😷', '🤒', '🤕', '🤢', '🤮', '🤧', '😇', '🤠', '🤡', '🥳', '🥴', '🥺', '🤥', '🤫', '🤭', '🧐', '🤓', '😈', '👿', '👹', '👺', '💀', '☠️', '👻', '👽', '👾', '🤖', '🎃', '😺', '😸', '😹', '😻', '😼', '😽', '🙀', '😿', '😾', '🤲', '👐', '🙌', '👏', '🤝', '👍', '👎', '👊', '✊', '🤛', '🤜', '🤞', '✌️', '🤟', '🤘', '👌', '🤏', '👈', '👉', '👆', '👇', '☝️', '✋', '🤚', '🖐️', '🖖', '👋', '🤙', '💪', '🖕', '✍️', '🙏', '🎮', '🕹️', '🎯', '🎲', '🎪', '🎭', '🎨', '🎬', '🎤', '🎧', '🎼', '🎵', '🎶', '🎹', '🥁', '🎷', '🎺', '🎸', '🎻', '🎳', '🎱', '🏆', '🏅', '🥇', '🥈', '🥉', '⚽', '🏀', '🏈', '⚾', '🎾', '🏐', '🏉', '🥏', '🎱', '🪀', '🏓', '🏸', '🥍', '🏒', '🏑', '🥌', '🛷', '🛹', '🛼', '🚀', '💯', '🔥', '💎', '⚡', '💫', '⭐', '🌟', '✨', '💥'];
+            
+            const randomEmoji = emojis[Math.floor(Math.random() * emojis.length)];
+            chatInput.value += randomEmoji;
+            chatInput.focus();
+        });
+
+        // Simulate real-time member status updates
+        function updateMemberStatuses() {
+            const statuses = ['Online', 'Playing Valorant', 'In lobby', 'Playing CS2', 'Away'];
+            const members = document.querySelectorAll('.text-text-secondary:contains("Online")');
+            
+            // This is a simplified simulation - in real app this would come from websocket
+        }
+
+        // Start status updates every 30 seconds
+        setInterval(updateMemberStatuses, 30000);
+
+        // Notification functionality
+        document.querySelector('button[class*="relative p-2"]')?.addEventListener('click', function() {
+            alert('You have 3 new notifications:\n- Tournament starting in 1 hour\n- New member joined\n- Weekly challenge completed');
+        });
+
+        // Quick action buttons
+        document.querySelector('button:contains("Find Match")')?.addEventListener('click', function() {
+            alert('Searching for match... This feature would integrate with the game\'s matchmaking system.');
+        });
+
+        document.querySelector('button:contains("View Statistics")')?.addEventListener('click', function() {
+            alert('Statistics page would show detailed clan and personal performance metrics.');
+        });
+
+        document.querySelector('button:contains("Clan Settings")')?.addEventListener('click', function() {
+            alert('Clan settings would be available for leaders and officers only.');
+        });
+    </script>
+<script id="dhws-dataInjector" src="../public/dhws-data-injector.js"></script>
+</body>
+</html>

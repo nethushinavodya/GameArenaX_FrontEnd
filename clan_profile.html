@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Phoenix Legends - Clan Profile - GameArenaX</title>
+    <link rel="stylesheet" href="assets/css/main3.css" />
+    <link rel="stylesheet" href="assets/css/tailwind.css" />
+    <link rel="stylesheet" href="assets/css/home.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<script type="module" src="https://static.rocket.new/rocket-web.js?_cfg=https%3A%2F%2Fgamearenax1295back.builtwithrocket.new&_be=https%3A%2F%2Fapplication.rocket.new&_v=0.1.8"></script>
+</head>
+<body class="bg-background text-text-primary font-inter min-h-screen">
+    <!-- Header Navigation -->
+    <header class="bg-surface border-b border-gaming-light sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <!-- Logo -->
+                <div class="flex items-center">
+                    <div class="flex-shrink-0">
+                        <svg class="h-8 w-8 text-accent" viewBox="0 0 32 32" fill="currentColor">
+                            <path d="M16 2L20.5 10.5L30 12L22 20L24 30L16 25L8 30L10 20L2 12L11.5 10.5L16 2Z"/>
+                            <circle cx="16" cy="16" r="4" fill="currentColor"/>
+                        </svg>
+                    </div>
+                    <div class="ml-3">
+                        <h1 class="text-xl font-bold text-text-primary">GameArenaX</h1>
+                        <p class="text-xs text-text-secondary">Clan Portal</p>
+                    </div>
+                </div>
+
+                <!-- Navigation -->
+                <nav class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-4">
+                        <a href="clan_directory.html" class="text-text-secondary hover:text-text-primary hover:bg-surface-800 px-3 py-2 rounded-md text-sm font-medium transition-hover">
+                            Clan Directory
+                        </a>
+                        <a href="clan_profile.html" class="bg-primary-700 text-text-primary px-3 py-2 rounded-md text-sm font-medium">
+                            Clan Profile
+                        </a>
+                    </div>
+                </nav>
+
+                <!-- Mobile menu button -->
+                <div class="md:hidden">
+                    <button type="button" id="mobile-menu-button" class="bg-surface-800 inline-flex items-center justify-center p-2 rounded-md text-text-secondary hover:text-text-primary hover:bg-surface-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-accent">
+                        <svg class="block h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile menu -->
+        <div class="md:hidden hidden" id="mobile-menu">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-surface-800">
+                <a href="clan_directory.html" class="text-text-secondary hover:text-text-primary hover:bg-surface-700 block px-3 py-2 rounded-md text-base font-medium">
+                    Clan Directory
+                </a>
+                <a href="clan_profile.html" class="bg-primary-700 text-text-primary block px-3 py-2 rounded-md text-base font-medium">
+                    Clan Profile
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <!-- Back Navigation -->
+        <div class="mb-6">
+            <a href="clan_directory.html" class="inline-flex items-center text-text-secondary hover:text-text-primary transition-hover">
+                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+                </svg>
+                Back to Clan Directory
+            </a>
+        </div>
+
+        <!-- Clan Banner Section -->
+        <div class="bg-surface rounded-lg border border-gaming-light overflow-hidden shadow-gaming-subtle mb-8">
+            <!-- Banner Image -->
+            <div class="relative h-48 md:h-64 bg-gradient-to-br from-primary-600 to-primary-800">
+                <img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Phoenix Legends Banner" class="w-full h-full object-cover" onerror="this.src='https://images.unsplash.com/photo-1584824486509-112e4181ff6b?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'; this.onerror=null;" />
+                <div class="absolute inset-0 bg-black bg-opacity-40"></div>
+                
+                <!-- Clan Status Badge -->
+                <div class="absolute top-4 right-4">
+                    <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-accent text-white">
+                        <svg class="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                        </svg>
+                        OPEN CLAN
+                    </span>
+                </div>
+
+                <!-- Clan Logo and Basic Info -->
+                <div class="absolute bottom-6 left-6 flex items-end">
+                    <div class="mr-4">
+                        <img src="https://images.unsplash.com/photo-1614680376573-df3480f0c6ff?q=80&w=2074&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Phoenix Legends Logo" class="w-20 h-20 rounded-lg border-4 border-accent object-cover shadow-gaming" onerror="this.src='https://images.unsplash.com/photo-1584824486509-112e4181ff6b?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'; this.onerror=null;" />
+                    </div>
+                    <div>
+                        <h1 class="text-3xl font-bold text-white mb-1">Phoenix Legends</h1>
+                        <div class="flex items-center text-accent-200">
+                            <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                            </svg>
+                            <span class="text-lg font-semibold">2,450 Ranking Points</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <!-- Main Content Column -->
+            <div class="lg:col-span-2 space-y-8">
+                <!-- Clan Description -->
+                <div class="bg-surface rounded-lg border border-gaming-light p-6 shadow-gaming-subtle">
+                    <h2 class="text-xl font-semibold text-text-primary mb-4">About Phoenix Legends</h2>
+                    <p class="text-text-secondary leading-relaxed mb-4">
+                        Phoenix Legends is an elite competitive gaming clan focused on FPS tournaments and ranked gameplay. We are a brotherhood of skilled players who value teamwork, dedication, and continuous improvement. Our clan has been dominating the esports scene since our formation, with multiple championship titles and a reputation for excellence.
+                    </p>
+                    <p class="text-text-secondary leading-relaxed mb-4">
+                        We welcome players who are passionate about competitive gaming and ready to commit to regular practice sessions and tournaments. Our community is built on mutual respect, strategic gameplay, and the pursuit of victory. Join us and become part of a legendary gaming family.
+                    </p>
+                    <p class="text-text-secondary leading-relaxed">
+                        Whether you're looking to improve your skills, participate in high-level competitions, or simply enjoy gaming with like-minded individuals, Phoenix Legends offers the perfect environment for your esports journey.
+                    </p>
+                </div>
+
+                <!-- Clan Statistics -->
+                <div class="bg-surface rounded-lg border border-gaming-light p-6 shadow-gaming-subtle">
+                    <h2 class="text-xl font-semibold text-text-primary mb-6">Clan Statistics</h2>
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                        <div class="text-center">
+                            <div class="text-2xl font-bold text-accent mb-1">45</div>
+                            <div class="text-text-secondary text-sm">Total Members</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-2xl font-bold text-accent mb-1">5</div>
+                            <div class="text-text-secondary text-sm">Available Slots</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-2xl font-bold text-warning mb-1">2,450</div>
+                            <div class="text-text-secondary text-sm">Ranking Points</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-2xl font-bold text-text-primary mb-1">12</div>
+                            <div class="text-text-secondary text-sm">Tournaments Won</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Member List -->
+                <div class="bg-surface rounded-lg border border-gaming-light p-6 shadow-gaming-subtle">
+                    <div class="flex items-center justify-between mb-6">
+                        <h2 class="text-xl font-semibold text-text-primary">Clan Members</h2>
+                        <span class="text-text-secondary text-sm">45 of 50 members</span>
+                    </div>
+                    
+                    <div class="space-y-3">
+                        <!-- Leader -->
+                        <div class="flex items-center justify-between p-3 bg-surface-800 rounded-lg border border-gaming-light">
+                            <div class="flex items-center">
+                                <img src="https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="DragonSlayer Avatar" class="w-10 h-10 rounded-full object-cover mr-3" onerror="this.src='https://images.unsplash.com/photo-1584824486509-112e4181ff6b?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'; this.onerror=null;" />
+                                <div>
+                                    <div class="flex items-center">
+                                        <span class="font-medium text-text-primary">DragonSlayer</span>
+                                        <span class="ml-2 inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-accent text-white">
+                                            <svg class="w-3 h-3 mr-1" fill="currentColor" viewBox="0 0 20 20">
+                                                <path fill-rule="evenodd" d="M9.383 3.076A1 1 0 0110 4v12a1 1 0 01-1.707.707L4.586 13H2a1 1 0 01-1-1V8a1 1 0 011-1h2.586l3.707-3.707a1 1 0 011.09-.217zM15.657 6.343a1 1 0 011.414 0A9.972 9.972 0 0119 12a9.972 9.972 0 01-1.929 5.657 1 1 0 11-1.414-1.414A7.971 7.971 0 0017 12c0-1.043-.2-2.04-.571-2.929a1 1 0 010-1.414z" clip-rule="evenodd"/>
+                                            </svg>
+                                            LEADER
+                                        </span>
+                                    </div>
+                                    <div class="text-text-secondary text-sm">Joined: 03/15/2024</div>
+                                </div>
+                            </div>
+                            <div class="text-right">
+                                <div class="text-warning font-medium">2,890 pts</div>
+                                <div class="text-text-secondary text-xs">Online</div>
+                            </div>
+                        </div>
+
+                        <!-- Regular Members -->
+                        <div class="flex items-center justify-between p-3 bg-surface-800 rounded-lg border border-gaming-light">
+                            <div class="flex items-center">
+                                <img src="https://images.pixabay.com/photo/2016/11/21/12/42/beard-1845166_1280.jpg" alt="ShadowHunter Avatar" class="w-10 h-10 rounded-full object-cover mr-3" onerror="this.src='https://images.unsplash.com/photo-1584824486509-112e4181ff6b?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'; this.onerror=null;" />
+                                <div>
+                                    <div class="font-medium text-text-primary">ShadowHunter</div>
+                                    <div class="text-text-secondary text-sm">Joined: 04/22/2024</div>
+                                </div>
+                            </div>
+                            <div class="text-right">
+                                <div class="text-warning font-medium">2,340 pts</div>
+                                <div class="text-accent text-xs">Online</div>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center justify-between p-3 bg-surface-800 rounded-lg border border-gaming-light">
+                            <div class="flex items-center">
+                                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="FireStorm Avatar" class="w-10 h-10 rounded-full object-cover mr-3" onerror="this.src='https://images.unsplash.com/photo-1584824486509-112e4181ff6b?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'; this.onerror=null;" />
+                                <div>
+                                    <div class="font-medium text-text-primary">FireStorm</div>
+                                    <div class="text-text-secondary text-sm">Joined: 05/10/2024</div>
+                                </div>
+                            </div>
+                            <div class="text-right">
+                                <div class="text-warning font-medium">2,120 pts</div>
+                                <div class="text-text-secondary text-xs">Offline</div>
+                            </div>
+                        </div>
+
+                        <!-- Show More Button -->
+                        <button class="w-full py-3 text-accent hover:text-accent-400 text-sm font-medium transition-hover">
+                            View All 45 Members
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sidebar -->
+            <div class="space-y-6">
+                <!-- Join Clan Card -->
+                <div class="bg-surface rounded-lg border border-gaming-light p-6 shadow-gaming-subtle">
+                    <div class="text-center mb-6">
+                        <h3 class="text-lg font-semibold text-text-primary mb-2">Ready to Join?</h3>
+                        <p class="text-text-secondary text-sm">Become part of the Phoenix Legends family</p>
+                    </div>
+                    
+                    <button id="join-clan-btn" class="w-full bg-accent hover:bg-accent-600 text-white font-medium py-3 px-4 rounded-md transition-gaming mb-4 min-h-44">
+                        <svg class="w-5 h-5 mr-2 inline" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"/>
+                        </svg>
+                        Join Phoenix Legends
+                    </button>
+                    
+                    <div class="text-center">
+                        <p class="text-text-secondary text-xs">
+                            Open clan - Instant approval
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Clan Details -->
+                <div class="bg-surface rounded-lg border border-gaming-light p-6 shadow-gaming-subtle">
+                    <h3 class="text-lg font-semibold text-text-primary mb-4">Clan Details</h3>
+                    
+                    <div class="space-y-4">
+                        <div class="flex justify-between">
+                            <span class="text-text-secondary">Leader:</span>
+                            <span class="text-text-primary font-medium">DragonSlayer</span>
+                        </div>
+                        
+                        <div class="flex justify-between">
+                            <span class="text-text-secondary">Created:</span>
+                            <span class="text-text-primary">03/15/2024</span>
+                        </div>
+                        
+                        <div class="flex justify-between">
+                            <span class="text-text-secondary">Members:</span>
+                            <span class="text-text-primary">45 / 50</span>
+                        </div>
+                        
+                        <div class="flex justify-between">
+                            <span class="text-text-secondary">Type:</span>
+                            <span class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-accent text-white">
+                                OPEN
+                            </span>
+                        </div>
+                        
+                        <div class="flex justify-between">
+                            <span class="text-text-secondary">Contact:</span>
+                            <a href="mailto:dragonslayer@phoenixlegends.com" class="text-accent hover:text-accent-400 transition-hover">
+                                dragonslayer@phoenixlegends.com
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Recent Activity -->
+                <div class="bg-surface rounded-lg border border-gaming-light p-6 shadow-gaming-subtle">
+                    <h3 class="text-lg font-semibold text-text-primary mb-4">Recent Activity</h3>
+                    
+                    <div class="space-y-3">
+                        <div class="flex items-start">
+                            <div class="w-2 h-2 bg-accent rounded-full mt-2 mr-3 flex-shrink-0"></div>
+                            <div>
+                                <p class="text-text-primary text-sm">Tournament victory in FPS Championship</p>
+                                <p class="text-text-secondary text-xs">2 days ago</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="w-2 h-2 bg-warning rounded-full mt-2 mr-3 flex-shrink-0"></div>
+                            <div>
+                                <p class="text-text-primary text-sm">New member FireStorm joined</p>
+                                <p class="text-text-secondary text-xs">1 week ago</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="w-2 h-2 bg-primary rounded-full mt-2 mr-3 flex-shrink-0"></div>
+                            <div>
+                                <p class="text-text-primary text-sm">Ranking points increased to 2,450</p>
+                                <p class="text-text-secondary text-xs">2 weeks ago</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Join Clan Modal -->
+    <div id="join-modal" class="fixed inset-0 bg-black bg-opacity-50 hidden z-50 flex items-center justify-center p-4">
+        <div class="bg-surface rounded-lg border border-gaming-light max-w-md w-full shadow-gaming-elevated">
+            <div class="p-6">
+                <div class="flex items-center justify-between mb-4">
+                    <h3 class="text-lg font-semibold text-text-primary">Join Phoenix Legends</h3>
+                    <button id="close-modal" class="text-text-secondary hover:text-text-primary transition-hover">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                        </svg>
+                    </button>
+                </div>
+                
+                <form id="join-form">
+                    <div class="mb-4">
+                        <label for="join-message" class="block text-sm font-medium text-text-primary mb-2">
+                            Introduction Message (Optional)
+                        </label>
+                        <textarea id="join-message" rows="4" class="block w-full px-3 py-2 border border-gaming bg-surface-800 rounded-md leading-5 text-text-primary placeholder-text-secondary focus:outline-none focus:ring-2 focus:ring-accent focus:border-accent transition-gaming resize-none" placeholder="Tell the clan leader why you want to join..."></textarea>
+                    </div>
+                    
+                    <div class="flex space-x-3">
+                        <button type="button" id="cancel-join" class="flex-1 bg-surface-800 hover:bg-surface-700 text-text-primary font-medium py-2 px-4 rounded-md border border-gaming transition-gaming">
+                            Cancel
+                        </button>
+                        <button type="submit" class="flex-1 bg-accent hover:bg-accent-600 text-white font-medium py-2 px-4 rounded-md transition-gaming">
+                            Join Clan
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Success Modal -->
+    <div id="success-modal" class="fixed inset-0 bg-black bg-opacity-50 hidden z-50 flex items-center justify-center p-4">
+        <div class="bg-surface rounded-lg border border-gaming-light max-w-md w-full shadow-gaming-elevated">
+            <div class="p-6 text-center">
+                <div class="mx-auto flex items-center justify-center h-12 w-12 rounded-full bg-accent-100 mb-4">
+                    <svg class="h-6 w-6 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                    </svg>
+                </div>
+                <h3 class="text-lg font-semibold text-text-primary mb-2">Welcome to Phoenix Legends!</h3>
+                <p class="text-text-secondary mb-6">You have successfully joined the clan. Check your email for further instructions.</p>
+                <button id="close-success" class="w-full bg-accent hover:bg-accent-600 text-white font-medium py-2 px-4 rounded-md transition-gaming">
+                    Continue
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-surface border-t border-gaming-light mt-16">
+        <div class="max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8">
+            <div class="text-center">
+                <p class="text-text-secondary text-sm">
+                    © 2025 GameArenaX Clan Portal. All Rights Reserved.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        document.getElementById('mobile-menu-button').addEventListener('click', function() {
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Modal functionality
+        const joinBtn = document.getElementById('join-clan-btn');
+        const joinModal = document.getElementById('join-modal');
+        const successModal = document.getElementById('success-modal');
+        const closeModal = document.getElementById('close-modal');
+        const cancelJoin = document.getElementById('cancel-join');
+        const closeSuccess = document.getElementById('close-success');
+        const joinForm = document.getElementById('join-form');
+
+        // Open join modal
+        joinBtn.addEventListener('click', function() {
+            joinModal.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        });
+
+        // Close modals
+        function closeJoinModal() {
+            joinModal.classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        }
+
+        function closeSuccessModal() {
+            successModal.classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        }
+
+        closeModal.addEventListener('click', closeJoinModal);
+        cancelJoin.addEventListener('click', closeJoinModal);
+        closeSuccess.addEventListener('click', closeSuccessModal);
+
+        // Close modal when clicking outside
+        joinModal.addEventListener('click', function(e) {
+            if (e.target === joinModal) {
+                closeJoinModal();
+            }
+        });
+
+        successModal.addEventListener('click', function(e) {
+            if (e.target === successModal) {
+                closeSuccessModal();
+            }
+        });
+
+        // Handle form submission
+        joinForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Show loading state
+            const submitBtn = joinForm.querySelector('button[type="submit"]');
+            const originalText = submitBtn.textContent;
+            submitBtn.textContent = 'Joining...';
+            submitBtn.disabled = true;
+            
+            // Simulate API call
+            setTimeout(() => {
+                closeJoinModal();
+                successModal.classList.remove('hidden');
+                document.body.style.overflow = 'hidden';
+                
+                // Reset form
+                joinForm.reset();
+                submitBtn.textContent = originalText;
+                submitBtn.disabled = false;
+                
+                // Update join button to show joined state
+                joinBtn.innerHTML = `
+                    <svg class="w-5 h-5 mr-2 inline" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                    </svg>
+                    Joined Successfully
+                `;
+                joinBtn.classList.remove('bg-accent', 'hover:bg-accent-600');
+                joinBtn.classList.add('bg-success', 'hover:bg-success-600');
+                joinBtn.disabled = true;
+            }, 1500);
+        });
+
+        // Add smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add hover effects to member cards
+        document.querySelectorAll('.bg-surface-800').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateX(4px)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateX(0)';
+            });
+        });
+
+        // Keyboard navigation for modals
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                if (!joinModal.classList.contains('hidden')) {
+                    closeJoinModal();
+                }
+                if (!successModal.classList.contains('hidden')) {
+                    closeSuccessModal();
+                }
+            }
+        });
+    </script>
+<script id="dhws-dataInjector" src="../public/dhws-data-injector.js"></script>
+</body>
+</html>

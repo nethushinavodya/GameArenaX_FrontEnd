@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Clan Directory - GameArenaX</title>
+    <link rel="stylesheet" href="assets/css/main3.css" />
+    <link rel="stylesheet" href="assets/css/tailwind.css" />
+    <link rel="stylesheet" href="assets/css/home.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<script type="module" src="https://static.rocket.new/rocket-web.js?_cfg=https%3A%2F%2Fgamearenax1295back.builtwithrocket.new&_be=https%3A%2F%2Fapplication.rocket.new&_v=0.1.8"></script>
+</head>
+<body class="bg-background text-text-primary font-inter min-h-screen">
+    <!-- Header Navigation -->
+    <header class="bg-surface border-b border-gaming-light sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <!-- Logo -->
+                <div class="flex items-center">
+                    <div class="flex-shrink-0">
+                        <svg class="h-8 w-8 text-accent" viewBox="0 0 32 32" fill="currentColor">
+                            <path d="M16 2L20.5 10.5L30 12L22 20L24 30L16 25L8 30L10 20L2 12L11.5 10.5L16 2Z"/>
+                            <circle cx="16" cy="16" r="4" fill="currentColor"/>
+                        </svg>
+                    </div>
+                    <div class="ml-3">
+                        <h1 class="text-xl font-bold text-text-primary">GameArenaX</h1>
+                        <p class="text-xs text-text-secondary">Clan Portal</p>
+                    </div>
+                </div>
+
+                <!-- Navigation -->
+                <nav class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-4">
+                        <a href="clan_directory.html" class="bg-primary-700 text-text-primary px-3 py-2 rounded-md text-sm font-medium">
+                            Clan Directory
+                        </a>
+                        <a href="clan_profile.html" class="text-text-secondary hover:text-text-primary hover:bg-surface-800 px-3 py-2 rounded-md text-sm font-medium transition-hover">
+                            Clan Profile
+                        </a>
+                    </div>
+                </nav>
+
+                <!-- Mobile menu button -->
+                <div class="md:hidden">
+                    <button type="button" id="mobile-menu-button" class="bg-surface-800 inline-flex items-center justify-center p-2 rounded-md text-text-secondary hover:text-text-primary hover:bg-surface-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-accent">
+                        <svg class="block h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile menu -->
+        <div class="md:hidden hidden" id="mobile-menu">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-surface-800">
+                <a href="clan_directory.html" class="bg-primary-700 text-text-primary block px-3 py-2 rounded-md text-base font-medium">
+                    Clan Directory
+                </a>
+                <a href="clan_profile.html" class="text-text-secondary hover:text-text-primary hover:bg-surface-700 block px-3 py-2 rounded-md text-base font-medium">
+                    Clan Profile
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <!-- Page Header -->
+        <div class="mb-8">
+            <h1 class="text-3xl font-bold text-text-primary mb-2">Discover Gaming Clans</h1>
+            <p class="text-text-secondary">Find and join the perfect esports community for your gaming journey</p>
+        </div>
+
+        <!-- Filter and Search Toolbar -->
+        <div class="bg-surface rounded-lg border border-gaming-light p-6 mb-8 shadow-gaming-subtle">
+            <div class="flex flex-col lg:flex-row gap-4 items-start lg:items-center justify-between">
+                <!-- Search and Filters -->
+                <div class="flex flex-col sm:flex-row gap-4 flex-1">
+                    <!-- Search Input -->
+                    <div class="relative flex-1 max-w-md">
+                        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                            <svg class="h-5 w-5 text-text-secondary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+                            </svg>
+                        </div>
+                        <input type="text" id="search-input" placeholder="Search clans by name..." class="block w-full pl-10 pr-3 py-2 border border-gaming bg-surface-800 rounded-md leading-5 text-text-primary placeholder-text-secondary focus:outline-none focus:ring-2 focus:ring-accent focus:border-accent transition-gaming" />
+                    </div>
+
+                    <!-- Clan Type Filter -->
+                    <div class="relative">
+                        <select id="clan-type-filter" class="appearance-none bg-surface-800 border border-gaming text-text-primary py-2 px-4 pr-8 rounded-md focus:outline-none focus:ring-2 focus:ring-accent focus:border-accent transition-gaming">
+                            <option value>All Types</option>
+                            <option value="OPEN">Open Clans</option>
+                            <option value="CLOSED">Closed Clans</option>
+                            <option value="REQUEST">Request Only</option>
+                        </select>
+                        <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-text-secondary">
+                            <svg class="fill-current h-4 w-4" viewBox="0 0 20 20">
+                                <path d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"/>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sort Options -->
+                <div class="flex items-center gap-4">
+                    <span class="text-text-secondary text-sm">Sort by:</span>
+                    <div class="relative">
+                        <select id="sort-select" class="appearance-none bg-surface-800 border border-gaming text-text-primary py-2 px-4 pr-8 rounded-md focus:outline-none focus:ring-2 focus:ring-accent focus:border-accent transition-gaming">
+                            <option value="ranking">Ranking Points</option>
+                            <option value="created">Creation Date</option>
+                            <option value="slots">Available Slots</option>
+                            <option value="members">Member Count</option>
+                        </select>
+                        <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-text-secondary">
+                            <svg class="fill-current h-4 w-4" viewBox="0 0 20 20">
+                                <path d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"/>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Results Counter -->
+            <div class="mt-4 pt-4 border-t border-gaming-light">
+                <p class="text-text-secondary text-sm">
+                    <span id="results-count">24</span> clans found
+                </p>
+            </div>
+        </div>
+
+        <!-- Loading State -->
+        <div id="loading-state" class="hidden text-center py-12">
+            <div class="inline-flex items-center px-4 py-2 font-semibold leading-6 text-sm shadow rounded-md text-text-primary bg-surface-800 transition ease-in-out duration-150">
+                <svg class="animate-spin -ml-1 mr-3 h-5 w-5 text-accent" fill="none" viewBox="0 0 24 24">
+                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"/>
+                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"/>
+                </svg>
+                Loading clans...
+            </div>
+        </div>
+
+        <!-- Clan Grid -->
+        <div id="clan-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+            <!-- Clan Card 1 -->
+            <div class="bg-surface rounded-lg border border-gaming-light overflow-hidden shadow-gaming-subtle hover:shadow-gaming transition-gaming hover:border-gaming-strong group">
+                <div class="relative h-32 bg-gradient-to-br from-primary-600 to-primary-800">
+                    <div class="absolute inset-0 bg-black bg-opacity-20"></div>
+                    <div class="absolute bottom-4 left-4">
+                        <img src="https://images.unsplash.com/photo-1614680376573-df3480f0c6ff?q=80&w=2074&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Phoenix Legends Logo" class="w-12 h-12 rounded-lg border-2 border-accent object-cover" onerror="this.src='https://images.unsplash.com/photo-1584824486509-112e4181ff6b?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'; this.onerror=null;" />
+                    </div>
+                    <div class="absolute top-4 right-4">
+                        <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-accent text-white">
+                            OPEN
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="p-4">
+                    <div class="flex items-center justify-between mb-2">
+                        <h3 class="text-lg font-semibold text-text-primary group-hover:text-accent transition-gaming">Phoenix Legends</h3>
+                        <div class="flex items-center text-warning-500">
+                            <svg class="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                            </svg>
+                            <span class="text-sm font-medium">2,450</span>
+                        </div>
+                    </div>
+                    
+                    <p class="text-text-secondary text-sm mb-4 line-clamp-2">Elite competitive gaming clan focused on FPS tournaments and ranked gameplay. Join our brotherhood of skilled players.</p>
+                    
+                    <div class="flex items-center justify-between text-sm mb-4">
+                        <div class="flex items-center text-text-secondary">
+                            <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197m13.5-9a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0z"/>
+                            </svg>
+                            <span>45/50 members</span>
+                        </div>
+                        <div class="text-accent font-medium">
+                            5 slots available
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-center justify-between text-xs text-text-secondary mb-4">
+                        <span>Leader: DragonSlayer</span>
+                        <span>Created: 03/15/2024</span>
+                    </div>
+                    
+                    <a href="clan_profile.html" class="w-full bg-accent hover:bg-accent-600 text-white font-medium py-2 px-4 rounded-md transition-gaming text-center block">
+                        View Details
+                    </a>
+                </div>
+            </div>
+
+            <!-- Clan Card 2 -->
+            <div class="bg-surface rounded-lg border border-gaming-light overflow-hidden shadow-gaming-subtle hover:shadow-gaming transition-gaming hover:border-gaming-strong group">
+                <div class="relative h-32 bg-gradient-to-br from-secondary-600 to-secondary-800">
+                    <div class="absolute inset-0 bg-black bg-opacity-20"></div>
+                    <div class="absolute bottom-4 left-4">
+                        <img src="https://images.pexels.com/photos/163064/play-stone-network-networked-interactive-163064.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Storm Raiders Logo" class="w-12 h-12 rounded-lg border-2 border-accent object-cover" onerror="this.src='https://images.unsplash.com/photo-1584824486509-112e4181ff6b?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'; this.onerror=null;" />
+                    </div>
+                    <div class="absolute top-4 right-4">
+                        <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-warning text-white">
+                            REQUEST
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="p-4">
+                    <div class="flex items-center justify-between mb-2">
+                        <h3 class="text-lg font-semibold text-text-primary group-hover:text-accent transition-gaming">Storm Raiders</h3>
+                        <div class="flex items-center text-warning-500">
+                            <svg class="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                            </svg>
+                            <span class="text-sm font-medium">3,120</span>
+                        </div>
+                    </div>
+                    
+                    <p class="text-text-secondary text-sm mb-4 line-clamp-2">Professional esports organization with multiple championship titles. Selective recruitment for serious competitors only.</p>
+                    
+                    <div class="flex items-center justify-between text-sm mb-4">
+                        <div class="flex items-center text-text-secondary">
+                            <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197m13.5-9a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0z"/>
+                            </svg>
+                            <span>28/30 members</span>
+                        </div>
+                        <div class="text-accent font-medium">
+                            2 slots available
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-center justify-between text-xs text-text-secondary mb-4">
+                        <span>Leader: StormMaster</span>
+                        <span>Created: 01/08/2024</span>
+                    </div>
+                    
+                    <a href="clan_profile.html" class="w-full bg-accent hover:bg-accent-600 text-white font-medium py-2 px-4 rounded-md transition-gaming text-center block">
+                        View Details
+                    </a>
+                </div>
+            </div>
+
+            <!-- Clan Card 3 -->
+            <div class="bg-surface rounded-lg border border-gaming-light overflow-hidden shadow-gaming-subtle hover:shadow-gaming transition-gaming hover:border-gaming-strong group">
+                <div class="relative h-32 bg-gradient-to-br from-primary-500 to-primary-700">
+                    <div class="absolute inset-0 bg-black bg-opacity-20"></div>
+                    <div class="absolute bottom-4 left-4">
+                        <img src="https://images.pixabay.com/photo/2020/05/11/06/20/gaming-5156116_1280.jpg" alt="Cyber Knights Logo" class="w-12 h-12 rounded-lg border-2 border-accent object-cover" onerror="this.src='https://images.unsplash.com/photo-1584824486509-112e4181ff6b?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'; this.onerror=null;" />
+                    </div>
+                    <div class="absolute top-4 right-4">
+                        <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-accent text-white">
+                            OPEN
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="p-4">
+                    <div class="flex items-center justify-between mb-2">
+                        <h3 class="text-lg font-semibold text-text-primary group-hover:text-accent transition-gaming">Cyber Knights</h3>
+                        <div class="flex items-center text-warning-500">
+                            <svg class="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                            </svg>
+                            <span class="text-sm font-medium">1,890</span>
+                        </div>
+                    </div>
+                    
+                    <p class="text-text-secondary text-sm mb-4 line-clamp-2">Casual gaming community welcoming players of all skill levels. Focus on fun, friendship, and improvement together.</p>
+                    
+                    <div class="flex items-center justify-between text-sm mb-4">
+                        <div class="flex items-center text-text-secondary">
+                            <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197m13.5-9a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0z"/>
+                            </svg>
+                            <span>32/40 members</span>
+                        </div>
+                        <div class="text-accent font-medium">
+                            8 slots available
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-center justify-between text-xs text-text-secondary mb-4">
+                        <span>Leader: CyberNinja</span>
+                        <span>Created: 05/22/2024</span>
+                    </div>
+                    
+                    <a href="clan_profile.html" class="w-full bg-accent hover:bg-accent-600 text-white font-medium py-2 px-4 rounded-md transition-gaming text-center block">
+                        View Details
+                    </a>
+                </div>
+            </div>
+
+            <!-- Clan Card 4 -->
+            <div class="bg-surface rounded-lg border border-gaming-light overflow-hidden shadow-gaming-subtle hover:shadow-gaming transition-gaming hover:border-gaming-strong group">
+                <div class="relative h-32 bg-gradient-to-br from-error-600 to-error-800">
+                    <div class="absolute inset-0 bg-black bg-opacity-20"></div>
+                    <div class="absolute bottom-4 left-4">
+                        <img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Shadow Wolves Logo" class="w-12 h-12 rounded-lg border-2 border-accent object-cover" onerror="this.src='https://images.unsplash.com/photo-1584824486509-112e4181ff6b?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'; this.onerror=null;" />
+                    </div>
+                    <div class="absolute top-4 right-4">
+                        <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-error text-white">
+                            CLOSED
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="p-4">
+                    <div class="flex items-center justify-between mb-2">
+                        <h3 class="text-lg font-semibold text-text-primary group-hover:text-accent transition-gaming">Shadow Wolves</h3>
+                        <div class="flex items-center text-warning-500">
+                            <svg class="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                            </svg>
+                            <span class="text-sm font-medium">2,780</span>
+                        </div>
+                    </div>
+                    
+                    <p class="text-text-secondary text-sm mb-4 line-clamp-2">Exclusive invitation-only clan for veteran players. Currently at full capacity with no open recruitment.</p>
+                    
+                    <div class="flex items-center justify-between text-sm mb-4">
+                        <div class="flex items-center text-text-secondary">
+                            <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197m13.5-9a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0z"/>
+                            </svg>
+                            <span>25/25 members</span>
+                        </div>
+                        <div class="text-error font-medium">
+                            Full
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-center justify-between text-xs text-text-secondary mb-4">
+                        <span>Leader: AlphaWolf</span>
+                        <span>Created: 12/03/2023</span>
+                    </div>
+                    
+                    <a href="clan_profile.html" class="w-full bg-accent hover:bg-accent-600 text-white font-medium py-2 px-4 rounded-md transition-gaming text-center block">
+                        View Details
+                    </a>
+                </div>
+            </div>
+
+            <!-- Additional Clan Cards (5-8) -->
+            <div class="bg-surface rounded-lg border border-gaming-light overflow-hidden shadow-gaming-subtle hover:shadow-gaming transition-gaming hover:border-gaming-strong group">
+                <div class="relative h-32 bg-gradient-to-br from-accent-600 to-accent-800">
+                    <div class="absolute inset-0 bg-black bg-opacity-20"></div>
+                    <div class="absolute bottom-4 left-4">
+                        <img src="https://images.pexels.com/photos/442576/pexels-photo-442576.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Neon Guardians Logo" class="w-12 h-12 rounded-lg border-2 border-accent object-cover" onerror="this.src='https://images.unsplash.com/photo-1584824486509-112e4181ff6b?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'; this.onerror=null;" />
+                    </div>
+                    <div class="absolute top-4 right-4">
+                        <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-accent text-white">
+                            OPEN
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="p-4">
+                    <div class="flex items-center justify-between mb-2">
+                        <h3 class="text-lg font-semibold text-text-primary group-hover:text-accent transition-gaming">Neon Guardians</h3>
+                        <div class="flex items-center text-warning-500">
+                            <svg class="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                            </svg>
+                            <span class="text-sm font-medium">1,650</span>
+                        </div>
+                    </div>
+                    
+                    <p class="text-text-secondary text-sm mb-4 line-clamp-2">Rising stars in the competitive scene. Active community with regular training sessions and tournaments.</p>
+                    
+                    <div class="flex items-center justify-between text-sm mb-4">
+                        <div class="flex items-center text-text-secondary">
+                            <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197m13.5-9a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0z"/>
+                            </svg>
+                            <span>18/35 members</span>
+                        </div>
+                        <div class="text-accent font-medium">
+                            17 slots available
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-center justify-between text-xs text-text-secondary mb-4">
+                        <span>Leader: NeonKnight</span>
+                        <span>Created: 07/10/2024</span>
+                    </div>
+                    
+                    <a href="clan_profile.html" class="w-full bg-accent hover:bg-accent-600 text-white font-medium py-2 px-4 rounded-md transition-gaming text-center block">
+                        View Details
+                    </a>
+                </div>
+            </div>
+
+            <!-- Continue with more clan cards... -->
+            <div class="bg-surface rounded-lg border border-gaming-light overflow-hidden shadow-gaming-subtle hover:shadow-gaming transition-gaming hover:border-gaming-strong group">
+                <div class="relative h-32 bg-gradient-to-br from-warning-600 to-warning-800">
+                    <div class="absolute inset-0 bg-black bg-opacity-20"></div>
+                    <div class="absolute bottom-4 left-4">
+                        <img src="https://images.pixabay.com/photo/2017/03/10/09/47/teamwork-2132549_1280.jpg" alt="Golden Eagles Logo" class="w-12 h-12 rounded-lg border-2 border-accent object-cover" onerror="this.src='https://images.unsplash.com/photo-1584824486509-112e4181ff6b?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'; this.onerror=null;" />
+                    </div>
+                    <div class="absolute top-4 right-4">
+                        <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-warning text-white">
+                            REQUEST
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="p-4">
+                    <div class="flex items-center justify-between mb-2">
+                        <h3 class="text-lg font-semibold text-text-primary group-hover:text-accent transition-gaming">Golden Eagles</h3>
+                        <div class="flex items-center text-warning-500">
+                            <svg class="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                            </svg>
+                            <span class="text-sm font-medium">2,200</span>
+                        </div>
+                    </div>
+                    
+                    <p class="text-text-secondary text-sm mb-4 line-clamp-2">Strategic gameplay focused clan with emphasis on teamwork and coordination. Looking for dedicated team players.</p>
+                    
+                    <div class="flex items-center justify-between text-sm mb-4">
+                        <div class="flex items-center text-text-secondary">
+                            <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197m13.5-9a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0z"/>
+                            </svg>
+                            <span>22/30 members</span>
+                        </div>
+                        <div class="text-accent font-medium">
+                            8 slots available
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-center justify-between text-xs text-text-secondary mb-4">
+                        <span>Leader: EagleEye</span>
+                        <span>Created: 02/28/2024</span>
+                    </div>
+                    
+                    <a href="clan_profile.html" class="w-full bg-accent hover:bg-accent-600 text-white font-medium py-2 px-4 rounded-md transition-gaming text-center block">
+                        View Details
+                    </a>
+                </div>
+            </div>
+
+            <!-- Add more clan cards to reach 24 total... -->
+            <!-- Cards 7-24 would follow the same pattern with different data -->
+        </div>
+
+        <!-- Empty State (Hidden by default) -->
+        <div id="empty-state" class="hidden text-center py-16">
+            <div class="max-w-md mx-auto">
+                <svg class="mx-auto h-16 w-16 text-text-secondary mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+                </svg>
+                <h3 class="text-lg font-medium text-text-primary mb-2">No clans found</h3>
+                <p class="text-text-secondary mb-6">Try adjusting your search criteria or browse all available clans.</p>
+                <button id="clear-filters" class="bg-accent hover:bg-accent-600 text-white font-medium py-2 px-4 rounded-md transition-gaming">
+                    Clear Filters
+                </button>
+            </div>
+        </div>
+
+        <!-- Pagination -->
+        <div class="mt-12 flex items-center justify-between">
+            <div class="flex-1 flex justify-between sm:hidden">
+                <a href="javascript:void(0)" class="relative inline-flex items-center px-4 py-2 border border-gaming text-sm font-medium rounded-md text-text-secondary bg-surface hover:bg-surface-800 transition-gaming">
+                    Previous
+                </a>
+                <a href="javascript:void(0)" class="ml-3 relative inline-flex items-center px-4 py-2 border border-gaming text-sm font-medium rounded-md text-text-secondary bg-surface hover:bg-surface-800 transition-gaming">
+                    Next
+                </a>
+            </div>
+            <div class="hidden sm:flex-1 sm:flex sm:items-center sm:justify-between">
+                <div>
+                    <p class="text-sm text-text-secondary">
+                        Showing <span class="font-medium">1</span> to <span class="font-medium">24</span> of <span class="font-medium">156</span> results
+                    </p>
+                </div>
+                <div>
+                    <nav class="relative z-0 inline-flex rounded-md shadow-sm -space-x-px" aria-label="Pagination">
+                        <a href="javascript:void(0)" class="relative inline-flex items-center px-2 py-2 rounded-l-md border border-gaming bg-surface text-sm font-medium text-text-secondary hover:bg-surface-800 transition-gaming">
+                            <span class="sr-only">Previous</span>
+                            <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                            </svg>
+                        </a>
+                        <a href="javascript:void(0)" class="bg-accent border-accent text-white relative inline-flex items-center px-4 py-2 border text-sm font-medium">1</a>
+                        <a href="javascript:void(0)" class="bg-surface border-gaming text-text-secondary hover:bg-surface-800 relative inline-flex items-center px-4 py-2 border text-sm font-medium transition-gaming">2</a>
+                        <a href="javascript:void(0)" class="bg-surface border-gaming text-text-secondary hover:bg-surface-800 relative inline-flex items-center px-4 py-2 border text-sm font-medium transition-gaming">3</a>
+                        <a href="javascript:void(0)" class="relative inline-flex items-center px-2 py-2 rounded-r-md border border-gaming bg-surface text-sm font-medium text-text-secondary hover:bg-surface-800 transition-gaming">
+                            <span class="sr-only">Next</span>
+                            <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"/>
+                            </svg>
+                        </a>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-surface border-t border-gaming-light mt-16">
+        <div class="max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8">
+            <div class="text-center">
+                <p class="text-text-secondary text-sm">
+                    © 2025 GameArenaX Clan Portal. All Rights Reserved.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        document.getElementById('mobile-menu-button').addEventListener('click', function() {
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Search functionality
+        const searchInput = document.getElementById('search-input');
+        const clanTypeFilter = document.getElementById('clan-type-filter');
+        const sortSelect = document.getElementById('sort-select');
+        const resultsCount = document.getElementById('results-count');
+        const clanGrid = document.getElementById('clan-grid');
+        const emptyState = document.getElementById('empty-state');
+        const loadingState = document.getElementById('loading-state');
+        const clearFiltersBtn = document.getElementById('clear-filters');
+
+        // Filter and search event listeners
+        searchInput.addEventListener('input', filterClans);
+        clanTypeFilter.addEventListener('change', filterClans);
+        sortSelect.addEventListener('change', filterClans);
+        clearFiltersBtn.addEventListener('click', clearAllFilters);
+
+        function filterClans() {
+            // Show loading state
+            loadingState.classList.remove('hidden');
+            clanGrid.classList.add('opacity-50');
+            
+            // Simulate API call delay
+            setTimeout(() => {
+                const searchTerm = searchInput.value.toLowerCase();
+                const selectedType = clanTypeFilter.value;
+                const sortBy = sortSelect.value;
+                
+                // In a real application, this would make an API call
+                // For now, we'll just update the results count
+                let filteredCount = 24;
+                
+                if (searchTerm) {
+                    filteredCount = Math.max(0, filteredCount - Math.floor(Math.random() * 10));
+                }
+                
+                if (selectedType) {
+                    filteredCount = Math.max(0, Math.floor(filteredCount * 0.6));
+                }
+                
+                resultsCount.textContent = filteredCount;
+                
+                // Show empty state if no results
+                if (filteredCount === 0) {
+                    clanGrid.classList.add('hidden');
+                    emptyState.classList.remove('hidden');
+                } else {
+                    clanGrid.classList.remove('hidden');
+                    emptyState.classList.add('hidden');
+                }
+                
+                // Hide loading state
+                loadingState.classList.add('hidden');
+                clanGrid.classList.remove('opacity-50');
+            }, 500);
+        }
+
+        function clearAllFilters() {
+            searchInput.value = '';
+            clanTypeFilter.value = '';
+            sortSelect.value = 'ranking';
+            resultsCount.textContent = '24';
+            clanGrid.classList.remove('hidden');
+            emptyState.classList.add('hidden');
+        }
+
+        // Add hover effects to clan cards
+        document.querySelectorAll('.group').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-2px)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0)';
+            });
+        });
+    </script>
+<script id="dhws-dataInjector" src="../public/dhws-data-injector.js"></script>
+</body>
+</html>
