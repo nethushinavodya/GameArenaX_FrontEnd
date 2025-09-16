@@ -1,49 +1,114 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Streamer Profile - User Dashboard</title>
-    <link rel="stylesheet" href="../assets/css/main.css" />
-    <link rel="stylesheet" href="../assets/css/tailwind.css" />
-    <link rel="stylesheet" href="../assets/css/home.css" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <script type="module" src="https://static.rocket.new/rocket-web.js?_cfg=https%3A%2F%2Fgamingpro2929back.builtwithrocket.new&_be=https%3A%2F%2Fapplication.rocket.new&_v=0.1.8"></script>
+    <meta charset="utf-8"/>
+    <link crossorigin="" href="https://fonts.gstatic.com/" rel="preconnect"/>
+    <link as="style" href="https://fonts.googleapis.com/css2?display=swap&family=Noto+Sans:wght@400;500;700;900&family=Space+Grotesk:wght@400;500;700" onload="this.rel='stylesheet'" rel="stylesheet"/>
+    <meta charset="utf-8"/>
+    <title>Streamer Profile -  Streamer Platform</title>
+    <link href="data:image/x-icon;base64," rel="icon" type="image/x-icon"/>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <style src="https://cdn.tailwindcss.com"></style>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <!--fontawesome-->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" rel="stylesheet"/>
+    <!--css-->
+    <link href="../assets/css/home.css" rel="stylesheet" type="text/css"/>
+    <link href="../assets/css/main.css" rel="stylesheet" type="text/css"/>
+    <link href="../assets/css/tailwind.css" rel="stylesheet" type="text/css"/>
+    <style>
+        /* Add this to your CSS to improve the dropdown appearance */
+        #userDropdown {
+            z-index: 1000;
+            border: 1px solid #374151;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+
+        #userDropdown a:hover {
+            background-color: #374151 !important;
+            color: #00ffcc !important;
+        }
+    </style>
 </head>
+
 <body class="bg-background min-h-screen text-text-primary font-inter">
 <!-- Navigation Header -->
-<nav class="bg-surface border-b border-surface-700 sticky top-0 z-50">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex justify-between items-center h-16">
-            <!-- Logo -->
-            <div class="flex items-center">
-                <svg class="w-10 h-10 text-primary" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <rect width="40" height="40" rx="8" fill="currentColor"/>
-                    <path d="M12 16L20 24L28 16" stroke="#0F172A" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-                    <circle cx="20" cy="12" r="3" fill="#0F172A"/>
-                </svg>
-                <span class="ml-3 text-xl font-bold text-gaming-heading">GameHub</span>
-            </div>
+<header class="flex items-center justify-between whitespace-nowrap border-b border-solid-1 border-b-[#34C759] px-10 py-4 shadow-lg sticky top-0 header-blur z-50">
+    <div class="flex items-center gap-4 text-white">
+        <div class="size-10 text-[#00ffcc] logo-glow cursor-pointer">
+            <svg
+                    fill="none"
+                    viewBox="0 0 48 48"
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="w-10 h-10"
+            >
+                <path
+                        clip-rule="evenodd"
+                        d="M24 18.4228L42 11.475V34.3663C42 34.7796 41.7457 35.1504 41.3601 35.2992L24 42V18.4228Z"
+                        fill="currentColor"
+                        fill-rule="evenodd"
+                />
+                <path
+                        clip-rule="evenodd"
+                        d="M24 8.18819L33.4123 11.574L24 15.2071L14.5877 11.574L24 8.18819ZM9 15.8487L21 20.4805V37.6263L9 32.9945V15.8487ZM27 37.6263V20.4805L39 15.8487V32.9945L27 37.6263ZM25.354 2.29885C24.4788 1.98402 23.5212 1.98402 22.646 2.29885L4.98454 8.65208C3.7939 9.08038 3 10.2097 3 11.475V34.3663C3 36.0196 4.01719 37.5026 5.55962 38.098L22.9197 44.7987C23.6149 45.0671 24.3851 45.0671 25.0803 44.7987L42.4404 38.098C43.9828 37.5026 45 36.0196 45 34.3663V11.475C45 10.2097 44.2061 9.08038 43.0155 8.65208L25.354 2.29885Z"
+                        fill="currentColor"
+                        fill-rule="evenodd"
+                />
+            </svg>
+        </div>
+        <h2 class="text-white text-xl font-bold leading-tight tracking-[-0.015em] neon-text">
+            GameArenaX
+        </h2>
+    </div>
+    <nav class="flex flex-1 justify-end gap-8">
+        <!-- Nav links (always visible) -->
+        <nav class="flex items-center gap-6">
+            <a class="text-gray-300 nav-link" href="../index2.html">Home</a>
+            <a class="text-gray-300  nav-link" href="liveStreamings.html">Live Streaming</a>
+            <a class="text-gray-300 nav-link" href="LiveTournaments.html">Live Tournaments</a>
+            <a class="text-gray-300  nav-link" href="AllStreamers.html">Streamers</a>
+            <a class="text-gray-300  nav-link" href="clan_directory.html">Clans</a>
+            <a class="text-gray-300  nav-link" href="AllPlayers.html">Players</a>
+        </nav>
 
-            <!-- Navigation Links -->
-            <div class="hidden md:flex items-center space-x-8">
-                <a href="streamer_profile.html" class="text-primary font-medium hover:text-primary-600 transition-colors">Profile</a>
-                <a href="stream_dashboard.html" class="text-text-secondary hover:text-text-primary transition-colors">Dashboard</a>
-                <a href="tournaments.html" class="text-text-secondary hover:text-text-primary transition-colors">Tournaments</a>
-            </div>
+        <!-- Login button (only visible before login) -->
+        <button id="loginBtnNav"
+                class="flex min-w-[100px] max-w-[400px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-9 px-5 border-2 border-[#22c55e] text-[#22c55e] text-sm font-semibold tracking-wide relative transition-all duration-300 ease-in-out hover:text-white"
+                onclick="openLoginModal()">
+            <span class="relative z-10">Login</span>
+            <span class="absolute inset-0 rounded-full border-2 border-[#22c55e] opacity-50 transition-all duration-500 ease-in-out hover:scale-110 hover:opacity-100"></span>
+            <span class="absolute inset-0 bg-gradient-to-r from-[#22c55e] to-[#16a34a] opacity-0 rounded-full transition-opacity duration-300 ease-in-out hover:opacity-20"></span>
+        </button>
 
-            <!-- Mobile Menu Button -->
-            <div class="md:hidden">
-                <button type="button" class="text-text-secondary hover:text-text-primary p-2">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
-                    </svg>
-                </button>
+        <!-- Player profile (only visible after login) -->
+        <div class="flex items-center space-x-3" id="userProfile" style="display: none">
+            <span class="hidden sm:block text-sm font-medium" id="usernameDisplay"></span>
+            <!--user dropdown menu for edit profile,Apply as a streamer,Apply as a player and logout-->
+            <div class="relative inline-block text-left">
+                <div>
+                    <button id="userDropdownBtn" type="button" class="text-green-400 hover:text-green-300 transition-colors">
+                        <i class="fas fa-chevron-down text-sm transition-transform duration-200" id="dropdownArrow"></i>
+                    </button>
+                </div>
+                <div id="userDropdown" class="hidden absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-black">
+                    <a href="../player/player_profile_edit.html" class="block px-4 py-2 text-sm text-white hover:bg-gray-700">Edit Profile</a>
+                    <a href="../streamer/streamer_application.html" class="block px-4 py-2 text-sm text-white hover:bg-gray-700">Apply as a Streamer</a>
+                    <a href=""  id="logoutBtn" class="block px-4 py-2 text-sm text-red-400 hover:bg-gray-700">Logout</a>
+                    <!-- &lt;!&ndash; Logout button (only visible after login) &ndash;&gt;
+                     <div class="flex items-center gap-4">
+                         <button id="logoutBtn" class="text-red-400 hover:text-red-300 transition-colors">
+                             <span class="hidden sm:block">Logout</span>
+                             <i class="fas fa-sign-out-alt text-xl"></i>
+                         </button>
+                     </div>-->
+                </div>
             </div>
         </div>
-    </div>
-</nav>
+    </nav>
+</header>
 
 <!-- Main Content -->
 <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
@@ -349,5 +414,185 @@
         </nav>
     </div>
 </div>
+
+<script>
+    $(document).ready(function () {
+        const username = localStorage.getItem("username");
+
+        if (username) {
+            $("#loginBtnNav").hide();
+            $("#userProfile").show();
+        } else {
+            $("#loginBtnNav").show();
+            $("#userProfile").hide();
+        }
+
+        $("#logoutBtn").on("click", function (e) {
+            e.preventDefault();
+            localStorage.removeItem("username");
+            window.location.href = "../index2.html"; // logout → back to home
+        });
+    });
+    // Close modal when clicking outside
+    document.querySelectorAll('.modal-backdrop').forEach(backdrop => {
+        backdrop.addEventListener('click', function(e) {
+            if (e.target === backdrop) {
+                backdrop.classList.remove('active');
+            }
+        });
+    });
+    const inputs = document.querySelectorAll(".otp-input");
+
+    inputs.forEach((input, index) => {
+        input.addEventListener("input", (e) => {
+            if (e.target.value.length === 1 && index < inputs.length - 1) {
+                inputs[index + 1].focus();
+            }
+        });
+
+        input.addEventListener("keydown", (e) => {
+            if (e.key === "Backspace" && !e.target.value && index > 0) {
+                inputs[index - 1].focus();
+            }
+        });
+    });
+    function createParticle() {
+        const particle = document.createElement('div');
+        particle.className = 'particle';
+        particle.style.left = Math.random() * 100 + '%';
+
+        // Random size from 15px to 35px
+        const size = Math.random() * 6 + 3;
+        particle.style.setProperty('--size', size + 'px');
+
+        // Random drift left/right
+        particle.style.setProperty('--drift', (Math.random() * 100 - 50) + 'px');
+
+        // Random duration and delay
+        particle.style.animationDuration = (Math.random() * 15 + 10) + 's';
+        particle.style.animationDelay = Math.random() * 2 + 's';
+
+        const particlesContainer = document.querySelector('.particles');
+        if (particlesContainer) {
+            particlesContainer.appendChild(particle);
+
+            // Remove after animation ends
+            setTimeout(() => {
+                particle.remove();
+            }, parseFloat(particle.style.animationDuration) * 1000);
+        }
+    }
+
+    // Generate a new particle every 500ms
+    setInterval(createParticle, 500);
+
+    // Smooth scrolling for navigation links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+        });
+    });
+
+    // Add scroll-triggered animations
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0)';
+            }
+        });
+    }, observerOptions);
+
+    // Observe elements for scroll animations
+    document.querySelectorAll('.card-glow').forEach(card => {
+        card.style.opacity = '0';
+        card.style.transform = 'translateY(30px)';
+        card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+        observer.observe(card);
+    });
+
+    // Header background on scroll
+    window.addEventListener('scroll', () => {
+        const header = document.querySelector('header');
+        if (window.scrollY > 100) {
+            header.style.background = 'rgba(6, 6, 8, 0.95)';
+        } else {
+            header.style.background = 'rgba(10, 10, 15, 0.8)';
+        }
+    });
+    // Add this JavaScript code to make the user dropdown work
+
+    // User dropdown functionality
+    document.addEventListener('DOMContentLoaded', function() {
+        const userDropdownBtn = document.getElementById('userDropdownBtn');
+        const userDropdown = document.getElementById('userDropdown');
+        const logoutBtn = document.getElementById('logoutBtn');
+
+        // Toggle dropdown when clicking the user icon
+        userDropdownBtn.addEventListener('click', function(e) {
+            e.stopPropagation();
+            userDropdown.classList.toggle('hidden');
+        });
+
+        // Close dropdown when clicking outside
+        document.addEventListener('click', function(e) {
+            if (!userDropdown.contains(e.target) && !userDropdownBtn.contains(e.target)) {
+                userDropdown.classList.add('hidden');
+            }
+        });
+
+        // Logout functionality
+        logoutBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            // Add your logout logic here
+            console.log('User logged out');
+
+            // Hide user profile and show login button
+            document.getElementById('userProfile').style.display = 'none';
+            document.getElementById('loginBtnNav').style.display = 'block';
+
+            // Close dropdown
+            userDropdown.classList.add('hidden');
+
+            // Optional: Show logout confirmation
+            // toastr.success('Successfully logged out');
+        });
+
+        // Close dropdown when clicking on menu items (optional)
+        const dropdownLinks = userDropdown.querySelectorAll('a');
+        dropdownLinks.forEach(link => {
+            link.addEventListener('click', function() {
+                userDropdown.classList.add('hidden');
+            });
+        });
+    });
+
+    // Function to show user profile after successful login
+    function showUserProfile(username) {
+        /*
+                document.getElementById('usernameDisplay').textContent = username;
+        */
+        document.getElementById('userProfile').style.display = 'flex';
+        document.getElementById('loginBtnNav').style.display = 'none';
+    }
+</script>
+
+<script src="../assets/jq/jquery-3.7.1.min.js"></script>
+<script src="../assets/js/signup.js"></script>
+<script src="../assets/js/streamerProfile.js"></script>
 </body>
 </html>
