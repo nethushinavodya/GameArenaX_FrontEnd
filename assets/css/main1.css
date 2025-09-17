@@ -1272,6 +1272,15 @@ h1, h2, h3, h4, h5, h6 {
   border-color: rgb(107 70 193 / 0.2);
 }
 
+.border-error\/20{
+  border-color: rgb(255 0 0 / 0.2);
+}
+
+.bg-error{
+  --tw-bg-opacity: 1;
+  background-color: rgb(255 0 0 / var(--tw-bg-opacity, 1));
+}
+
 .border-surface-light{
   --tw-border-opacity: 1;
   border-color: rgb(42 42 42 / var(--tw-border-opacity, 1));

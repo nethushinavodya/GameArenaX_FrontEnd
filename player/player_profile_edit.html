@@ -36,7 +36,7 @@
 <body class="bg-background min-h-screen text-text-primary font-inter" style='font-family: "Space Grotesk", "Noto Sans", sans-serif;'>
 <!-- Navigation Header -->
 <header class="flex items-center justify-between whitespace-nowrap border-b border-solid-1 border-b-[#34C759] px-10 py-4 shadow-lg sticky top-0 header-blur z-50">
-    <div class="flex items-center gap-4 text-white">
+    <div class="flex items-center gap-3 text-white">
         <div class="size-10 text-[#00ffcc] logo-glow cursor-pointer">
             <svg
                     fill="none"
@@ -62,12 +62,20 @@
             GameArenaX
         </h2>
     </div>
-    <nav class="flex flex-1 justify-end gap-8">
+    <nav class="flex flex-1 justify-end gap-2 right-0">
         <!-- Nav links (always visible) -->
-        <nav class="flex items-center gap-6">
+        <nav class="flex items-center  gap-5">
             <a class="text-gray-300 nav-link" href="../index2.html">Home</a>
-            <a class="text-gray-300  nav-link" href="liveStreamings.html">Live Streaming</a>
-            <a class="text-gray-300 nav-link" href="LiveTournaments.html">Live Tournaments</a>
+            <a class="text-gray-300 nav-link text-sm sm:text-base">
+      <span class="inline-flex items-center space-x-1">
+        <span class="relative flex w-1.5 h-1.5">
+          <span class="absolute inline-flex w-full h-full rounded-full bg-[#ff0000] opacity-80 animate-ping"></span>
+          <span class="relative w-1.5 h-1.5 bg-[#ff0000] rounded-full"></span>
+        </span>
+        <span class="font-medium">Live</span>
+      </span>
+            </a>
+            <a class="text-gray-300  nav-link" href="AllTournament.html">Tournaments</a>
             <a class="text-gray-300  nav-link" href="AllStreamers.html">Streamers</a>
             <a class="text-gray-300  nav-link" href="clan_directory.html">Clans</a>
             <a class="text-gray-300  nav-link" href="AllPlayers.html">Players</a>
@@ -95,7 +103,9 @@
                 <div id="userDropdown" class="hidden absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-black">
                     <a href="../player/player_profile.html" class="block px-4 py-2 text-sm text-white hover:bg-gray-700">View Profile</a>
                     <a href="../streamer/streamer_application.html" class="block px-4 py-2 text-sm text-white hover:bg-gray-700">Apply as a Streamer</a>
-                    <a href=""  id="logoutBtn" class="block px-4 py-2 text-sm text-red-400 hover:bg-gray-700">Logout</a>
+                    <!--
+                                        <a href=""  id="logoutBtn" class="block px-4 py-2 text-sm text-red-400 hover:bg-gray-700">Logout</a>
+                    -->
                     <!-- &lt;!&ndash; Logout button (only visible after login) &ndash;&gt;
                      <div class="flex items-center gap-4">
                          <button id="logoutBtn" class="text-red-400 hover:text-red-300 transition-colors">

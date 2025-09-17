@@ -815,39 +815,11 @@
         const role = localStorage.getItem('role');
         if (role === 'Player') {
             document.getElementById('applyAsPlayer').style.display = 'none';
-        }else if (role === 'Admin') {
-            document.getElementById('applyAsStreamer').style.display = 'block';
+        }else if (role === 'Streamer') {
+            document.getElementById('applyAsStreamer').style.display = 'none';
         }
 
         console.log(role);
-
-        // Dynamic profile link
-        $("#viewProfile").on("click", function (e) {
-            e.preventDefault();
-            if (!role) {
-                toastr.error("Role not found!");
-                return;
-            }
-
-            let profilePage = "";
-
-            switch (role) {
-                case "Player":
-                    profilePage = "player/player_profile.html";
-                    break;
-                case "Streamer":
-                    profilePage = "streamer/streamer_profile.html";
-                    break;
-                case "User":
-                    profilePage = "user/user_profile_view.html";
-                    break;
-                default:
-                    toastr.error("Unknown role!");
-                    return;
-            }
-
-            window.location.href = profilePage;
-        });
 
         const userDropdownBtn = document.getElementById('userDropdownBtn');
         const userDropdown = document.getElementById('userDropdown');
@@ -898,6 +870,38 @@
         });
     });
 
+    // Dynamic profile link
+    $("#viewProfile").on("click", function (e) {
+
+        const role = localStorage.getItem('role');
+
+        console.log(role);
+        e.preventDefault();
+        if (!role) {
+            toastr.error("Role not found!");
+            return;
+        }
+
+        let profilePage = "";
+
+        switch (role) {
+            case "Player":
+                profilePage = "player/player_profile.html";
+                break;
+            case "Streamer":
+                profilePage = "streamer/streamer_profile.html";
+                break;
+            case "User":
+                profilePage = "user/user_profile_view.html";
+                break;
+            default:
+                toastr.error("Unknown role!");
+                return;
+        }
+
+        window.location.href = profilePage;
+    });
+
     // Function to show user profile after successful login
     function showUserProfile(username) {
         document.getElementById('usernameDisplay').textContent = username;
@@ -905,7 +909,6 @@
         document.getElementById('loginBtnNav').style.display = 'none';
     }
 </script>
-
 <script src="assets/js/signup.js"></script>
 <script src="assets/js/forgotPassword.js"></script>
 <script src="assets/jq/jquery-3.7.1.min.js"></script>

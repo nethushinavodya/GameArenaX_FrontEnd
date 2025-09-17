@@ -1,16 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tournament Registration - GameArenaX</title>
+    <meta charset="utf-8"/>
     <link crossorigin="" href="https://fonts.gstatic.com/" rel="preconnect"/>
     <link as="style" href="https://fonts.googleapis.com/css2?display=swap&family=Noto+Sans:wght@400;500;700;900&family=Space+Grotesk:wght@400;500;700" onload="this.rel='stylesheet'" rel="stylesheet"/>
+    <meta charset="utf-8"/>
+    <title>Streamer Profile -  Streamer Platform</title>
+    <link href="data:image/x-icon;base64," rel="icon" type="image/x-icon"/>
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-    <link rel="stylesheet" href="assets/css/main.css">
-    <link rel="stylesheet" href="assets/css/tailwind.css">
-    <link rel="stylesheet" href="assets/css/main1.css">
+    <style src="https://cdn.tailwindcss.com"></style>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <!--fontawesome-->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" rel="stylesheet"/>
+    <!--css-->
+    <link href="assets/css/home.css" rel="stylesheet" type="text/css"/>
+    <link href="assets/css/main1.css" rel="stylesheet" type="text/css"/>
+    <link href="assets/css/tailwind.css" rel="stylesheet" type="text/css"/>
+    <link href="assets/css/main.css" rel="stylesheet" type="text/css"/>
     <style>
         body {
             font-family: "Space Grotesk", "Noto Sans", sans-serif;
@@ -413,31 +421,91 @@
         }
     </style>
 </head>
-<body>
+<body class="bg-background min-h-screen text-text-primary font-inter">
+<div class="relative flex size-full min-h-screen flex-col overflow-x-hidden " style='font-family: "Space Grotesk", "Noto Sans", sans-serif;'>
 <!-- Header Navigation -->
 <header class="flex items-center justify-between whitespace-nowrap border-b border-solid-1 border-b-[#34C759] px-10 py-4 shadow-lg sticky top-0 header-blur z-50">
-    <div class="flex items-center gap-4 text-white">
+    <div class="flex items-center gap-3 text-white">
         <div class="size-10 text-[#00ffcc] logo-glow cursor-pointer">
-            <svg fill="none" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" class="w-10 h-10">
-                <path clip-rule="evenodd" d="M24 18.4228L42 11.475V34.3663C42 34.7796 41.7457 35.1504 41.3601 35.2992L24 42V18.4228Z" fill="currentColor" fill-rule="evenodd"/>
-                <path clip-rule="evenodd" d="M24 8.18819L33.4123 11.574L24 15.2071L14.5877 11.574L24 8.18819ZM9 15.8487L21 20.4805V37.6263L9 32.9945V15.8487ZM27 37.6263V20.4805L39 15.8487V32.9945L27 37.6263ZM25.354 2.29885C24.4788 1.98402 23.5212 1.98402 22.646 2.29885L4.98454 8.65208C3.7939 9.08038 3 10.2097 3 11.475V34.3663C3 36.0196 4.01719 37.5026 5.55962 38.098L22.9197 44.7987C23.6149 45.0671 24.3851 45.0671 25.0803 44.7987L42.4404 38.098C43.9828 37.5026 45 36.0196 45 34.3663V11.475C45 10.2097 44.2061 9.08038 43.0155 8.65208L25.354 2.29885Z" fill="currentColor" fill-rule="evenodd"/>
+            <svg
+                    fill="none"
+                    viewBox="0 0 48 48"
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="w-10 h-10"
+            >
+                <path
+                        clip-rule="evenodd"
+                        d="M24 18.4228L42 11.475V34.3663C42 34.7796 41.7457 35.1504 41.3601 35.2992L24 42V18.4228Z"
+                        fill="currentColor"
+                        fill-rule="evenodd"
+                />
+                <path
+                        clip-rule="evenodd"
+                        d="M24 8.18819L33.4123 11.574L24 15.2071L14.5877 11.574L24 8.18819ZM9 15.8487L21 20.4805V37.6263L9 32.9945V15.8487ZM27 37.6263V20.4805L39 15.8487V32.9945L27 37.6263ZM25.354 2.29885C24.4788 1.98402 23.5212 1.98402 22.646 2.29885L4.98454 8.65208C3.7939 9.08038 3 10.2097 3 11.475V34.3663C3 36.0196 4.01719 37.5026 5.55962 38.098L22.9197 44.7987C23.6149 45.0671 24.3851 45.0671 25.0803 44.7987L42.4404 38.098C43.9828 37.5026 45 36.0196 45 34.3663V11.475C45 10.2097 44.2061 9.08038 43.0155 8.65208L25.354 2.29885Z"
+                        fill="currentColor"
+                        fill-rule="evenodd"
+                />
             </svg>
         </div>
-        <h2 class="text-white text-xl font-bold leading-tight tracking-[-0.015em] neon-text">GameArenaX</h2>
+        <h2 class="text-white text-xl font-bold leading-tight tracking-[-0.015em] neon-text">
+            GameArenaX
+        </h2>
     </div>
-    <nav class="flex flex-1 justify-end gap-8">
-        <nav class="flex items-center gap-6">
-            <a class="text-gray-300 nav-link" href="index.html">Home</a>
-            <a class="text-gray-300 nav-link" href="live.html">Live</a>
-            <a class="text-gray-300 nav-link" href="#features">Features</a>
-            <a class="text-green-400 font-semibold nav-link" href="tournament.html">Tournaments</a>
-            <a class="text-gray-300 nav-link" href="#contact">Contact</a>
+    <nav class="flex flex-1 justify-end gap-2 right-0">
+        <!-- Nav links (always visible) -->
+        <nav class="flex items-center  gap-5">
+            <a class="text-gray-300 nav-link" href="index2.html">Home</a>
+            <a class="text-gray-300 nav-link text-sm sm:text-base">
+              <span class="inline-flex items-center space-x-1">
+                <span class="relative flex w-1.5 h-1.5">
+                  <span class="absolute inline-flex w-full h-full rounded-full bg-[#ff0000] opacity-80 animate-ping"></span>
+                  <span class="relative w-1.5 h-1.5 bg-[#ff0000] rounded-full"></span>
+                </span>
+                <span class="font-medium">Live</span>
+              </span>
+            </a>
+            <a class="text-gray-300  nav-link" href="AllTournament.html">Tournaments</a>
+            <a class="text-gray-300  nav-link" href="AllStreamers.html">Streamers</a>
+            <a class="text-gray-300  nav-link" href="clan_directory.html">Clans</a>
+            <a class="text-gray-300  nav-link" href="AllPlayers.html">Players</a>
         </nav>
-        <button id="loginBtnNav" class="flex min-w-[100px] max-w-[400px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-9 px-5 border-2 border-[#22c55e] text-[#22c55e] text-sm font-semibold tracking-wide relative transition-all duration-300 ease-in-out hover:text-white" onclick="openLoginModal()">
+
+        <!-- Login button (only visible before login) -->
+        <button id="loginBtnNav"
+                class="flex min-w-[100px] max-w-[400px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-9 px-5 border-2 border-[#22c55e] text-[#22c55e] text-sm font-semibold tracking-wide relative transition-all duration-300 ease-in-out hover:text-white"
+                onclick="openLoginModal()">
             <span class="relative z-10">Login</span>
             <span class="absolute inset-0 rounded-full border-2 border-[#22c55e] opacity-50 transition-all duration-500 ease-in-out hover:scale-110 hover:opacity-100"></span>
             <span class="absolute inset-0 bg-gradient-to-r from-[#22c55e] to-[#16a34a] opacity-0 rounded-full transition-opacity duration-300 ease-in-out hover:opacity-20"></span>
         </button>
+
+        <!-- Player profile (only visible after login) -->
+        <div class="flex items-center space-x-3" id="userProfile" style="display: none">
+            <span class="hidden sm:block text-sm font-medium" id="usernameDisplay"></span>
+            <!--user dropdown menu for edit profile,Apply as a streamer,Apply as a player and logout-->
+            <div class="relative inline-block text-left">
+                <div>
+                    <button id="userDropdownBtn" type="button" class="text-green-400 hover:text-green-300 transition-colors">
+                        <i class="fas fa-chevron-down text-sm transition-transform duration-200" id="dropdownArrow"></i>
+                    </button>
+                </div>
+                <div id="userDropdown" class="hidden absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-black">
+                    <a href="../streamer/streamer_profile_edit.html" class="block px-4 py-2 text-sm text-white hover:bg-gray-700">Edit Profile</a>
+                    <a href="../player/player_application.html" class="block px-4 py-2 text-sm text-white hover:bg-gray-700">Apply as a Player</a>
+                    <a href="tournament.html" class="block px-4 py-2 text-sm text-white hover:bg-gray-700">Join Tournament</a>
+                    <!--
+                                        <a href=""  id="logoutBtn" class="block px-4 py-2 text-sm text-red-400 hover:bg-gray-700">Logout</a>
+                    -->
+                    <!-- &lt;!&ndash; Logout button (only visible after login) &ndash;&gt;
+                     <div class="flex items-center gap-4">
+                         <button id="logoutBtn" class="text-red-400 hover:text-red-300 transition-colors">
+                             <span class="hidden sm:block">Logout</span>
+                             <i class="fas fa-sign-out-alt text-xl"></i>
+                         </button>
+                     </div>-->
+                </div>
+            </div>
+        </div>
     </nav>
 </header>
 
@@ -687,292 +755,7 @@
         </div>
     </div>
 </footer>
-
-<!--
-<script>
-    // Tournament Sample Data
-    const tournamentData = {
-        1: {
-            title: "Valorant Championship Series",
-            game: "Valorant",
-            prize: "$50,000",
-            registered: 89,
-            total: 128,
-            closes: "12 days"
-        },
-        2: {
-            title: "CS2 Elite Masters",
-            game: "Counter-Strike 2",
-            prize: "$25,000",
-            registered: 60,
-            total: 64,
-            closes: "2 days"
-        },
-        3: {
-            title: "LoL Summer League",
-            game: "League of Legends",
-            prize: "$15,000",
-            registered: 24,
-            total: 48,
-            closes: "18 days"
-        },
-        4: {
-            title: "Apex Legends Arena Championship",
-            game: "Apex Legends",
-            prize: "$10,000",
-            registered: 35,
-            total: 100,
-            closes: "25 days"
-        },
-        5: {
-            title: "Rocket League Grand Prix",
-            game: "Rocket League",
-            prize: "$8,000",
-            registered: 12,
-            total: 32,
-            closes: "20 days"
-        },
-        6: {
-            title: "FIFA Ultimate Championship",
-            game: "FIFA 24",
-            prize: "$12,000",
-            registered: 45,
-            total: 64,
-            closes: "8 days"
-        }
-    };
-
-    // Sample user data for auto-fill (for demo purposes)
-    const sampleUserData = [
-        {
-            username: "ProGamer2024",
-            email: "progamer@email.com",
-        },
-        {
-            username: "ElitePlayer",
-            email: "eliteplayer@email.com",
-        },
-        {
-            username: "GamingMaster",
-            email: "gamingmaster@email.com",
-        },
-        {
-            username: "CompetitiveAce",
-            email: "competitiveace@email.com",
-        }
-    ];
-
-    let selectedTournament = null;
-
-    // Modal Elements
-    const registrationModal = document.getElementById("registrationModal");
-    const closeRegistration = document.getElementById("closeRegistration");
-    const registrationForm = document.getElementById("registrationForm");
-    const registerTitle = document.getElementById("registerTitle");
-    const registerSubtitle = document.getElementById("registerSubtitle");
-    const submitBtn = document.getElementById("submitBtn");
-    const submitText = document.getElementById("submitText");
-    const loadingSpinner = document.getElementById("loadingSpinner");
-    const successMessage = document.getElementById("successMessage");
-    const errorMessage = document.getElementById("errorMessage");
-    const successText = document.getElementById("successText");
-    const errorText = document.getElementById("errorText");
-
-    // Input validation functions
-    function validateInput(input) {
-        const value = input.value.trim();
-        const isValid = input.checkValidity() && value.length > 0;
-
-        input.classList.remove('valid', 'invalid');
-        if (value.length > 0) {
-            input.classList.add(isValid ? 'valid' : 'invalid');
-        }
-
-        return isValid;
-    }
-
-    // Real-time validation
-    document.querySelectorAll('.form-input').forEach(input => {
-        input.addEventListener('input', () => validateInput(input));
-        input.addEventListener('blur', () => validateInput(input));
-    });
-
-    // Open Registration Modal
-    function openRegistration(tournamentId) {
-        selectedTournament = tournamentId;
-        const tournament = tournamentData[tournamentId];
-
-        registerTitle.textContent = `Register for ${tournament.title}`;
-        registerSubtitle.textContent = `${tournament.game} • ${tournament.prize} Prize Pool`;
-
-        // Auto-fill with random sample data (for demo)
-        const randomUser = sampleUserData[Math.floor(Math.random() * sampleUserData.length)];
-        const usernameField = document.getElementById("playerUsername");
-        const emailField = document.getElementById("playerEmail");
-
-        usernameField.value = randomUser.username + Math.floor(Math.random() * 1000);
-        emailField.value = randomUser.email;
-
-        // Validate pre-filled fields
-        validateInput(usernameField);
-        validateInput(emailField);
-
-        registrationModal.classList.add("active");
-        hideMessages();
-    }
-
-    // Hide success/error messages
-    function hideMessages() {
-        successMessage.style.display = "none";
-        errorMessage.style.display = "none";
-    }
-
-    // Show success message
-    function showSuccess(message) {
-        hideMessages();
-        successText.textContent = message;
-        successMessage.style.display = "block";
-    }
-
-    // Show error message
-    function showError(message) {
-        hideMessages();
-        errorText.textContent = message;
-        errorMessage.style.display = "block";
-    }
-
-    // Simulate AJAX call
-    function submitRegistration(formData) {
-        return new Promise((resolve, reject) => {
-            // Simulate network delay
-            setTimeout(() => {
-                // 90% success rate for demo
-                if (Math.random() > 0.1) {
-                    resolve({
-                        success: true,
-                        registrationId: `REG${Date.now()}`,
-                        message: "Registration successful!"
-                    });
-                } else {
-                    reject({
-                        success: false,
-                        message: "Registration failed. Please try again."
-                    });
-                }
-            }, 2000); // 2 second delay
-        });
-    }
-
-    // Register Button Event Listeners
-    document.querySelectorAll(".register-btn").forEach(btn => {
-        btn.addEventListener("click", (e) => {
-            const tournamentCard = e.target.closest(".tournament-card");
-            const tournamentId = tournamentCard.getAttribute("data-tournament-id");
-            openRegistration(parseInt(tournamentId));
-        });
-    });
-
-    // Close Modal Event Listeners
-    closeRegistration.addEventListener("click", () => {
-        registrationModal.classList.remove("active");
-    });
-
-    registrationModal.addEventListener("click", (e) => {
-        if (e.target === registrationModal) {
-            registrationModal.classList.remove("active");
-        }
-    });
-
-    // Form Submit with AJAX
-    registrationForm.addEventListener("submit", async (e) => {
-        e.preventDefault();
-
-        // Validate all inputs before submission
-        const inputs = document.querySelectorAll('.form-input');
-        let allValid = true;
-
-        inputs.forEach(input => {
-            if (!validateInput(input)) {
-                allValid = false;
-            }
-        });
-
-        if (!allValid) {
-            showError("Please fill in all fields correctly.");
-            return;
-        }
-
-        // Disable submit button and show loading
-        submitBtn.disabled = true;
-        submitText.style.display = "none";
-        loadingSpinner.style.display = "inline-block";
-        hideMessages();
-
-        // Collect form data
-        const formData = new FormData(registrationForm);
-        const registrationData = {
-            tournamentId: selectedTournament,
-            tournament: tournamentData[selectedTournament],
-            username: formData.get("username"),
-            email: formData.get("email"),
-            timestamp: new Date().toISOString()
-        };
-
-        try {
-            // Simulate AJAX call
-            const result = await submitRegistration(registrationData);
-
-            // Success
-            showSuccess(`🎉 Registration successful! Welcome to ${tournamentData[selectedTournament].title}. Confirmation ID: ${result.registrationId}`);
-
-            // Reset form after 3 seconds
-            setTimeout(() => {
-                registrationForm.reset();
-                // Clear validation classes
-                inputs.forEach(input => {
-                    input.classList.remove('valid', 'invalid');
-                });
-                registrationModal.classList.remove("active");
-            }, 3000);
-
-        } catch (error) {
-            // Error
-            showError(`❌ ${error.message} Please check your information and try again.`);
-        } finally {
-            // Re-enable submit button and hide loading
-            submitBtn.disabled = false;
-            submitText.style.display = "inline";
-            loadingSpinner.style.display = "none";
-        }
-    });
-
-    // Auto-clear messages after 5 seconds
-    function autoClearMessage() {
-        setTimeout(() => {
-            hideMessages();
-        }, 5000);
-    }
-
-    // Override show functions to include auto-clear
-    const originalShowSuccess = showSuccess;
-    const originalShowError = showError;
-
-    showSuccess = function(message) {
-        originalShowSuccess(message);
-        autoClearMessage();
-    };
-
-    showError = function(message) {
-        originalShowError(message);
-        autoClearMessage();
-    };
-
-    // Console log for debugging
-    console.log("Tournament Registration System Loaded");
-    console.log("Available Tournaments:", Object.keys(tournamentData).length);
-    console.log("Enhanced form styling and validation active");
-</script>
--->
+</div>
 <script>
     // Tournament Sample Data
     const tournamentData = {
@@ -1144,5 +927,184 @@
     console.log("Enhanced form styling and validation active");
 
 </script>
+<script>
+    $(document).ready(function () {
+        const username = localStorage.getItem("username");
+
+        if (username) {
+            $("#loginBtnNav").hide();
+            $("#userProfile").show();
+        } else {
+            $("#loginBtnNav").show();
+            $("#userProfile").hide();
+        }
+
+        $("#logoutBtn").on("click", function (e) {
+            e.preventDefault();
+            localStorage.removeItem("username");
+            window.location.href = "../index2.html"; // logout → back to home
+        });
+    });
+    // Close modal when clicking outside
+    document.querySelectorAll('.modal-backdrop').forEach(backdrop => {
+        backdrop.addEventListener('click', function(e) {
+            if (e.target === backdrop) {
+                backdrop.classList.remove('active');
+            }
+        });
+    });
+    const inputs = document.querySelectorAll(".otp-input");
+
+    inputs.forEach((input, index) => {
+        input.addEventListener("input", (e) => {
+            if (e.target.value.length === 1 && index < inputs.length - 1) {
+                inputs[index + 1].focus();
+            }
+        });
+
+        input.addEventListener("keydown", (e) => {
+            if (e.key === "Backspace" && !e.target.value && index > 0) {
+                inputs[index - 1].focus();
+            }
+        });
+    });
+    function createParticle() {
+        const particle = document.createElement('div');
+        particle.className = 'particle';
+        particle.style.left = Math.random() * 100 + '%';
+
+        // Random size from 15px to 35px
+        const size = Math.random() * 6 + 3;
+        particle.style.setProperty('--size', size + 'px');
+
+        // Random drift left/right
+        particle.style.setProperty('--drift', (Math.random() * 100 - 50) + 'px');
+
+        // Random duration and delay
+        particle.style.animationDuration = (Math.random() * 15 + 10) + 's';
+        particle.style.animationDelay = Math.random() * 2 + 's';
+
+        const particlesContainer = document.querySelector('.particles');
+        if (particlesContainer) {
+            particlesContainer.appendChild(particle);
+
+            // Remove after animation ends
+            setTimeout(() => {
+                particle.remove();
+            }, parseFloat(particle.style.animationDuration) * 1000);
+        }
+    }
+
+    // Generate a new particle every 500ms
+    setInterval(createParticle, 500);
+
+    // Smooth scrolling for navigation links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+        });
+    });
+
+    // Add scroll-triggered animations
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0)';
+            }
+        });
+    }, observerOptions);
+
+    // Observe elements for scroll animations
+    document.querySelectorAll('.card-glow').forEach(card => {
+        card.style.opacity = '0';
+        card.style.transform = 'translateY(30px)';
+        card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+        observer.observe(card);
+    });
+
+    // Header background on scroll
+    window.addEventListener('scroll', () => {
+        const header = document.querySelector('header');
+        if (window.scrollY > 100) {
+            header.style.background = 'rgba(6, 6, 8, 0.95)';
+        } else {
+            header.style.background = 'rgba(10, 10, 15, 0.8)';
+        }
+    });
+    // Add this JavaScript code to make the user dropdown work
+
+    // User dropdown functionality
+    document.addEventListener('DOMContentLoaded', function() {
+
+        const userDropdownBtn = document.getElementById('userDropdownBtn');
+        const userDropdown = document.getElementById('userDropdown');
+        const logoutBtn = document.getElementById('logoutBtn');
+
+
+        // Toggle dropdown when clicking the user icon
+        userDropdownBtn.addEventListener('click', function(e) {
+            e.stopPropagation();
+            userDropdown.classList.toggle('hidden');
+        });
+
+        // Close dropdown when clicking outside
+        document.addEventListener('click', function(e) {
+            if (!userDropdown.contains(e.target) && !userDropdownBtn.contains(e.target)) {
+                userDropdown.classList.add('hidden');
+            }
+        });
+
+        // Logout functionality
+        logoutBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            // Add your logout logic here
+            console.log('User logged out');
+
+            // Hide user profile and show login button
+            document.getElementById('userProfile').style.display = 'none';
+            document.getElementById('loginBtnNav').style.display = 'block';
+
+            // Close dropdown
+            userDropdown.classList.add('hidden');
+
+            // Optional: Show logout confirmation
+            // toastr.success('Successfully logged out');
+        });
+
+        // Close dropdown when clicking on menu items (optional)
+        const dropdownLinks = userDropdown.querySelectorAll('a');
+        dropdownLinks.forEach(link => {
+            link.addEventListener('click', function() {
+                userDropdown.classList.add('hidden');
+            });
+        });
+    });
+
+    // Function to show user profile after successful login
+    function showUserProfile(username) {
+        /*
+                document.getElementById('usernameDisplay').textContent = username;
+        */
+        document.getElementById('userProfile').style.display = 'flex';
+        document.getElementById('loginBtnNav').style.display = 'none';
+    }
+</script>
+<script src="assets/jq/jquery-3.6.0.min.js"></script>
+<script src="assets/js/signup.js"></script>
 </body>
 </html>

@@ -1,52 +1,127 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Edit Profile - Gaming Profile Manager</title>
-    <link rel="stylesheet" href="../assets/css/main.css" />
-    <link rel="stylesheet" href="../assets/css/tailwind.css" />
-    <link rel="stylesheet" href="../assets/css/home.css" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<script type="module" src="https://static.rocket.new/rocket-web.js?_cfg=https%3A%2F%2Fgamingpro2929back.builtwithrocket.new&_be=https%3A%2F%2Fapplication.rocket.new&_v=0.1.8"></script>
+    <meta charset="utf-8"/>
+    <link crossorigin="" href="https://fonts.gstatic.com/" rel="preconnect"/>
+    <link as="style" href="https://fonts.googleapis.com/css2?display=swap&family=Noto+Sans:wght@400;500;700;900&family=Space+Grotesk:wght@400;500;700" onload="this.rel='stylesheet'" rel="stylesheet"/>
+    <meta charset="utf-8"/>
+    <title>User Profile -  User Platform</title>
+    <link href="data:image/x-icon;base64," rel="icon" type="image/x-icon"/>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <style src="https://cdn.tailwindcss.com"></style>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <!--fontawesome-->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" rel="stylesheet"/>
+    <!--css-->
+    <link href="../assets/css/home.css" rel="stylesheet" type="text/css"/>
+    <link href="../assets/css/main.css" rel="stylesheet" type="text/css"/>
+    <link href="../assets/css/tailwind.css" rel="stylesheet" type="text/css"/>
+    <style>
+        /* Add this to your CSS to improve the dropdown appearance */
+        #userDropdown {
+            z-index: 1000;
+            border: 1px solid #374151;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+
+        #userDropdown a:hover {
+            background-color: #374151 !important;
+            color: #00ffcc !important;
+        }
+    </style>
 </head>
 <body class="bg-background min-h-screen text-text-primary font-inter">
+<div class="relative flex size-full min-h-screen flex-col overflow-x-hidden " style='font-family: "Space Grotesk", "Noto Sans", sans-serif;'>
     <!-- Navigation Header -->
-    <nav class="bg-surface border-b border-surface-700 sticky top-0 z-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-16">
-                <!-- Logo -->
-                <div class="flex items-center">
-                    <svg class="w-10 h-10 text-primary" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <rect width="40" height="40" rx="8" fill="currentColor"/>
-                        <path d="M12 16L20 24L28 16" stroke="#0F172A" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-                        <circle cx="20" cy="12" r="3" fill="#0F172A"/>
-                    </svg>
-                    <span class="ml-3 text-xl font-bold text-gaming-heading">GameHub</span>
-                </div>
-                
-                <!-- Navigation Links -->
-                <div class="hidden md:flex items-center space-x-8">
-                    <a href="user_profile_view.html" class="text-text-secondary hover:text-text-primary transition-colors">Profile</a>
-                    <a href="../streamer/streamer_application.html" class="text-text-secondary hover:text-text-primary transition-colors">Streamer</a>
-                    <a href="../player/player_application.html" class="text-text-secondary hover:text-text-primary transition-colors">Player</a>
-                </div>
+<header class="flex items-center justify-between whitespace-nowrap border-b border-solid-1 border-b-[#34C759] px-10 py-4 shadow-lg sticky top-0 header-blur z-50">
+    <div class="flex items-center gap-3 text-white">
+        <div class="size-10 text-[#00ffcc] logo-glow cursor-pointer">
+            <svg
+                    fill="none"
+                    viewBox="0 0 48 48"
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="w-10 h-10"
+            >
+                <path
+                        clip-rule="evenodd"
+                        d="M24 18.4228L42 11.475V34.3663C42 34.7796 41.7457 35.1504 41.3601 35.2992L24 42V18.4228Z"
+                        fill="currentColor"
+                        fill-rule="evenodd"
+                />
+                <path
+                        clip-rule="evenodd"
+                        d="M24 8.18819L33.4123 11.574L24 15.2071L14.5877 11.574L24 8.18819ZM9 15.8487L21 20.4805V37.6263L9 32.9945V15.8487ZM27 37.6263V20.4805L39 15.8487V32.9945L27 37.6263ZM25.354 2.29885C24.4788 1.98402 23.5212 1.98402 22.646 2.29885L4.98454 8.65208C3.7939 9.08038 3 10.2097 3 11.475V34.3663C3 36.0196 4.01719 37.5026 5.55962 38.098L22.9197 44.7987C23.6149 45.0671 24.3851 45.0671 25.0803 44.7987L42.4404 38.098C43.9828 37.5026 45 36.0196 45 34.3663V11.475C45 10.2097 44.2061 9.08038 43.0155 8.65208L25.354 2.29885Z"
+                        fill="currentColor"
+                        fill-rule="evenodd"
+                />
+            </svg>
+        </div>
+        <h2 class="text-white text-xl font-bold leading-tight tracking-[-0.015em] neon-text">
+            GameArenaX
+        </h2>
+    </div>
+    <nav class="flex flex-1 justify-end gap-2 right-0">
+        <!-- Nav links (always visible) -->
+        <nav class="flex items-center  gap-5">
+            <a class="text-gray-300 nav-link" href="../index2.html">Home</a>
+            <a class="text-gray-300 nav-link text-sm sm:text-base">
+          <span class="inline-flex items-center space-x-1">
+            <span class="relative flex w-1.5 h-1.5">
+              <span class="absolute inline-flex w-full h-full rounded-full bg-[#ff0000] opacity-80 animate-ping"></span>
+              <span class="relative w-1.5 h-1.5 bg-[#ff0000] rounded-full"></span>
+            </span>
+            <span class="font-medium">Live</span>
+          </span>
+            </a>
+            <a class="text-gray-300  nav-link" href="AllTournament.html">Tournaments</a>
+            <a class="text-gray-300  nav-link" href="AllStreamers.html">Streamers</a>
+            <a class="text-gray-300  nav-link" href="clan_directory.html">Clans</a>
+            <a class="text-gray-300  nav-link" href="AllPlayers.html">Players</a>
+        </nav>
 
-                <!-- Mobile Menu Button -->
-                <div class="md:hidden">
-                    <button type="button" class="text-text-secondary hover:text-text-primary p-2" onclick="toggleMobileMenu()">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
-                        </svg>
+        <!-- Login button (only visible before login) -->
+        <button id="loginBtnNav"
+                class="flex min-w-[100px] max-w-[400px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-9 px-5 border-2 border-[#22c55e] text-[#22c55e] text-sm font-semibold tracking-wide relative transition-all duration-300 ease-in-out hover:text-white"
+                onclick="openLoginModal()">
+            <span class="relative z-10">Login</span>
+            <span class="absolute inset-0 rounded-full border-2 border-[#22c55e] opacity-50 transition-all duration-500 ease-in-out hover:scale-110 hover:opacity-100"></span>
+            <span class="absolute inset-0 bg-gradient-to-r from-[#22c55e] to-[#16a34a] opacity-0 rounded-full transition-opacity duration-300 ease-in-out hover:opacity-20"></span>
+        </button>
+
+        <!-- Player profile (only visible after login) -->
+        <div class="flex items-center space-x-3" id="userProfile" style="display: none">
+            <span class="hidden sm:block text-sm font-medium" id="usernameDisplay"></span>
+            <!--user dropdown menu for edit profile,Apply as a streamer,Apply as a player and logout-->
+            <div class="relative inline-block text-left">
+                <div>
+                    <button id="userDropdownBtn" type="button" class="text-green-400 hover:text-green-300 transition-colors">
+                        <i class="fas fa-chevron-down text-sm transition-transform duration-200" id="dropdownArrow"></i>
                     </button>
+                </div>
+                <div id="userDropdown" class="hidden absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-black">
+                    <a href="../user/user_profile_view.html" class="block px-4 py-2 text-sm text-white hover:bg-gray-700">View Profile</a>
+                    <a href="../player/player_application.html" class="block px-4 py-2 text-sm text-white hover:bg-gray-700">Apply as a Player</a>
+                    <!--
+                                        <a href=""  id="logoutBtn" class="block px-4 py-2 text-sm text-red-400 hover:bg-gray-700">Logout</a>
+                    -->
+                    <!-- &lt;!&ndash; Logout button (only visible after login) &ndash;&gt;
+                     <div class="flex items-center gap-4">
+                         <button id="logoutBtn" class="text-red-400 hover:text-red-300 transition-colors">
+                             <span class="hidden sm:block">Logout</span>
+                             <i class="fas fa-sign-out-alt text-xl"></i>
+                         </button>
+                     </div>-->
                 </div>
             </div>
         </div>
     </nav>
+</header>
 
     <!-- Main Content -->
-    <main class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <main class="max-w-4xl mx-auto px-4 sm:px-8 lg:px-8 py-9">
         <!-- Page Header -->
         <div class="mb-8">
             <div class="flex items-center mb-4">
@@ -63,7 +138,7 @@
         </div>
 
         <!-- Edit Profile Form -->
-        <form id="profileEditForm" class="space-y-8">
+        <form id="profileEditForm" class="space-y-8 ">
             <!-- Profile Picture Section -->
             <div class="bg-surface rounded-gaming-card shadow-gaming border border-surface-700 p-6 sm:p-8">
                 <h2 class="text-xl font-semibold text-gaming-heading mb-6 flex items-center">
@@ -149,20 +224,256 @@
 
                     <!-- Country -->
                     <div>
-                        <label for="country" class="block text-sm font-medium text-text-secondary mb-2">Country</label>
-                        <select id="country" name="country" class="w-full bg-surface-800 border border-surface-700 rounded-gaming px-4 py-3 text-text-primary form-field-gaming focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary" required>
-                            <option value>Select Country</option>
-                            <option value="US" selected>🇺🇸 United States</option>
-                            <option value="CA">🇨🇦 Canada</option>
-                            <option value="GB">🇬🇧 United Kingdom</option>
-                            <option value="DE">🇩🇪 Germany</option>
-                            <option value="FR">🇫🇷 France</option>
-                            <option value="JP">🇯🇵 Japan</option>
-                            <option value="KR">🇰🇷 South Korea</option>
-                            <option value="AU">🇦🇺 Australia</option>
-                            <option value="BR">🇧🇷 Brazil</option>
-                            <option value="IN">🇮🇳 India</option>
+                        <label  class="block text-gray-300 text-sm font-medium mb-2">Country</label>
+                        <select class="w-full bg-surface-800 border border-surface-700 rounded-gaming px-4 py-3 text-text-primary form-field-gaming focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary" id="editCountry" required>
+                            <option value=""> Select your country </option>
+                            <option value="Afghanistan"> </option>
+                            <option value="Afghanistan">Afghanistan</option>
+                            <option value="Åland Islands">Åland Islands</option>
+                            <option value="Albania">Albania</option>
+                            <option value="Algeria">Algeria</option>
+                            <option value="American Samoa">American Samoa</option>
+                            <option value="Andorra">Andorra</option>
+                            <option value="Angola">Angola</option>
+                            <option value="Anguilla">Anguilla</option>
+                            <option value="Antarctica">Antarctica</option>
+                            <option value="Antigua and Barbuda">Antigua and Barbuda</option>
+                            <option value="Argentina">Argentina</option>
+                            <option value="Armenia">Armenia</option>
+                            <option value="Aruba">Aruba</option>
+                            <option value="Australia">Australia</option>
+                            <option value="Austria">Austria</option>
+                            <option value="Azerbaijan">Azerbaijan</option>
+                            <option value="Bahamas">Bahamas</option>
+                            <option value="Bahrain">Bahrain</option>
+                            <option value="Bangladesh">Bangladesh</option>
+                            <option value="Barbados">Barbados</option>
+                            <option value="Belarus">Belarus</option>
+                            <option value="Belgium">Belgium</option>
+                            <option value="Belize">Belize</option>
+                            <option value="Benin">Benin</option>
+                            <option value="Bermuda">Bermuda</option>
+                            <option value="Bhutan">Bhutan</option>
+                            <option value="Bolivia">Bolivia</option>
+                            <option value="Bosnia and Herzegovina">Bosnia and Herzegovina</option>
+                            <option value="Botswana">Botswana</option>
+                            <option value="Bouvet Island">Bouvet Island</option>
+                            <option value="Brazil">Brazil</option>
+                            <option value="British Indian Ocean Territory">British Indian Ocean Territory</option>
+                            <option value="Brunei Darussalam">Brunei Darussalam</option>
+                            <option value="Bulgaria">Bulgaria</option>
+                            <option value="Burkina Faso">Burkina Faso</option>
+                            <option value="Burundi">Burundi</option>
+                            <option value="Cambodia">Cambodia</option>
+                            <option value="Cameroon">Cameroon</option>
+                            <option value="Canada">Canada</option>
+                            <option value="Cape Verde">Cape Verde</option>
+                            <option value="Cayman Islands">Cayman Islands</option>
+                            <option value="Central African Republic">Central African Republic</option>
+                            <option value="Chad">Chad</option>
+                            <option value="Chile">Chile</option>
+                            <option value="China">China</option>
+                            <option value="Christmas Island">Christmas Island</option>
+                            <option value="Cocos (Keeling) Islands">Cocos (Keeling) Islands</option>
+                            <option value="Colombia">Colombia</option>
+                            <option value="Comoros">Comoros</option>
+                            <option value="Congo">Congo</option>
+                            <option value="Congo, The Democratic Republic of The">Congo, The Democratic Republic of The</option>
+                            <option value="Cook Islands">Cook Islands</option>
+                            <option value="Costa Rica">Costa Rica</option>
+                            <option value="Cote D'ivoire">Cote D'ivoire</option>
+                            <option value="Croatia">Croatia</option>
+                            <option value="Cuba">Cuba</option>
+                            <option value="Cyprus">Cyprus</option>
+                            <option value="Czech Republic">Czech Republic</option>
+                            <option value="Denmark">Denmark</option>
+                            <option value="Djibouti">Djibouti</option>
+                            <option value="Dominica">Dominica</option>
+                            <option value="Dominican Republic">Dominican Republic</option>
+                            <option value="Ecuador">Ecuador</option>
+                            <option value="Egypt">Egypt</option>
+                            <option value="El Salvador">El Salvador</option>
+                            <option value="Equatorial Guinea">Equatorial Guinea</option>
+                            <option value="Eritrea">Eritrea</option>
+                            <option value="Estonia">Estonia</option>
+                            <option value="Ethiopia">Ethiopia</option>
+                            <option value="Falkland Islands (Malvinas)">Falkland Islands (Malvinas)</option>
+                            <option value="Faroe Islands">Faroe Islands</option>
+                            <option value="Fiji">Fiji</option>
+                            <option value="Finland">Finland</option>
+                            <option value="France">France</option>
+                            <option value="French Guiana">French Guiana</option>
+                            <option value="French Polynesia">French Polynesia</option>
+                            <option value="French Southern Territories">French Southern Territories</option>
+                            <option value="Gabon">Gabon</option>
+                            <option value="Gambia">Gambia</option>
+                            <option value="Georgia">Georgia</option>
+                            <option value="Germany">Germany</option>
+                            <option value="Ghana">Ghana</option>
+                            <option value="Gibraltar">Gibraltar</option>
+                            <option value="Greece">Greece</option>
+                            <option value="Greenland">Greenland</option>
+                            <option value="Grenada">Grenada</option>
+                            <option value="Guadeloupe">Guadeloupe</option>
+                            <option value="Guam">Guam</option>
+                            <option value="Guatemala">Guatemala</option>
+                            <option value="Guernsey">Guernsey</option>
+                            <option value="Guinea">Guinea</option>
+                            <option value="Guinea-bissau">Guinea-bissau</option>
+                            <option value="Guyana">Guyana</option>
+                            <option value="Haiti">Haiti</option>
+                            <option value="Heard Island and Mcdonald Islands">Heard Island and Mcdonald Islands</option>
+                            <option value="Holy See (Vatican City State)">Holy See (Vatican City State)</option>
+                            <option value="Honduras">Honduras</option>
+                            <option value="Hong Kong">Hong Kong</option>
+                            <option value="Hungary">Hungary</option>
+                            <option value="Iceland">Iceland</option>
+                            <option value="India">India</option>
+                            <option value="Indonesia">Indonesia</option>
+                            <option value="Iran, Islamic Republic of">Iran, Islamic Republic of</option>
+                            <option value="Iraq">Iraq</option>
+                            <option value="Ireland">Ireland</option>
+                            <option value="Isle of Man">Isle of Man</option>
+                            <option value="Israel">Israel</option>
+                            <option value="Italy">Italy</option>
+                            <option value="Jamaica">Jamaica</option>
+                            <option value="Japan">Japan</option>
+                            <option value="Jersey">Jersey</option>
+                            <option value="Jordan">Jordan</option>
+                            <option value="Kazakhstan">Kazakhstan</option>
+                            <option value="Kenya">Kenya</option>
+                            <option value="Kiribati">Kiribati</option>
+                            <option value="Korea, Democratic People's Republic of">Korea, Democratic People's Republic of</option>
+                            <option value="Korea, Republic of">Korea, Republic of</option>
+                            <option value="Kuwait">Kuwait</option>
+                            <option value="Kyrgyzstan">Kyrgyzstan</option>
+                            <option value="Lao People's Democratic Republic">Lao People's Democratic Republic</option>
+                            <option value="Latvia">Latvia</option>
+                            <option value="Lebanon">Lebanon</option>
+                            <option value="Lesotho">Lesotho</option>
+                            <option value="Liberia">Liberia</option>
+                            <option value="Libyan Arab Jamahiriya">Libyan Arab Jamahiriya</option>
+                            <option value="Liechtenstein">Liechtenstein</option>
+                            <option value="Lithuania">Lithuania</option>
+                            <option value="Luxembourg">Luxembourg</option>
+                            <option value="Macao">Macao</option>
+                            <option value="Macedonia, The Former Yugoslav Republic of">Macedonia, The Former Yugoslav Republic of</option>
+                            <option value="Madagascar">Madagascar</option>
+                            <option value="Malawi">Malawi</option>
+                            <option value="Malaysia">Malaysia</option>
+                            <option value="Maldives">Maldives</option>
+                            <option value="Mali">Mali</option>
+                            <option value="Malta">Malta</option>
+                            <option value="Marshall Islands">Marshall Islands</option>
+                            <option value="Martinique">Martinique</option>
+                            <option value="Mauritania">Mauritania</option>
+                            <option value="Mauritius">Mauritius</option>
+                            <option value="Mayotte">Mayotte</option>
+                            <option value="Mexico">Mexico</option>
+                            <option value="Micronesia, Federated States of">Micronesia, Federated States of</option>
+                            <option value="Moldova, Republic of">Moldova, Republic of</option>
+                            <option value="Monaco">Monaco</option>
+                            <option value="Mongolia">Mongolia</option>
+                            <option value="Montenegro">Montenegro</option>
+                            <option value="Montserrat">Montserrat</option>
+                            <option value="Morocco">Morocco</option>
+                            <option value="Mozambique">Mozambique</option>
+                            <option value="Myanmar">Myanmar</option>
+                            <option value="Namibia">Namibia</option>
+                            <option value="Nauru">Nauru</option>
+                            <option value="Nepal">Nepal</option>
+                            <option value="Netherlands">Netherlands</option>
+                            <option value="Netherlands Antilles">Netherlands Antilles</option>
+                            <option value="New Caledonia">New Caledonia</option>
+                            <option value="New Zealand">New Zealand</option>
+                            <option value="Nicaragua">Nicaragua</option>
+                            <option value="Niger">Niger</option>
+                            <option value="Nigeria">Nigeria</option>
+                            <option value="Niue">Niue</option>
+                            <option value="Norfolk Island">Norfolk Island</option>
+                            <option value="Northern Mariana Islands">Northern Mariana Islands</option>
+                            <option value="Norway">Norway</option>
+                            <option value="Oman">Oman</option>
+                            <option value="Pakistan">Pakistan</option>
+                            <option value="Palau">Palau</option>
+                            <option value="Palestinian Territory, Occupied">Palestinian Territory, Occupied</option>
+                            <option value="Panama">Panama</option>
+                            <option value="Papua New Guinea">Papua New Guinea</option>
+                            <option value="Paraguay">Paraguay</option>
+                            <option value="Peru">Peru</option>
+                            <option value="Philippines">Philippines</option>
+                            <option value="Pitcairn">Pitcairn</option>
+                            <option value="Poland">Poland</option>
+                            <option value="Portugal">Portugal</option>
+                            <option value="Puerto Rico">Puerto Rico</option>
+                            <option value="Qatar">Qatar</option>
+                            <option value="Reunion">Reunion</option>
+                            <option value="Romania">Romania</option>
+                            <option value="Russian Federation">Russian Federation</option>
+                            <option value="Rwanda">Rwanda</option>
+                            <option value="Saint Helena">Saint Helena</option>
+                            <option value="Saint Kitts and Nevis">Saint Kitts and Nevis</option>
+                            <option value="Saint Lucia">Saint Lucia</option>
+                            <option value="Saint Pierre and Miquelon">Saint Pierre and Miquelon</option>
+                            <option value="Saint Vincent and The Grenadines">Saint Vincent and The Grenadines</option>
+                            <option value="Samoa">Samoa</option>
+                            <option value="San Marino">San Marino</option>
+                            <option value="Sao Tome and Principe">Sao Tome and Principe</option>
+                            <option value="Saudi Arabia">Saudi Arabia</option>
+                            <option value="Senegal">Senegal</option>
+                            <option value="Serbia">Serbia</option>
+                            <option value="Seychelles">Seychelles</option>
+                            <option value="Sierra Leone">Sierra Leone</option>
+                            <option value="Singapore">Singapore</option>
+                            <option value="Slovakia">Slovakia</option>
+                            <option value="Slovenia">Slovenia</option>
+                            <option value="Solomon Islands">Solomon Islands</option>
+                            <option value="Somalia">Somalia</option>
+                            <option value="South Africa">South Africa</option>
+                            <option value="South Georgia and The South Sandwich Islands">South Georgia and The South Sandwich Islands</option>
+                            <option value="Spain">Spain</option>
+                            <option value="Sri Lanka">Sri Lanka</option>
+                            <option value="Sudan">Sudan</option>
+                            <option value="Suriname">Suriname</option>
+                            <option value="Svalbard and Jan Mayen">Svalbard and Jan Mayen</option>
+                            <option value="Swaziland">Swaziland</option>
+                            <option value="Sweden">Sweden</option>
+                            <option value="Switzerland">Switzerland</option>
+                            <option value="Syrian Arab Republic">Syrian Arab Republic</option>
+                            <option value="Taiwan">Taiwan</option>
+                            <option value="Tajikistan">Tajikistan</option>
+                            <option value="Tanzania, United Republic of">Tanzania, United Republic of</option>
+                            <option value="Thailand">Thailand</option>
+                            <option value="Timor-leste">Timor-leste</option>
+                            <option value="Togo">Togo</option>
+                            <option value="Tokelau">Tokelau</option>
+                            <option value="Tonga">Tonga</option>
+                            <option value="Trinidad and Tobago">Trinidad and Tobago</option>
+                            <option value="Tunisia">Tunisia</option>
+                            <option value="Turkey">Turkey</option>
+                            <option value="Turkmenistan">Turkmenistan</option>
+                            <option value="Turks and Caicos Islands">Turks and Caicos Islands</option>
+                            <option value="Tuvalu">Tuvalu</option>
+                            <option value="Uganda">Uganda</option>
+                            <option value="Ukraine">Ukraine</option>
+                            <option value="United Arab Emirates">United Arab Emirates</option>
+                            <option value="United Kingdom">United Kingdom</option>
+                            <option value="United States">United States</option>
+                            <option value="United States Minor Outlying Islands">United States Minor Outlying Islands</option>
+                            <option value="Uruguay">Uruguay</option>
+                            <option value="Uzbekistan">Uzbekistan</option>
+                            <option value="Vanuatu">Vanuatu</option>
+                            <option value="Venezuela">Venezuela</option>
+                            <option value="Viet Nam">Viet Nam</option>
+                            <option value="Virgin Islands, British">Virgin Islands, British</option>
+                            <option value="Virgin Islands, U.S.">Virgin Islands, U.S.</option>
+                            <option value="Wallis and Futuna">Wallis and Futuna</option>
+                            <option value="Western Sahara">Western Sahara</option>
+                            <option value="Yemen">Yemen</option>
+                            <option value="Zambia">Zambia</option>
+                            <option value="Zimbabwe">Zimbabwe</option>
                         </select>
+
                     </div>
 
                     <!-- Read-only Status -->
@@ -333,254 +644,184 @@
             </nav>
         </div>
     </div>
+</div>
 
-    <script>
-        // Mobile menu toggle
-        function toggleMobileMenu() {
-            const menu = document.getElementById('mobile-menu');
-            menu.classList.toggle('hidden');
+<script>
+    $(document).ready(function () {
+        const username = localStorage.getItem("username");
+
+        if (username) {
+            $("#loginBtnNav").hide();
+            $("#userProfile").show();
+        } else {
+            $("#loginBtnNav").show();
+            $("#userProfile").hide();
         }
 
-        // File upload handling
-        function handleFileSelect(event) {
-            const file = event.target.files[0];
-            if (file) {
-                validateAndPreviewFile(file);
-            }
-        }
-
-        function handleDrop(event) {
-            event.preventDefault();
-            const dropZone = document.getElementById('dropZone');
-            dropZone.classList.remove('border-primary');
-            
-            const files = event.dataTransfer.files;
-            if (files.length > 0) {
-                validateAndPreviewFile(files[0]);
-            }
-        }
-
-        function handleDragOver(event) {
-            event.preventDefault();
-            const dropZone = document.getElementById('dropZone');
-            dropZone.classList.add('border-primary');
-        }
-
-        function handleDragLeave(event) {
-            event.preventDefault();
-            const dropZone = document.getElementById('dropZone');
-            dropZone.classList.remove('border-primary');
-        }
-
-        function validateAndPreviewFile(file) {
-            // Validate file type
-            const validTypes = ['image/jpeg', 'image/jpg', 'image/png', 'image/gif'];
-            if (!validTypes.includes(file.type)) {
-                showError('Please select a valid image file (JPG, PNG, GIF)');
-                return;
-            }
-
-            // Validate file size (5MB)
-            if (file.size > 5 * 1024 * 1024) {
-                showError('File size must be less than 5MB');
-                return;
-            }
-
-            // Show upload status
-            const uploadStatus = document.getElementById('uploadStatus');
-            uploadStatus.classList.remove('hidden');
-
-            // Preview image
-            const reader = new FileReader();
-            reader.onload = function(e) {
-                document.getElementById('profilePreview').src = e.target.result;
-                uploadStatus.classList.add('hidden');
-            };
-            reader.readAsDataURL(file);
-        }
-
-        // Password visibility toggle
-        function togglePasswordVisibility(fieldId) {
-            const field = document.getElementById(fieldId);
-            const type = field.getAttribute('type') === 'password' ? 'text' : 'password';
-            field.setAttribute('type', type);
-        }
-
-        // Password strength checker
-        document.getElementById('newPassword').addEventListener('input', function(e) {
-            const password = e.target.value;
-            checkPasswordStrength(password);
-            checkPasswordRequirements(password);
-        });
-
-        function checkPasswordStrength(password) {
-            let strength = 0;
-            const indicators = ['strength1', 'strength2', 'strength3', 'strength4'];
-            const strengthText = document.getElementById('strengthText');
-
-            // Reset indicators
-            indicators.forEach(id => {
-                document.getElementById(id).className = 'h-1 w-1/4 bg-surface-700 rounded-full transition-colors duration-gaming';
-            });
-
-            if (password.length >= 8) strength++;
-            if (/[A-Z]/.test(password)) strength++;
-            if (/[a-z]/.test(password)) strength++;
-            if (/[0-9]/.test(password)) strength++;
-            if (/[^A-Za-z0-9]/.test(password)) strength++;
-
-            const colors = ['bg-error', 'bg-warning', 'bg-warning', 'bg-accent', 'bg-success'];
-            const texts = ['Very Weak', 'Weak', 'Fair', 'Good', 'Strong'];
-
-            for (let i = 0; i < Math.min(strength, 4); i++) {
-                document.getElementById(indicators[i]).className = `h-1 w-1/4 ${colors[strength - 1]} rounded-full transition-colors duration-gaming`;
-            }
-
-            if (password.length > 0) {
-                strengthText.textContent = texts[Math.max(0, strength - 1)];
-                strengthText.className = `text-xs mt-1 ${strength < 3 ? 'text-warning' : strength < 4 ? 'text-accent' : 'text-success'}`;
-            } else {
-                strengthText.textContent = 'Password strength will appear here';
-                strengthText.className = 'text-xs text-text-secondary mt-1';
-            }
-        }
-
-        function checkPasswordRequirements(password) {
-            const requirements = [
-                { id: 'req-length', test: password.length >= 8 },
-                { id: 'req-uppercase', test: /[A-Z]/.test(password) },
-                { id: 'req-lowercase', test: /[a-z]/.test(password) },
-                { id: 'req-number', test: /[0-9]/.test(password) },
-                { id: 'req-special', test: /[^A-Za-z0-9]/.test(password) }
-            ];
-
-            requirements.forEach(req => {
-                const element = document.getElementById(req.id);
-                if (req.test) {
-                    element.textContent = '✓';
-                    element.className = 'w-4 h-4 mr-2 text-success';
-                } else {
-                    element.textContent = '●';
-                    element.className = 'w-4 h-4 mr-2 text-surface-700';
-                }
-            });
-        }
-
-        // Password confirmation check
-        document.getElementById('confirmPassword').addEventListener('input', function(e) {
-            const password = document.getElementById('newPassword').value;
-            const confirm = e.target.value;
-            const errorDiv = document.getElementById('passwordMatchError');
-            const successDiv = document.getElementById('passwordMatchSuccess');
-
-            if (confirm.length > 0) {
-                if (password === confirm) {
-                    errorDiv.classList.add('hidden');
-                    successDiv.classList.remove('hidden');
-                } else {
-                    errorDiv.classList.remove('hidden');
-                    successDiv.classList.add('hidden');
-                }
-            } else {
-                errorDiv.classList.add('hidden');
-                successDiv.classList.add('hidden');
-            }
-        });
-
-        // Email validation
-        document.getElementById('email').addEventListener('input', function(e) {
-            const email = e.target.value;
-            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            const errorDiv = document.getElementById('emailError');
-            const successDiv = document.getElementById('emailSuccess');
-
-            if (email.length > 0) {
-                if (emailRegex.test(email)) {
-                    errorDiv.classList.add('hidden');
-                    successDiv.classList.remove('hidden');
-                } else {
-                    errorDiv.classList.remove('hidden');
-                    successDiv.classList.add('hidden');
-                }
-            } else {
-                errorDiv.classList.add('hidden');
-                successDiv.classList.add('hidden');
-            }
-        });
-
-        // Username availability check (simulated)
-        let usernameTimeout;
-        document.getElementById('username').addEventListener('input', function(e) {
-            const username = e.target.value;
-            const errorDiv = document.getElementById('usernameError');
-            const successDiv = document.getElementById('usernameSuccess');
-            const loadingDiv = document.getElementById('usernameLoading');
-
-            clearTimeout(usernameTimeout);
-
-            if (username.length < 3 || username.length > 20) {
-                errorDiv.classList.remove('hidden');
-                successDiv.classList.add('hidden');
-                loadingDiv.classList.add('hidden');
-                return;
-            }
-
-            errorDiv.classList.add('hidden');
-            successDiv.classList.add('hidden');
-            loadingDiv.classList.remove('hidden');
-
-            usernameTimeout = setTimeout(() => {
-                // Simulate API call
-                loadingDiv.classList.add('hidden');
-                if (username.toLowerCase() === 'admin' || username.toLowerCase() === 'test') {
-                    errorDiv.textContent = 'Username is already taken';
-                    errorDiv.classList.remove('hidden');
-                } else {
-                    successDiv.classList.remove('hidden');
-                }
-            }, 1000);
-        });
-
-        // Form submission
-        document.getElementById('profileEditForm').addEventListener('submit', function(e) {
+        $("#logoutBtn").on("click", function (e) {
             e.preventDefault();
-            
-            // Simulate form submission
-            const submitButton = e.target.querySelector('button[type="submit"]');
-            const originalText = submitButton.innerHTML;
-            
-            submitButton.innerHTML = `
-                <div class="w-5 h-5 border-2 border-background border-t-transparent rounded-full animate-spin mr-2"></div>
-                Saving...
-            `;
-            submitButton.disabled = true;
+            localStorage.removeItem("username");
+            window.location.href = "index2.html"; // logout → back to home
+        });
+    });
+    // Close modal when clicking outside
+    document.querySelectorAll('.modal-backdrop').forEach(backdrop => {
+        backdrop.addEventListener('click', function(e) {
+            if (e.target === backdrop) {
+                backdrop.classList.remove('active');
+            }
+        });
+    });
+    const inputs = document.querySelectorAll(".otp-input");
 
-            setTimeout(() => {
-                submitButton.innerHTML = originalText;
-                submitButton.disabled = false;
-                showSuccess();
-            }, 2000);
+    inputs.forEach((input, index) => {
+        input.addEventListener("input", (e) => {
+            if (e.target.value.length === 1 && index < inputs.length - 1) {
+                inputs[index + 1].focus();
+            }
         });
 
-        function showSuccess() {
-            const successMessage = document.getElementById('successMessage');
-            successMessage.classList.remove('hidden');
-            setTimeout(() => {
-                successMessage.classList.add('hidden');
-                // Redirect to profile view
-                window.location.href = 'user_profile_view.html';
-            }, 3000);
-        }
+        input.addEventListener("keydown", (e) => {
+            if (e.key === "Backspace" && !e.target.value && index > 0) {
+                inputs[index - 1].focus();
+            }
+        });
+    });
+    function createParticle() {
+        const particle = document.createElement('div');
+        particle.className = 'particle';
+        particle.style.left = Math.random() * 100 + '%';
 
-        function showError(message) {
-            const errorMessage = document.getElementById('errorMessage');
-            const errorText = document.getElementById('errorText');
-            errorText.textContent = message;
-            errorMessage.classList.remove('hidden');
+        // Random size from 15px to 35px
+        const size = Math.random() * 6 + 3;
+        particle.style.setProperty('--size', size + 'px');
+
+        // Random drift left/right
+        particle.style.setProperty('--drift', (Math.random() * 100 - 50) + 'px');
+
+        // Random duration and delay
+        particle.style.animationDuration = (Math.random() * 15 + 10) + 's';
+        particle.style.animationDelay = Math.random() * 2 + 's';
+
+        const particlesContainer = document.querySelector('.particles');
+        if (particlesContainer) {
+            particlesContainer.appendChild(particle);
+
+            // Remove after animation ends
             setTimeout(() => {
-                errorMessage.classList.add('hidden');
-            }, 5000);
+                particle.remove();
+            }, parseFloat(particle.style.animationDuration) * 1000);
         }
-    </script>
+    }
+
+    // Generate a new particle every 500ms
+    setInterval(createParticle, 500);
+
+    // Smooth scrolling for navigation links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+        });
+    });
+
+    // Add scroll-triggered animations
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0)';
+            }
+        });
+    }, observerOptions);
+
+    // Observe elements for scroll animations
+    document.querySelectorAll('.card-glow').forEach(card => {
+        card.style.opacity = '0';
+        card.style.transform = 'translateY(30px)';
+        card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+        observer.observe(card);
+    });
+
+    // Header background on scroll
+    window.addEventListener('scroll', () => {
+        const header = document.querySelector('header');
+        if (window.scrollY > 100) {
+            header.style.background = 'rgba(6, 6, 8, 0.95)';
+        } else {
+            header.style.background = 'rgba(10, 10, 15, 0.8)';
+        }
+    });
+    // Add this JavaScript code to make the user dropdown work
+
+    // User dropdown functionality
+    document.addEventListener('DOMContentLoaded', function() {
+        const userDropdownBtn = document.getElementById('userDropdownBtn');
+        const userDropdown = document.getElementById('userDropdown');
+        const logoutBtn = document.getElementById('logoutBtn');
+
+        // Toggle dropdown when clicking the user icon
+        userDropdownBtn.addEventListener('click', function(e) {
+            e.stopPropagation();
+            userDropdown.classList.toggle('hidden');
+        });
+
+        // Close dropdown when clicking outside
+        document.addEventListener('click', function(e) {
+            if (!userDropdown.contains(e.target) && !userDropdownBtn.contains(e.target)) {
+                userDropdown.classList.add('hidden');
+            }
+        });
+
+        // Logout functionality
+        logoutBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            // Add your logout logic here
+            console.log('User logged out');
+
+            // Hide user profile and show login button
+            document.getElementById('userProfile').style.display = 'none';
+            document.getElementById('loginBtnNav').style.display = 'block';
+
+            // Close dropdown
+            userDropdown.classList.add('hidden');
+
+            // Optional: Show logout confirmation
+            // toastr.success('Successfully logged out');
+        });
+
+        // Close dropdown when clicking on menu items (optional)
+        const dropdownLinks = userDropdown.querySelectorAll('a');
+        dropdownLinks.forEach(link => {
+            link.addEventListener('click', function() {
+                userDropdown.classList.add('hidden');
+            });
+        });
+    });
+
+    // Function to show user profile after successful login
+    function showUserProfile(username) {
+        /*
+                document.getElementById('usernameDisplay').textContent = username;
+        */
+        document.getElementById('userProfile').style.display = 'flex';
+        document.getElementById('loginBtnNav').style.display = 'none';
+    }
+</script>
+<script src="../assets/jq/jquery-3.7.1.min.js"></script>
+<script src="../assets/js/signup.js"></script>
 </body>
 </html>

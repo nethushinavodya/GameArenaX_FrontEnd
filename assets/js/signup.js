@@ -56,6 +56,8 @@ $("#loginBtn").click(function () {
             localStorage.setItem("token", data.data.token);
             localStorage.setItem("role", data.data.role);
             localStorage.setItem("username", data.data.username);
+            localStorage.setItem("email",data.data.email);
+
 
             $("#email").val("");
             $("#password").val("");
@@ -134,6 +136,7 @@ $("#registerBtn").click(function (e) {
             localStorage.setItem("token", data.data.token);
             localStorage.setItem("username", data.data.username);
             localStorage.setItem("role", data.data.role || "User");
+            localStorage.setItem("email",data.data.email);
 
             toastr.success("Registration successful!");
 
