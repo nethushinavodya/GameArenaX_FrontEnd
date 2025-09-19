@@ -196,7 +196,7 @@ function initializeSearch() {
 $(document).ready(function() {
     const token = localStorage.getItem("token");
     if (!token) {
-        window.location.href = "index.html";
+        window.location.href = "index2.html";
         return;
     }
     let adminName = localStorage.getItem("username") || "AdminUser";
@@ -207,7 +207,7 @@ $(document).ready(function() {
         if (confirm("Do you really want to logout?")) {
             localStorage.removeItem("token");
             localStorage.removeItem("username");
-            window.location.href = "index.html";
+            window.location.href = "index2.html";
             toastr.success('Logout successful!');
         }
     });
