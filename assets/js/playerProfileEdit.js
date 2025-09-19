@@ -6,7 +6,7 @@ $(document).ready(function () {
 
     if (!username || !token) {
         toastr.error("Please login first!");
-        window.location.href = "login.html";
+        window.location.href = "index2.html";
         return;
     }
 

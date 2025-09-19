@@ -1,57 +1,130 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Player Application - Gaming Profile Manager</title>
-    <link rel="stylesheet" href="../assets/css/main.css" />
-    <link rel="stylesheet" href="../assets/css/tailwind.css" />
-    <link rel="stylesheet" href="../assets/css/home.css" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<script type="module" src="https://static.rocket.new/rocket-web.js?_cfg=https%3A%2F%2Fgamingpro2929back.builtwithrocket.new&_be=https%3A%2F%2Fapplication.rocket.new&_v=0.1.8"></script>
+    <meta charset="utf-8"/>
+    <link crossorigin="" href="https://fonts.gstatic.com/" rel="preconnect"/>
+    <link as="style" href="https://fonts.googleapis.com/css2?display=swap&family=Noto+Sans:wght@400;500;700;900&family=Space+Grotesk:wght@400;500;700" onload="this.rel='stylesheet'" rel="stylesheet"/>
+    <title>Player Application</title>
+    <link href="data:image/x-icon;base64," rel="icon" type="image/x-icon"/>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <style src="https://cdn.tailwindcss.com"></style>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <!--fontawesome-->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" rel="stylesheet"/>
+    <!--css-->
+    <link href="../assets/css/home.css" rel="stylesheet" type="text/css"/>
+    <link href="../assets/css/main.css" rel="stylesheet" type="text/css"/>
+    <link href="../assets/css/tailwind.css" rel="stylesheet" type="text/css"/>
+    <style>
+        /* Add this to your CSS to improve the dropdown appearance */
+        #userDropdown {
+            z-index: 1000;
+            border: 1px solid #374151;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+
+        #userDropdown a:hover {
+            background-color: #374151 !important;
+            color: #00ffcc !important;
+        }
+    </style>
 </head>
 <body class="bg-background min-h-screen text-text-primary font-inter">
+<div class="relative flex size-full min-h-screen flex-col overflow-x-hidden " style='font-family: "Space Grotesk", "Noto Sans", sans-serif;'>
     <!-- Navigation Header -->
-    <nav class="bg-surface border-b border-surface-700 sticky top-0 z-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-16">
-                <!-- Logo -->
-                <div class="flex items-center">
-                    <svg class="w-10 h-10 text-primary" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <rect width="40" height="40" rx="8" fill="currentColor"/>
-                        <path d="M12 16L20 24L28 16" stroke="#0F172A" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-                        <circle cx="20" cy="12" r="3" fill="#0F172A"/>
-                    </svg>
-                    <span class="ml-3 text-xl font-bold text-gaming-heading">GameHub</span>
-                </div>
-                
-                <!-- Navigation Links -->
-                <div class="hidden md:flex items-center space-x-8">
-                    <a href="../user/user_profile_view.html" class="text-text-secondary hover:text-text-primary transition-colors">Profile</a>
-                    <a href="../streamer/streamer_application.html" class="text-text-secondary hover:text-text-primary transition-colors">Streamer</a>
-                    <a href="player_application.html" class="text-primary font-medium hover:text-primary-600 transition-colors">Player</a>
-                </div>
+    <header class="flex items-center justify-between whitespace-nowrap border-b border-solid-1 border-b-[#34C759] px-10 py-4 shadow-lg sticky top-0 header-blur z-50">
+        <div class="flex items-center gap-3 text-white">
+            <div class="size-10 text-[#00ffcc] logo-glow cursor-pointer">
+                <svg
+                        fill="none"
+                        viewBox="0 0 48 48"
+                        xmlns="http://www.w3.org/2000/svg"
+                        class="w-10 h-10"
+                >
+                    <path
+                            clip-rule="evenodd"
+                            d="M24 18.4228L42 11.475V34.3663C42 34.7796 41.7457 35.1504 41.3601 35.2992L24 42V18.4228Z"
+                            fill="currentColor"
+                            fill-rule="evenodd"
+                    />
+                    <path
+                            clip-rule="evenodd"
+                            d="M24 8.18819L33.4123 11.574L24 15.2071L14.5877 11.574L24 8.18819ZM9 15.8487L21 20.4805V37.6263L9 32.9945V15.8487ZM27 37.6263V20.4805L39 15.8487V32.9945L27 37.6263ZM25.354 2.29885C24.4788 1.98402 23.5212 1.98402 22.646 2.29885L4.98454 8.65208C3.7939 9.08038 3 10.2097 3 11.475V34.3663C3 36.0196 4.01719 37.5026 5.55962 38.098L22.9197 44.7987C23.6149 45.0671 24.3851 45.0671 25.0803 44.7987L42.4404 38.098C43.9828 37.5026 45 36.0196 45 34.3663V11.475C45 10.2097 44.2061 9.08038 43.0155 8.65208L25.354 2.29885Z"
+                            fill="currentColor"
+                            fill-rule="evenodd"
+                    />
+                </svg>
+            </div>
+            <h2 class="text-white text-xl font-bold leading-tight tracking-[-0.015em] neon-text">
+                GameArenaX
+            </h2>
+        </div>
+        <nav class="flex flex-1 justify-end gap-2 right-0">
+            <!-- Nav links (always visible) -->
+            <nav class="flex items-center  gap-5">
+                <a class="text-gray-300 nav-link" href="../index2.html">Home</a>
+                <a class="text-gray-300 nav-link text-sm sm:text-base">
+          <span class="inline-flex items-center space-x-1">
+            <span class="relative flex w-1.5 h-1.5">
+              <span class="absolute inline-flex w-full h-full rounded-full bg-[#ff0000] opacity-80 animate-ping"></span>
+              <span class="relative w-1.5 h-1.5 bg-[#ff0000] rounded-full"></span>
+            </span>
+            <span class="font-medium">Live</span>
+          </span>
+                </a>
+                <a class="text-gray-300  nav-link" href="AllTournament.html">Tournaments</a>
+                <a class="text-gray-300  nav-link" href="AllStreamers.html">Streamers</a>
+                <a class="text-gray-300  nav-link" href="clan_directory.html">Clans</a>
+                <a class="text-gray-300  nav-link" href="AllPlayers.html">Players</a>
+            </nav>
 
-                <!-- Mobile Menu Button -->
-                <div class="md:hidden">
-                    <button type="button" class="text-text-secondary hover:text-text-primary p-2" onclick="toggleMobileMenu()">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
-                        </svg>
-                    </button>
+            <!-- Login button (only visible before login) -->
+            <button id="loginBtnNav"
+                    class="flex min-w-[100px] max-w-[400px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-9 px-5 border-2 border-[#22c55e] text-[#22c55e] text-sm font-semibold tracking-wide relative transition-all duration-300 ease-in-out hover:text-white"
+                    onclick="openLoginModal()">
+                <span class="relative z-10">Login</span>
+                <span class="absolute inset-0 rounded-full border-2 border-[#22c55e] opacity-50 transition-all duration-500 ease-in-out hover:scale-110 hover:opacity-100"></span>
+                <span class="absolute inset-0 bg-gradient-to-r from-[#22c55e] to-[#16a34a] opacity-0 rounded-full transition-opacity duration-300 ease-in-out hover:opacity-20"></span>
+            </button>
+
+            <!-- Player profile (only visible after login) -->
+            <div class="flex items-center space-x-3" id="userProfile" style="display: none">
+                <span class="hidden sm:block text-sm font-medium" id="usernameDisplay"></span>
+                <!--user dropdown menu for edit profile,Apply as a streamer,Apply as a player and logout-->
+                <div class="relative inline-block text-left">
+                    <div>
+                        <button id="userDropdownBtn" type="button" class="text-green-400 hover:text-green-300 transition-colors">
+                            <i class="fas fa-chevron-down text-sm transition-transform duration-200" id="dropdownArrow"></i>
+                        </button>
+                    </div>
+                    <div id="userDropdown" class="hidden absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-black">
+                        <a href="../streamer/streamer_profile_edit.html" class="block px-4 py-2 text-sm text-white hover:bg-gray-700">Edit Profile</a>
+                        <a href="../player/player_application.html" class="block px-4 py-2 text-sm text-white hover:bg-gray-700">Apply as a Player</a>
+                        <!--
+                                            <a href=""  id="logoutBtn" class="block px-4 py-2 text-sm text-red-400 hover:bg-gray-700">Logout</a>
+                        -->
+                        <!-- &lt;!&ndash; Logout button (only visible after login) &ndash;&gt;
+                         <div class="flex items-center gap-4">
+                             <button id="logoutBtn" class="text-red-400 hover:text-red-300 transition-colors">
+                                 <span class="hidden sm:block">Logout</span>
+                                 <i class="fas fa-sign-out-alt text-xl"></i>
+                             </button>
+                         </div>-->
+                    </div>
                 </div>
             </div>
-        </div>
-    </nav>
+        </nav>
+    </header>
 
     <!-- Main Content -->
     <main class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <!-- Page Header -->
-        <!-- Page Header -->
         <div class="mb-8">
             <div class="flex items-center mb-4">
-                <a href="../user/user_profile_view.html" class="text-text-secondary hover:text-primary transition-colors mr-4">
+                <a href="../index2.html" class="text-text-secondary hover:text-primary transition-colors mr-4">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
                     </svg>
@@ -63,270 +136,353 @@
             </div>
         </div>
 
-        <!-- Progress Tracker -->
-        <div class="bg-surface rounded-gaming-card shadow-gaming border border-surface-700 p-6 mb-8">
-            <div class="flex items-center justify-between mb-4">
-                <h3 class="text-lg font-semibold text-gaming-heading">Application Progress</h3>
-                <span class="text-sm text-text-secondary">3 of 5 sections completed</span>
-            </div>
-            <div class="flex space-x-2">
-                <div class="flex-1 h-2 bg-primary rounded-full"></div>
-                <div class="flex-1 h-2 bg-primary rounded-full"></div>
-                <div class="flex-1 h-2 bg-primary rounded-full"></div>
-                <div class="flex-1 h-2 bg-surface-700 rounded-full"></div>
-                <div class="flex-1 h-2 bg-surface-700 rounded-full"></div>
-            </div>
-        </div>
-
         <!-- Application Form -->
         <form id="playerApplicationForm" class="space-y-8">
-            <!-- Personal Gaming Information -->
+            <!-- Personal Information -->
             <div class="bg-surface rounded-gaming-card shadow-gaming border border-surface-700 p-6 sm:p-8">
                 <h3 class="text-xl font-semibold text-gaming-heading mb-6 flex items-center">
                     <svg class="w-6 h-6 text-primary mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
                     </svg>
-                    Personal Gaming Information
+                    Personal Information
                 </h3>
-                
+
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
                     <div>
-                        <label for="gamerTag" class="block text-sm font-medium text-text-primary mb-2">Gamer Tag *</label>
-                        <input type="text" id="gamerTag" name="gamerTag" required class="w-full px-4 py-3 bg-surface-800 border border-surface-700 rounded-gaming text-text-primary placeholder-text-secondary focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary form-field-gaming" placeholder="Enter your gaming username" />
+                        <label class="block text-sm font-medium text-text-primary mb-2">Email Address *</label>
+                        <input id="email" name="email" class="w-full bg-surface-800 border border-surface-700 rounded-gaming px-4 py-3 text-text-primary form-field-gaming focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary" placeholder="Email" required>
                     </div>
-                    
+
                     <div>
-                        <label for="yearsExperience" class="block text-sm font-medium text-text-primary mb-2">Years of Gaming Experience *</label>
-                        <select id="yearsExperience" name="yearsExperience" required class="w-full px-4 py-3 bg-surface-800 border border-surface-700 rounded-gaming text-text-primary focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary form-field-gaming">
-                            <option value>Select experience level</option>
-                            <option value="1-2">1-2 years</option>
-                            <option value="3-5">3-5 years</option>
-                            <option value="6-10">6-10 years</option>
-                            <option value="10+">10+ years</option>
-                        </select>
+                        <label class="block text-sm font-medium text-text-primary mb-2">Player Name *</label>
+                        <input id="playerName" name="name" class="w-full bg-surface-800 border border-surface-700 rounded-gaming px-4 py-3 text-text-primary form-field-gaming focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary" placeholder="Player Name" required>
                     </div>
-                    
+
                     <div>
-                        <label for="timezone" class="block text-sm font-medium text-text-primary mb-2">Time Zone *</label>
-                        <select id="timezone" name="timezone" required class="w-full px-4 py-3 bg-surface-800 border border-surface-700 rounded-gaming text-text-primary focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary form-field-gaming">
-                            <option value>Select your timezone</option>
-                            <option value="EST">Eastern Standard Time (EST)</option>
-                            <option value="CST">Central Standard Time (CST)</option>
-                            <option value="MST">Mountain Standard Time (MST)</option>
-                            <option value="PST">Pacific Standard Time (PST)</option>
-                            <option value="GMT">Greenwich Mean Time (GMT)</option>
-                            <option value="CET">Central European Time (CET)</option>
-                        </select>
+                        <label  class="block text-sm font-medium text-text-primary mb-2">Role *</label>
+                        <input id="playerRole" name="playerRole" class="w-full bg-surface-800 border border-surface-700 rounded-gaming px-4 py-3 text-text-primary form-field-gaming focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary" placeholder="Player" disabled>
                     </div>
-                    
+
                     <div>
-                        <label for="availability" class="block text-sm font-medium text-text-primary mb-2">Weekly Availability *</label>
-                        <select id="availability" name="availability" required class="w-full px-4 py-3 bg-surface-800 border border-surface-700 rounded-gaming text-text-primary focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary form-field-gaming">
-                            <option value>Select availability</option>
-                            <option value="10-15">10-15 hours/week</option>
-                            <option value="16-25">16-25 hours/week</option>
-                            <option value="26-35">26-35 hours/week</option>
-                            <option value="35+">35+ hours/week</option>
+                        <label  class="block text-sm font-medium text-text-primary mb-2">Country *</label>
+                        <select id="country" name="country" required class="w-full px-4 py-3 bg-surface-800 border border-surface-700 rounded-gaming text-text-primary focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary form-field-gaming">
+                            <option value="">Select Your Country</option>
+                            <option value="Afghanistan"> </option>
+                            <option value="Afghanistan">Afghanistan</option>
+                            <option value="Åland Islands">Åland Islands</option>
+                            <option value="Albania">Albania</option>
+                            <option value="Algeria">Algeria</option>
+                            <option value="American Samoa">American Samoa</option>
+                            <option value="Andorra">Andorra</option>
+                            <option value="Angola">Angola</option>
+                            <option value="Anguilla">Anguilla</option>
+                            <option value="Antarctica">Antarctica</option>
+                            <option value="Antigua and Barbuda">Antigua and Barbuda</option>
+                            <option value="Argentina">Argentina</option>
+                            <option value="Armenia">Armenia</option>
+                            <option value="Aruba">Aruba</option>
+                            <option value="Australia">Australia</option>
+                            <option value="Austria">Austria</option>
+                            <option value="Azerbaijan">Azerbaijan</option>
+                            <option value="Bahamas">Bahamas</option>
+                            <option value="Bahrain">Bahrain</option>
+                            <option value="Bangladesh">Bangladesh</option>
+                            <option value="Barbados">Barbados</option>
+                            <option value="Belarus">Belarus</option>
+                            <option value="Belgium">Belgium</option>
+                            <option value="Belize">Belize</option>
+                            <option value="Benin">Benin</option>
+                            <option value="Bermuda">Bermuda</option>
+                            <option value="Bhutan">Bhutan</option>
+                            <option value="Bolivia">Bolivia</option>
+                            <option value="Bosnia and Herzegovina">Bosnia and Herzegovina</option>
+                            <option value="Botswana">Botswana</option>
+                            <option value="Bouvet Island">Bouvet Island</option>
+                            <option value="Brazil">Brazil</option>
+                            <option value="British Indian Ocean Territory">British Indian Ocean Territory</option>
+                            <option value="Brunei Darussalam">Brunei Darussalam</option>
+                            <option value="Bulgaria">Bulgaria</option>
+                            <option value="Burkina Faso">Burkina Faso</option>
+                            <option value="Burundi">Burundi</option>
+                            <option value="Cambodia">Cambodia</option>
+                            <option value="Cameroon">Cameroon</option>
+                            <option value="Canada">Canada</option>
+                            <option value="Cape Verde">Cape Verde</option>
+                            <option value="Cayman Islands">Cayman Islands</option>
+                            <option value="Central African Republic">Central African Republic</option>
+                            <option value="Chad">Chad</option>
+                            <option value="Chile">Chile</option>
+                            <option value="China">China</option>
+                            <option value="Christmas Island">Christmas Island</option>
+                            <option value="Cocos (Keeling) Islands">Cocos (Keeling) Islands</option>
+                            <option value="Colombia">Colombia</option>
+                            <option value="Comoros">Comoros</option>
+                            <option value="Congo">Congo</option>
+                            <option value="Congo, The Democratic Republic of The">Congo, The Democratic Republic of The</option>
+                            <option value="Cook Islands">Cook Islands</option>
+                            <option value="Costa Rica">Costa Rica</option>
+                            <option value="Cote D'ivoire">Cote D'ivoire</option>
+                            <option value="Croatia">Croatia</option>
+                            <option value="Cuba">Cuba</option>
+                            <option value="Cyprus">Cyprus</option>
+                            <option value="Czech Republic">Czech Republic</option>
+                            <option value="Denmark">Denmark</option>
+                            <option value="Djibouti">Djibouti</option>
+                            <option value="Dominica">Dominica</option>
+                            <option value="Dominican Republic">Dominican Republic</option>
+                            <option value="Ecuador">Ecuador</option>
+                            <option value="Egypt">Egypt</option>
+                            <option value="El Salvador">El Salvador</option>
+                            <option value="Equatorial Guinea">Equatorial Guinea</option>
+                            <option value="Eritrea">Eritrea</option>
+                            <option value="Estonia">Estonia</option>
+                            <option value="Ethiopia">Ethiopia</option>
+                            <option value="Falkland Islands (Malvinas)">Falkland Islands (Malvinas)</option>
+                            <option value="Faroe Islands">Faroe Islands</option>
+                            <option value="Fiji">Fiji</option>
+                            <option value="Finland">Finland</option>
+                            <option value="France">France</option>
+                            <option value="French Guiana">French Guiana</option>
+                            <option value="French Polynesia">French Polynesia</option>
+                            <option value="French Southern Territories">French Southern Territories</option>
+                            <option value="Gabon">Gabon</option>
+                            <option value="Gambia">Gambia</option>
+                            <option value="Georgia">Georgia</option>
+                            <option value="Germany">Germany</option>
+                            <option value="Ghana">Ghana</option>
+                            <option value="Gibraltar">Gibraltar</option>
+                            <option value="Greece">Greece</option>
+                            <option value="Greenland">Greenland</option>
+                            <option value="Grenada">Grenada</option>
+                            <option value="Guadeloupe">Guadeloupe</option>
+                            <option value="Guam">Guam</option>
+                            <option value="Guatemala">Guatemala</option>
+                            <option value="Guernsey">Guernsey</option>
+                            <option value="Guinea">Guinea</option>
+                            <option value="Guinea-bissau">Guinea-bissau</option>
+                            <option value="Guyana">Guyana</option>
+                            <option value="Haiti">Haiti</option>
+                            <option value="Heard Island and Mcdonald Islands">Heard Island and Mcdonald Islands</option>
+                            <option value="Holy See (Vatican City State)">Holy See (Vatican City State)</option>
+                            <option value="Honduras">Honduras</option>
+                            <option value="Hong Kong">Hong Kong</option>
+                            <option value="Hungary">Hungary</option>
+                            <option value="Iceland">Iceland</option>
+                            <option value="India">India</option>
+                            <option value="Indonesia">Indonesia</option>
+                            <option value="Iran, Islamic Republic of">Iran, Islamic Republic of</option>
+                            <option value="Iraq">Iraq</option>
+                            <option value="Ireland">Ireland</option>
+                            <option value="Isle of Man">Isle of Man</option>
+                            <option value="Israel">Israel</option>
+                            <option value="Italy">Italy</option>
+                            <option value="Jamaica">Jamaica</option>
+                            <option value="Japan">Japan</option>
+                            <option value="Jersey">Jersey</option>
+                            <option value="Jordan">Jordan</option>
+                            <option value="Kazakhstan">Kazakhstan</option>
+                            <option value="Kenya">Kenya</option>
+                            <option value="Kiribati">Kiribati</option>
+                            <option value="Korea, Democratic People's Republic of">Korea, Democratic People's Republic of</option>
+                            <option value="Korea, Republic of">Korea, Republic of</option>
+                            <option value="Kuwait">Kuwait</option>
+                            <option value="Kyrgyzstan">Kyrgyzstan</option>
+                            <option value="Lao People's Democratic Republic">Lao People's Democratic Republic</option>
+                            <option value="Latvia">Latvia</option>
+                            <option value="Lebanon">Lebanon</option>
+                            <option value="Lesotho">Lesotho</option>
+                            <option value="Liberia">Liberia</option>
+                            <option value="Libyan Arab Jamahiriya">Libyan Arab Jamahiriya</option>
+                            <option value="Liechtenstein">Liechtenstein</option>
+                            <option value="Lithuania">Lithuania</option>
+                            <option value="Luxembourg">Luxembourg</option>
+                            <option value="Macao">Macao</option>
+                            <option value="Macedonia, The Former Yugoslav Republic of">Macedonia, The Former Yugoslav Republic of</option>
+                            <option value="Madagascar">Madagascar</option>
+                            <option value="Malawi">Malawi</option>
+                            <option value="Malaysia">Malaysia</option>
+                            <option value="Maldives">Maldives</option>
+                            <option value="Mali">Mali</option>
+                            <option value="Malta">Malta</option>
+                            <option value="Marshall Islands">Marshall Islands</option>
+                            <option value="Martinique">Martinique</option>
+                            <option value="Mauritania">Mauritania</option>
+                            <option value="Mauritius">Mauritius</option>
+                            <option value="Mayotte">Mayotte</option>
+                            <option value="Mexico">Mexico</option>
+                            <option value="Micronesia, Federated States of">Micronesia, Federated States of</option>
+                            <option value="Moldova, Republic of">Moldova, Republic of</option>
+                            <option value="Monaco">Monaco</option>
+                            <option value="Mongolia">Mongolia</option>
+                            <option value="Montenegro">Montenegro</option>
+                            <option value="Montserrat">Montserrat</option>
+                            <option value="Morocco">Morocco</option>
+                            <option value="Mozambique">Mozambique</option>
+                            <option value="Myanmar">Myanmar</option>
+                            <option value="Namibia">Namibia</option>
+                            <option value="Nauru">Nauru</option>
+                            <option value="Nepal">Nepal</option>
+                            <option value="Netherlands">Netherlands</option>
+                            <option value="Netherlands Antilles">Netherlands Antilles</option>
+                            <option value="New Caledonia">New Caledonia</option>
+                            <option value="New Zealand">New Zealand</option>
+                            <option value="Nicaragua">Nicaragua</option>
+                            <option value="Niger">Niger</option>
+                            <option value="Nigeria">Nigeria</option>
+                            <option value="Niue">Niue</option>
+                            <option value="Norfolk Island">Norfolk Island</option>
+                            <option value="Northern Mariana Islands">Northern Mariana Islands</option>
+                            <option value="Norway">Norway</option>
+                            <option value="Oman">Oman</option>
+                            <option value="Pakistan">Pakistan</option>
+                            <option value="Palau">Palau</option>
+                            <option value="Palestinian Territory, Occupied">Palestinian Territory, Occupied</option>
+                            <option value="Panama">Panama</option>
+                            <option value="Papua New Guinea">Papua New Guinea</option>
+                            <option value="Paraguay">Paraguay</option>
+                            <option value="Peru">Peru</option>
+                            <option value="Philippines">Philippines</option>
+                            <option value="Pitcairn">Pitcairn</option>
+                            <option value="Poland">Poland</option>
+                            <option value="Portugal">Portugal</option>
+                            <option value="Puerto Rico">Puerto Rico</option>
+                            <option value="Qatar">Qatar</option>
+                            <option value="Reunion">Reunion</option>
+                            <option value="Romania">Romania</option>
+                            <option value="Russian Federation">Russian Federation</option>
+                            <option value="Rwanda">Rwanda</option>
+                            <option value="Saint Helena">Saint Helena</option>
+                            <option value="Saint Kitts and Nevis">Saint Kitts and Nevis</option>
+                            <option value="Saint Lucia">Saint Lucia</option>
+                            <option value="Saint Pierre and Miquelon">Saint Pierre and Miquelon</option>
+                            <option value="Saint Vincent and The Grenadines">Saint Vincent and The Grenadines</option>
+                            <option value="Samoa">Samoa</option>
+                            <option value="San Marino">San Marino</option>
+                            <option value="Sao Tome and Principe">Sao Tome and Principe</option>
+                            <option value="Saudi Arabia">Saudi Arabia</option>
+                            <option value="Senegal">Senegal</option>
+                            <option value="Serbia">Serbia</option>
+                            <option value="Seychelles">Seychelles</option>
+                            <option value="Sierra Leone">Sierra Leone</option>
+                            <option value="Singapore">Singapore</option>
+                            <option value="Slovakia">Slovakia</option>
+                            <option value="Slovenia">Slovenia</option>
+                            <option value="Solomon Islands">Solomon Islands</option>
+                            <option value="Somalia">Somalia</option>
+                            <option value="South Africa">South Africa</option>
+                            <option value="South Georgia and The South Sandwich Islands">South Georgia and The South Sandwich Islands</option>
+                            <option value="Spain">Spain</option>
+                            <option value="Sri Lanka">Sri Lanka</option>
+                            <option value="Sudan">Sudan</option>
+                            <option value="Suriname">Suriname</option>
+                            <option value="Svalbard and Jan Mayen">Svalbard and Jan Mayen</option>
+                            <option value="Swaziland">Swaziland</option>
+                            <option value="Sweden">Sweden</option>
+                            <option value="Switzerland">Switzerland</option>
+                            <option value="Syrian Arab Republic">Syrian Arab Republic</option>
+                            <option value="Taiwan">Taiwan</option>
+                            <option value="Tajikistan">Tajikistan</option>
+                            <option value="Tanzania, United Republic of">Tanzania, United Republic of</option>
+                            <option value="Thailand">Thailand</option>
+                            <option value="Timor-leste">Timor-leste</option>
+                            <option value="Togo">Togo</option>
+                            <option value="Tokelau">Tokelau</option>
+                            <option value="Tonga">Tonga</option>
+                            <option value="Trinidad and Tobago">Trinidad and Tobago</option>
+                            <option value="Tunisia">Tunisia</option>
+                            <option value="Turkey">Turkey</option>
+                            <option value="Turkmenistan">Turkmenistan</option>
+                            <option value="Turks and Caicos Islands">Turks and Caicos Islands</option>
+                            <option value="Tuvalu">Tuvalu</option>
+                            <option value="Uganda">Uganda</option>
+                            <option value="Ukraine">Ukraine</option>
+                            <option value="United Arab Emirates">United Arab Emirates</option>
+                            <option value="United Kingdom">United Kingdom</option>
+                            <option value="United States">United States</option>
+                            <option value="United States Minor Outlying Islands">United States Minor Outlying Islands</option>
+                            <option value="Uruguay">Uruguay</option>
+                            <option value="Uzbekistan">Uzbekistan</option>
+                            <option value="Vanuatu">Vanuatu</option>
+                            <option value="Venezuela">Venezuela</option>
+                            <option value="Viet Nam">Viet Nam</option>
+                            <option value="Virgin Islands, British">Virgin Islands, British</option>
+                            <option value="Virgin Islands, U.S.">Virgin Islands, U.S.</option>
+                            <option value="Wallis and Futuna">Wallis and Futuna</option>
+                            <option value="Western Sahara">Western Sahara</option>
+                            <option value="Yemen">Yemen</option>
+                            <option value="Zambia">Zambia</option>
+                            <option value="Zimbabwe">Zimbabwe</option>
                         </select>
                     </div>
                 </div>
             </div>
 
-            <!-- Game Preferences & Skills -->
+            <!-- About Section -->
             <div class="bg-surface rounded-gaming-card shadow-gaming border border-surface-700 p-6 sm:p-8">
                 <h3 class="text-xl font-semibold text-gaming-heading mb-6 flex items-center">
                     <svg class="w-6 h-6 text-accent mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
                     </svg>
-                    Game Preferences & Skills
+                    About You
                 </h3>
-                
-                <div class="space-y-6">
-                    <div>
-                        <label for="primaryGames" class="block text-sm font-medium text-text-primary mb-2">Primary Game Titles *</label>
-                        <div class="grid grid-cols-2 md:grid-cols-3 gap-3" id="primaryGames">
-                            <label class="flex items-center space-x-3 p-3 bg-surface-800 rounded-gaming border border-surface-700 hover:border-primary transition-colors cursor-pointer">
-                                <input type="checkbox" name="primaryGames" value="valorant" class="text-primary focus:ring-primary focus:ring-offset-surface-800" />
-                                <span class="text-text-primary">Valorant</span>
-                            </label>
-                            <label class="flex items-center space-x-3 p-3 bg-surface-800 rounded-gaming border border-surface-700 hover:border-primary transition-colors cursor-pointer">
-                                <input type="checkbox" name="primaryGames" value="csgo" class="text-primary focus:ring-primary focus:ring-offset-surface-800" />
-                                <span class="text-text-primary">CS:GO</span>
-                            </label>
-                            <label class="flex items-center space-x-3 p-3 bg-surface-800 rounded-gaming border border-surface-700 hover:border-primary transition-colors cursor-pointer">
-                                <input type="checkbox" name="primaryGames" value="lol" class="text-primary focus:ring-primary focus:ring-offset-surface-800" />
-                                <span class="text-text-primary">League of Legends</span>
-                            </label>
-                            <label class="flex items-center space-x-3 p-3 bg-surface-800 rounded-gaming border border-surface-700 hover:border-primary transition-colors cursor-pointer">
-                                <input type="checkbox" name="primaryGames" value="dota2" class="text-primary focus:ring-primary focus:ring-offset-surface-800" />
-                                <span class="text-text-primary">Dota 2</span>
-                            </label>
-                            <label class="flex items-center space-x-3 p-3 bg-surface-800 rounded-gaming border border-surface-700 hover:border-primary transition-colors cursor-pointer">
-                                <input type="checkbox" name="primaryGames" value="overwatch" class="text-primary focus:ring-primary focus:ring-offset-surface-800" />
-                                <span class="text-text-primary">Overwatch 2</span>
-                            </label>
-                            <label class="flex items-center space-x-3 p-3 bg-surface-800 rounded-gaming border border-surface-700 hover:border-primary transition-colors cursor-pointer">
-                                <input type="checkbox" name="primaryGames" value="apex" class="text-primary focus:ring-primary focus:ring-offset-surface-800" />
-                                <span class="text-text-primary">Apex Legends</span>
-                            </label>
-                        </div>
-                    </div>
-                    
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <div>
-                            <label for="skillLevel" class="block text-sm font-medium text-text-primary mb-2">Overall Skill Level *</label>
-                            <select id="skillLevel" name="skillLevel" required class="w-full px-4 py-3 bg-surface-800 border border-surface-700 rounded-gaming text-text-primary focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary form-field-gaming">
-                                <option value>Select skill level</option>
-                                <option value="beginner">Beginner</option>
-                                <option value="intermediate">Intermediate</option>
-                                <option value="advanced">Advanced</option>
-                                <option value="expert">Expert</option>
-                                <option value="professional">Professional</option>
-                            </select>
-                        </div>
-                        
-                        <div>
-                            <label for="preferredRole" class="block text-sm font-medium text-text-primary mb-2">Preferred Team Role *</label>
-                            <select id="preferredRole" name="preferredRole" required class="w-full px-4 py-3 bg-surface-800 border border-surface-700 rounded-gaming text-text-primary focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary form-field-gaming">
-                                <option value>Select preferred role</option>
-                                <option value="entry-fragger">Entry Fragger</option>
-                                <option value="support">Support</option>
-                                <option value="igl">In-Game Leader (IGL)</option>
-                                <option value="awper">AWPer/Sniper</option>
-                                <option value="lurker">Lurker</option>
-                                <option value="flex">Flex Player</option>
-                            </select>
-                        </div>
+
+                <div>
+                    <label for="about" class="block text-sm font-medium text-text-primary mb-2">
+                        About Yourself *
+                        <span class="text-text-secondary text-xs ml-1">(Max 1000 characters)</span>
+                    </label>
+                    <textarea id="about" name="about" required rows="6" maxlength="1000" class="w-full px-4 py-3 bg-surface-800 border border-surface-700 rounded-gaming text-text-primary placeholder-text-secondary focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary form-field-gaming resize-none" placeholder="Tell us about yourself, your gaming experience, achievements, and what makes you a great player..."></textarea>
+                    <div class="text-right text-xs text-text-secondary mt-1">
+                        <span id="aboutCount">0</span>/1000 characters
                     </div>
                 </div>
             </div>
 
-            <!-- Competitive History -->
+            <!-- Games Section -->
             <div class="bg-surface rounded-gaming-card shadow-gaming border border-surface-700 p-6 sm:p-8">
                 <h3 class="text-xl font-semibold text-gaming-heading mb-6 flex items-center">
                     <svg class="w-6 h-6 text-warning mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"/>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
                     </svg>
-                    Competitive History
+                    Games You Play
                 </h3>
-                
-                <div class="space-y-6">
-                    <div>
-                        <label for="competitiveExperience" class="block text-sm font-medium text-text-primary mb-2">
-                            Competitive Gaming Experience *
-                            <span class="text-text-secondary text-xs ml-1">(Max 500 characters)</span>
-                        </label>
-                        <textarea id="competitiveExperience" name="competitiveExperience" required rows="4" maxlength="500" class="w-full px-4 py-3 bg-surface-800 border border-surface-700 rounded-gaming text-text-primary placeholder-text-secondary focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary form-field-gaming resize-none" placeholder="Describe your competitive gaming experience, tournaments participated, rankings achieved, and notable achievements..."></textarea>
-                        <div class="text-right text-xs text-text-secondary mt-1">
-                            <span id="competitiveExperienceCount">0</span>/500 characters
-                        </div>
-                    </div>
-                    
-                    <div>
-                        <label for="teamExperience" class="block text-sm font-medium text-text-primary mb-2">
-                            Team Collaboration Experience *
-                            <span class="text-text-secondary text-xs ml-1">(Max 300 characters)</span>
-                        </label>
-                        <textarea id="teamExperience" name="teamExperience" required rows="3" maxlength="300" class="w-full px-4 py-3 bg-surface-800 border border-surface-700 rounded-gaming text-text-primary placeholder-text-secondary focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary form-field-gaming resize-none" placeholder="Describe your experience working with teams, communication skills, and leadership qualities..."></textarea>
-                        <div class="text-right text-xs text-text-secondary mt-1">
-                            <span id="teamExperienceCount">0</span>/300 characters
-                        </div>
-                    </div>
-                    
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <div>
-                            <label for="highestRank" class="block text-sm font-medium text-text-primary mb-2">Highest Competitive Rank</label>
-                            <input type="text" id="highestRank" name="highestRank" class="w-full px-4 py-3 bg-surface-800 border border-surface-700 rounded-gaming text-text-primary placeholder-text-secondary focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary form-field-gaming" placeholder="e.g., Global Elite, Radiant, Challenger" />
-                        </div>
-                        
-                        <div>
-                            <label for="tournamentWins" class="block text-sm font-medium text-text-primary mb-2">Tournament Wins</label>
-                            <input type="number" id="tournamentWins" name="tournamentWins" min="0" class="w-full px-4 py-3 bg-surface-800 border border-surface-700 rounded-gaming text-text-primary placeholder-text-secondary focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary form-field-gaming" placeholder="Number of tournaments won" />
-                        </div>
-                    </div>
-                </div>
-            </div>
 
-            <!-- Gaming Statistics Upload -->
-            <div class="bg-surface rounded-gaming-card shadow-gaming border border-surface-700 p-6 sm:p-8">
-                <h3 class="text-xl font-semibold text-gaming-heading mb-6 flex items-center">
-                    <svg class="w-6 h-6 text-secondary-700 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"/>
-                    </svg>
-                    Gaming Statistics & Portfolio
-                </h3>
-                
-                <div class="space-y-6">
-                    <div>
-                        <label class="block text-sm font-medium text-text-primary mb-2">Upload Screenshots or Match Histories</label>
-                        <div class="border-2 border-dashed border-surface-700 rounded-gaming-card p-8 text-center hover:border-primary transition-colors">
-                            <svg class="w-12 h-12 text-text-secondary mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"/>
-                            </svg>
-                            <p class="text-text-primary mb-2">Drop files here or click to upload</p>
-                            <p class="text-text-secondary text-sm">PNG, JPG, PDF up to 10MB each (Max 5 files)</p>
-                            <input type="file" id="portfolioFiles" name="portfolioFiles" multiple accept=".png,.jpg,.jpeg,.pdf" class="hidden" />
-                            <button type="button" onclick="document.getElementById('portfolioFiles').click()" class="mt-4 px-6 py-2 bg-primary text-background font-medium rounded-gaming btn-gaming hover:bg-primary-600 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-surface">
-                                Choose Files
-                            </button>
-                        </div>
-                        <div id="filePreview" class="mt-4 space-y-2 hidden">
-                            <!-- File preview items will be added here -->
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Communication Preferences -->
-            <div class="bg-surface rounded-gaming-card shadow-gaming border border-surface-700 p-6 sm:p-8">
-                <h3 class="text-xl font-semibold text-gaming-heading mb-6 flex items-center">
-                    <svg class="w-6 h-6 text-accent mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/>
-                    </svg>
-                    Communication Preferences
-                </h3>
-                
-                <div class="space-y-6">
-                    <div>
-                        <label class="block text-sm font-medium text-text-primary mb-3">Preferred Communication Platforms *</label>
-                        <div class="grid grid-cols-2 md:grid-cols-3 gap-3">
-                            <label class="flex items-center space-x-3 p-3 bg-surface-800 rounded-gaming border border-surface-700 hover:border-primary transition-colors cursor-pointer">
-                                <input type="checkbox" name="communicationPlatforms" value="discord" class="text-primary focus:ring-primary focus:ring-offset-surface-800" />
-                                <span class="text-text-primary">Discord</span>
-                            </label>
-                            <label class="flex items-center space-x-3 p-3 bg-surface-800 rounded-gaming border border-surface-700 hover:border-primary transition-colors cursor-pointer">
-                                <input type="checkbox" name="communicationPlatforms" value="teamspeak" class="text-primary focus:ring-primary focus:ring-offset-surface-800" />
-                                <span class="text-text-primary">TeamSpeak</span>
-                            </label>
-                            <label class="flex items-center space-x-3 p-3 bg-surface-800 rounded-gaming border border-surface-700 hover:border-primary transition-colors cursor-pointer">
-                                <input type="checkbox" name="communicationPlatforms" value="steam" class="text-primary focus:ring-primary focus:ring-offset-surface-800" />
-                                <span class="text-text-primary">Steam Chat</span>
-                            </label>
-                            <label class="flex items-center space-x-3 p-3 bg-surface-800 rounded-gaming border border-surface-700 hover:border-primary transition-colors cursor-pointer">
-                                <input type="checkbox" name="communicationPlatforms" value="slack" class="text-primary focus:ring-primary focus:ring-offset-surface-800" />
-                                <span class="text-text-primary">Slack</span>
-                            </label>
-                            <label class="flex items-center space-x-3 p-3 bg-surface-800 rounded-gaming border border-surface-700 hover:border-primary transition-colors cursor-pointer">
-                                <input type="checkbox" name="communicationPlatforms" value="whatsapp" class="text-primary focus:ring-primary focus:ring-offset-surface-800" />
-                                <span class="text-text-primary">WhatsApp</span>
-                            </label>
-                            <label class="flex items-center space-x-3 p-3 bg-surface-800 rounded-gaming border border-surface-700 hover:border-primary transition-colors cursor-pointer">
-                                <input type="checkbox" name="communicationPlatforms" value="telegram" class="text-primary focus:ring-primary focus:ring-offset-surface-800" />
-                                <span class="text-text-primary">Telegram</span>
-                            </label>
-                        </div>
-                    </div>
-                    
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <div>
-                            <label for="discordUsername" class="block text-sm font-medium text-text-primary mb-2">Discord Username</label>
-                            <input type="text" id="discordUsername" name="discordUsername" class="w-full px-4 py-3 bg-surface-800 border border-surface-700 rounded-gaming text-text-primary placeholder-text-secondary focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary form-field-gaming" placeholder="username#1234" />
-                        </div>
-                        
-                        <div>
-                            <label for="steamProfile" class="block text-sm font-medium text-text-primary mb-2">Steam Profile URL</label>
-                            <input type="url" id="steamProfile" name="steamProfile" class="w-full px-4 py-3 bg-surface-800 border border-surface-700 rounded-gaming text-text-primary placeholder-text-secondary focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary form-field-gaming" placeholder="https://steamcommunity.com/id/username" />
-                        </div>
+                <div>
+                    <label class="block text-sm font-medium text-text-primary mb-3">Select Games You Play *</label>
+                    <div class="grid grid-cols-2 md:grid-cols-3 gap-3" id="games">
+                        <label class="flex items-center space-x-3 p-3 bg-surface-800 rounded-gaming border border-surface-700 hover:border-primary transition-colors cursor-pointer">
+                            <input type="checkbox" name="games" value="Valorant" class="text-primary focus:ring-primary focus:ring-offset-surface-800" />
+                            <span class="text-text-primary">Valorant</span>
+                        </label>
+                        <label class="flex items-center space-x-3 p-3 bg-surface-800 rounded-gaming border border-surface-700 hover:border-primary transition-colors cursor-pointer">
+                            <input type="checkbox" name="games" value="CS:GO" class="text-primary focus:ring-primary focus:ring-offset-surface-800" />
+                            <span class="text-text-primary">CS:GO</span>
+                        </label>
+                        <label class="flex items-center space-x-3 p-3 bg-surface-800 rounded-gaming border border-surface-700 hover:border-primary transition-colors cursor-pointer">
+                            <input type="checkbox" name="games" value="League of Legends" class="text-primary focus:ring-primary focus:ring-offset-surface-800" />
+                            <span class="text-text-primary">League of Legends</span>
+                        </label>
+                        <label class="flex items-center space-x-3 p-3 bg-surface-800 rounded-gaming border border-surface-700 hover:border-primary transition-colors cursor-pointer">
+                            <input type="checkbox" name="games" value="Dota 2" class="text-primary focus:ring-primary focus:ring-offset-surface-800" />
+                            <span class="text-text-primary">Dota 2</span>
+                        </label>
+                        <label class="flex items-center space-x-3 p-3 bg-surface-800 rounded-gaming border border-surface-700 hover:border-primary transition-colors cursor-pointer">
+                            <input type="checkbox" name="games" value="Overwatch 2" class="text-primary focus:ring-primary focus:ring-offset-surface-800" />
+                            <span class="text-text-primary">Overwatch 2</span>
+                        </label>
+                        <label class="flex items-center space-x-3 p-3 bg-surface-800 rounded-gaming border border-surface-700 hover:border-primary transition-colors cursor-pointer">
+                            <input type="checkbox" name="games" value="Apex Legends" class="text-primary focus:ring-primary focus:ring-offset-surface-800" />
+                            <span class="text-text-primary">Apex Legends</span>
+                        </label>
+                        <label class="flex items-center space-x-3 p-3 bg-surface-800 rounded-gaming border border-surface-700 hover:border-primary transition-colors cursor-pointer">
+                            <input type="checkbox" name="games" value="Fortnite" class="text-primary focus:ring-primary focus:ring-offset-surface-800" />
+                            <span class="text-text-primary">Fortnite</span>
+                        </label>
+                        <label class="flex items-center space-x-3 p-3 bg-surface-800 rounded-gaming border border-surface-700 hover:border-primary transition-colors cursor-pointer">
+                            <input type="checkbox" name="games" value="Rocket League" class="text-primary focus:ring-primary focus:ring-offset-surface-800" />
+                            <span class="text-text-primary">Rocket League</span>
+                        </label>
                     </div>
                 </div>
             </div>
@@ -353,7 +509,7 @@
         </div>
     </footer>
 
-    <!-- Mobile Navigation Menu (Hidden by default) -->
+    <!-- Mobile Navigation Menu -->
     <div class="md:hidden fixed inset-0 z-50 hidden" id="mobile-menu">
         <div class="fixed inset-0 bg-background/80 backdrop-blur-sm" onclick="toggleMobileMenu()"></div>
         <div class="fixed top-0 right-0 w-64 h-full bg-surface border-l border-surface-700 p-6">
@@ -385,161 +541,76 @@
                         </svg>
                     </div>
                     <h3 class="text-xl font-semibold text-gaming-heading mb-2">Application Submitted!</h3>
-                    <p class="text-text-secondary mb-6">Your player application has been successfully submitted. Our team will review your application within 3-5 business days.</p>
-                    <div class="space-y-3">
-                        <button onclick="closeSuccessModal()" class="w-full px-6 py-3 bg-primary text-background font-medium rounded-gaming btn-gaming hover:bg-primary-600 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-surface">
-                            Continue
-                        </button>
-                        <a href="../user/user_profile_view.html" class="block w-full px-6 py-3 bg-surface-800 text-text-primary font-medium rounded-gaming text-center border border-surface-700 hover:bg-surface-700 focus:outline-none focus:ring-2 focus:ring-surface-700 focus:ring-offset-2 focus:ring-offset-surface btn-gaming">
-                            Back to Profile
-                        </a>
-                    </div>
+                    <p class="text-text-secondary mb-6">Your player application has been successfully submitted.</p>
+                    <button onclick="closeSuccessModal()" class="w-full px-6 py-3 bg-primary text-background font-medium rounded-gaming btn-gaming hover:bg-primary-600 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-surface">
+                        Continue
+                    </button>
                 </div>
             </div>
         </div>
     </div>
+</div>
+<script>
+    // Mobile menu toggle
+    function toggleMobileMenu() {
+        const mobileMenu = document.getElementById('mobile-menu');
+        mobileMenu.classList.toggle('hidden');
+    }
 
-    <script>
-        // Mobile menu toggle
-        function toggleMobileMenu() {
-            const mobileMenu = document.getElementById('mobile-menu');
-            mobileMenu.classList.toggle('hidden');
+    // Character count for about textarea
+    document.getElementById('about').addEventListener('input', function() {
+        const count = this.value.length;
+        document.getElementById('aboutCount').textContent = count;
+    });
+
+    // Form submission
+    document.getElementById('playerApplicationForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+
+        // Get form data
+        const formData = new FormData(this);
+        const playerData = {
+            email: formData.get('email'),
+            playerName: formData.get('playerName'),
+            role: formData.get('role'),
+            country: formData.get('country'),
+            about: formData.get('about'),
+            games: formData.getAll('games')
+        };
+
+        // Basic validation
+        if (!playerData.email || !playerData.playerName || !playerData.role || !playerData.country || !playerData.about) {
+            alert('Please fill in all required fields.');
+            return;
         }
 
-        // Character count for textareas
-        document.getElementById('competitiveExperience').addEventListener('input', function() {
-            const count = this.value.length;
-            document.getElementById('competitiveExperienceCount').textContent = count;
-        });
-
-        document.getElementById('teamExperience').addEventListener('input', function() {
-            const count = this.value.length;
-            document.getElementById('teamExperienceCount').textContent = count;
-        });
-
-        // File upload preview
-        document.getElementById('portfolioFiles').addEventListener('change', function() {
-            const filePreview = document.getElementById('filePreview');
-            const files = this.files;
-            
-            if (files.length > 0) {
-                filePreview.classList.remove('hidden');
-                filePreview.innerHTML = '';
-                
-                Array.from(files).forEach((file, index) => {
-                    const fileItem = document.createElement('div');
-                    fileItem.className = 'flex items-center justify-between p-3 bg-surface-800 rounded-gaming border border-surface-700';
-                    fileItem.innerHTML = `
-                        <div class="flex items-center space-x-3">
-                            <svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
-                            </svg>
-                            <span class="text-text-primary text-sm">${file.name}</span>
-                            <span class="text-text-secondary text-xs">(${(file.size / 1024 / 1024).toFixed(2)} MB)</span>
-                        </div>
-                        <button type="button" onclick="removeFile(${index})" class="text-error hover:text-error-600">
-                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-                            </svg>
-                        </button>
-                    `;
-                    filePreview.appendChild(fileItem);
-                });
-            } else {
-                filePreview.classList.add('hidden');
-            }
-        });
-
-        // Form submission
-        document.getElementById('playerApplicationForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // Basic validation
-            const requiredFields = this.querySelectorAll('[required]');
-            let isValid = true;
-            
-            requiredFields.forEach(field => {
-                if (!field.value.trim()) {
-                    isValid = false;
-                    field.classList.add('border-error');
-                } else {
-                    field.classList.remove('border-error');
-                }
-            });
-            
-            // Check if at least one game is selected
-            const gameCheckboxes = this.querySelectorAll('input[name="primaryGames"]:checked');
-            if (gameCheckboxes.length === 0) {
-                isValid = false;
-                alert('Please select at least one primary game.');
-                return;
-            }
-            
-            // Check if at least one communication platform is selected
-            const commCheckboxes = this.querySelectorAll('input[name="communicationPlatforms"]:checked');
-            if (commCheckboxes.length === 0) {
-                isValid = false;
-                alert('Please select at least one communication platform.');
-                return;
-            }
-            
-            if (isValid) {
-                // Show success modal
-                document.getElementById('successModal').classList.remove('hidden');
-                
-                // Update progress to complete
-                const progressBars = document.querySelectorAll('.flex.space-x-2 > div');
-                progressBars.forEach(bar => {
-                    bar.classList.remove('bg-surface-700');
-                    bar.classList.add('bg-primary');
-                });
-            } else {
-                alert('Please fill in all required fields.');
-            }
-        });
-
-        // Reset form
-        function resetForm() {
-            if (confirm('Are you sure you want to reset the form? All entered data will be lost.')) {
-                document.getElementById('playerApplicationForm').reset();
-                document.getElementById('filePreview').classList.add('hidden');
-                document.getElementById('competitiveExperienceCount').textContent = '0';
-                document.getElementById('teamExperienceCount').textContent = '0';
-                
-                // Reset progress
-                const progressBars = document.querySelectorAll('.flex.space-x-2 > div');
-                progressBars.forEach((bar, index) => {
-                    if (index < 3) {
-                        bar.classList.add('bg-primary');
-                        bar.classList.remove('bg-surface-700');
-                    } else {
-                        bar.classList.remove('bg-primary');
-                        bar.classList.add('bg-surface-700');
-                    }
-                });
-            }
+        if (playerData.games.length === 0) {
+            alert('Please select at least one game.');
+            return;
         }
 
-        // Close success modal
-        function closeSuccessModal() {
-            document.getElementById('successModal').classList.add('hidden');
-        }
+        // Log the data (replace with actual submission logic)
+        console.log('Player Data:', playerData);
 
-        // Remove file from upload
-        function removeFile(index) {
-            const fileInput = document.getElementById('portfolioFiles');
-            const dt = new DataTransfer();
-            const files = fileInput.files;
-            
-            for (let i = 0; i < files.length; i++) {
-                if (i !== index) {
-                    dt.items.add(files[i]);
-                }
-            }
-            
-            fileInput.files = dt.files;
-            fileInput.dispatchEvent(new Event('change'));
+        // Show success modal
+        document.getElementById('successModal').classList.remove('hidden');
+    });
+
+    // Reset form
+    function resetForm() {
+        if (confirm('Are you sure you want to reset the form? All entered data will be lost.')) {
+            document.getElementById('playerApplicationForm').reset();
+            document.getElementById('aboutCount').textContent = '0';
         }
-    </script>
+    }
+
+    // Close success modal
+    function closeSuccessModal() {
+        document.getElementById('successModal').classList.add('hidden');
+    }
+</script>
+<script src="../assets/jq/jquery-3.7.1.min.js"></script>
+<script src="../assets/js/signup.js"></script>
+<script src="../assets/js/playerApplication.js"></script>
 </body>
 </html>
