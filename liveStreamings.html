@@ -1,0 +1,999 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <link crossorigin="" href="https://fonts.gstatic.com/" rel="preconnect"/>
+    <link as="style" href="https://fonts.googleapis.com/css2?display=swap&family=Noto+Sans:wght@400;500;700;900&family=Space+Grotesk:wght@400;500;700" onload="this.rel='stylesheet'" rel="stylesheet"/>
+    <meta charset="utf-8"/>
+    <title>User Profile -  User Platform</title>
+    <link href="data:image/x-icon;base64," rel="icon" type="image/x-icon"/>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <style src="https://cdn.tailwindcss.com"></style>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <!--fontawesome-->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" rel="stylesheet"/>
+    <!--css-->
+    <link href="assets/css/home.css" rel="stylesheet" type="text/css"/>
+    <link href="assets/css/main.css" rel="stylesheet" type="text/css"/>
+    <link href="assets/css/tailwind.css" rel="stylesheet" type="text/css"/>
+    <style>
+
+        .registration-badge {
+            background-color: #10b981;
+            color: white;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 10px;
+            font-weight: 600;
+        }
+
+        .status-closed {
+            background-color: #ef4444;
+            color: white;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 10px;
+            font-weight: 600;
+        }
+
+        .status-filling {
+            background-color: #f59e0b;
+            color: black;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 10px;
+            font-weight: 600;
+        }
+
+        .transition-gaming {
+            transition: all 0.3s ease;
+        }
+
+        .tournament-card {
+            background-color: #1f2937;
+            border: 1px solid #374151;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 16px;
+        }
+
+        .tournament-card:hover {
+            border-color: #00ffcc;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 255, 204, 0.1);
+        }
+
+        #tournament-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 20px;
+            padding: 20px;
+        }
+
+        button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        button:disabled:hover {
+            background-color: #f59e0b !important;
+            transform: none;
+        }
+        /* Add this to your CSS to improve the dropdown appearance */
+        #userDropdown {
+            z-index: 1000;
+            border: 1px solid #374151;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+
+        #userDropdown a:hover {
+            background-color: #374151 !important;
+            color: #00ffcc !important;
+        }
+
+        /* Tournament card hover effects and Watch Now button styles */
+        .tournament-card {
+            transition: all 0.3s ease-in-out;
+        }
+
+        .watch-now-btn {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0);
+            background: linear-gradient(135deg, #00ffcc, #22c55e);
+            color: #000;
+            font-weight: 600;
+            padding: 12px 24px;
+            border-radius: 50px;
+            border: none;
+            cursor: pointer;
+            font-size: 14px;
+            z-index: 10;
+            opacity: 0;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .tournament-card:hover .watch-now-btn {
+            transform: translate(-50%, -50%) scale(1);
+            opacity: 1;
+        }
+
+        .watch-now-btn:hover {
+            transform: translate(-50%, -50%) scale(1.1);
+        }
+
+        .tournament-card:hover .card-overlay {
+            opacity: 1;
+        }
+
+        .card-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.6);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            border-radius: 0.5rem;
+        }
+
+        /* Live indicator styles */
+        .live-indicator {
+            background: linear-gradient(135deg, #ff0000, #ff4444);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            box-shadow: 0 4px 15px rgba(255, 0, 0, 0.3);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 4px 15px rgba(255, 0, 0, 0.3);
+            }
+            50% {
+                box-shadow: 0 4px 25px rgba(255, 0, 0, 0.6);
+            }
+            100% {
+                box-shadow: 0 4px 15px rgba(255, 0, 0, 0.3);
+            }
+        }
+    </style>
+</head>
+<body class="bg-background min-h-screen text-text-primary font-inter">
+
+<div class="relative flex size-full min-h-screen flex-col overflow-x-hidden " style='font-family: "Space Grotesk", "Noto Sans", sans-serif;'>
+    <!-- Navigation Header -->
+    <header class="flex items-center justify-between whitespace-nowrap border-b border-solid-1 border-b-[#34C759] px-10 py-4 shadow-lg sticky top-0 header-blur z-50">
+        <div class="flex items-center gap-4 text-white">
+            <div class="size-10 text-[#00ffcc] logo-glow cursor-pointer">
+                <svg
+                        fill="none"
+                        viewBox="0 0 48 48"
+                        xmlns="http://www.w3.org/2000/svg"
+                        class="w-10 h-10"
+                >
+                    <path
+                            clip-rule="evenodd"
+                            d="M24 18.4228L42 11.475V34.3663C42 34.7796 41.7457 35.1504 41.3601 35.2992L24 42V18.4228Z"
+                            fill="currentColor"
+                            fill-rule="evenodd"
+                    />
+                    <path
+                            clip-rule="evenodd"
+                            d="M24 8.18819L33.4123 11.574L24 15.2071L14.5877 11.574L24 8.18819ZM9 15.8487L21 20.4805V37.6263L9 32.9945V15.8487ZM27 37.6263V20.4805L39 15.8487V32.9945L27 37.6263ZM25.354 2.29885C24.4788 1.98402 23.5212 1.98402 22.646 2.29885L4.98454 8.65208C3.7939 9.08038 3 10.2097 3 11.475V34.3663C3 36.0196 4.01719 37.5026 5.55962 38.098L22.9197 44.7987C23.6149 45.0671 24.3851 45.0671 25.0803 44.7987L42.4404 38.098C43.9828 37.5026 45 36.0196 45 34.3663V11.475C45 10.2097 44.2061 9.08038 43.0155 8.65208L25.354 2.29885Z"
+                            fill="currentColor"
+                            fill-rule="evenodd"
+                    />
+                </svg>
+            </div>
+            <h2 class="text-white text-xl font-bold leading-tight tracking-[-0.015em] neon-text">
+                GameArenaX
+            </h2>
+        </div>
+        <nav class="flex flex-1 justify-end gap-8">
+            <!-- Nav links (always visible) -->
+            <nav class="flex items-center  gap-8">
+                <a class="text-gray-300  nav-link" href="index2.html">Home</a>
+                <a class="text-green-400 font-semibold cursor-pointer nav-link text-sm sm:text-base" href="liveStreamings.html">
+          <span class="inline-flex items-center space-x-1">
+            <span class="relative flex w-1.5 h-1.5">
+              <span class="absolute inline-flex w-full h-full rounded-full bg-[#ff0000] opacity-80 animate-ping"></span>
+              <span class="relative w-1.5 h-1.5 bg-[#ff0000] rounded-full"></span>
+            </span>
+            <span class="font-medium">Live</span>
+          </span>
+                </a>
+                <a class="text-gray-300  nav-link" href="tournament.html">Tournaments</a>
+                <a class="text-gray-300  nav-link" href="clan/clan_directory.html">Clans</a>
+            </nav>
+
+            <!-- Login button (only visible before login) -->
+            <button id="loginBtnNav"
+                    class="flex min-w-[100px] max-w-[400px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-9 px-5 border-2 border-[#22c55e] text-[#22c55e] text-sm font-semibold tracking-wide relative transition-all duration-300 ease-in-out hover:text-white"
+                    onclick="openLoginModal()">
+                <span class="relative z-10">Login</span>
+                <span class="absolute inset-0 rounded-full border-2 border-[#22c55e] opacity-50 transition-all duration-500 ease-in-out hover:scale-110 hover:opacity-100"></span>
+                <span class="absolute inset-0 bg-gradient-to-r from-[#22c55e] to-[#16a34a] opacity-0 rounded-full transition-opacity duration-300 ease-in-out hover:opacity-20"></span>
+            </button>
+
+            <div class="flex items-center space-x-3" id="userProfile" style="display: none">
+                <span class="hidden sm:block text-sm font-medium" id="usernameDisplay"></span>
+                <!--user dropdown menu for edit profile,Apply as a streamer,Apply as a player and logout-->
+                <div class="relative inline-block text-left">
+                    <div>
+                        <button id="userDropdownBtn" type="button" class="text-green-400 hover:text-green-300 transition-colors">
+                            <i class="fas fa-chevron-down text-sm transition-transform duration-200" id="dropdownArrow"></i>                            </button>
+                    </div>
+                    <div id="userDropdown" class="hidden absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-black">
+                        <a href="" id="viewProfile" class="block px-4 py-2 text-sm text-white hover:bg-gray-700">View Profile</a>
+                        <a href="player/player_application.html" class="block px-4 py-2 text-sm text-white hover:bg-gray-700" id="applyAsPlayer">Apply as a Player</a>
+                        <a href="streamer/streamer_application.html" class="block px-4 py-2 text-sm text-white hover:bg-gray-700" id="applyAsStreamer">Apply as a Streamer</a>
+                        <a href=""  id="logoutBtn" class="block px-4 py-2 text-sm text-red-400 hover:bg-gray-700">Logout</a>
+                        <!-- &lt;!&ndash; Logout button (only visible after login) &ndash;&gt;
+                         <div class="flex items-center gap-4">
+                             <button id="logoutBtn" class="text-red-400 hover:text-red-300 transition-colors">
+                                 <span class="hidden sm:block">Logout</span>
+                                 <i class="fas fa-sign-out-alt text-xl"></i>
+                             </button>
+                         </div>-->
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Multi-Stream Preview Grid -->
+    <main class="py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Live Tournaments</h2>
+                <p class="text-text-secondary text-lg max-w-2xl mx-auto">
+                    Jump into any active tournament and experience the action with our community
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Tournament Stream 1 -->
+                <div class="tournament-card group cursor-pointer">
+                    <div class="relative mb-4 overflow-hidden rounded-lg">
+                        <img src="https://images.unsplash.com/photo-1511512578047-dfb367046420?q=80&w=2940&auto=format&fit=crop" alt="CS2 Championship" class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300" onerror="this.src='https://images.pexels.com/photos/3165335/pexels-photo-3165335.jpeg?auto=compress&cs=tinysrgb&w=2940'; this.onerror=null;" />
+                        <div class="card-overlay"></div>
+                        <button class="watch-now-btn" onclick="watchTournament('cs2-major')">
+                            <i class="fas fa-play mr-2"></i>Watch Now
+                        </button>
+                        <div class="absolute top-3 left-3">
+                            <span class="live-indicator">LIVE</span>
+                        </div>
+                        <div class="absolute top-3 right-3 bg-black/70 text-white px-2 py-1 rounded text-sm font-mono">
+                            234K viewers
+                        </div>
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+                        <div class="absolute bottom-3 left-3 right-3">
+                            <h3 class="text-white font-semibold text-lg mb-1">CS2 Major Finals</h3>
+                            <p class="text-gray-300 text-sm">Team Liquid vs FaZe Clan</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center space-x-2">
+                            <img src="https://images.unsplash.com/photo-1560472354-b33ff0c44a43?q=80&w=126&auto=format&fit=crop" alt="CS2" class="w-8 h-8 rounded object-cover" onerror="this.src=''; this.onerror=null;" />
+                            <span class="text-text-secondary text-sm">Counter-Strike 2</span>
+                        </div>
+                        <span class="text-accent text-sm font-medium">$500K Prize</span>
+                    </div>
+                </div>
+
+                <!-- Tournament Stream 2 -->
+                <div class="tournament-card group cursor-pointer">
+                    <div class="relative mb-4 overflow-hidden rounded-lg">
+                        <img src="https://images.pexels.com/photos/442576/pexels-photo-442576.jpeg?auto=compress&cs=tinysrgb&w=2940" alt="League of Legends World Championship" class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300" onerror="this.src='https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=2940&auto=format&fit=crop'; this.onerror=null;" />
+                        <div class="card-overlay"></div>
+                        <button class="watch-now-btn" onclick="watchTournament('lol-worlds')">
+                            <i class="fas fa-play mr-2"></i>Watch Now
+                        </button>
+                        <div class="absolute top-3 left-3">
+                            <span class="live-indicator">LIVE</span>
+                        </div>
+                        <div class="absolute top-3 right-3 bg-black/70 text-white px-2 py-1 rounded text-sm font-mono">
+                            892K viewers
+                        </div>
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+                        <div class="absolute bottom-3 left-3 right-3">
+                            <h3 class="text-white font-semibold text-lg mb-1">LoL Worlds 2025</h3>
+                            <p class="text-gray-300 text-sm">T1 vs Gen.G</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center space-x-2">
+                            <img src="" alt="League of Legends" class="w-8 h-8 rounded object-cover" onerror="this.src='https://images.unsplash.com/photo-1560472354-b33ff0c44a43?q=80&w=126&auto=format&fit=crop'; this.onerror=null;" />
+                            <span class="text-text-secondary text-sm">League of Legends</span>
+                        </div>
+                        <span class="text-accent text-sm font-medium">$2.2M Prize</span>
+                    </div>
+                </div>
+
+                <!-- Tournament Stream 3 -->
+                <div class="tournament-card group cursor-pointer">
+                    <div class="relative mb-4 overflow-hidden rounded-lg">
+                        <img src="https://images.unsplash.com/photo-1493711662062-fa541adb3fc8?q=80&w=2940&auto=format&fit=crop" alt="Valorant Champions" class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300" onerror="this.src='https://images.pexels.com/photos/3165335/pexels-photo-3165335.jpeg?auto=compress&cs=tinysrgb&w=2940'; this.onerror=null;" />
+                        <div class="card-overlay"></div>
+                        <button class="watch-now-btn" onclick="watchTournament('valorant-champions')">
+                            <i class="fas fa-play mr-2"></i>Watch Now
+                        </button>
+                        <div class="absolute top-3 left-3">
+                            <span class="live-indicator">LIVE</span>
+                        </div>
+                        <div class="absolute top-3 right-3 bg-black/70 text-white px-2 py-1 rounded text-sm font-mono">
+                            156K viewers
+                        </div>
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+                        <div class="absolute bottom-3 left-3 right-3">
+                            <h3 class="text-white font-semibold text-lg mb-1">Valorant Champions</h3>
+                            <p class="text-gray-300 text-sm">Sentinels vs LOUD</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center space-x-2">
+                            <img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=126&auto=format&fit=crop" alt="Valorant" class="w-8 h-8 rounded object-cover" onerror="this.src=''; this.onerror=null;" />
+                            <span class="text-text-secondary text-sm">Valorant</span>
+                        </div>
+                        <span class="text-accent text-sm font-medium">$1M Prize</span>
+                    </div>
+                </div>
+
+                <!-- Tournament Stream 4 -->
+                <div class="tournament-card group cursor-pointer">
+                    <div class="relative mb-4 overflow-hidden rounded-lg">
+                        <img src="https://images.pexels.com/photos/3165335/pexels-photo-3165335.jpeg?auto=compress&cs=tinysrgb&w=2940" alt="Dota 2 International" class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300" onerror="this.src='https://images.unsplash.com/photo-1511512578047-dfb367046420?q=80&w=2940&auto=format&fit=crop'; this.onerror=null;" />
+                        <div class="card-overlay"></div>
+                        <button class="watch-now-btn" onclick="watchTournament('dota-international')">
+                            <i class="fas fa-clock mr-2"></i>Starting Soon
+                        </button>
+                        <div class="absolute top-3 left-3">
+                            <span class="bg-warning text-slate-900 px-2 py-1 rounded-full text-xs font-mono font-medium">STARTING SOON</span>
+                        </div>
+                        <div class="absolute top-3 right-3 bg-black/70 text-white px-2 py-1 rounded text-sm font-mono">
+                            45K waiting
+                        </div>
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+                        <div class="absolute bottom-3 left-3 right-3">
+                            <h3 class="text-white font-semibold text-lg mb-1">The International</h3>
+                            <p class="text-gray-300 text-sm">OG vs Team Spirit</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center space-x-2">
+                            <img src="https://images.unsplash.com/photo-1493711662062-fa541adb3fc8?q=80&w=126&auto=format&fit=crop" alt="Dota 2" class="w-8 h-8 rounded object-cover" onerror="this.src='https://images.pexels.com/photos/3165335/pexels-photo-3165335.jpeg?auto=compress&cs=tinysrgb&w=126'; this.onerror=null;" />
+                            <span class="text-text-secondary text-sm">Dota 2</span>
+                        </div>
+                        <span class="text-accent text-sm font-medium">$15M Prize</span>
+                    </div>
+                </div>
+
+                <!-- Tournament Stream 5 -->
+                <div class="tournament-card group cursor-pointer">
+                    <div class="relative mb-4 overflow-hidden rounded-lg">
+                        <img src="https://images.unsplash.com/photo-1560472354-b33ff0c44a43?q=80&w=2940&auto=format&fit=crop" alt="Rocket League Championship" class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300" onerror="this.src='https://images.pexels.com/photos/442576/pexels-photo-442576.jpeg?auto=compress&cs=tinysrgb&w=2940'; this.onerror=null;" />
+                        <div class="card-overlay"></div>
+                        <button class="watch-now-btn" onclick="watchTournament('rlcs-championship')">
+                            <i class="fas fa-play mr-2"></i>Watch Now
+                        </button>
+                        <div class="absolute top-3 left-3">
+                            <span class="live-indicator">LIVE</span>
+                        </div>
+                        <div class="absolute top-3 right-3 bg-black/70 text-white px-2 py-1 rounded text-sm font-mono">
+                            78K viewers
+                        </div>
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+                        <div class="absolute bottom-3 left-3 right-3">
+                            <h3 class="text-white font-semibold text-lg mb-1">RLCS World Championship</h3>
+                            <p class="text-gray-300 text-sm">BDS vs G2 Esports</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center space-x-2">
+                            <img src="https://images.pexels.com/photos/442576/pexels-photo-442576.jpeg?auto=compress&cs=tinysrgb&w=126" alt="Rocket League" class="w-8 h-8 rounded object-cover" onerror="this.src='https://images.unsplash.com/photo-1560472354-b33ff0c44a43?q=80&w=126&auto=format&fit=crop'; this.onerror=null;" />
+                            <span class="text-text-secondary text-sm">Rocket League</span>
+                        </div>
+                        <span class="text-accent text-sm font-medium">$600K Prize</span>
+                    </div>
+                </div>
+
+                <!-- Tournament Stream 6 -->
+                <div class="tournament-card group cursor-pointer">
+                    <div class="relative mb-4 overflow-hidden rounded-lg">
+                        <img src="" alt="Overwatch League Grand Finals" class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300" onerror="this.src='https://images.unsplash.com/photo-1493711662062-fa541adb3fc8?q=80&w=2940&auto=format&fit=crop'; this.onerror=null;" />
+                        <div class="card-overlay"></div>
+                        <button class="watch-now-btn" onclick="watchTournament('overwatch-league')">
+                            <i class="fas fa-play mr-2"></i>Watch Now
+                        </button>
+                        <div class="absolute top-3 left-3">
+                            <span class="live-indicator">LIVE</span>
+                        </div>
+                        <div class="absolute top-3 right-3 bg-black/70 text-white px-2 py-1 rounded text-sm font-mono">
+                            123K viewers
+                        </div>
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+                        <div class="absolute bottom-3 left-3 right-3">
+                            <h3 class="text-white font-semibold text-lg mb-1">Overwatch League Finals</h3>
+                            <p class="text-gray-300 text-sm">San Francisco Shock vs Seoul Dynasty</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center space-x-2">
+                            <img src="https://images.unsplash.com/photo-1511512578047-dfb367046420?q=80&w=126&auto=format&fit=crop" alt="Overwatch" class="w-8 h-8 rounded object-cover" onerror="this.src=''; this.onerror=null;" />
+                            <span class="text-text-secondary text-sm">Overwatch 2</span>
+                        </div>
+
+                        <span class="text-accent text-sm font-medium">$1.5M Prize</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-surface border-t border-surface-700 mt-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+            <div class="text-center">
+                <p class="text-text-secondary text-sm">© 2025 GameHub. All Rights Reserved.</p>
+                <p class="text-text-secondary text-xs mt-2">Empowering gamers worldwide</p>
+            </div>
+        </div>
+    </footer>
+
+</div>
+<!--
+<script>
+    function watchTournament(tournamentId) {
+        // Add your tournament watching logic here
+        console.log('Watching tournament:', tournamentId);
+        alert('Opening ' + tournamentId + ' tournament stream!');
+        // You can redirect to a stream page or open a modal here
+        // window.location.href = 'stream/' + tournamentId + '.html';
+    }
+</script>
+<script>
+    // Modal functions
+    function openLoginModal() {
+        document.getElementById('loginModal').classList.add('active');
+    }
+
+    function openRegisterModal() {
+        document.getElementById('registerModal').classList.add('active');
+    }
+
+    function openForgotPasswordModal() {
+        closeModal('loginModal');
+        document.getElementById('forgotPasswordModal').classList.add('active');
+    }
+
+
+    function closeModal(modalId) {
+        document.getElementById(modalId).classList.remove('active');
+    }
+
+    function switchToRegister() {
+        closeModal('loginModal');
+        openRegisterModal();
+    }
+
+    function switchToLogin() {
+        closeModal('registerModal');
+        closeModal('forgotPasswordModal');
+        closeModal('otpModal');
+        openLoginModal();
+    }
+
+    // Form handlers
+    function handleLogin(event) {
+        event.preventDefault();
+        closeModal('loginModal');
+    }
+
+    function handleRegister(event) {
+        event.preventDefault();
+        closeModal('registerModal');
+    }
+
+    function handleForgotPassword(event) {
+        event.preventDefault();
+        // Add forgot password logic here
+        closeModal('forgotPasswordModal');
+        document.getElementById('otpModal').classList.add('active');
+    }
+
+    /*  function handleOTP(event) {
+          event.preventDefault();
+          // Add OTP verification logic here
+          closeModal('otpModal');
+          document.getElementById('newPasswordModal').classList.add('active');
+      }
+  */
+    function handleNewPassword(event) {
+        event.preventDefault();
+        // Add new password logic here
+        closeModal('newPasswordModal');
+        openLoginModal();
+    }
+
+
+    // Close modal when clicking outside
+    document.querySelectorAll('.modal-backdrop').forEach(backdrop => {
+        backdrop.addEventListener('click', function(e) {
+            if (e.target === backdrop) {
+                backdrop.classList.remove('active');
+            }
+        });
+    });
+    const inputs = document.querySelectorAll(".otp-input");
+
+    inputs.forEach((input, index) => {
+        input.addEventListener("input", (e) => {
+            if (e.target.value.length === 1 && index < inputs.length - 1) {
+                inputs[index + 1].focus();
+            }
+        });
+
+        input.addEventListener("keydown", (e) => {
+            if (e.key === "Backspace" && !e.target.value && index > 0) {
+                inputs[index - 1].focus();
+            }
+        });
+    });
+    function createParticle() {
+        const particle = document.createElement('div');
+        particle.className = 'particle';
+        particle.style.left = Math.random() * 100 + '%';
+
+        // Random size from 15px to 35px
+        const size = Math.random() * 6 + 3;
+        particle.style.setProperty('&#45;&#45;size', size + 'px');
+
+        // Random drift left/right
+        particle.style.setProperty('&#45;&#45;drift', (Math.random() * 100 - 50) + 'px');
+
+        // Random duration and delay
+        particle.style.animationDuration = (Math.random() * 15 + 10) + 's';
+        particle.style.animationDelay = Math.random() * 2 + 's';
+
+        const particlesContainer = document.querySelector('.particles');
+        if (particlesContainer) {
+            particlesContainer.appendChild(particle);
+
+            // Remove after animation ends
+            setTimeout(() => {
+                particle.remove();
+            }, parseFloat(particle.style.animationDuration) * 1000);
+        }
+    }
+
+    // Generate a new particle every 500ms
+    setInterval(createParticle, 500);
+
+    // Smooth scrolling for navigation links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+        });
+    });
+
+    // Add scroll-triggered animations
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0)';
+            }
+        });
+    }, observerOptions);
+
+    // Observe elements for scroll animations
+    document.querySelectorAll('.card-glow').forEach(card => {
+        card.style.opacity = '0';
+        card.style.transform = 'translateY(30px)';
+        card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+        observer.observe(card);
+    });
+
+    // Header background on scroll
+    window.addEventListener('scroll', () => {
+        const header = document.querySelector('header');
+        if (window.scrollY > 100) {
+            header.style.background = 'rgba(6, 6, 8, 0.95)';
+        } else {
+            header.style.background = 'rgba(10, 10, 15, 0.8)';
+        }
+    });
+    // User dropdown functionality
+    document.addEventListener('DOMContentLoaded', function() {
+        // if the role is player should remove the apply as a player button in the dropdown menu
+        const role = localStorage.getItem('role');
+        if (role === 'Player') {
+            document.getElementById('applyAsPlayer').style.display = 'none';
+        }else if (role === 'Streamer') {
+            document.getElementById('applyAsStreamer').style.display = 'none';
+        }
+
+        console.log(role);
+
+        const userDropdownBtn = document.getElementById('userDropdownBtn');
+        const userDropdown = document.getElementById('userDropdown');
+/*
+        const logoutBtn = document.getElementById('logoutBtn');
+*/
+
+
+        // Toggle dropdown when clicking the user icon
+        userDropdownBtn.addEventListener('click', function(e) {
+            e.stopPropagation();
+            userDropdown.classList.toggle('hidden');
+
+        });
+
+        // Close dropdown when clicking outside
+        document.addEventListener('click', function(e) {
+            if (!userDropdown.contains(e.target) && !userDropdownBtn.contains(e.target)) {
+                userDropdown.classList.add('hidden');
+            }
+        });
+
+/*
+        // Logout functionality
+        logoutBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.location.href = 'index2.html';
+
+            // Add your logout logic here
+            console.log('User logged out');
+
+            // Hide user profile and show login button
+            document.getElementById('userProfile').style.display = 'none';
+            document.getElementById('loginBtnNav').style.display = 'block';
+
+            // Close dropdown
+            userDropdown.classList.add('hidden');
+
+            // Optional: Show logout confirmation
+            // toastr.success('Successfully logged out');
+        });
+*/
+
+        // Close dropdown when clicking on menu items (optional)
+        const dropdownLinks = userDropdown.querySelectorAll('a');
+        dropdownLinks.forEach(link => {
+            link.addEventListener('click', function() {
+                userDropdown.classList.add('hidden');
+            });
+        });
+    });
+
+    // Dynamic profile link
+    $("#viewProfile").on("click", function (e) {
+
+        const role = localStorage.getItem('role');
+
+        console.log(role);
+        e.preventDefault();
+        if (!role) {
+            toastr.error("Role not found!");
+            return;
+        }
+
+        let profilePage = "";
+
+        switch (role) {
+            case "Player":
+                profilePage = "player/player_profile.html";
+                break;
+            case "Streamer":
+                profilePage = "streamer/streamer_profile.html";
+                break;
+            case "User":
+                profilePage = "user/user_profile_view.html";
+                break;
+            default:
+                toastr.error("Unknown role!");
+                return;
+        }
+
+        window.location.href = profilePage;
+    });
+
+    // Function to show user profile after successful login
+    function showUserProfile(username) {
+        document.getElementById('usernameDisplay').textContent = username;
+        document.getElementById('userProfile').style.display = 'flex';
+        document.getElementById('loginBtnNav').style.display = 'none';
+    }
+</script>-->
+<script>
+    // Modal functions
+    function openLoginModal() {
+        document.getElementById('loginModal').classList.add('active');
+    }
+
+    function openRegisterModal() {
+        document.getElementById('registerModal').classList.add('active');
+    }
+
+    function openForgotPasswordModal() {
+        closeModal('loginModal');
+        document.getElementById('forgotPasswordModal').classList.add('active');
+    }
+
+
+    function closeModal(modalId) {
+        document.getElementById(modalId).classList.remove('active');
+    }
+
+    function switchToRegister() {
+        closeModal('loginModal');
+        openRegisterModal();
+    }
+
+    function switchToLogin() {
+        closeModal('registerModal');
+        closeModal('forgotPasswordModal');
+        closeModal('otpModal');
+        openLoginModal();
+    }
+
+    // Form handlers
+    function handleLogin(event) {
+        event.preventDefault();
+        closeModal('loginModal');
+    }
+
+    function handleRegister(event) {
+        event.preventDefault();
+        closeModal('registerModal');
+    }
+
+    function handleForgotPassword(event) {
+        event.preventDefault();
+        // Add forgot password logic here
+        closeModal('forgotPasswordModal');
+        document.getElementById('otpModal').classList.add('active');
+    }
+
+    /*  function handleOTP(event) {
+          event.preventDefault();
+          // Add OTP verification logic here
+          closeModal('otpModal');
+          document.getElementById('newPasswordModal').classList.add('active');
+      }
+  */
+    function handleNewPassword(event) {
+        event.preventDefault();
+        // Add new password logic here
+        closeModal('newPasswordModal');
+        openLoginModal();
+    }
+
+
+    // Close modal when clicking outside
+    document.querySelectorAll('.modal-backdrop').forEach(backdrop => {
+        backdrop.addEventListener('click', function(e) {
+            if (e.target === backdrop) {
+                backdrop.classList.remove('active');
+            }
+        });
+    });
+    const inputs = document.querySelectorAll(".otp-input");
+
+    inputs.forEach((input, index) => {
+        input.addEventListener("input", (e) => {
+            if (e.target.value.length === 1 && index < inputs.length - 1) {
+                inputs[index + 1].focus();
+            }
+        });
+
+        input.addEventListener("keydown", (e) => {
+            if (e.key === "Backspace" && !e.target.value && index > 0) {
+                inputs[index - 1].focus();
+            }
+        });
+    });
+    function createParticle() {
+        const particle = document.createElement('div');
+        particle.className = 'particle';
+        particle.style.left = Math.random() * 100 + '%';
+
+        // Random size from 15px to 35px
+        const size = Math.random() * 6 + 3;
+        particle.style.setProperty('--size', size + 'px');
+
+        // Random drift left/right
+        particle.style.setProperty('--drift', (Math.random() * 100 - 50) + 'px');
+
+        // Random duration and delay
+        particle.style.animationDuration = (Math.random() * 15 + 10) + 's';
+        particle.style.animationDelay = Math.random() * 2 + 's';
+
+        const particlesContainer = document.querySelector('.particles');
+        if (particlesContainer) {
+            particlesContainer.appendChild(particle);
+
+            // Remove after animation ends
+            setTimeout(() => {
+                particle.remove();
+            }, parseFloat(particle.style.animationDuration) * 1000);
+        }
+    }
+
+    // Generate a new particle every 500ms
+    setInterval(createParticle, 500);
+
+    // Smooth scrolling for navigation links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+        });
+    });
+
+    // Add scroll-triggered animations
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0)';
+            }
+        });
+    }, observerOptions);
+
+    // Observe elements for scroll animations
+    document.querySelectorAll('.card-glow').forEach(card => {
+        card.style.opacity = '0';
+        card.style.transform = 'translateY(30px)';
+        card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+        observer.observe(card);
+    });
+
+    // Header background on scroll
+    window.addEventListener('scroll', () => {
+        const header = document.querySelector('header');
+        if (window.scrollY > 100) {
+            header.style.background = 'rgba(6, 6, 8, 0.95)';
+        } else {
+            header.style.background = 'rgba(10, 10, 15, 0.8)';
+        }
+    });
+    // User dropdown functionality
+    document.addEventListener('DOMContentLoaded', function() {
+        // if the role is player should remove the apply as a player button in the dropdown menu
+        const role = localStorage.getItem('role');
+        if (role === 'Player') {
+            document.getElementById('applyAsPlayer').style.display = 'none';
+        }else if (role === 'Streamer') {
+            document.getElementById('applyAsStreamer').style.display = 'none';
+        }
+
+        console.log(role);
+
+        const userDropdownBtn = document.getElementById('userDropdownBtn');
+        const userDropdown = document.getElementById('userDropdown');
+        const logoutBtn = document.getElementById('logoutBtn');
+
+
+        // Toggle dropdown when clicking the user icon
+        userDropdownBtn.addEventListener('click', function(e) {
+            e.stopPropagation();
+            userDropdown.classList.toggle('hidden');
+
+        });
+
+        // Close dropdown when clicking outside
+        document.addEventListener('click', function(e) {
+            if (!userDropdown.contains(e.target) && !userDropdownBtn.contains(e.target)) {
+                userDropdown.classList.add('hidden');
+            }
+        });
+
+        // Logout functionality
+        logoutBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.location.href = 'index2.html';
+
+            // Add your logout logic here
+            console.log('User logged out');
+
+            // Hide user profile and show login button
+            document.getElementById('userProfile').style.display = 'none';
+            document.getElementById('loginBtnNav').style.display = 'block';
+
+            // Close dropdown
+            userDropdown.classList.add('hidden');
+
+            // Optional: Show logout confirmation
+            // toastr.success('Successfully logged out');
+        });
+
+        // Close dropdown when clicking on menu items (optional)
+        const dropdownLinks = userDropdown.querySelectorAll('a');
+        dropdownLinks.forEach(link => {
+            link.addEventListener('click', function() {
+                userDropdown.classList.add('hidden');
+            });
+        });
+    });
+
+    // Dynamic profile link
+    $("#viewProfile").on("click", function (e) {
+
+        const role = localStorage.getItem('role');
+
+        console.log(role);
+        e.preventDefault();
+        if (!role) {
+            toastr.error("Role not found!");
+            return;
+        }
+
+        let profilePage = "";
+
+        switch (role) {
+            case "Player":
+                profilePage = "player/player_profile.html";
+                break;
+            case "Streamer":
+                profilePage = "streamer/streamer_profile.html";
+                break;
+            case "User":
+                profilePage = "user/user_profile_view.html";
+                break;
+            default:
+                toastr.error("Unknown role!");
+                return;
+        }
+
+        window.location.href = profilePage;
+    });
+
+    // Function to show user profile after successful login
+    function showUserProfile(username) {
+        document.getElementById('usernameDisplay').textContent = username;
+        document.getElementById('userProfile').style.display = 'flex';
+        document.getElementById('loginBtnNav').style.display = 'none';
+    }
+</script>
+
+<script src="assets/jq/jquery-3.7.1.min.js"></script>
+<script src="assets/js/signup.js"></script>
+<script src="assets/js/liveStreaming.js"></script>
+</body>
+</html>
