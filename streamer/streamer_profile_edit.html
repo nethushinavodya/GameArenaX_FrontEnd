@@ -64,116 +64,116 @@
 <body class="bg-background min-h-screen text-text-primary font-inter">
 
 <div class="relative flex size-full min-h-screen flex-col overflow-x-hidden " style='font-family: "Space Grotesk", "Noto Sans", sans-serif;'>
-<!-- Navigation Header -->
-<!--
-<header class="flex items-center justify-between whitespace-nowrap border-b border-solid-1 border-b-[#34C759] px-10 py-4 shadow-lg sticky top-0 header-blur z-50">
-  <div class="flex items-center gap-4 text-white">
-    <div class="size-10 text-[#00ffcc] logo-glow cursor-pointer">
-      <svg
-              fill="none"
-              viewBox="0 0 48 48"
-              xmlns="http://www.w3.org/2000/svg"
-              class="w-10 h-10"
-      >
-        <path
-                clip-rule="evenodd"
-                d="M24 18.4228L42 11.475V34.3663C42 34.7796 41.7457 35.1504 41.3601 35.2992L24 42V18.4228Z"
-                fill="currentColor"
-                fill-rule="evenodd"
-        />
-        <path
-                clip-rule="evenodd"
-                d="M24 8.18819L33.4123 11.574L24 15.2071L14.5877 11.574L24 8.18819ZM9 15.8487L21 20.4805V37.6263L9 32.9945V15.8487ZM27 37.6263V20.4805L39 15.8487V32.9945L27 37.6263ZM25.354 2.29885C24.4788 1.98402 23.5212 1.98402 22.646 2.29885L4.98454 8.65208C3.7939 9.08038 3 10.2097 3 11.475V34.3663C3 36.0196 4.01719 37.5026 5.55962 38.098L22.9197 44.7987C23.6149 45.0671 24.3851 45.0671 25.0803 44.7987L42.4404 38.098C43.9828 37.5026 45 36.0196 45 34.3663V11.475C45 10.2097 44.2061 9.08038 43.0155 8.65208L25.354 2.29885Z"
-                fill="currentColor"
-                fill-rule="evenodd"
-        />
-      </svg>
+  <!-- Navigation Header -->
+  <!--
+  <header class="flex items-center justify-between whitespace-nowrap border-b border-solid-1 border-b-[#34C759] px-10 py-4 shadow-lg sticky top-0 header-blur z-50">
+    <div class="flex items-center gap-4 text-white">
+      <div class="size-10 text-[#00ffcc] logo-glow cursor-pointer">
+        <svg
+                fill="none"
+                viewBox="0 0 48 48"
+                xmlns="http://www.w3.org/2000/svg"
+                class="w-10 h-10"
+        >
+          <path
+                  clip-rule="evenodd"
+                  d="M24 18.4228L42 11.475V34.3663C42 34.7796 41.7457 35.1504 41.3601 35.2992L24 42V18.4228Z"
+                  fill="currentColor"
+                  fill-rule="evenodd"
+          />
+          <path
+                  clip-rule="evenodd"
+                  d="M24 8.18819L33.4123 11.574L24 15.2071L14.5877 11.574L24 8.18819ZM9 15.8487L21 20.4805V37.6263L9 32.9945V15.8487ZM27 37.6263V20.4805L39 15.8487V32.9945L27 37.6263ZM25.354 2.29885C24.4788 1.98402 23.5212 1.98402 22.646 2.29885L4.98454 8.65208C3.7939 9.08038 3 10.2097 3 11.475V34.3663C3 36.0196 4.01719 37.5026 5.55962 38.098L22.9197 44.7987C23.6149 45.0671 24.3851 45.0671 25.0803 44.7987L42.4404 38.098C43.9828 37.5026 45 36.0196 45 34.3663V11.475C45 10.2097 44.2061 9.08038 43.0155 8.65208L25.354 2.29885Z"
+                  fill="currentColor"
+                  fill-rule="evenodd"
+          />
+        </svg>
+      </div>
+      <h2 class="text-white text-xl font-bold leading-tight tracking-[-0.015em] neon-text">
+        GameArenaX
+      </h2>
     </div>
-    <h2 class="text-white text-xl font-bold leading-tight tracking-[-0.015em] neon-text">
-      GameArenaX
-    </h2>
-  </div>
-  <nav class="flex flex-1 justify-end gap-8">
-    &lt;!&ndash; Nav links (always visible) &ndash;&gt;
-    <nav class="flex items-center gap-6">
-      <a class="text-gray-300 nav-link" href="../index2.html">Home</a>
-      <a class="text-gray-300  nav-link" href="liveStreamings.html">Live Streaming</a>
-      <a class="text-gray-300 nav-link" href="LiveTournaments.html">Live Tournaments</a>
-      <a class="text-gray-300  nav-link" href="AllStreamers.html">Streamers</a>
-      <a class="text-gray-300  nav-link" href="clan_directory.html">Clans</a>
-      <a class="text-gray-300  nav-link" href="AllPlayers.html">Players</a>
-    </nav>
+    <nav class="flex flex-1 justify-end gap-8">
+      &lt;!&ndash; Nav links (always visible) &ndash;&gt;
+      <nav class="flex items-center gap-6">
+        <a class="text-gray-300 nav-link" href="../index2.html">Home</a>
+        <a class="text-gray-300  nav-link" href="liveStreamings.html">Live Streaming</a>
+        <a class="text-gray-300 nav-link" href="LiveTournaments.html">Live Tournaments</a>
+        <a class="text-gray-300  nav-link" href="AllStreamers.html">Streamers</a>
+        <a class="text-gray-300  nav-link" href="clan_directory.html">Clans</a>
+        <a class="text-gray-300  nav-link" href="AllPlayers.html">Players</a>
+      </nav>
 
-    &lt;!&ndash; Login button (only visible before login) &ndash;&gt;
-    <button id="loginBtnNav"
-            class="flex min-w-[100px] max-w-[400px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-9 px-5 border-2 border-[#22c55e] text-[#22c55e] text-sm font-semibold tracking-wide relative transition-all duration-300 ease-in-out hover:text-white"
-            onclick="openLoginModal()">
-      <span class="relative z-10">Login</span>
-      <span class="absolute inset-0 rounded-full border-2 border-[#22c55e] opacity-50 transition-all duration-500 ease-in-out hover:scale-110 hover:opacity-100"></span>
-      <span class="absolute inset-0 bg-gradient-to-r from-[#22c55e] to-[#16a34a] opacity-0 rounded-full transition-opacity duration-300 ease-in-out hover:opacity-20"></span>
-    </button>
+      &lt;!&ndash; Login button (only visible before login) &ndash;&gt;
+      <button id="loginBtnNav"
+              class="flex min-w-[100px] max-w-[400px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-9 px-5 border-2 border-[#22c55e] text-[#22c55e] text-sm font-semibold tracking-wide relative transition-all duration-300 ease-in-out hover:text-white"
+              onclick="openLoginModal()">
+        <span class="relative z-10">Login</span>
+        <span class="absolute inset-0 rounded-full border-2 border-[#22c55e] opacity-50 transition-all duration-500 ease-in-out hover:scale-110 hover:opacity-100"></span>
+        <span class="absolute inset-0 bg-gradient-to-r from-[#22c55e] to-[#16a34a] opacity-0 rounded-full transition-opacity duration-300 ease-in-out hover:opacity-20"></span>
+      </button>
 
-    &lt;!&ndash; Player profile (only visible after login) &ndash;&gt;
-    <div class="flex items-center space-x-3" id="userProfile" style="display: none">
-      <span class="hidden sm:block text-sm font-medium" id="usernameDisplay"></span>
-      &lt;!&ndash;user dropdown menu for edit profile,Apply as a streamer,Apply as a player and logout&ndash;&gt;
-      <div class="relative inline-block text-left">
-        <div>
-          <button id="userDropdownBtn" type="button" class="text-green-400 hover:text-green-300 transition-colors">
-            <i class="fas fa-chevron-down text-sm transition-transform duration-200" id="dropdownArrow"></i>
-          </button>
-        </div>
-        <div id="userDropdown" class="hidden absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-black">
-          <a href="../streamer/streamer_profile.html" class="block px-4 py-2 text-sm text-white hover:bg-gray-700">View Profile</a>
-          <a href="../player/player_application.html" class="block px-4 py-2 text-sm text-white hover:bg-gray-700">Apply as a Player</a>
-&lt;!&ndash;
-          <a href=""  id="logoutBtn" class="block px-4 py-2 text-sm text-red-400 hover:bg-gray-700">Logout</a>
-&ndash;&gt;
-          &lt;!&ndash; &lt;!&ndash; Logout button (only visible after login) &ndash;&gt;
-           <div class="flex items-center gap-4">
-               <button id="logoutBtn" class="text-red-400 hover:text-red-300 transition-colors">
-                   <span class="hidden sm:block">Logout</span>
-                   <i class="fas fa-sign-out-alt text-xl"></i>
-               </button>
-           </div>&ndash;&gt;
+      &lt;!&ndash; Player profile (only visible after login) &ndash;&gt;
+      <div class="flex items-center space-x-3" id="userProfile" style="display: none">
+        <span class="hidden sm:block text-sm font-medium" id="usernameDisplay"></span>
+        &lt;!&ndash;user dropdown menu for edit profile,Apply as a streamer,Apply as a player and logout&ndash;&gt;
+        <div class="relative inline-block text-left">
+          <div>
+            <button id="userDropdownBtn" type="button" class="text-green-400 hover:text-green-300 transition-colors">
+              <i class="fas fa-chevron-down text-sm transition-transform duration-200" id="dropdownArrow"></i>
+            </button>
+          </div>
+          <div id="userDropdown" class="hidden absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-black">
+            <a href="../streamer/streamer_profile.html" class="block px-4 py-2 text-sm text-white hover:bg-gray-700">View Profile</a>
+            <a href="../player/player_application.html" class="block px-4 py-2 text-sm text-white hover:bg-gray-700">Apply as a Player</a>
+  &lt;!&ndash;
+            <a href=""  id="logoutBtn" class="block px-4 py-2 text-sm text-red-400 hover:bg-gray-700">Logout</a>
+  &ndash;&gt;
+            &lt;!&ndash; &lt;!&ndash; Logout button (only visible after login) &ndash;&gt;
+             <div class="flex items-center gap-4">
+                 <button id="logoutBtn" class="text-red-400 hover:text-red-300 transition-colors">
+                     <span class="hidden sm:block">Logout</span>
+                     <i class="fas fa-sign-out-alt text-xl"></i>
+                 </button>
+             </div>&ndash;&gt;
+          </div>
         </div>
       </div>
+    </nav>
+  </header>
+  -->
+  <header class="flex items-center justify-between whitespace-nowrap border-b border-solid-1 border-b-[#34C759] px-10 py-4 shadow-lg sticky top-0 header-blur z-50">
+    <div class="flex items-center gap-3 text-white">
+      <div class="size-10 text-[#00ffcc] logo-glow cursor-pointer">
+        <svg
+                fill="none"
+                viewBox="0 0 48 48"
+                xmlns="http://www.w3.org/2000/svg"
+                class="w-10 h-10"
+        >
+          <path
+                  clip-rule="evenodd"
+                  d="M24 18.4228L42 11.475V34.3663C42 34.7796 41.7457 35.1504 41.3601 35.2992L24 42V18.4228Z"
+                  fill="currentColor"
+                  fill-rule="evenodd"
+          />
+          <path
+                  clip-rule="evenodd"
+                  d="M24 8.18819L33.4123 11.574L24 15.2071L14.5877 11.574L24 8.18819ZM9 15.8487L21 20.4805V37.6263L9 32.9945V15.8487ZM27 37.6263V20.4805L39 15.8487V32.9945L27 37.6263ZM25.354 2.29885C24.4788 1.98402 23.5212 1.98402 22.646 2.29885L4.98454 8.65208C3.7939 9.08038 3 10.2097 3 11.475V34.3663C3 36.0196 4.01719 37.5026 5.55962 38.098L22.9197 44.7987C23.6149 45.0671 24.3851 45.0671 25.0803 44.7987L42.4404 38.098C43.9828 37.5026 45 36.0196 45 34.3663V11.475C45 10.2097 44.2061 9.08038 43.0155 8.65208L25.354 2.29885Z"
+                  fill="currentColor"
+                  fill-rule="evenodd"
+          />
+        </svg>
+      </div>
+      <h2 class="text-white text-xl font-bold leading-tight tracking-[-0.015em] neon-text">
+        GameArenaX
+      </h2>
     </div>
-  </nav>
-</header>
--->
-<header class="flex items-center justify-between whitespace-nowrap border-b border-solid-1 border-b-[#34C759] px-10 py-4 shadow-lg sticky top-0 header-blur z-50">
-  <div class="flex items-center gap-3 text-white">
-    <div class="size-10 text-[#00ffcc] logo-glow cursor-pointer">
-      <svg
-              fill="none"
-              viewBox="0 0 48 48"
-              xmlns="http://www.w3.org/2000/svg"
-              class="w-10 h-10"
-      >
-        <path
-                clip-rule="evenodd"
-                d="M24 18.4228L42 11.475V34.3663C42 34.7796 41.7457 35.1504 41.3601 35.2992L24 42V18.4228Z"
-                fill="currentColor"
-                fill-rule="evenodd"
-        />
-        <path
-                clip-rule="evenodd"
-                d="M24 8.18819L33.4123 11.574L24 15.2071L14.5877 11.574L24 8.18819ZM9 15.8487L21 20.4805V37.6263L9 32.9945V15.8487ZM27 37.6263V20.4805L39 15.8487V32.9945L27 37.6263ZM25.354 2.29885C24.4788 1.98402 23.5212 1.98402 22.646 2.29885L4.98454 8.65208C3.7939 9.08038 3 10.2097 3 11.475V34.3663C3 36.0196 4.01719 37.5026 5.55962 38.098L22.9197 44.7987C23.6149 45.0671 24.3851 45.0671 25.0803 44.7987L42.4404 38.098C43.9828 37.5026 45 36.0196 45 34.3663V11.475C45 10.2097 44.2061 9.08038 43.0155 8.65208L25.354 2.29885Z"
-                fill="currentColor"
-                fill-rule="evenodd"
-        />
-      </svg>
-    </div>
-    <h2 class="text-white text-xl font-bold leading-tight tracking-[-0.015em] neon-text">
-      GameArenaX
-    </h2>
-  </div>
-  <nav class="flex flex-1 justify-end gap-2 right-0">
-    <!-- Nav links (always visible) -->
-    <nav class="flex items-center  gap-5">
-      <a class="text-gray-300 nav-link" href="../index2.html">Home</a>
-      <a class="text-gray-300 nav-link text-sm sm:text-base">
+    <nav class="flex flex-1 justify-end gap-2 right-0">
+      <!-- Nav links (always visible) -->
+      <nav class="flex items-center  gap-5">
+        <a class="text-gray-300 nav-link" href="../index2.html">Home</a>
+        <a class="text-gray-300 nav-link text-sm sm:text-base">
             <span class="inline-flex items-center space-x-1">
               <span class="relative flex w-1.5 h-1.5">
                 <span class="absolute inline-flex w-full h-full rounded-full bg-[#ff0000] opacity-80 animate-ping"></span>
@@ -181,632 +181,632 @@
               </span>
               <span class="font-medium">Live</span>
             </span>
-      </a>
-      <a class="text-gray-300  nav-link" href="AllTournament.html">Tournaments</a>
-      <a class="text-gray-300  nav-link" href="AllStreamers.html">Streamers</a>
-      <a class="text-gray-300  nav-link" href="clan_directory.html">Clans</a>
-      <a class="text-gray-300  nav-link" href="AllPlayers.html">Players</a>
+        </a>
+        <a class="text-gray-300  nav-link" href="../tournament.html">Tournaments</a>
+        <a class="text-gray-300  nav-link" href="AllStreamers.html">Streamers</a>
+        <a class="text-gray-300  nav-link" href="clan_directory.html">Clans</a>
+        <a class="text-gray-300  nav-link" href="AllPlayers.html">Players</a>
+      </nav>
+
+      <!-- Login button (only visible before login) -->
+      <button id="loginBtnNav"
+              class="flex min-w-[100px] max-w-[400px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-9 px-5 border-2 border-[#22c55e] text-[#22c55e] text-sm font-semibold tracking-wide relative transition-all duration-300 ease-in-out hover:text-white"
+              onclick="openLoginModal()">
+        <span class="relative z-10">Login</span>
+        <span class="absolute inset-0 rounded-full border-2 border-[#22c55e] opacity-50 transition-all duration-500 ease-in-out hover:scale-110 hover:opacity-100"></span>
+        <span class="absolute inset-0 bg-gradient-to-r from-[#22c55e] to-[#16a34a] opacity-0 rounded-full transition-opacity duration-300 ease-in-out hover:opacity-20"></span>
+      </button>
+
+      <!-- Player profile (only visible after login) -->
+      <div class="flex items-center space-x-3" id="userProfile" style="display: none">
+        <span class="hidden sm:block text-sm font-medium" id="usernameDisplay"></span>
+        <!--user dropdown menu for edit profile,Apply as a streamer,Apply as a player and logout-->
+        <div class="relative inline-block text-left">
+          <div>
+            <button id="userDropdownBtn" type="button" class="text-green-400 hover:text-green-300 transition-colors">
+              <i class="fas fa-chevron-down text-sm transition-transform duration-200" id="dropdownArrow"></i>
+            </button>
+          </div>
+          <div id="userDropdown" class="hidden absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-black">
+            <a href="../streamer/streamer_profile.html" class="block px-4 py-2 text-sm text-white hover:bg-gray-700">View Profile</a>
+            <a href="../player/player_application.html" class="block px-4 py-2 text-sm text-white hover:bg-gray-700">Apply as a Player</a>
+            <!--
+                                <a href=""  id="logoutBtn" class="block px-4 py-2 text-sm text-red-400 hover:bg-gray-700">Logout</a>
+            -->
+            <!-- &lt;!&ndash; Logout button (only visible after login) &ndash;&gt;
+             <div class="flex items-center gap-4">
+                 <button id="logoutBtn" class="text-red-400 hover:text-red-300 transition-colors">
+                     <span class="hidden sm:block">Logout</span>
+                     <i class="fas fa-sign-out-alt text-xl"></i>
+                 </button>
+             </div>-->
+          </div>
+        </div>
+      </div>
     </nav>
+  </header>
 
-    <!-- Login button (only visible before login) -->
-    <button id="loginBtnNav"
-            class="flex min-w-[100px] max-w-[400px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-9 px-5 border-2 border-[#22c55e] text-[#22c55e] text-sm font-semibold tracking-wide relative transition-all duration-300 ease-in-out hover:text-white"
-            onclick="openLoginModal()">
-      <span class="relative z-10">Login</span>
-      <span class="absolute inset-0 rounded-full border-2 border-[#22c55e] opacity-50 transition-all duration-500 ease-in-out hover:scale-110 hover:opacity-100"></span>
-      <span class="absolute inset-0 bg-gradient-to-r from-[#22c55e] to-[#16a34a] opacity-0 rounded-full transition-opacity duration-300 ease-in-out hover:opacity-20"></span>
-    </button>
-
-    <!-- Player profile (only visible after login) -->
-    <div class="flex items-center space-x-3" id="userProfile" style="display: none">
-      <span class="hidden sm:block text-sm font-medium" id="usernameDisplay"></span>
-      <!--user dropdown menu for edit profile,Apply as a streamer,Apply as a player and logout-->
-      <div class="relative inline-block text-left">
+  <!-- Main Content -->
+  <main class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <!-- Page Header -->
+    <div class="mb-8">
+      <div class="flex items-center mb-4">
+        <a href="streamer_profile.html" class="text-text-secondary hover:text-primary transition-colors mr-4">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+          </svg>
+        </a>
         <div>
-          <button id="userDropdownBtn" type="button" class="text-green-400 hover:text-green-300 transition-colors">
-            <i class="fas fa-chevron-down text-sm transition-transform duration-200" id="dropdownArrow"></i>
-          </button>
-        </div>
-        <div id="userDropdown" class="hidden absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-black">
-          <a href="../streamer/streamer_profile.html" class="block px-4 py-2 text-sm text-white hover:bg-gray-700">View Profile</a>
-          <a href="../player/player_application.html" class="block px-4 py-2 text-sm text-white hover:bg-gray-700">Apply as a Player</a>
-          <!--
-                              <a href=""  id="logoutBtn" class="block px-4 py-2 text-sm text-red-400 hover:bg-gray-700">Logout</a>
-          -->
-          <!-- &lt;!&ndash; Logout button (only visible after login) &ndash;&gt;
-           <div class="flex items-center gap-4">
-               <button id="logoutBtn" class="text-red-400 hover:text-red-300 transition-colors">
-                   <span class="hidden sm:block">Logout</span>
-                   <i class="fas fa-sign-out-alt text-xl"></i>
-               </button>
-           </div>-->
+          <h1 class="text-3xl font-bold text-gaming-heading">Edit Streamer Profile</h1>
+          <p class="text-text-secondary">Update your streaming profile information</p>
         </div>
       </div>
     </div>
-  </nav>
-</header>
 
-<!-- Main Content -->
-<main class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-  <!-- Page Header -->
-  <div class="mb-8">
-    <div class="flex items-center mb-4">
-      <a href="streamer_profile.html" class="text-text-secondary hover:text-primary transition-colors mr-4">
-        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
-        </svg>
-      </a>
-      <div>
-        <h1 class="text-3xl font-bold text-gaming-heading">Edit Streamer Profile</h1>
-        <p class="text-text-secondary">Update your streaming profile information</p>
-      </div>
-    </div>
-  </div>
+    <!-- Edit Profile Form -->
+    <form id="streamerEditForm" class="space-y-8">
+      <div class="bg-surface rounded-gaming-card shadow-gaming border border-surface-700 p-6 sm:p-8">
+        <h2 class="text-xl font-semibold text-gaming-heading mb-6 flex items-center">
+          <svg class="w-6 h-6 text-primary mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+          </svg>
+          Channel Banner
+        </h2>
 
-  <!-- Edit Profile Form -->
-  <form id="streamerEditForm" class="space-y-8">
-    <div class="bg-surface rounded-gaming-card shadow-gaming border border-surface-700 p-6 sm:p-8">
-      <h2 class="text-xl font-semibold text-gaming-heading mb-6 flex items-center">
-        <svg class="w-6 h-6 text-primary mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/>
-        </svg>
-        Channel Banner
-      </h2>
+        <div class="space-y-6">
+          <div class="w-full">
+            <div class="banner-preview rounded-gaming-card overflow-hidden h-48 sm:h-64 relative group">
+              <img id="bannerPreview"
+                   src="https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3"
+                   alt="Channel Banner"
+                   class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                   onerror="this.src='https://images.unsplash.com/photo-1551698618-1dfe5d97d256?q=80&w=2070&auto=format&fit=crop'; this.onerror=null;"
+                   loading="lazy" />
 
-      <div class="space-y-6">
-        <div class="w-full">
-          <div class="banner-preview rounded-gaming-card overflow-hidden h-48 sm:h-64 relative group">
-            <img id="bannerPreview"
-                 src="https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3"
-                 alt="Channel Banner"
-                 class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
-                 onerror="this.src='https://images.unsplash.com/photo-1551698618-1dfe5d97d256?q=80&w=2070&auto=format&fit=crop'; this.onerror=null;"
-                 loading="lazy" />
+              <div class="absolute inset-0 bg-black bg-opacity-50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                <button type="button"
+                        onclick="document.getElementById('bannerUpload').click()"
+                        class="bg-primary hover:bg-primary-600 text-background px-6 py-3 rounded-gaming font-semibold transition-colors duration-300">
+                  <svg class="w-5 h-5 inline mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                  </svg>
+                  Change Banner
+                </button>
+              </div>
 
-            <div class="absolute inset-0 bg-black bg-opacity-50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-              <button type="button"
-                      onclick="document.getElementById('bannerUpload').click()"
-                      class="bg-primary hover:bg-primary-600 text-background px-6 py-3 rounded-gaming font-semibold transition-colors duration-300">
-                <svg class="w-5 h-5 inline mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/>
-                </svg>
-                Change Banner
-              </button>
-            </div>
+              <!-- Hidden file input -->
+              <input type="file"
+                     id="bannerUpload"
+                     style="display: none;"
+                     accept="image/*"
+                     onchange="handleImageUpload(event)">
 
-            <!-- Hidden file input -->
-            <input type="file"
-                   id="bannerUpload"
-                   style="display: none;"
-                   accept="image/*"
-                   onchange="handleImageUpload(event)">
-
-          </div>
-        </div>
-        </div>
-    </div>
-
-    <!-- Profile Picture Section -->
-    <div class="bg-surface rounded-gaming-card shadow-gaming border border-surface-700 p-6 sm:p-8">
-      <h2 class="text-xl font-semibold text-gaming-heading mb-6 flex items-center">
-        <svg class="w-6 h-6 text-primary mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/>
-        </svg>
-        Profile Picture
-      </h2>
-
-      <div class="flex flex-col sm:flex-row items-center sm:items-start gap-6">
-        <!-- Current Profile Picture -->
-        <div class="relative group">
-          <div class="w-32 h-32 rounded-full overflow-hidden border-4 border-primary glow-primary group-hover:glow-primary-strong transition-all duration-gaming">
-            <img id="profilePreview" src="https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Profile Picture" class="w-full h-full object-cover" onerror="this.src='https://images.unsplash.com/photo-1584824486509-112e4181ff6b?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'; this.onerror=null;" loading="lazy" />
-          </div>
-          <!-- Badge shown when verified -->
-          <div id="verifiedBadge"
-               class="absolute -top-2 -left-2 bg-primary text-white text-xs font-bold p-1 rounded-full border-2 border-surface hidden">
-            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-              <path fill-rule="evenodd"
-                    d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                    clip-rule="evenodd" />
-            </svg>
-          </div>
-
-          <!-- Badge shown when NOT verified -->
-          <div id="notVerifiedBadge"
-               class="absolute -bottom-2 -right-2 bg-warning text-white text-xs font-bold px-2 py-1 rounded-full border-2 border-surface hidden">
-            Pending
-          </div>
-          <!-- Verified Badge -->
-          <div id="verifiedTick" class="absolute -top-2 -left-2 bg-primary text-white text-xs font-bold p-1 rounded-full border-2 border-surface">
-            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-              <path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
-            </svg>
-          </div>
-<!--          not verified badge -->
-          <div id="notVerifiedTick" class="absolute -top-2 -left-2 bg-warning text-white text-xs font-bold p-1 rounded-full border-2 border-surface hidden">
-            <svg class="w-3 h-3 mr-1" fill="currentColor" viewBox="0 0 20 20">
-              <path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/>
-            </svg>
-          </div>
-        </div>
-
-        <!-- Upload Controls -->
-        <div class="flex-1 w-full">
-          <!-- Drag and Drop Area -->
-          <div id="dropZone" class="border-2 border-dashed border-surface-700 rounded-gaming-card p-6 text-center hover:border-primary transition-colors duration-gaming cursor-pointer bg-surface-800/50" ondrop="handleDrop(event)" ondragover="handleDragOver(event)" ondragleave="handleDragLeave(event)" onclick="document.getElementById('profilePicture').click()">
-            <svg class="w-12 h-12 text-text-secondary mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"/>
-            </svg>
-            <p class="text-text-primary font-medium mb-2">Drop your image here or click to browse</p>
-            <p class="text-text-secondary text-sm">PNG, JPG, GIF up to 5MB</p>
-          </div>
-
-          <input type="file" id="profilePicture" name="profilePicture" accept="image/*" class="hidden" onchange="handleFileSelect(event)" />
-
-          <!-- Upload Status -->
-          <div id="uploadStatus" class="mt-4 hidden">
-            <div class="flex items-center text-sm">
-              <div class="w-4 h-4 border-2 border-primary border-t-transparent rounded-full animate-spin mr-2"></div>
-              <span class="text-text-secondary">Uploading...</span>
             </div>
           </div>
         </div>
       </div>
-    </div>
 
-    <!-- Streamer Information Section -->
-    <div class="bg-surface rounded-gaming-card shadow-gaming border border-surface-700 p-6 sm:p-8">
-      <h2 class="text-xl font-semibold text-gaming-heading mb-6 flex items-center">
-        <svg class="w-6 h-6 text-primary mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"/>
-        </svg>
-        Streamer Information
-      </h2>
+      <!-- Profile Picture Section -->
+      <div class="bg-surface rounded-gaming-card shadow-gaming border border-surface-700 p-6 sm:p-8">
+        <h2 class="text-xl font-semibold text-gaming-heading mb-6 flex items-center">
+          <svg class="w-6 h-6 text-primary mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+          </svg>
+          Profile Picture
+        </h2>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <!-- Read-only UUID -->
-        <div class="md:col-span-2">
-          <label class="block text-sm font-medium text-text-secondary mb-2">Streamer ID (Read-only)</label>
-          <div  id="streamerId" class="bg-surface-800 border border-surface-700 rounded-gaming px-4 py-3 text-gaming-data text-sm text-text-secondary">
-            550e8400-e29b-41d4-a716-446655440000
+        <div class="flex flex-col sm:flex-row items-center sm:items-start gap-6">
+          <!-- Current Profile Picture -->
+          <div class="relative group">
+            <div class="w-32 h-32 rounded-full overflow-hidden border-4 border-primary glow-primary group-hover:glow-primary-strong transition-all duration-gaming">
+              <img id="profilePreview" src="https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Profile Picture" class="w-full h-full object-cover" onerror="this.src='https://images.unsplash.com/photo-1584824486509-112e4181ff6b?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'; this.onerror=null;" loading="lazy" />
+            </div>
+            <!-- Badge shown when verified -->
+            <div id="verifiedBadge"
+                 class="absolute -top-2 -left-2 bg-primary text-white text-xs font-bold p-1 rounded-full border-2 border-surface hidden">
+              <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd"
+                      d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                      clip-rule="evenodd" />
+              </svg>
+            </div>
+
+            <!-- Badge shown when NOT verified -->
+            <div id="notVerifiedBadge"
+                 class="absolute -bottom-2 -right-2 bg-warning text-white text-xs font-bold px-2 py-1 rounded-full border-2 border-surface hidden">
+              Pending
+            </div>
+            <!-- Verified Badge -->
+            <div id="verifiedTick" class="absolute -top-2 -left-2 bg-primary text-white text-xs font-bold p-1 rounded-full border-2 border-surface">
+              <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+              </svg>
+            </div>
+            <!--          not verified badge -->
+            <div id="notVerifiedTick" class="absolute -top-2 -left-2 bg-warning text-white text-xs font-bold p-1 rounded-full border-2 border-surface hidden">
+              <svg class="w-3 h-3 mr-1" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/>
+              </svg>
+            </div>
+          </div>
+
+          <!-- Upload Controls -->
+          <div class="flex-1 w-full">
+            <!-- Drag and Drop Area -->
+            <div id="dropZone" class="border-2 border-dashed border-surface-700 rounded-gaming-card p-6 text-center hover:border-primary transition-colors duration-gaming cursor-pointer bg-surface-800/50" ondrop="handleDrop(event)" ondragover="handleDragOver(event)" ondragleave="handleDragLeave(event)" onclick="document.getElementById('profilePicture').click()">
+              <svg class="w-12 h-12 text-text-secondary mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"/>
+              </svg>
+              <p class="text-text-primary font-medium mb-2">Drop your image here or click to browse</p>
+              <p class="text-text-secondary text-sm">PNG, JPG, GIF up to 5MB</p>
+            </div>
+
+            <input type="file" id="profilePicture" name="profilePicture" accept="image/*" class="hidden" onchange="handleFileSelect(event)" />
+
+            <!-- Upload Status -->
+            <div id="uploadStatus" class="mt-4 hidden">
+              <div class="flex items-center text-sm">
+                <div class="w-4 h-4 border-2 border-primary border-t-transparent rounded-full animate-spin mr-2"></div>
+                <span class="text-text-secondary">Uploading...</span>
+              </div>
+            </div>
           </div>
         </div>
+      </div>
 
-        <!-- Email -->
-        <div>
-          <label for="email" class="block text-sm font-medium text-text-secondary mb-2">Email Address (Read Only)</label>
-          <div id="email" class="bg-surface-800 border border-surface-700 rounded-gaming px-4 py-3 text-gaming-data text-sm text-text-secondary">
-            stream@gmail.com
+      <!-- Streamer Information Section -->
+      <div class="bg-surface rounded-gaming-card shadow-gaming border border-surface-700 p-6 sm:p-8">
+        <h2 class="text-xl font-semibold text-gaming-heading mb-6 flex items-center">
+          <svg class="w-6 h-6 text-primary mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"/>
+          </svg>
+          Streamer Information
+        </h2>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <!-- Read-only UUID -->
+          <div class="md:col-span-2">
+            <label class="block text-sm font-medium text-text-secondary mb-2">Streamer ID (Read-only)</label>
+            <div  id="streamerId" class="bg-surface-800 border border-surface-700 rounded-gaming px-4 py-3 text-gaming-data text-sm text-text-secondary">
+              550e8400-e29b-41d4-a716-446655440000
+            </div>
           </div>
-        </div>
+
+          <!-- Email -->
+          <div>
+            <label for="email" class="block text-sm font-medium text-text-secondary mb-2">Email Address (Read Only)</label>
+            <div id="email" class="bg-surface-800 border border-surface-700 rounded-gaming px-4 py-3 text-gaming-data text-sm text-text-secondary">
+              stream@gmail.com
+            </div>
+          </div>
 
 
-        <!-- Read-only Status Fields -->
-        <div>
-          <label class="block text-sm font-medium text-text-secondary mb-2">Verification Status (Read-only)</label>
-          <div id="verificationStatus" class="bg-surface-800 border border-surface-700 rounded-gaming px-4 py-3 flex items-center">
+          <!-- Read-only Status Fields -->
+          <div>
+            <label class="block text-sm font-medium text-text-secondary mb-2">Verification Status (Read-only)</label>
+            <div id="verificationStatus" class="bg-surface-800 border border-surface-700 rounded-gaming px-4 py-3 flex items-center">
                             <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-success/20 text-success border border-success/30">
                                 <svg class="w-3 h-3 mr-1" fill="currentColor" viewBox="0 0 20 20">
                                     <path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
                                 </svg>
                                 Verified
                             </span>
+            </div>
+          </div>
+
+          <!--label saying you can edit these details-->
+          <div class="md:col-span-2">
+            <label class="block text-sm font-medium text-warning mb-2">You can edit the following details:</label>
+          </div>
+
+          <!-- Display Name -->
+          <div>
+            <label class="block text-sm font-medium text-text-secondary mb-2">Display Name</label>
+            <input id="displayName" name="name" class="w-full bg-surface-800 border border-surface-700 rounded-gaming px-4 py-3 text-text-primary form-field-gaming focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary" placeholder="Display Name" required>
+          </div>
+
+          <!-- Platform -->
+          <div>
+            <label  class="block text-sm font-medium text-text-secondary mb-2">Streaming Platform</label>
+            <select id="platform" name="platform" class="w-full bg-surface-800 border border-surface-700 rounded-gaming px-4 py-3 text-text-primary form-field-gaming focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary" required>
+              <option value="">Select Platform</option>
+              <option value="Twitch" selected>🟣 Twitch</option>
+              <option value="YouTube">🔴 YouTube</option>
+              <option value="Facebook">🔵 Facebook Gaming</option>
+              <option value="TikTok">⚫ TikTok Live</option>
+              <option value="Kick">🟢 Kick</option>
+              <option value="Other">🔶 Other</option>
+            </select>
+          </div>
+
+          <!-- Stream URL -->
+          <div>
+            <label class="block text-sm font-medium text-text-secondary mb-2">Streamer Url</label>
+            <input id="streamUrl" name="streamUrl" class="w-full bg-surface-800 border border-surface-700 rounded-gaming px-4 py-3 text-text-primary form-field-gaming focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary" placeholder="Streamer Url" required>
+          </div>
+
+          <!-- Country -->
+          <div>
+            <label  class="block text-sm font-medium text-text-secondary mb-2">Country</label>
+            <select id="country" name="country" class="w-full bg-surface-800 border border-surface-700 rounded-gaming px-4 py-3 text-text-primary form-field-gaming focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary" required>
+              <option value="">Select Your Country</option>
+              <option value="Afghanistan"> </option>
+              <option value="Afghanistan">Afghanistan</option>
+              <option value="Åland Islands">Åland Islands</option>
+              <option value="Albania">Albania</option>
+              <option value="Algeria">Algeria</option>
+              <option value="American Samoa">American Samoa</option>
+              <option value="Andorra">Andorra</option>
+              <option value="Angola">Angola</option>
+              <option value="Anguilla">Anguilla</option>
+              <option value="Antarctica">Antarctica</option>
+              <option value="Antigua and Barbuda">Antigua and Barbuda</option>
+              <option value="Argentina">Argentina</option>
+              <option value="Armenia">Armenia</option>
+              <option value="Aruba">Aruba</option>
+              <option value="Australia">Australia</option>
+              <option value="Austria">Austria</option>
+              <option value="Azerbaijan">Azerbaijan</option>
+              <option value="Bahamas">Bahamas</option>
+              <option value="Bahrain">Bahrain</option>
+              <option value="Bangladesh">Bangladesh</option>
+              <option value="Barbados">Barbados</option>
+              <option value="Belarus">Belarus</option>
+              <option value="Belgium">Belgium</option>
+              <option value="Belize">Belize</option>
+              <option value="Benin">Benin</option>
+              <option value="Bermuda">Bermuda</option>
+              <option value="Bhutan">Bhutan</option>
+              <option value="Bolivia">Bolivia</option>
+              <option value="Bosnia and Herzegovina">Bosnia and Herzegovina</option>
+              <option value="Botswana">Botswana</option>
+              <option value="Bouvet Island">Bouvet Island</option>
+              <option value="Brazil">Brazil</option>
+              <option value="British Indian Ocean Territory">British Indian Ocean Territory</option>
+              <option value="Brunei Darussalam">Brunei Darussalam</option>
+              <option value="Bulgaria">Bulgaria</option>
+              <option value="Burkina Faso">Burkina Faso</option>
+              <option value="Burundi">Burundi</option>
+              <option value="Cambodia">Cambodia</option>
+              <option value="Cameroon">Cameroon</option>
+              <option value="Canada">Canada</option>
+              <option value="Cape Verde">Cape Verde</option>
+              <option value="Cayman Islands">Cayman Islands</option>
+              <option value="Central African Republic">Central African Republic</option>
+              <option value="Chad">Chad</option>
+              <option value="Chile">Chile</option>
+              <option value="China">China</option>
+              <option value="Christmas Island">Christmas Island</option>
+              <option value="Cocos (Keeling) Islands">Cocos (Keeling) Islands</option>
+              <option value="Colombia">Colombia</option>
+              <option value="Comoros">Comoros</option>
+              <option value="Congo">Congo</option>
+              <option value="Congo, The Democratic Republic of The">Congo, The Democratic Republic of The</option>
+              <option value="Cook Islands">Cook Islands</option>
+              <option value="Costa Rica">Costa Rica</option>
+              <option value="Cote D'ivoire">Cote D'ivoire</option>
+              <option value="Croatia">Croatia</option>
+              <option value="Cuba">Cuba</option>
+              <option value="Cyprus">Cyprus</option>
+              <option value="Czech Republic">Czech Republic</option>
+              <option value="Denmark">Denmark</option>
+              <option value="Djibouti">Djibouti</option>
+              <option value="Dominica">Dominica</option>
+              <option value="Dominican Republic">Dominican Republic</option>
+              <option value="Ecuador">Ecuador</option>
+              <option value="Egypt">Egypt</option>
+              <option value="El Salvador">El Salvador</option>
+              <option value="Equatorial Guinea">Equatorial Guinea</option>
+              <option value="Eritrea">Eritrea</option>
+              <option value="Estonia">Estonia</option>
+              <option value="Ethiopia">Ethiopia</option>
+              <option value="Falkland Islands (Malvinas)">Falkland Islands (Malvinas)</option>
+              <option value="Faroe Islands">Faroe Islands</option>
+              <option value="Fiji">Fiji</option>
+              <option value="Finland">Finland</option>
+              <option value="France">France</option>
+              <option value="French Guiana">French Guiana</option>
+              <option value="French Polynesia">French Polynesia</option>
+              <option value="French Southern Territories">French Southern Territories</option>
+              <option value="Gabon">Gabon</option>
+              <option value="Gambia">Gambia</option>
+              <option value="Georgia">Georgia</option>
+              <option value="Germany">Germany</option>
+              <option value="Ghana">Ghana</option>
+              <option value="Gibraltar">Gibraltar</option>
+              <option value="Greece">Greece</option>
+              <option value="Greenland">Greenland</option>
+              <option value="Grenada">Grenada</option>
+              <option value="Guadeloupe">Guadeloupe</option>
+              <option value="Guam">Guam</option>
+              <option value="Guatemala">Guatemala</option>
+              <option value="Guernsey">Guernsey</option>
+              <option value="Guinea">Guinea</option>
+              <option value="Guinea-bissau">Guinea-bissau</option>
+              <option value="Guyana">Guyana</option>
+              <option value="Haiti">Haiti</option>
+              <option value="Heard Island and Mcdonald Islands">Heard Island and Mcdonald Islands</option>
+              <option value="Holy See (Vatican City State)">Holy See (Vatican City State)</option>
+              <option value="Honduras">Honduras</option>
+              <option value="Hong Kong">Hong Kong</option>
+              <option value="Hungary">Hungary</option>
+              <option value="Iceland">Iceland</option>
+              <option value="India">India</option>
+              <option value="Indonesia">Indonesia</option>
+              <option value="Iran, Islamic Republic of">Iran, Islamic Republic of</option>
+              <option value="Iraq">Iraq</option>
+              <option value="Ireland">Ireland</option>
+              <option value="Isle of Man">Isle of Man</option>
+              <option value="Israel">Israel</option>
+              <option value="Italy">Italy</option>
+              <option value="Jamaica">Jamaica</option>
+              <option value="Japan">Japan</option>
+              <option value="Jersey">Jersey</option>
+              <option value="Jordan">Jordan</option>
+              <option value="Kazakhstan">Kazakhstan</option>
+              <option value="Kenya">Kenya</option>
+              <option value="Kiribati">Kiribati</option>
+              <option value="Korea, Democratic People's Republic of">Korea, Democratic People's Republic of</option>
+              <option value="Korea, Republic of">Korea, Republic of</option>
+              <option value="Kuwait">Kuwait</option>
+              <option value="Kyrgyzstan">Kyrgyzstan</option>
+              <option value="Lao People's Democratic Republic">Lao People's Democratic Republic</option>
+              <option value="Latvia">Latvia</option>
+              <option value="Lebanon">Lebanon</option>
+              <option value="Lesotho">Lesotho</option>
+              <option value="Liberia">Liberia</option>
+              <option value="Libyan Arab Jamahiriya">Libyan Arab Jamahiriya</option>
+              <option value="Liechtenstein">Liechtenstein</option>
+              <option value="Lithuania">Lithuania</option>
+              <option value="Luxembourg">Luxembourg</option>
+              <option value="Macao">Macao</option>
+              <option value="Macedonia, The Former Yugoslav Republic of">Macedonia, The Former Yugoslav Republic of</option>
+              <option value="Madagascar">Madagascar</option>
+              <option value="Malawi">Malawi</option>
+              <option value="Malaysia">Malaysia</option>
+              <option value="Maldives">Maldives</option>
+              <option value="Mali">Mali</option>
+              <option value="Malta">Malta</option>
+              <option value="Marshall Islands">Marshall Islands</option>
+              <option value="Martinique">Martinique</option>
+              <option value="Mauritania">Mauritania</option>
+              <option value="Mauritius">Mauritius</option>
+              <option value="Mayotte">Mayotte</option>
+              <option value="Mexico">Mexico</option>
+              <option value="Micronesia, Federated States of">Micronesia, Federated States of</option>
+              <option value="Moldova, Republic of">Moldova, Republic of</option>
+              <option value="Monaco">Monaco</option>
+              <option value="Mongolia">Mongolia</option>
+              <option value="Montenegro">Montenegro</option>
+              <option value="Montserrat">Montserrat</option>
+              <option value="Morocco">Morocco</option>
+              <option value="Mozambique">Mozambique</option>
+              <option value="Myanmar">Myanmar</option>
+              <option value="Namibia">Namibia</option>
+              <option value="Nauru">Nauru</option>
+              <option value="Nepal">Nepal</option>
+              <option value="Netherlands">Netherlands</option>
+              <option value="Netherlands Antilles">Netherlands Antilles</option>
+              <option value="New Caledonia">New Caledonia</option>
+              <option value="New Zealand">New Zealand</option>
+              <option value="Nicaragua">Nicaragua</option>
+              <option value="Niger">Niger</option>
+              <option value="Nigeria">Nigeria</option>
+              <option value="Niue">Niue</option>
+              <option value="Norfolk Island">Norfolk Island</option>
+              <option value="Northern Mariana Islands">Northern Mariana Islands</option>
+              <option value="Norway">Norway</option>
+              <option value="Oman">Oman</option>
+              <option value="Pakistan">Pakistan</option>
+              <option value="Palau">Palau</option>
+              <option value="Palestinian Territory, Occupied">Palestinian Territory, Occupied</option>
+              <option value="Panama">Panama</option>
+              <option value="Papua New Guinea">Papua New Guinea</option>
+              <option value="Paraguay">Paraguay</option>
+              <option value="Peru">Peru</option>
+              <option value="Philippines">Philippines</option>
+              <option value="Pitcairn">Pitcairn</option>
+              <option value="Poland">Poland</option>
+              <option value="Portugal">Portugal</option>
+              <option value="Puerto Rico">Puerto Rico</option>
+              <option value="Qatar">Qatar</option>
+              <option value="Reunion">Reunion</option>
+              <option value="Romania">Romania</option>
+              <option value="Russian Federation">Russian Federation</option>
+              <option value="Rwanda">Rwanda</option>
+              <option value="Saint Helena">Saint Helena</option>
+              <option value="Saint Kitts and Nevis">Saint Kitts and Nevis</option>
+              <option value="Saint Lucia">Saint Lucia</option>
+              <option value="Saint Pierre and Miquelon">Saint Pierre and Miquelon</option>
+              <option value="Saint Vincent and The Grenadines">Saint Vincent and The Grenadines</option>
+              <option value="Samoa">Samoa</option>
+              <option value="San Marino">San Marino</option>
+              <option value="Sao Tome and Principe">Sao Tome and Principe</option>
+              <option value="Saudi Arabia">Saudi Arabia</option>
+              <option value="Senegal">Senegal</option>
+              <option value="Serbia">Serbia</option>
+              <option value="Seychelles">Seychelles</option>
+              <option value="Sierra Leone">Sierra Leone</option>
+              <option value="Singapore">Singapore</option>
+              <option value="Slovakia">Slovakia</option>
+              <option value="Slovenia">Slovenia</option>
+              <option value="Solomon Islands">Solomon Islands</option>
+              <option value="Somalia">Somalia</option>
+              <option value="South Africa">South Africa</option>
+              <option value="South Georgia and The South Sandwich Islands">South Georgia and The South Sandwich Islands</option>
+              <option value="Spain">Spain</option>
+              <option value="Sri Lanka">Sri Lanka</option>
+              <option value="Sudan">Sudan</option>
+              <option value="Suriname">Suriname</option>
+              <option value="Svalbard and Jan Mayen">Svalbard and Jan Mayen</option>
+              <option value="Swaziland">Swaziland</option>
+              <option value="Sweden">Sweden</option>
+              <option value="Switzerland">Switzerland</option>
+              <option value="Syrian Arab Republic">Syrian Arab Republic</option>
+              <option value="Taiwan">Taiwan</option>
+              <option value="Tajikistan">Tajikistan</option>
+              <option value="Tanzania, United Republic of">Tanzania, United Republic of</option>
+              <option value="Thailand">Thailand</option>
+              <option value="Timor-leste">Timor-leste</option>
+              <option value="Togo">Togo</option>
+              <option value="Tokelau">Tokelau</option>
+              <option value="Tonga">Tonga</option>
+              <option value="Trinidad and Tobago">Trinidad and Tobago</option>
+              <option value="Tunisia">Tunisia</option>
+              <option value="Turkey">Turkey</option>
+              <option value="Turkmenistan">Turkmenistan</option>
+              <option value="Turks and Caicos Islands">Turks and Caicos Islands</option>
+              <option value="Tuvalu">Tuvalu</option>
+              <option value="Uganda">Uganda</option>
+              <option value="Ukraine">Ukraine</option>
+              <option value="United Arab Emirates">United Arab Emirates</option>
+              <option value="United Kingdom">United Kingdom</option>
+              <option value="United States">United States</option>
+              <option value="United States Minor Outlying Islands">United States Minor Outlying Islands</option>
+              <option value="Uruguay">Uruguay</option>
+              <option value="Uzbekistan">Uzbekistan</option>
+              <option value="Vanuatu">Vanuatu</option>
+              <option value="Venezuela">Venezuela</option>
+              <option value="Viet Nam">Viet Nam</option>
+              <option value="Virgin Islands, British">Virgin Islands, British</option>
+              <option value="Virgin Islands, U.S.">Virgin Islands, U.S.</option>
+              <option value="Wallis and Futuna">Wallis and Futuna</option>
+              <option value="Western Sahara">Western Sahara</option>
+              <option value="Yemen">Yemen</option>
+              <option value="Zambia">Zambia</option>
+              <option value="Zimbabwe">Zimbabwe</option>
+            </select>
+          </div>
+
+        </div>
+
+        <!-- Bio Section -->
+        <div class="mt-6">
+          <label for="bio" class="block text-sm font-medium text-text-secondary mb-2">Bio</label>
+          <textarea id="bio" name="bio" rows="4" maxlength="500" class="w-full bg-surface-800 border border-surface-700 rounded-gaming px-4 py-3 text-text-primary form-field-gaming focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary resize-none" placeholder="Tell your audience about yourself, your streaming style, and what they can expect from your content...">Professional streamer specializing in competitive FPS games and educational content. Been streaming for over 4 years with a focus on high-level gameplay analysis and viewer interaction. Join the community for daily streams featuring Valorant, CS2, and occasional variety games. Always happy to help viewers improve their gameplay!</textarea>
+          <div class="flex justify-between items-center mt-2">
+            <div id="bioError" class="text-sm text-error hidden">Bio cannot be empty</div>
+            <div class="text-sm text-text-secondary">
+              <span id="bioCount">483</span>/500 characters
+            </div>
           </div>
         </div>
-
-        <!--label saying you can edit these details-->
-        <div class="md:col-span-2">
-          <label class="block text-sm font-medium text-warning mb-2">You can edit the following details:</label>
-        </div>
-
-        <!-- Display Name -->
-        <div>
-          <label class="block text-sm font-medium text-text-secondary mb-2">Display Name</label>
-          <input id="displayName" name="name" class="w-full bg-surface-800 border border-surface-700 rounded-gaming px-4 py-3 text-text-primary form-field-gaming focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary" placeholder="Player Name" required>
-        </div>
-
-        <!-- Platform -->
-        <div>
-          <label  class="block text-sm font-medium text-text-secondary mb-2">Streaming Platform</label>
-          <select id="platform" name="platform" class="w-full bg-surface-800 border border-surface-700 rounded-gaming px-4 py-3 text-text-primary form-field-gaming focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary" required>
-            <option value="">Select Platform</option>
-            <option value="Twitch" selected>🟣 Twitch</option>
-            <option value="YouTube">🔴 YouTube</option>
-            <option value="Facebook">🔵 Facebook Gaming</option>
-            <option value="TikTok">⚫ TikTok Live</option>
-            <option value="Kick">🟢 Kick</option>
-            <option value="Other">🔶 Other</option>
-          </select>
-        </div>
-
-        <!-- Stream URL -->
-        <div>
-        <label class="block text-sm font-medium text-text-secondary mb-2">Streamer Url</label>
-        <input id="streamUrl" name="streamUrl" class="w-full bg-surface-800 border border-surface-700 rounded-gaming px-4 py-3 text-text-primary form-field-gaming focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary" placeholder="Player Name" required>
-        </div>
-
-        <!-- Country -->
-        <div>
-          <label  class="block text-sm font-medium text-text-secondary mb-2">Country</label>
-          <select id="country" name="country" class="w-full bg-surface-800 border border-surface-700 rounded-gaming px-4 py-3 text-text-primary form-field-gaming focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary" required>
-            <option value="">Select Country</option>
-            <option value="Afghanistan"> </option>
-            <option value="Afghanistan">Afghanistan</option>
-            <option value="Åland Islands">Åland Islands</option>
-            <option value="Albania">Albania</option>
-            <option value="Algeria">Algeria</option>
-            <option value="American Samoa">American Samoa</option>
-            <option value="Andorra">Andorra</option>
-            <option value="Angola">Angola</option>
-            <option value="Anguilla">Anguilla</option>
-            <option value="Antarctica">Antarctica</option>
-            <option value="Antigua and Barbuda">Antigua and Barbuda</option>
-            <option value="Argentina">Argentina</option>
-            <option value="Armenia">Armenia</option>
-            <option value="Aruba">Aruba</option>
-            <option value="Australia">Australia</option>
-            <option value="Austria">Austria</option>
-            <option value="Azerbaijan">Azerbaijan</option>
-            <option value="Bahamas">Bahamas</option>
-            <option value="Bahrain">Bahrain</option>
-            <option value="Bangladesh">Bangladesh</option>
-            <option value="Barbados">Barbados</option>
-            <option value="Belarus">Belarus</option>
-            <option value="Belgium">Belgium</option>
-            <option value="Belize">Belize</option>
-            <option value="Benin">Benin</option>
-            <option value="Bermuda">Bermuda</option>
-            <option value="Bhutan">Bhutan</option>
-            <option value="Bolivia">Bolivia</option>
-            <option value="Bosnia and Herzegovina">Bosnia and Herzegovina</option>
-            <option value="Botswana">Botswana</option>
-            <option value="Bouvet Island">Bouvet Island</option>
-            <option value="Brazil">Brazil</option>
-            <option value="British Indian Ocean Territory">British Indian Ocean Territory</option>
-            <option value="Brunei Darussalam">Brunei Darussalam</option>
-            <option value="Bulgaria">Bulgaria</option>
-            <option value="Burkina Faso">Burkina Faso</option>
-            <option value="Burundi">Burundi</option>
-            <option value="Cambodia">Cambodia</option>
-            <option value="Cameroon">Cameroon</option>
-            <option value="Canada">Canada</option>
-            <option value="Cape Verde">Cape Verde</option>
-            <option value="Cayman Islands">Cayman Islands</option>
-            <option value="Central African Republic">Central African Republic</option>
-            <option value="Chad">Chad</option>
-            <option value="Chile">Chile</option>
-            <option value="China">China</option>
-            <option value="Christmas Island">Christmas Island</option>
-            <option value="Cocos (Keeling) Islands">Cocos (Keeling) Islands</option>
-            <option value="Colombia">Colombia</option>
-            <option value="Comoros">Comoros</option>
-            <option value="Congo">Congo</option>
-            <option value="Congo, The Democratic Republic of The">Congo, The Democratic Republic of The</option>
-            <option value="Cook Islands">Cook Islands</option>
-            <option value="Costa Rica">Costa Rica</option>
-            <option value="Cote D'ivoire">Cote D'ivoire</option>
-            <option value="Croatia">Croatia</option>
-            <option value="Cuba">Cuba</option>
-            <option value="Cyprus">Cyprus</option>
-            <option value="Czech Republic">Czech Republic</option>
-            <option value="Denmark">Denmark</option>
-            <option value="Djibouti">Djibouti</option>
-            <option value="Dominica">Dominica</option>
-            <option value="Dominican Republic">Dominican Republic</option>
-            <option value="Ecuador">Ecuador</option>
-            <option value="Egypt">Egypt</option>
-            <option value="El Salvador">El Salvador</option>
-            <option value="Equatorial Guinea">Equatorial Guinea</option>
-            <option value="Eritrea">Eritrea</option>
-            <option value="Estonia">Estonia</option>
-            <option value="Ethiopia">Ethiopia</option>
-            <option value="Falkland Islands (Malvinas)">Falkland Islands (Malvinas)</option>
-            <option value="Faroe Islands">Faroe Islands</option>
-            <option value="Fiji">Fiji</option>
-            <option value="Finland">Finland</option>
-            <option value="France">France</option>
-            <option value="French Guiana">French Guiana</option>
-            <option value="French Polynesia">French Polynesia</option>
-            <option value="French Southern Territories">French Southern Territories</option>
-            <option value="Gabon">Gabon</option>
-            <option value="Gambia">Gambia</option>
-            <option value="Georgia">Georgia</option>
-            <option value="Germany">Germany</option>
-            <option value="Ghana">Ghana</option>
-            <option value="Gibraltar">Gibraltar</option>
-            <option value="Greece">Greece</option>
-            <option value="Greenland">Greenland</option>
-            <option value="Grenada">Grenada</option>
-            <option value="Guadeloupe">Guadeloupe</option>
-            <option value="Guam">Guam</option>
-            <option value="Guatemala">Guatemala</option>
-            <option value="Guernsey">Guernsey</option>
-            <option value="Guinea">Guinea</option>
-            <option value="Guinea-bissau">Guinea-bissau</option>
-            <option value="Guyana">Guyana</option>
-            <option value="Haiti">Haiti</option>
-            <option value="Heard Island and Mcdonald Islands">Heard Island and Mcdonald Islands</option>
-            <option value="Holy See (Vatican City State)">Holy See (Vatican City State)</option>
-            <option value="Honduras">Honduras</option>
-            <option value="Hong Kong">Hong Kong</option>
-            <option value="Hungary">Hungary</option>
-            <option value="Iceland">Iceland</option>
-            <option value="India">India</option>
-            <option value="Indonesia">Indonesia</option>
-            <option value="Iran, Islamic Republic of">Iran, Islamic Republic of</option>
-            <option value="Iraq">Iraq</option>
-            <option value="Ireland">Ireland</option>
-            <option value="Isle of Man">Isle of Man</option>
-            <option value="Israel">Israel</option>
-            <option value="Italy">Italy</option>
-            <option value="Jamaica">Jamaica</option>
-            <option value="Japan">Japan</option>
-            <option value="Jersey">Jersey</option>
-            <option value="Jordan">Jordan</option>
-            <option value="Kazakhstan">Kazakhstan</option>
-            <option value="Kenya">Kenya</option>
-            <option value="Kiribati">Kiribati</option>
-            <option value="Korea, Democratic People's Republic of">Korea, Democratic People's Republic of</option>
-            <option value="Korea, Republic of">Korea, Republic of</option>
-            <option value="Kuwait">Kuwait</option>
-            <option value="Kyrgyzstan">Kyrgyzstan</option>
-            <option value="Lao People's Democratic Republic">Lao People's Democratic Republic</option>
-            <option value="Latvia">Latvia</option>
-            <option value="Lebanon">Lebanon</option>
-            <option value="Lesotho">Lesotho</option>
-            <option value="Liberia">Liberia</option>
-            <option value="Libyan Arab Jamahiriya">Libyan Arab Jamahiriya</option>
-            <option value="Liechtenstein">Liechtenstein</option>
-            <option value="Lithuania">Lithuania</option>
-            <option value="Luxembourg">Luxembourg</option>
-            <option value="Macao">Macao</option>
-            <option value="Macedonia, The Former Yugoslav Republic of">Macedonia, The Former Yugoslav Republic of</option>
-            <option value="Madagascar">Madagascar</option>
-            <option value="Malawi">Malawi</option>
-            <option value="Malaysia">Malaysia</option>
-            <option value="Maldives">Maldives</option>
-            <option value="Mali">Mali</option>
-            <option value="Malta">Malta</option>
-            <option value="Marshall Islands">Marshall Islands</option>
-            <option value="Martinique">Martinique</option>
-            <option value="Mauritania">Mauritania</option>
-            <option value="Mauritius">Mauritius</option>
-            <option value="Mayotte">Mayotte</option>
-            <option value="Mexico">Mexico</option>
-            <option value="Micronesia, Federated States of">Micronesia, Federated States of</option>
-            <option value="Moldova, Republic of">Moldova, Republic of</option>
-            <option value="Monaco">Monaco</option>
-            <option value="Mongolia">Mongolia</option>
-            <option value="Montenegro">Montenegro</option>
-            <option value="Montserrat">Montserrat</option>
-            <option value="Morocco">Morocco</option>
-            <option value="Mozambique">Mozambique</option>
-            <option value="Myanmar">Myanmar</option>
-            <option value="Namibia">Namibia</option>
-            <option value="Nauru">Nauru</option>
-            <option value="Nepal">Nepal</option>
-            <option value="Netherlands">Netherlands</option>
-            <option value="Netherlands Antilles">Netherlands Antilles</option>
-            <option value="New Caledonia">New Caledonia</option>
-            <option value="New Zealand">New Zealand</option>
-            <option value="Nicaragua">Nicaragua</option>
-            <option value="Niger">Niger</option>
-            <option value="Nigeria">Nigeria</option>
-            <option value="Niue">Niue</option>
-            <option value="Norfolk Island">Norfolk Island</option>
-            <option value="Northern Mariana Islands">Northern Mariana Islands</option>
-            <option value="Norway">Norway</option>
-            <option value="Oman">Oman</option>
-            <option value="Pakistan">Pakistan</option>
-            <option value="Palau">Palau</option>
-            <option value="Palestinian Territory, Occupied">Palestinian Territory, Occupied</option>
-            <option value="Panama">Panama</option>
-            <option value="Papua New Guinea">Papua New Guinea</option>
-            <option value="Paraguay">Paraguay</option>
-            <option value="Peru">Peru</option>
-            <option value="Philippines">Philippines</option>
-            <option value="Pitcairn">Pitcairn</option>
-            <option value="Poland">Poland</option>
-            <option value="Portugal">Portugal</option>
-            <option value="Puerto Rico">Puerto Rico</option>
-            <option value="Qatar">Qatar</option>
-            <option value="Reunion">Reunion</option>
-            <option value="Romania">Romania</option>
-            <option value="Russian Federation">Russian Federation</option>
-            <option value="Rwanda">Rwanda</option>
-            <option value="Saint Helena">Saint Helena</option>
-            <option value="Saint Kitts and Nevis">Saint Kitts and Nevis</option>
-            <option value="Saint Lucia">Saint Lucia</option>
-            <option value="Saint Pierre and Miquelon">Saint Pierre and Miquelon</option>
-            <option value="Saint Vincent and The Grenadines">Saint Vincent and The Grenadines</option>
-            <option value="Samoa">Samoa</option>
-            <option value="San Marino">San Marino</option>
-            <option value="Sao Tome and Principe">Sao Tome and Principe</option>
-            <option value="Saudi Arabia">Saudi Arabia</option>
-            <option value="Senegal">Senegal</option>
-            <option value="Serbia">Serbia</option>
-            <option value="Seychelles">Seychelles</option>
-            <option value="Sierra Leone">Sierra Leone</option>
-            <option value="Singapore">Singapore</option>
-            <option value="Slovakia">Slovakia</option>
-            <option value="Slovenia">Slovenia</option>
-            <option value="Solomon Islands">Solomon Islands</option>
-            <option value="Somalia">Somalia</option>
-            <option value="South Africa">South Africa</option>
-            <option value="South Georgia and The South Sandwich Islands">South Georgia and The South Sandwich Islands</option>
-            <option value="Spain">Spain</option>
-            <option value="Sri Lanka">Sri Lanka</option>
-            <option value="Sudan">Sudan</option>
-            <option value="Suriname">Suriname</option>
-            <option value="Svalbard and Jan Mayen">Svalbard and Jan Mayen</option>
-            <option value="Swaziland">Swaziland</option>
-            <option value="Sweden">Sweden</option>
-            <option value="Switzerland">Switzerland</option>
-            <option value="Syrian Arab Republic">Syrian Arab Republic</option>
-            <option value="Taiwan">Taiwan</option>
-            <option value="Tajikistan">Tajikistan</option>
-            <option value="Tanzania, United Republic of">Tanzania, United Republic of</option>
-            <option value="Thailand">Thailand</option>
-            <option value="Timor-leste">Timor-leste</option>
-            <option value="Togo">Togo</option>
-            <option value="Tokelau">Tokelau</option>
-            <option value="Tonga">Tonga</option>
-            <option value="Trinidad and Tobago">Trinidad and Tobago</option>
-            <option value="Tunisia">Tunisia</option>
-            <option value="Turkey">Turkey</option>
-            <option value="Turkmenistan">Turkmenistan</option>
-            <option value="Turks and Caicos Islands">Turks and Caicos Islands</option>
-            <option value="Tuvalu">Tuvalu</option>
-            <option value="Uganda">Uganda</option>
-            <option value="Ukraine">Ukraine</option>
-            <option value="United Arab Emirates">United Arab Emirates</option>
-            <option value="United Kingdom">United Kingdom</option>
-            <option value="United States">United States</option>
-            <option value="United States Minor Outlying Islands">United States Minor Outlying Islands</option>
-            <option value="Uruguay">Uruguay</option>
-            <option value="Uzbekistan">Uzbekistan</option>
-            <option value="Vanuatu">Vanuatu</option>
-            <option value="Venezuela">Venezuela</option>
-            <option value="Viet Nam">Viet Nam</option>
-            <option value="Virgin Islands, British">Virgin Islands, British</option>
-            <option value="Virgin Islands, U.S.">Virgin Islands, U.S.</option>
-            <option value="Wallis and Futuna">Wallis and Futuna</option>
-            <option value="Western Sahara">Western Sahara</option>
-            <option value="Yemen">Yemen</option>
-            <option value="Zambia">Zambia</option>
-            <option value="Zimbabwe">Zimbabwe</option>
-          </select>
-        </div>
-
       </div>
 
-      <!-- Bio Section -->
-      <div class="mt-6">
-        <label for="bio" class="block text-sm font-medium text-text-secondary mb-2">Bio</label>
-        <textarea id="bio" name="bio" rows="4" maxlength="500" class="w-full bg-surface-800 border border-surface-700 rounded-gaming px-4 py-3 text-text-primary form-field-gaming focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary resize-none" placeholder="Tell your audience about yourself, your streaming style, and what they can expect from your content...">Professional streamer specializing in competitive FPS games and educational content. Been streaming for over 4 years with a focus on high-level gameplay analysis and viewer interaction. Join the community for daily streams featuring Valorant, CS2, and occasional variety games. Always happy to help viewers improve their gameplay!</textarea>
-        <div class="flex justify-between items-center mt-2">
-          <div id="bioError" class="text-sm text-error hidden">Bio cannot be empty</div>
-          <div class="text-sm text-text-secondary">
-            <span id="bioCount">483</span>/500 characters
-          </div>
-        </div>
-      </div>
-    </div>
+      <!-- Streaming Settings Section -->
+      <div class="bg-surface rounded-gaming-card shadow-gaming border border-surface-700 p-6 sm:p-8">
+        <h2  class="text-xl font-semibold text-gaming-heading mb-6 flex items-center">
+          <svg class="w-6 h-6 text-accent mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/>
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+          </svg>
+          Streaming Status & Info
+        </h2>
 
-    <!-- Streaming Settings Section -->
-    <div class="bg-surface rounded-gaming-card shadow-gaming border border-surface-700 p-6 sm:p-8">
-      <h2  class="text-xl font-semibold text-gaming-heading mb-6 flex items-center">
-        <svg class="w-6 h-6 text-accent mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/>
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
-        </svg>
-        Streaming Status & Info
-      </h2>
-
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <!-- Read-only Current Status -->
-        <div>
-          <label class="block text-sm font-medium text-text-secondary mb-2">Current Stream Status (Read-only)</label>
-          <div id="currentStatus" class="bg-surface-800 border border-surface-700 rounded-gaming px-4 py-3 flex items-center">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <!-- Read-only Current Status -->
+          <div>
+            <label class="block text-sm font-medium text-text-secondary mb-2">Current Stream Status (Read-only)</label>
+            <div id="currentStatus" class="bg-surface-800 border border-surface-700 rounded-gaming px-4 py-3 flex items-center">
                             <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-error/20 text-red-400 border border-error/30">
                                 <div class="w-2 h-2 bg-error rounded-full mr-1.5 animate-pulse"></div>
                                 Live Now
                             </span>
+            </div>
           </div>
-        </div>
 
-        <!-- Read-only Follower Count -->
-        <div>
-          <label class="block text-sm font-medium text-text-secondary mb-2">Followers (Read-only)</label>
-          <div id="followers" class="bg-surface-800 border border-surface-700 rounded-gaming px-4 py-3 text-accent font-medium">
-            125,742 followers
+          <!-- Read-only Follower Count -->
+          <div>
+            <label class="block text-sm font-medium text-text-secondary mb-2">Followers (Read-only)</label>
+            <div id="followers" class="bg-surface-800 border border-surface-700 rounded-gaming px-4 py-3 text-accent font-medium">
+              125,742 followers
+            </div>
           </div>
-        </div>
 
-        <!-- Read-only Join Date -->
-        <div>
-          <label class="block text-sm font-medium text-text-secondary mb-2">Joined Date (Read-only)</label>
-          <div id="joinDate" class="bg-surface-800 border border-surface-700 rounded-gaming px-4 py-3 text-text-secondary">
-            March 15, 2021
+          <!-- Read-only Join Date -->
+          <div>
+            <label class="block text-sm font-medium text-text-secondary mb-2">Joined Date (Read-only)</label>
+            <div id="joinDate" class="bg-surface-800 border border-surface-700 rounded-gaming px-4 py-3 text-text-secondary">
+              March 15, 2021
+            </div>
           </div>
-        </div>
 
-        <!-- Read-only Last Live -->
-        <div>
-          <label class="block text-sm font-medium text-text-secondary mb-2">Last Live (Read-only)</label>
-          <div id="lastLive" class="bg-surface-800 border border-surface-700 rounded-gaming px-4 py-3 text-text-secondary">
-            Currently streaming
+          <!-- Read-only Last Live -->
+          <div>
+            <label class="block text-sm font-medium text-text-secondary mb-2">Last Live (Read-only)</label>
+            <div id="lastLive" class="bg-surface-800 border border-surface-700 rounded-gaming px-4 py-3 text-text-secondary">
+              Currently streaming
+            </div>
           </div>
         </div>
       </div>
-    </div>
 
-    <!-- Action Buttons -->
-    <div class="flex flex-col sm:flex-row gap-4 justify-end">
-      <a href="streamer_profile.html" class="inline-flex items-center justify-center px-6 py-3 border border-surface-700 text-text-primary font-medium rounded-gaming btn-gaming hover:bg-surface-700 focus:outline-none focus:ring-2 focus:ring-surface-700 focus:ring-offset-2 focus:ring-offset-surface transition-colors duration-gaming">
-        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
-        </svg>
-        Cancel
-      </a>
-      <button id="saveChanges" type="submit" class="inline-flex items-center justify-center px-6 py-3 bg-primary text-background font-medium rounded-gaming btn-gaming hover:bg-primary-600 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-surface transition-colors duration-gaming">
+      <!-- Action Buttons -->
+      <div class="flex flex-col sm:flex-row gap-4 justify-end">
+        <a href="streamer_profile.html" class="inline-flex items-center justify-center px-6 py-3 border border-surface-700 text-text-primary font-medium rounded-gaming btn-gaming hover:bg-surface-700 focus:outline-none focus:ring-2 focus:ring-surface-700 focus:ring-offset-2 focus:ring-offset-surface transition-colors duration-gaming">
+          <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+          </svg>
+          Cancel
+        </a>
+        <button id="saveChanges" type="submit" class="inline-flex items-center justify-center px-6 py-3 bg-primary text-background font-medium rounded-gaming btn-gaming hover:bg-primary-600 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-surface transition-colors duration-gaming">
+          <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+          </svg>
+          Save Changes
+        </button>
+      </div>
+    </form>
+
+    <!-- Success/Error Messages -->
+    <div id="successMessage" class="fixed top-20 right-4 bg-success text-background px-6 py-4 rounded-gaming shadow-gaming-lg hidden z-50">
+      <div class="flex items-center">
         <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
         </svg>
-        Save Changes
-      </button>
+        Streamer profile updated successfully!
+      </div>
     </div>
-  </form>
 
-  <!-- Success/Error Messages -->
-  <div id="successMessage" class="fixed top-20 right-4 bg-success text-background px-6 py-4 rounded-gaming shadow-gaming-lg hidden z-50">
-    <div class="flex items-center">
-      <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
-      </svg>
-      Streamer profile updated successfully!
-    </div>
-  </div>
-
-  <div id="errorMessage" class="fixed top-20 right-4 bg-error text-background px-6 py-4 rounded-gaming shadow-gaming-lg hidden z-50">
-    <div class="flex items-center">
-      <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
-      </svg>
-      <span id="errorText">An error occurred. Please try again.</span>
-    </div>
-  </div>
-</main>
-
-<!-- Footer -->
-<footer class="bg-surface border-t border-surface-700 mt-16">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-    <div class="text-center">
-      <p class="text-text-secondary text-sm">© 2025 GameHub. All Rights Reserved.</p>
-      <p class="text-text-secondary text-xs mt-2">Empowering streamers worldwide</p>
-    </div>
-  </div>
-</footer>
-
-<!-- Mobile Navigation Menu (Hidden by default) -->
-<div class="md:hidden fixed inset-0 z-50 hidden" id="mobile-menu">
-  <div class="fixed inset-0 bg-background/80 backdrop-blur-sm" onclick="toggleMobileMenu()"></div>
-  <div class="fixed top-0 right-0 w-64 h-full bg-surface border-l border-surface-700 p-6">
-    <div class="flex justify-between items-center mb-8">
-      <span class="text-lg font-bold text-gaming-heading">Menu</span>
-      <button type="button" class="text-text-secondary hover:text-text-primary" onclick="toggleMobileMenu()">
-        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    <div id="errorMessage" class="fixed top-20 right-4 bg-error text-background px-6 py-4 rounded-gaming shadow-gaming-lg hidden z-50">
+      <div class="flex items-center">
+        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
         </svg>
-      </button>
+        <span id="errorText">An error occurred. Please try again.</span>
+      </div>
     </div>
-    <nav class="space-y-4">
-      <a href="streamer_profile_view.html" class="block text-text-secondary hover:text-text-primary py-2">Profile</a>
-      <a href="stream_dashboard.html" class="block text-text-secondary hover:text-text-primary py-2">Dashboard</a>
-      <a href="tournaments.html" class="block text-text-secondary hover:text-text-primary py-2">Tournaments</a>
-    </nav>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-surface border-t border-surface-700 mt-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <div class="text-center">
+        <p class="text-text-secondary text-sm">© 2025 GameHub. All Rights Reserved.</p>
+        <p class="text-text-secondary text-xs mt-2">Empowering streamers worldwide</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Mobile Navigation Menu (Hidden by default) -->
+  <div class="md:hidden fixed inset-0 z-50 hidden" id="mobile-menu">
+    <div class="fixed inset-0 bg-background/80 backdrop-blur-sm" onclick="toggleMobileMenu()"></div>
+    <div class="fixed top-0 right-0 w-64 h-full bg-surface border-l border-surface-700 p-6">
+      <div class="flex justify-between items-center mb-8">
+        <span class="text-lg font-bold text-gaming-heading">Menu</span>
+        <button type="button" class="text-text-secondary hover:text-text-primary" onclick="toggleMobileMenu()">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+          </svg>
+        </button>
+      </div>
+      <nav class="space-y-4">
+        <a href="streamer_profile_view.html" class="block text-text-secondary hover:text-text-primary py-2">Profile</a>
+        <a href="stream_dashboard.html" class="block text-text-secondary hover:text-text-primary py-2">Dashboard</a>
+        <a href="tournaments.html" class="block text-text-secondary hover:text-text-primary py-2">Tournaments</a>
+      </nav>
+    </div>
   </div>
-</div>
 </div>
 
 <script>
