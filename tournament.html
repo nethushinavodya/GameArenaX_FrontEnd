@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="utf-8"/>
     <link crossorigin="" href="https://fonts.gstatic.com/" rel="preconnect"/>
@@ -20,320 +20,11 @@
     <link href="assets/css/tailwind.css" rel="stylesheet" type="text/css"/>
     <link href="assets/css/main.css" rel="stylesheet" type="text/css"/>
     <style>
-        body {
-            font-family: "Space Grotesk", "Noto Sans", sans-serif;
-            background: linear-gradient(135deg, #0a0a0f 0%, #1a1a2e 50%, #16213e 100%);
-            min-height: 100vh;
-        }
-
-        .header-blur {
-            background: rgba(10, 10, 15, 0.9);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-        }
-
-        .neon-text {
-            color: #00ffcc;
-            text-shadow: 0 0 10px rgba(0, 255, 204, 0.5);
-        }
-
-        .logo-glow {
-            filter: drop-shadow(0 0 8px rgba(0, 255, 204, 0.6));
-        }
-
-        .nav-link {
-            position: relative;
-            transition: all 0.3s ease;
-        }
-
-        .nav-link::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            bottom: -2px;
-            left: 50%;
-            background: #00ffcc;
-            transition: all 0.3s ease;
-            transform: translateX(-50%);
-        }
-
-        .nav-link:hover::after {
-            width: 100%;
-        }
-
-        .nav-link:hover {
-            transform: translateY(-2px);
-        }
-
-        .btn-primary {
-            background: linear-gradient(45deg, #22c55e, #16a34a);
-            color: white;
-            padding: 12px 24px;
-            border-radius: 8px;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            border: none;
-            cursor: pointer;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(34, 197, 94, 0.4);
-        }
-
-        .btn-primary:disabled {
-            opacity: 0.6;
-            cursor: not-allowed;
-            transform: none;
-            box-shadow: none;
-        }
-
-        .tournament-card {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 16px;
-            padding: 24px;
-            transition: all 0.3s ease;
-            color: white;
-        }
-
-        .tournament-card:hover {
-            transform: translateY(-5px);
-            background: rgba(255, 255, 255, 0.08);
-            border-color: rgba(0, 255, 204, 0.3);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-        }
-
-        .status-open {
-            background: linear-gradient(45deg, #22c55e, #16a34a);
-            color: white;
-            padding: 4px 12px;
-            border-radius: 20px;
-            font-size: 12px;
-            font-weight: 600;
-        }
-
-        .status-filling {
-            background: linear-gradient(45deg, #f59e0b, #d97706);
-            color: white;
-            padding: 4px 12px;
-            border-radius: 20px;
-            font-size: 12px;
-            font-weight: 600;
-        }
-
-        .status-closed {
-            background: linear-gradient(45deg, #ef4444, #dc2626);
-            color: white;
-            padding: 4px 12px;
-            border-radius: 20px;
-            font-size: 12px;
-            font-weight: 600;
-        }
-
-        .status-upcoming {
-            background: linear-gradient(45deg, #8b5cf6, #7c3aed);
-            color: white;
-            padding: 4px 12px;
-            border-radius: 20px;
-            font-size: 12px;
-            font-weight: 600;
-        }
-
-        .modal-backdrop {
-            position: fixed;
-            inset: 0;
-            background: rgba(0, 0, 0, 0.8);
-            backdrop-filter: blur(10px);
-            z-index: 1000;
-            display: none;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-        }
-
-        .modal-backdrop.active {
-            display: flex;
-        }
-
-        .modal {
-            background: rgba(10, 10, 15, 0.95);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 16px;
-            padding: 32px;
-            max-width: 500px;
-            width: 100%;
-            max-height: 90vh;
-            overflow-y: auto;
-            position: relative;
-        }
-
-        .transition-gaming {
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .registration-badge {
-            background: linear-gradient(45deg, #00ffcc, #00d4aa);
-            color: #000;
-            padding: 2px 8px;
-            border-radius: 12px;
-            font-size: 10px;
-            font-weight: 700;
-            text-transform: uppercase;
-        }
-
-        /* Enhanced Form Input Styling */
-        .form-group {
-            position: relative;
-            margin-bottom: 24px;
-        }
-
-        .form-label {
-            display: flex;
-            align-items: center;
-            font-size: 14px;
-            font-weight: 600;
-            color: #e5e7eb;
-            margin-bottom: 8px;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        .form-label i {
-            color: #00ffcc;
-            margin-right: 8px;
-            width: 16px;
-            text-align: center;
-        }
-
-        .form-input {
-            width: 100%;
-            padding: 16px 20px;
-            border-radius: 12px;
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0.08) 100%);
-            border: 2px solid rgba(255, 255, 255, 0.1);
-            color: #ffffff;
-            font-size: 15px;
-            font-weight: 500;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            backdrop-filter: blur(10px);
-            position: relative;
-        }
-
-        .form-input::placeholder {
-            color: rgba(255, 255, 255, 0.4);
-            font-weight: 400;
-        }
-
-        .form-input:focus {
-            outline: none;
-            border-color: #00ffcc;
-            background: linear-gradient(135deg, rgba(0, 255, 204, 0.05) 0%, rgba(0, 255, 204, 0.15) 100%);
-            box-shadow:
-                    0 0 0 4px rgba(0, 255, 204, 0.15),
-                    0 8px 32px rgba(0, 255, 204, 0.2),
-                    inset 0 1px 0 rgba(255, 255, 255, 0.1);
-            transform: translateY(-2px);
-        }
-
-        .form-input:hover:not(:focus) {
-            border-color: rgba(255, 255, 255, 0.2);
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.12) 100%);
-            transform: translateY(-1px);
-        }
-
-        .form-input:valid:not(:placeholder-shown) {
-            border-color: #22c55e;
-            background: linear-gradient(135deg, rgba(34, 197, 94, 0.05) 0%, rgba(34, 197, 94, 0.10) 100%);
-        }
-
-        .form-input:invalid:not(:placeholder-shown):not(:focus) {
-            border-color: #ef4444;
-            background: linear-gradient(135deg, rgba(239, 68, 68, 0.05) 0%, rgba(239, 68, 68, 0.10) 100%);
-        }
-
-        /* Checkbox Styling */
-        .custom-checkbox {
-            display: flex;
-            align-items: flex-start;
-            gap: 12px;
-            padding: 16px;
-            background: rgba(255, 255, 255, 0.03);
-            border-radius: 12px;
-            border: 2px solid rgba(255, 255, 255, 0.1);
-            transition: all 0.3s ease;
-            margin-bottom: 24px;
-        }
-
-        .custom-checkbox:hover {
-            background: rgba(255, 255, 255, 0.05);
-            border-color: rgba(255, 255, 255, 0.2);
-        }
-
-        .custom-checkbox input[type="checkbox"] {
-            width: 20px;
-            height: 20px;
-            border-radius: 6px;
-            border: 2px solid rgba(255, 255, 255, 0.3);
-            background: transparent;
-            appearance: none;
-            cursor: pointer;
-            position: relative;
-            transition: all 0.3s ease;
-            flex-shrink: 0;
-            margin-top: 2px;
-        }
-
-        .custom-checkbox input[type="checkbox"]:checked {
-            background: linear-gradient(45deg, #00ffcc, #00d4aa);
-            border-color: #00ffcc;
-        }
-
-        .custom-checkbox input[type="checkbox"]:checked::after {
-            content: '✓';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            color: #000;
-            font-weight: bold;
-            font-size: 12px;
-        }
-
-        .custom-checkbox input[type="checkbox"]:focus {
-            outline: none;
-            box-shadow: 0 0 0 3px rgba(0, 255, 204, 0.3);
-        }
-
-        .checkbox-label {
-            color: #d1d5db;
-            font-size: 14px;
-            line-height: 1.5;
-            cursor: pointer;
-        }
-
-        .checkbox-label a {
-            color: #00ffcc;
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s ease;
-        }
-
-        .checkbox-label a:hover {
-            color: #00d4aa;
-            text-decoration: underline;
-        }
-
-        /* Submit Button Enhanced */
         .submit-btn {
             width: 100%;
             padding: 18px 24px;
             border-radius: 12px;
-            background: linear-gradient(135deg, #00ffcc 0%, #00d4aa 50%, #22c55e 100%);
+            background-color: #047a51;
             color: #000;
             font-size: 16px;
             font-weight: 700;
@@ -346,289 +37,110 @@
             overflow: hidden;
             box-shadow: 0 8px 32px rgba(0, 255, 204, 0.3);
         }
-
-        .submit-btn:hover:not(:disabled) {
-            transform: translateY(-3px);
-            box-shadow: 0 16px 48px rgba(0, 255, 204, 0.4);
-            background: linear-gradient(135deg, #00d4aa 0%, #00ffcc 50%, #16a34a 100%);
+        .submit-btn:hover {
+            background-color: #04984d;
         }
 
-        .submit-btn:active:not(:disabled) {
-            transform: translateY(-1px);
-        }
-
-        .submit-btn:disabled {
-            opacity: 0.6;
-            cursor: not-allowed;
-            transform: none;
-            box-shadow: none;
-        }
-
-        .success-message {
-            background: linear-gradient(45deg, #22c55e, #16a34a);
-            color: white;
-            padding: 12px 16px;
-            border-radius: 8px;
-            margin-bottom: 16px;
-            display: none;
-        }
-
-        .error-message {
-            background: linear-gradient(45deg, #ef4444, #dc2626);
-            color: white;
-            padding: 12px 16px;
-            border-radius: 8px;
-            margin-bottom: 16px;
-            display: none;
-        }
-
-        .loading {
-            display: inline-block;
-            width: 16px;
-            height: 16px;
-            border: 2px solid rgba(255, 255, 255, 0.3);
-            border-radius: 50%;
-            border-top: 2px solid white;
-            animation: spin 1s linear infinite;
-            margin-right: 8px;
-        }
-
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        /* Input validation indicators */
-        .form-input.valid {
-            border-color: #22c55e !important;
-            background: linear-gradient(135deg, rgba(34, 197, 94, 0.05) 0%, rgba(34, 197, 94, 0.12) 100%) !important;
-        }
-
-        .form-input.invalid {
-            border-color: #ef4444 !important;
-            background: linear-gradient(135deg, rgba(239, 68, 68, 0.05) 0%, rgba(239, 68, 68, 0.12) 100%) !important;
-        }
-
-        /* Input focus glow animation */
-        @keyframes inputGlow {
-            0% { box-shadow: 0 0 0 4px rgba(0, 255, 204, 0.15); }
-            50% { box-shadow: 0 0 0 6px rgba(0, 255, 204, 0.25); }
-            100% { box-shadow: 0 0 0 4px rgba(0, 255, 204, 0.15); }
-        }
-
-        .form-input:focus {
-            animation: inputGlow 2s ease-in-out infinite;
-        }
     </style>
 </head>
 <body class="bg-background min-h-screen text-text-primary font-inter">
 <div class="relative flex size-full min-h-screen flex-col overflow-x-hidden " style='font-family: "Space Grotesk", "Noto Sans", sans-serif;'>
 <!-- Header Navigation -->
-<header class="flex items-center justify-between whitespace-nowrap border-b border-solid-1 border-b-[#34C759] px-10 py-4 shadow-lg sticky top-0 header-blur z-50">
-    <div class="flex items-center gap-3 text-white">
-        <div class="size-10 text-[#00ffcc] logo-glow cursor-pointer">
-            <svg
-                    fill="none"
-                    viewBox="0 0 48 48"
-                    xmlns="http://www.w3.org/2000/svg"
-                    class="w-10 h-10"
-            >
-                <path
-                        clip-rule="evenodd"
-                        d="M24 18.4228L42 11.475V34.3663C42 34.7796 41.7457 35.1504 41.3601 35.2992L24 42V18.4228Z"
-                        fill="currentColor"
-                        fill-rule="evenodd"
-                />
-                <path
-                        clip-rule="evenodd"
-                        d="M24 8.18819L33.4123 11.574L24 15.2071L14.5877 11.574L24 8.18819ZM9 15.8487L21 20.4805V37.6263L9 32.9945V15.8487ZM27 37.6263V20.4805L39 15.8487V32.9945L27 37.6263ZM25.354 2.29885C24.4788 1.98402 23.5212 1.98402 22.646 2.29885L4.98454 8.65208C3.7939 9.08038 3 10.2097 3 11.475V34.3663C3 36.0196 4.01719 37.5026 5.55962 38.098L22.9197 44.7987C23.6149 45.0671 24.3851 45.0671 25.0803 44.7987L42.4404 38.098C43.9828 37.5026 45 36.0196 45 34.3663V11.475C45 10.2097 44.2061 9.08038 43.0155 8.65208L25.354 2.29885Z"
-                        fill="currentColor"
-                        fill-rule="evenodd"
-                />
-            </svg>
+    <!-- Navigation Header -->
+    <header class="flex items-center justify-between whitespace-nowrap border-b border-solid-1 border-b-[#34C759] px-10 py-4 shadow-lg sticky top-0 header-blur z-50">
+        <div class="flex items-center gap-4 text-white">
+            <div class="size-10 text-[#00ffcc] logo-glow cursor-pointer">
+                <svg
+                        fill="none"
+                        viewBox="0 0 48 48"
+                        xmlns="http://www.w3.org/2000/svg"
+                        class="w-10 h-10"
+                >
+                    <path
+                            clip-rule="evenodd"
+                            d="M24 18.4228L42 11.475V34.3663C42 34.7796 41.7457 35.1504 41.3601 35.2992L24 42V18.4228Z"
+                            fill="currentColor"
+                            fill-rule="evenodd"
+                    />
+                    <path
+                            clip-rule="evenodd"
+                            d="M24 8.18819L33.4123 11.574L24 15.2071L14.5877 11.574L24 8.18819ZM9 15.8487L21 20.4805V37.6263L9 32.9945V15.8487ZM27 37.6263V20.4805L39 15.8487V32.9945L27 37.6263ZM25.354 2.29885C24.4788 1.98402 23.5212 1.98402 22.646 2.29885L4.98454 8.65208C3.7939 9.08038 3 10.2097 3 11.475V34.3663C3 36.0196 4.01719 37.5026 5.55962 38.098L22.9197 44.7987C23.6149 45.0671 24.3851 45.0671 25.0803 44.7987L42.4404 38.098C43.9828 37.5026 45 36.0196 45 34.3663V11.475C45 10.2097 44.2061 9.08038 43.0155 8.65208L25.354 2.29885Z"
+                            fill="currentColor"
+                            fill-rule="evenodd"
+                    />
+                </svg>
+            </div>
+            <h2 class="text-white text-xl font-bold leading-tight tracking-[-0.015em] neon-text">
+                GameArenaX
+            </h2>
         </div>
-        <h2 class="text-white text-xl font-bold leading-tight tracking-[-0.015em] neon-text">
-            GameArenaX
-        </h2>
-    </div>
-    <nav class="flex flex-1 justify-end gap-2 right-0">
-        <!-- Nav links (always visible) -->
-        <nav class="flex items-center  gap-5">
-            <a class="text-gray-300 nav-link" href="index2.html">Home</a>
-            <a class="text-gray-300 nav-link text-sm sm:text-base">
-              <span class="inline-flex items-center space-x-1">
-                <span class="relative flex w-1.5 h-1.5">
-                  <span class="absolute inline-flex w-full h-full rounded-full bg-[#ff0000] opacity-80 animate-ping"></span>
-                  <span class="relative w-1.5 h-1.5 bg-[#ff0000] rounded-full"></span>
-                </span>
-                <span class="font-medium">Live</span>
-              </span>
-            </a>
-            <a class="text-gray-300  nav-link" href="AllTournament.html">Tournaments</a>
-            <a class="text-gray-300  nav-link" href="AllStreamers.html">Streamers</a>
-            <a class="text-gray-300  nav-link" href="clan_directory.html">Clans</a>
-            <a class="text-gray-300  nav-link" href="AllPlayers.html">Players</a>
+        <nav class="flex flex-1 justify-end gap-8">
+            <!-- Nav links (always visible) -->
+            <nav class="flex items-center  gap-8">
+                <a class="text-gray-300  nav-link" href="index2.html">Home</a>
+                <a class="text-gray-300 cursor-pointer nav-link text-sm sm:text-base" href="liveStreamings.html">
+          <span class="inline-flex items-center space-x-1">
+            <span class="relative flex w-1.5 h-1.5">
+              <span class="absolute inline-flex w-full h-full rounded-full bg-[#ff0000] opacity-80 animate-ping"></span>
+              <span class="relative w-1.5 h-1.5 bg-[#ff0000] rounded-full"></span>
+            </span>
+            <span class="font-medium">Live</span>
+          </span>
+                </a>
+                <a class="text-green-400 font-semibold  nav-link" href="tournament.html">Tournaments</a>
+                <a class="text-gray-300  nav-link" href="clan/clan_directory.html">Clans</a>
+            </nav>
+
+            <!-- Login button (only visible before login) -->
+            <button id="loginBtnNav"
+                    class="flex min-w-[100px] max-w-[400px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-9 px-5 border-2 border-[#22c55e] text-[#22c55e] text-sm font-semibold tracking-wide relative transition-all duration-300 ease-in-out hover:text-white"
+                    onclick="openLoginModal()">
+                <span class="relative z-10">Login</span>
+                <span class="absolute inset-0 rounded-full border-2 border-[#22c55e] opacity-50 transition-all duration-500 ease-in-out hover:scale-110 hover:opacity-100"></span>
+                <span class="absolute inset-0 bg-gradient-to-r from-[#22c55e] to-[#16a34a] opacity-0 rounded-full transition-opacity duration-300 ease-in-out hover:opacity-20"></span>
+            </button>
+
+            <div class="flex items-center space-x-3" id="userProfile" style="display: none">
+                <span class="hidden sm:block text-sm font-medium" id="usernameDisplay"></span>
+                <!--user dropdown menu for edit profile,Apply as a streamer,Apply as a player and logout-->
+                <div class="relative inline-block text-left">
+                    <div>
+                        <button id="userDropdownBtn" type="button" class="text-green-400 hover:text-green-300 transition-colors">
+                            <i class="fas fa-chevron-down text-sm transition-transform duration-200" id="dropdownArrow"></i>                            </button>
+                    </div>
+                    <div id="userDropdown" class="hidden absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-black">
+                        <a href="" id="viewProfile" class="block px-4 py-2 text-sm text-white hover:bg-gray-700">View Profile</a>
+                        <a href="player/player_application.html" class="block px-4 py-2 text-sm text-white hover:bg-gray-700" id="applyAsPlayer">Apply as a Player</a>
+                        <a href="streamer/streamer_application.html" class="block px-4 py-2 text-sm text-white hover:bg-gray-700" id="applyAsStreamer">Apply as a Streamer</a>
+                        <a href=""  id="logoutBtn" class="block px-4 py-2 text-sm text-red-400 hover:bg-gray-700">Logout</a>
+                        <!-- &lt;!&ndash; Logout button (only visible after login) &ndash;&gt;
+                         <div class="flex items-center gap-4">
+                             <button id="logoutBtn" class="text-red-400 hover:text-red-300 transition-colors">
+                                 <span class="hidden sm:block">Logout</span>
+                                 <i class="fas fa-sign-out-alt text-xl"></i>
+                             </button>
+                         </div>-->
+                    </div>
+                </div>
+            </div>
         </nav>
+    </header>
 
-        <!-- Login button (only visible before login) -->
-        <button id="loginBtnNav"
-                class="flex min-w-[100px] max-w-[400px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-9 px-5 border-2 border-[#22c55e] text-[#22c55e] text-sm font-semibold tracking-wide relative transition-all duration-300 ease-in-out hover:text-white"
-                onclick="openLoginModal()">
-            <span class="relative z-10">Login</span>
-            <span class="absolute inset-0 rounded-full border-2 border-[#22c55e] opacity-50 transition-all duration-500 ease-in-out hover:scale-110 hover:opacity-100"></span>
-            <span class="absolute inset-0 bg-gradient-to-r from-[#22c55e] to-[#16a34a] opacity-0 rounded-full transition-opacity duration-300 ease-in-out hover:opacity-20"></span>
-        </button>
-
-        <!-- Player profile (only visible after login) -->
-        <div class="flex items-center space-x-3" id="userProfile" style="display: none">
-            <span class="hidden sm:block text-sm font-medium" id="usernameDisplay"></span>
-            <!--user dropdown menu for edit profile,Apply as a streamer,Apply as a player and logout-->
-            <div class="relative inline-block text-left">
-                <div>
-                    <button id="userDropdownBtn" type="button" class="text-green-400 hover:text-green-300 transition-colors">
-                        <i class="fas fa-chevron-down text-sm transition-transform duration-200" id="dropdownArrow"></i>
-                    </button>
-                </div>
-                <div id="userDropdown" class="hidden absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-black">
-                    <a href="../streamer/streamer_profile_edit.html" class="block px-4 py-2 text-sm text-white hover:bg-gray-700">Edit Profile</a>
-                    <a href="../player/player_application.html" class="block px-4 py-2 text-sm text-white hover:bg-gray-700">Apply as a Player</a>
-                    <a href="tournament.html" class="block px-4 py-2 text-sm text-white hover:bg-gray-700">Join Tournament</a>
-                    <!--
-                                        <a href=""  id="logoutBtn" class="block px-4 py-2 text-sm text-red-400 hover:bg-gray-700">Logout</a>
-                    -->
-                    <!-- &lt;!&ndash; Logout button (only visible after login) &ndash;&gt;
-                     <div class="flex items-center gap-4">
-                         <button id="logoutBtn" class="text-red-400 hover:text-red-300 transition-colors">
-                             <span class="hidden sm:block">Logout</span>
-                             <i class="fas fa-sign-out-alt text-xl"></i>
-                         </button>
-                     </div>-->
-                </div>
-            </div>
-        </div>
-    </nav>
-</header>
-
-<!-- Hero Section -->
-<section class="relative bg-gradient-to-br from-background via-surface to-background py-16">
-    <div class="absolute inset-0 bg-gradient-to-r from-primary/5 to-secondary/5"></div>
-    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <h1 class="text-4xl md:text-6xl font-bold mb-6 text-gradient-primary">Tournament Registration</h1>
-        <p class="text-xl text-text-secondary mb-8 max-w-3xl mx-auto">Join competitive gaming tournaments and prove your skills. Register now for upcoming tournaments across all skill levels.</p>
-
-        <!-- Quick Stats -->
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto">
-            <div class="text-center">
-                <div class="text-3xl font-bold text-primary">42</div>
-                <div class="text-sm text-text-secondary">Open for Registration</div>
-            </div>
-            <div class="text-center">
-                <div class="text-3xl font-bold text-accent">$850K</div>
-                <div class="text-sm text-text-secondary">Total Prize Pool</div>
-            </div>
-            <div class="text-center">
-                <div class="text-3xl font-bold text-secondary">8,500+</div>
-                <div class="text-sm text-text-secondary">Registered Players</div>
-            </div>
-            <div class="text-center">
-                <div class="text-3xl font-bold text-warning">42</div>
-                <div class="text-sm text-text-secondary">Games Available</div>
-            </div>
+<main class="py-12">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-12">
+            <h2 class="text-3xl md:text-4xl font-bold mb-4">Live Tournaments</h2>
+            <p class="text-text-secondary text-lg max-w-2xl mx-auto">
+                Jump into any active tournament and experience the action with our community
+            </p>
         </div>
     </div>
-</section>
 
 <!-- Tournament Grid -->
 <section class="py-12 px-6">
     <div class="container mx-auto">
         <div class="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-8 tournament-grid" id="tournament-grid">
-            <!-- Tournament Card 1 - Open Registration -->
-            <div class="tournament-card" data-tournament-id="1">
-                <div class="flex items-center justify-between mb-4">
-                    <div class="flex items-center space-x-2">
-                        <img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=100&auto=format&fit=crop" alt="Valorant" class="w-8 h-8 rounded object-cover" />
-                        <span class="text-sm text-gray-300">Valorant</span>
-                        <span class="registration-badge">REGISTER</span>
-                    </div>
-                    <span class="status-open">OPEN</span>
-                </div>
 
-                <h3 class="text-xl font-semibold mb-2 hover:text-[#00ffcc] cursor-pointer transition-gaming">Valorant Championship Series</h3>
-                <p class="text-gray-400 text-sm mb-4">Professional tournament series with qualification opportunities for major championships.</p>
-
-                <div class="grid grid-cols-3 gap-4 mb-4">
-                    <div class="text-center">
-                        <div class="text-lg font-bold text-[#00ffcc]">$50K</div>
-                        <div class="text-xs text-gray-400">Prize Pool</div>
-                    </div>
-                    <div class="text-center">
-                        <div class="text-lg font-bold text-[#22c55e]">89/128</div>
-                        <div class="text-xs text-gray-400">Registered</div>
-                    </div>
-                    <div class="text-center">
-                        <div class="text-lg font-bold text-[#f59e0b]">12d</div>
-                        <div class="text-xs text-gray-400">Reg. Closes</div>
-                    </div>
-                </div>
-
-                <div class="mb-4">
-                    <div class="flex justify-between text-sm text-gray-400 mb-1">
-                        <span>Registration Progress</span>
-                        <span>89/128</span>
-                    </div>
-                    <div class="w-full bg-gray-700 rounded-full h-2">
-                        <div class="bg-[#22c55e] h-2 rounded-full" style="width: 69%"></div>
-                    </div>
-                </div>
-
-                <button class="w-full bg-[#00ffcc] text-black text-center py-2 px-4 rounded-lg text-sm font-semibold hover:bg-[#00d4aa] transition-gaming register-btn">
-                    Register Now
-                </button>
-            </div>
-
-            <!-- Tournament Card 2 - Closing Soon -->
-            <div class="tournament-card" data-tournament-id="2">
-                <div class="flex items-center justify-between mb-4">
-                    <div class="flex items-center space-x-2">
-                        <img src="https://images.pexels.com/photos/3165335/pexels-photo-3165335.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&dpr=2" alt="CS2" class="w-8 h-8 rounded object-cover" />
-                        <span class="text-sm text-gray-300">Counter-Strike 2</span>
-                        <span class="registration-badge">REGISTER</span>
-                    </div>
-                    <span class="status-filling">CLOSING SOON</span>
-                </div>
-
-                <h3 class="text-xl font-semibold mb-2 hover:text-[#00ffcc] cursor-pointer transition-gaming">CS2 Elite Masters</h3>
-                <p class="text-gray-400 text-sm mb-4">High-level competitive tournament for experienced teams and professional players.</p>
-
-                <div class="grid grid-cols-3 gap-4 mb-4">
-                    <div class="text-center">
-                        <div class="text-lg font-bold text-[#f59e0b]">$25K</div>
-                        <div class="text-xs text-gray-400">Prize Pool</div>
-                    </div>
-                    <div class="text-center">
-                        <div class="text-lg font-bold text-[#ef4444]">60/64</div>
-                        <div class="text-xs text-gray-400">Registered</div>
-                    </div>
-                    <div class="text-center">
-                        <div class="text-lg font-bold text-[#ef4444]">2d</div>
-                        <div class="text-xs text-gray-400">Reg. Closes</div>
-                    </div>
-                </div>
-
-                <div class="mb-4">
-                    <div class="flex justify-between text-sm text-gray-400 mb-1">
-                        <span>Registration Progress</span>
-                        <span>60/64</span>
-                    </div>
-                    <div class="w-full bg-gray-700 rounded-full h-2">
-                        <div class="bg-[#f59e0b] h-2 rounded-full" style="width: 94%"></div>
-                    </div>
-                </div>
-
-                <button class="w-full bg-[#f59e0b] text-black text-center py-2 px-4 rounded-lg text-sm font-semibold hover:bg-[#d97706] transition-gaming register-btn">
-                    Register Now
-                </button>
-            </div>
         </div>
 
         <!-- Load More -->
@@ -638,7 +150,7 @@
         </div>
     </div>
 </section>
-
+</main>
 <!-- Registration Modal -->
 <div id="registrationModal" class="modal-backdrop">
     <div class="modal">
@@ -652,24 +164,6 @@
             </div>
             <h2 id="registerTitle" class="text-2xl font-bold text-white mb-2">Tournament Registration</h2>
             <p id="registerSubtitle" class="text-gray-400">Join the competition and showcase your skills</p>
-        </div>
-
-        <div id="successMessage" class="success-message">
-            <div class="flex items-center">
-                <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
-                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
-                </svg>
-                <span id="successText"></span>
-            </div>
-        </div>
-
-        <div id="errorMessage" class="error-message">
-            <div class="flex items-center">
-                <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
-                    <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/>
-                </svg>
-                <span id="errorText"></span>
-            </div>
         </div>
 
         <form id="registrationForm" class="space-y-6">
@@ -703,6 +197,19 @@
                 />
             </div>
 
+            <!--clan name if a clan type-->
+            <div class="form-group" id="clanNameInput" style="display: none;">
+                <label for="clanName" class="form-label">
+                    <i class="fas fa-users"></i>Clan Name
+                </label>
+                <input
+                        id="clanName"
+                        name="clanName"
+                        placeholder="Enter your clan name"
+                        class="form-input"
+                />
+            </div>
+
             <div class="custom-checkbox">
                 <input type="checkbox" id="agreeTerms" required>
                 <label for="agreeTerms" class="checkbox-label">
@@ -710,241 +217,120 @@
                 </label>
             </div>
 
+
             <button type="submit" id="submitBtn" class="submit-btn">
                 <span id="submitText">Register for Tournament</span>
-                <span id="loadingSpinner" class="loading" style="display: none;"></span>
             </button>
         </form>
     </div>
 </div>
 
+
 <!-- Footer -->
-<footer class="border-t border-gray-700 bg-gradient-to-b from-transparent to-[#060608] py-12">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex flex-col items-center gap-8">
-            <div class="flex items-center gap-4">
-                <div class="size-10 text-[#00ffcc] logo-glow">
-                    <svg fill="none" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" class="w-10 h-10">
-                        <path clip-rule="evenodd" d="M24 18.4228L42 11.475V34.3663C42 34.7796 41.7457 35.1504 41.3601 35.2992L24 42V18.4228Z" fill="currentColor" fill-rule="evenodd"/>
-                        <path clip-rule="evenodd" d="M24 8.18819L33.4123 11.574L24 15.2071L14.5877 11.574L24 8.18819ZM9 15.8487L21 20.4805V37.6263L9 32.9945V15.8487ZM27 37.6263V20.4805L39 15.8487V32.9945L27 37.6263ZM25.354 2.29885C24.4788 1.98402 23.5212 1.98402 22.646 2.29885L4.98454 8.65208C3.7939 9.08038 3 10.2097 3 11.475V34.3663C3 36.0196 4.01719 37.5026 5.55962 38.098L22.9197 44.7987C23.6149 45.0671 24.3851 45.0671 25.0803 44.7987L42.4404 38.098C43.9828 37.5026 45 36.0196 45 34.3663V11.475C45 10.2097 44.2061 9.08038 43.0155 8.65208L25.354 2.29885Z" fill="currentColor" fill-rule="evenodd"/>
-                    </svg>
-                </div>
-                <h3 class="text-xl font-bold neon-text">GameArenaX</h3>
-            </div>
-
-            <div class="flex flex-wrap items-center justify-center gap-x-8 gap-y-4">
-                <a class="text-gray-300 hover:text-[#00ffcc] transition-all duration-300 text-base font-normal leading-normal nav-link" href="#">About Us</a>
-                <a class="text-gray-300 hover:text-[#00ffcc] transition-all duration-300 text-base font-normal leading-normal nav-link" href="#">Contact</a>
-                <a class="text-gray-300 hover:text-[#00ffcc] transition-all duration-300 text-base font-normal leading-normal nav-link" href="#">Terms of Service</a>
-                <a class="text-gray-300 hover:text-[#00ffcc] transition-all duration-300 text-base font-normal leading-normal nav-link" href="#">Privacy Policy</a>
-            </div>
-
-            <div class="flex justify-center space-x-6">
-                <a class="text-gray-300 hover:text-[#00ffcc] transition-all duration-300 hover:scale-125" href="#">
-                    <i class="fab fa-twitter text-xl"></i>
-                </a>
-                <a class="text-gray-300 hover:text-[#00ffcc] transition-all duration-300 hover:scale-125" href="#">
-                    <i class="fab fa-instagram text-xl"></i>
-                </a>
-                <a class="text-gray-300 hover:text-[#00ffcc] transition-all duration-300 hover:scale-125" href="#">
-                    <i class="fab fa-discord text-xl"></i>
-                </a>
-            </div>
-
-            <p class="text-gray-400 text-base font-normal leading-normal text-center">© 2024 GameArenaX. All rights reserved. Level up your esports experience.</p>
+<footer class="bg-surface border-t border-surface-700 mt-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <div class="text-center">
+            <p class="text-text-secondary text-sm">© 2025 GameHub. All Rights Reserved.</p>
+            <p class="text-text-secondary text-xs mt-2">Empowering gamers worldwide</p>
         </div>
     </div>
 </footer>
+
 </div>
 <script>
-    // Tournament Sample Data
-    const tournamentData = {
-        1: { title: "Valorant Championship Series", game: "Valorant", prize: "$50,000", registered: 89, total: 128, closes: "12 days" },
-        2: { title: "CS2 Elite Masters", game: "Counter-Strike 2", prize: "$25,000", registered: 60, total: 64, closes: "2 days" },
-        3: { title: "LoL Summer League", game: "League of Legends", prize: "$15,000", registered: 24, total: 48, closes: "18 days" },
-        4: { title: "Apex Legends Arena Championship", game: "Apex Legends", prize: "$10,000", registered: 35, total: 100, closes: "25 days" },
-        5: { title: "Rocket League Grand Prix", game: "Rocket League", prize: "$8,000", registered: 12, total: 32, closes: "20 days" },
-        6: { title: "FIFA Ultimate Championship", game: "FIFA 24", prize: "$12,000", registered: 45, total: 64, closes: "8 days" }
-    };
+    // === OPEN MODAL WHEN A REGISTER BUTTON IS CLICKED ===
+    document.addEventListener('click', function (e) {
+        // check if the clicked element (or its parent) has the .register-btn class
+        const btn = e.target.closest('.register-btn');
+        if (!btn) return;
 
-    // Sample user data for auto-fill (for demo purposes)
-    const sampleUserData = [
-        { username: "ProGamer2024", email: "progamer@email.com" },
-        { username: "ElitePlayer", email: "eliteplayer@email.com" },
-        { username: "GamingMaster", email: "gamingmaster@email.com" },
-        { username: "CompetitiveAce", email: "competitiveace@email.com" }
-    ];
+        // ignore disabled buttons
+        if (btn.disabled) return;
 
-    let selectedTournament = null;
-
-    // Modal Elements
-    const registrationModal = document.getElementById("registrationModal");
-    const closeRegistration = document.getElementById("closeRegistration");
-    const registrationForm = document.getElementById("registrationForm");
-    const registerTitle = document.getElementById("registerTitle");
-    const registerSubtitle = document.getElementById("registerSubtitle");
-    const submitBtn = document.getElementById("submitBtn");
-    const submitText = document.getElementById("submitText");
-    const loadingSpinner = document.getElementById("loadingSpinner");
-    const successMessage = document.getElementById("successMessage");
-    const errorMessage = document.getElementById("errorMessage");
-    const successText = document.getElementById("successText");
-    const errorText = document.getElementById("errorText");
-
-    // Input validation
-    function validateInput(input) {
-        const value = input.value.trim();
-        const isValid = input.checkValidity() && value.length > 0;
-        input.classList.remove('valid', 'invalid');
-        if (value.length > 0) input.classList.add(isValid ? 'valid' : 'invalid');
-        return isValid;
-    }
-
-    document.querySelectorAll('.form-input').forEach(input => {
-        input.addEventListener('input', () => validateInput(input));
-        input.addEventListener('blur', () => validateInput(input));
+        // show the modal
+        document.getElementById('registrationModal').classList.add('active');
     });
 
-    // Open Registration Modal
-    function openRegistration(tournamentId) {
-        const tournamentCard = document.querySelector(`.tournament-card[data-tournament-id="${tournamentId}"]`);
-        const registerBtn = tournamentCard.querySelector(".register-btn");
-
-        if (registerBtn.disabled) return; // Prevent reopening if already registered
-
-        selectedTournament = tournamentId;
-        const tournament = tournamentData[tournamentId];
-
-        registerTitle.textContent = `Register for ${tournament.title}`;
-        registerSubtitle.textContent = `${tournament.game} • ${tournament.prize} Prize Pool`;
-
-        // Auto-fill with random sample data
-        const randomUser = sampleUserData[Math.floor(Math.random() * sampleUserData.length)];
-        document.getElementById("playerUsername").value = randomUser.username + Math.floor(Math.random() * 1000);
-        document.getElementById("playerEmail").value = randomUser.email;
-
-        // Validate pre-filled fields
-        validateInput(document.getElementById("playerUsername"));
-        validateInput(document.getElementById("playerEmail"));
-
-        registrationModal.classList.add("active");
-        hideMessages();
-    }
-
-    // Hide/show messages
-    function hideMessages() {
-        successMessage.style.display = "none";
-        errorMessage.style.display = "none";
-    }
-    function showSuccess(message) {
-        hideMessages();
-        successText.textContent = message;
-        successMessage.style.display = "block";
-        setTimeout(hideMessages, 5000);
-    }
-    function showError(message) {
-        hideMessages();
-        errorText.textContent = message;
-        errorMessage.style.display = "block";
-        setTimeout(hideMessages, 5000);
-    }
-
-    // Simulate AJAX call
-    function submitRegistration(formData) {
-        return new Promise((resolve, reject) => {
-            setTimeout(() => {
-                if (Math.random() > 0.1) {
-                    resolve({ success: true, registrationId: `REG${Date.now()}`, message: "Registration successful!" });
-                } else {
-                    reject({ success: false, message: "Registration failed. Please try again." });
-                }
-            }, 2000);
+    // === CLOSE MODAL ===
+    document.getElementById('closeRegistration')
+        .addEventListener('click', function () {
+            document.getElementById('registrationModal').classList.remove('active');
         });
-    }
 
-    // Register button click event
-    document.querySelectorAll(".register-btn").forEach(btn => {
-        btn.addEventListener("click", e => {
-            const tournamentCard = e.target.closest(".tournament-card");
-            const tournamentId = tournamentCard.getAttribute("data-tournament-id");
-            openRegistration(parseInt(tournamentId));
+    // optional: close when clicking backdrop
+    document.getElementById('registrationModal')
+        .addEventListener('click', function (e) {
+            if (e.target.id === 'registrationModal') {
+                e.currentTarget.classList.remove('active');
+            }
         });
-    });
-
-    // Close modal
-    closeRegistration.addEventListener("click", () => registrationModal.classList.remove("active"));
-    registrationModal.addEventListener("click", e => { if (e.target === registrationModal) registrationModal.classList.remove("active"); });
-
-    // Form submission
-    registrationForm.addEventListener("submit", async e => {
-        e.preventDefault();
-
-        const inputs = document.querySelectorAll('.form-input');
-        if (![...inputs].every(validateInput)) {
-            showError("Please fill in all fields correctly.");
-            return;
-        }
-
-        submitBtn.disabled = true;
-        submitText.style.display = "none";
-        loadingSpinner.style.display = "inline-block";
-        hideMessages();
-
-        const formData = new FormData(registrationForm);
-        const registrationData = {
-            tournamentId: selectedTournament,
-            tournament: tournamentData[selectedTournament],
-            username: formData.get("username"),
-            email: formData.get("email"),
-            timestamp: new Date().toISOString()
-        };
-
-        try {
-            const result = await submitRegistration(registrationData);
-
-            // Success: close modal and update button
-            registrationModal.classList.remove("active");
-
-            const tournamentCard = document.querySelector(`.tournament-card[data-tournament-id="${selectedTournament}"]`);
-            const registerBtn = tournamentCard.querySelector(".register-btn");
-            registerBtn.textContent = "Already Registered";
-            registerBtn.disabled = true;
-            registerBtn.classList.add("opacity-50", "cursor-not-allowed");
-
-            console.log(`User registered for tournament: ${registrationData.tournament.title}, ID: ${result.registrationId}`);
-
-        } catch (error) {
-            showError(`❌ ${error.message} Please check your information and try again.`);
-        } finally {
-            submitBtn.disabled = false;
-            submitText.style.display = "inline";
-            loadingSpinner.style.display = "none";
-        }
-    });
-
-    console.log("Tournament Registration System Loaded");
-    console.log("Available Tournaments:", Object.keys(tournamentData).length);
-    console.log("Enhanced form styling and validation active");
-
 </script>
+
 <script>
-    $(document).ready(function () {
-        const username = localStorage.getItem("username");
+    // Modal functions
+    function openLoginModal() {
+        document.getElementById('loginModal').classList.add('active');
+    }
 
-        if (username) {
-            $("#loginBtnNav").hide();
-            $("#userProfile").show();
-        } else {
-            $("#loginBtnNav").show();
-            $("#userProfile").hide();
-        }
+    function openRegisterModal() {
+        document.getElementById('registerModal').classList.add('active');
+    }
 
-        $("#logoutBtn").on("click", function (e) {
-            e.preventDefault();
-            localStorage.removeItem("username");
-            window.location.href = "../index2.html"; // logout → back to home
-        });
-    });
+    function openForgotPasswordModal() {
+        closeModal('loginModal');
+        document.getElementById('forgotPasswordModal').classList.add('active');
+    }
+
+
+    function closeModal(modalId) {
+        document.getElementById(modalId).classList.remove('active');
+    }
+
+    function switchToRegister() {
+        closeModal('loginModal');
+        openRegisterModal();
+    }
+
+    function switchToLogin() {
+        closeModal('registerModal');
+        closeModal('forgotPasswordModal');
+        closeModal('otpModal');
+        openLoginModal();
+    }
+
+    // Form handlers
+    function handleLogin(event) {
+        event.preventDefault();
+        closeModal('loginModal');
+    }
+
+    function handleRegister(event) {
+        event.preventDefault();
+        closeModal('registerModal');
+    }
+
+    function handleForgotPassword(event) {
+        event.preventDefault();
+        // Add forgot password logic here
+        closeModal('forgotPasswordModal');
+        document.getElementById('otpModal').classList.add('active');
+    }
+
+    /*  function handleOTP(event) {
+          event.preventDefault();
+          // Add OTP verification logic here
+          closeModal('otpModal');
+          document.getElementById('newPasswordModal').classList.add('active');
+      }
+  */
+    function handleNewPassword(event) {
+        event.preventDefault();
+        // Add new password logic here
+        closeModal('newPasswordModal');
+        openLoginModal();
+    }
+
+
     // Close modal when clicking outside
     document.querySelectorAll('.modal-backdrop').forEach(backdrop => {
         backdrop.addEventListener('click', function(e) {
@@ -1044,10 +430,17 @@
             header.style.background = 'rgba(10, 10, 15, 0.8)';
         }
     });
-    // Add this JavaScript code to make the user dropdown work
-
     // User dropdown functionality
     document.addEventListener('DOMContentLoaded', function() {
+        // if the role is player should remove the apply as a player button in the dropdown menu
+        const role = localStorage.getItem('role');
+        if (role === 'Player') {
+            document.getElementById('applyAsPlayer').style.display = 'none';
+        }else if (role === 'Streamer') {
+            document.getElementById('applyAsStreamer').style.display = 'none';
+        }
+
+        console.log(role);
 
         const userDropdownBtn = document.getElementById('userDropdownBtn');
         const userDropdown = document.getElementById('userDropdown');
@@ -1058,6 +451,7 @@
         userDropdownBtn.addEventListener('click', function(e) {
             e.stopPropagation();
             userDropdown.classList.toggle('hidden');
+
         });
 
         // Close dropdown when clicking outside
@@ -1071,6 +465,8 @@
         logoutBtn.addEventListener('click', function(e) {
             e.preventDefault();
             e.stopPropagation();
+
+            window.location.href = 'index2.html';
 
             // Add your logout logic here
             console.log('User logged out');
@@ -1095,16 +491,47 @@
         });
     });
 
+    // Dynamic profile link
+    $("#viewProfile").on("click", function (e) {
+
+        const role = localStorage.getItem('role');
+
+        console.log(role);
+        e.preventDefault();
+        if (!role) {
+            toastr.error("Role not found!");
+            return;
+        }
+
+        let profilePage = "";
+
+        switch (role) {
+            case "Player":
+                profilePage = "player/player_profile.html";
+                break;
+            case "Streamer":
+                profilePage = "streamer/streamer_profile.html";
+                break;
+            case "User":
+                profilePage = "user/user_profile_view.html";
+                break;
+            default:
+                toastr.error("Unknown role!");
+                return;
+        }
+
+        window.location.href = profilePage;
+    });
+
     // Function to show user profile after successful login
     function showUserProfile(username) {
-        /*
-                document.getElementById('usernameDisplay').textContent = username;
-        */
+        document.getElementById('usernameDisplay').textContent = username;
         document.getElementById('userProfile').style.display = 'flex';
         document.getElementById('loginBtnNav').style.display = 'none';
     }
 </script>
-<script src="assets/jq/jquery-3.6.0.min.js"></script>
+<script src="assets/jq/jquery-3.7.1.min.js"></script>
 <script src="assets/js/signup.js"></script>
+<script src="assets/js/tournaments.js"></script>
 </body>
 </html>

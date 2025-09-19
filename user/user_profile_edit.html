@@ -152,11 +152,7 @@
                     <!-- Current Profile Picture -->
                     <div class="relative group">
                         <div class="w-32 h-32 rounded-full overflow-hidden border-4 border-primary glow-primary group-hover:glow-primary-strong transition-all duration-gaming">
-                            <img id="profilePreview" src="https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Profile Picture" class="w-full h-full object-cover" onerror="this.src='https://images.unsplash.com/photo-1584824486509-112e4181ff6b?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'; this.onerror=null;" loading="lazy" />
-                        </div>
-                        <!-- Gaming Badge -->
-                        <div class="absolute -bottom-2 -right-2 bg-accent text-background text-xs font-bold px-2 py-1 rounded-full border-2 border-surface">
-                            LVL 42
+                            <img id="profileImg" src="https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Profile Picture" class="w-full h-full object-cover" onerror="this.src='https://images.unsplash.com/photo-1584824486509-112e4181ff6b?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'; this.onerror=null;" loading="lazy" />
                         </div>
                     </div>
 
@@ -197,29 +193,49 @@
                     <!-- Read-only UUID -->
                     <div class="md:col-span-2">
                         <label class="block text-sm font-medium text-text-secondary mb-2">UUID (Read-only)</label>
-                        <div class="bg-surface-800 border border-surface-700 rounded-gaming px-4 py-3 text-gaming-data text-sm text-text-secondary">
+                        <div id="uuid" class="bg-surface-800 border border-surface-700 rounded-gaming px-4 py-3 text-gaming-data text-sm text-text-secondary">
                             550e8400-e29b-41d4-a716-446655440000
                         </div>
                     </div>
 
-                    <!-- Email -->
-                    <div>
-                        <label for="email" class="block text-sm font-medium text-text-secondary mb-2">Email Address</label>
-                        <input type="email" id="email" name="email" value="gamer@example.com" class="w-full bg-surface-800 border border-surface-700 rounded-gaming px-4 py-3 text-text-primary form-field-gaming focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary" required />
-                        <div id="emailError" class="mt-1 text-sm text-error hidden">Please enter a valid email address</div>
-                        <div id="emailSuccess" class="mt-1 text-sm text-success hidden">Email format is valid</div>
+                    <!--Username Read-only-->
+                    <div class="md:col-span-2">
+                        <label class="block text-sm font-medium text-text-secondary mb-2">Username (Read-only)</label>
+                        <div id="username" class="bg-surface-800 border border-surface-700 rounded-gaming px-4 py-3 text-gaming-data text-sm text-text-secondary">
+                            Gamer123
+                        </div>
                     </div>
 
-                    <!-- Username -->
+                    <!-- Read-only Status -->
                     <div>
-                        <label for="username" class="block text-sm font-medium text-text-secondary mb-2">Username</label>
-                        <input type="text" id="username" name="username" value="ProGamer2025" class="w-full bg-surface-800 border border-surface-700 rounded-gaming px-4 py-3 text-text-primary form-field-gaming focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary" required minlength="3" maxlength="20" />
-                        <div id="usernameError" class="mt-1 text-sm text-error hidden">Username must be 3-20 characters</div>
-                        <div id="usernameSuccess" class="mt-1 text-sm text-success hidden">Username is available</div>
-                        <div id="usernameLoading" class="mt-1 text-sm text-text-secondary hidden flex items-center">
-                            <div class="w-3 h-3 border border-primary border-t-transparent rounded-full animate-spin mr-2"></div>
-                            Checking availability...
+                        <label class="block text-sm font-medium text-text-secondary mb-2">Account Status (Read-only)</label>
+                        <div class="bg-surface-800 border border-surface-700 rounded-gaming px-4 py-3 flex items-center">
+                            <span id="status" class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-success/20 text-success border border-success/30">
+                                <div class="w-2 h-2 bg-success rounded-full mr-1.5"></div>
+                                Active
+                            </span>
                         </div>
+                    </div>
+
+                    <!-- Read-only Role -->
+                    <div>
+                        <label class="block text-sm font-medium text-text-secondary mb-2">Role (Read-only)</label>
+                        <div class="bg-surface-800 border border-surface-700 rounded-gaming px-4 py-3 flex items-center">
+                            <span id="role" class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-primary/20 text-primary border border-primary/30">
+                                Community Member
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="md:col-span-2">
+                        <label class="block text-sm font-medium text-warning mb-2">You can edit the following details:</label>
+                    </div>
+                    <!-- Email -->
+                    <div>
+                        <label class="block text-sm font-medium text-text-secondary mb-2">Email Address</label>
+                        <input id="email" name="name" class="w-full bg-surface-800 border border-surface-700 rounded-gaming px-4 py-3 text-text-primary form-field-gaming focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary" placeholder="Email Address" required>
+                        <div id="emailError" class="mt-1 text-sm text-error hidden">Please enter a valid email address</div>
+                        <div id="emailSuccess" class="mt-1 text-sm text-success hidden">Email format is valid</div>
                     </div>
 
                     <!-- Country -->
@@ -227,7 +243,6 @@
                         <label  class="block text-gray-300 text-sm font-medium mb-2">Country</label>
                         <select class="w-full bg-surface-800 border border-surface-700 rounded-gaming px-4 py-3 text-text-primary form-field-gaming focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary" id="editCountry" required>
                             <option value=""> Select your country </option>
-                            <option value="Afghanistan"> </option>
                             <option value="Afghanistan">Afghanistan</option>
                             <option value="Åland Islands">Åland Islands</option>
                             <option value="Albania">Albania</option>
@@ -476,105 +491,6 @@
 
                     </div>
 
-                    <!-- Read-only Status -->
-                    <div>
-                        <label class="block text-sm font-medium text-text-secondary mb-2">Account Status (Read-only)</label>
-                        <div class="bg-surface-800 border border-surface-700 rounded-gaming px-4 py-3 flex items-center">
-                            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-success/20 text-success border border-success/30">
-                                <div class="w-2 h-2 bg-success rounded-full mr-1.5"></div>
-                                Active
-                            </span>
-                        </div>
-                    </div>
-
-                    <!-- Read-only Role -->
-                    <div>
-                        <label class="block text-sm font-medium text-text-secondary mb-2">Role (Read-only)</label>
-                        <div class="bg-surface-800 border border-surface-700 rounded-gaming px-4 py-3 flex items-center">
-                            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-primary/20 text-primary border border-primary/30">
-                                Community Member
-                            </span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Password Section -->
-            <div class="bg-surface rounded-gaming-card shadow-gaming border border-surface-700 p-6 sm:p-8">
-                <h2 class="text-xl font-semibold text-gaming-heading mb-6 flex items-center">
-                    <svg class="w-6 h-6 text-primary mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
-                    </svg>
-                    Change Password
-                </h2>
-
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <!-- New Password -->
-                    <div>
-                        <label for="newPassword" class="block text-sm font-medium text-text-secondary mb-2">New Password</label>
-                        <div class="relative">
-                            <input type="password" id="newPassword" name="newPassword" class="w-full bg-surface-800 border border-surface-700 rounded-gaming px-4 py-3 pr-12 text-text-primary form-field-gaming focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary" minlength="8" />
-                            <button type="button" class="absolute inset-y-0 right-0 pr-3 flex items-center text-text-secondary hover:text-text-primary" onclick="togglePasswordVisibility('newPassword')">
-                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
-                                </svg>
-                            </button>
-                        </div>
-                        <!-- Password Strength Indicator -->
-                        <div class="mt-2">
-                            <div class="flex space-x-1">
-                                <div id="strength1" class="h-1 w-1/4 bg-surface-700 rounded-full transition-colors duration-gaming"></div>
-                                <div id="strength2" class="h-1 w-1/4 bg-surface-700 rounded-full transition-colors duration-gaming"></div>
-                                <div id="strength3" class="h-1 w-1/4 bg-surface-700 rounded-full transition-colors duration-gaming"></div>
-                                <div id="strength4" class="h-1 w-1/4 bg-surface-700 rounded-full transition-colors duration-gaming"></div>
-                            </div>
-                            <p id="strengthText" class="text-xs text-text-secondary mt-1">Password strength will appear here</p>
-                        </div>
-                    </div>
-
-                    <!-- Confirm Password -->
-                    <div>
-                        <label for="confirmPassword" class="block text-sm font-medium text-text-secondary mb-2">Confirm Password</label>
-                        <div class="relative">
-                            <input type="password" id="confirmPassword" name="confirmPassword" class="w-full bg-surface-800 border border-surface-700 rounded-gaming px-4 py-3 pr-12 text-text-primary form-field-gaming focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary" />
-                            <button type="button" class="absolute inset-y-0 right-0 pr-3 flex items-center text-text-secondary hover:text-text-primary" onclick="togglePasswordVisibility('confirmPassword')">
-                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
-                                </svg>
-                            </button>
-                        </div>
-                        <div id="passwordMatchError" class="mt-1 text-sm text-error hidden">Passwords do not match</div>
-                        <div id="passwordMatchSuccess" class="mt-1 text-sm text-success hidden">Passwords match</div>
-                    </div>
-                </div>
-
-                <!-- Password Requirements -->
-                <div class="mt-4 p-4 bg-surface-800 rounded-gaming border border-surface-700">
-                    <h4 class="text-sm font-medium text-text-primary mb-2">Password Requirements:</h4>
-                    <ul class="text-xs text-text-secondary space-y-1">
-                        <li class="flex items-center">
-                            <span id="req-length" class="w-4 h-4 mr-2 text-surface-700">●</span>
-                            At least 8 characters long
-                        </li>
-                        <li class="flex items-center">
-                            <span id="req-uppercase" class="w-4 h-4 mr-2 text-surface-700">●</span>
-                            Contains uppercase letter
-                        </li>
-                        <li class="flex items-center">
-                            <span id="req-lowercase" class="w-4 h-4 mr-2 text-surface-700">●</span>
-                            Contains lowercase letter
-                        </li>
-                        <li class="flex items-center">
-                            <span id="req-number" class="w-4 h-4 mr-2 text-surface-700">●</span>
-                            Contains number
-                        </li>
-                        <li class="flex items-center">
-                            <span id="req-special" class="w-4 h-4 mr-2 text-surface-700">●</span>
-                            Contains special character
-                        </li>
-                    </ul>
                 </div>
             </div>
 
@@ -823,5 +739,6 @@
 </script>
 <script src="../assets/jq/jquery-3.7.1.min.js"></script>
 <script src="../assets/js/signup.js"></script>
+<script src="../assets/js/userProfileEdit.js"></script>
 </body>
 </html>
