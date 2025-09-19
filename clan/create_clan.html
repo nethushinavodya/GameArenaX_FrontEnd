@@ -1,83 +1,140 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Create Clan - GameArenaX</title>
-    <link rel="stylesheet" href="assets/css/main3.css" />
-    <link rel="stylesheet" href="assets/css/tailwind.css" />
-    <link rel="stylesheet" href="assets/css/home.css" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<script type="module" src="https://static.rocket.new/rocket-web.js?_cfg=https%3A%2F%2Fgamearenax1295back.builtwithrocket.new&_be=https%3A%2F%2Fapplication.rocket.new&_v=0.1.8"></script>
+    <meta charset="utf-8"/>
+    <link crossorigin="" href="https://fonts.gstatic.com/" rel="preconnect"/>
+    <link as="style" href="https://fonts.googleapis.com/css2?display=swap&family=Noto+Sans:wght@400;500;700;900&family=Space+Grotesk:wght@400;500;700" onload="this.rel='stylesheet'" rel="stylesheet"/>
+    <title>Player Application</title>
+    <link href="data:image/x-icon;base64," rel="icon" type="image/x-icon"/>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <style src="https://cdn.tailwindcss.com"></style>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <!--fontawesome-->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" rel="stylesheet"/>
+    <!--css-->
+    <link href="../assets/css/home.css" rel="stylesheet" type="text/css"/>
+    <link href="../assets/css/main3.css" rel="stylesheet" type="text/css"/>
+    <link href="../assets/css/main.css" rel="stylesheet" type="text/css"/>
+    <link href="../assets/css/tailwind.css" rel="stylesheet" type="text/css"/>
+    <style>
+        /* Add this to your CSS to improve the dropdown appearance */
+        #userDropdown {
+            z-index: 1000;
+            border: 1px solid #374151;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+
+        #userDropdown a:hover {
+            background-color: #374151 !important;
+            color: #00ffcc !important;
+        }
+    </style>
 </head>
 <body class="bg-background text-text-primary font-inter min-h-screen">
-    <!-- Header Navigation -->
-    <header class="bg-surface border-b border-gaming-light sticky top-0 z-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex items-center justify-between h-16">
-                <!-- Logo -->
-                <div class="flex items-center">
-                    <div class="flex-shrink-0">
-                        <svg class="h-8 w-8 text-accent" viewBox="0 0 32 32" fill="currentColor">
-                            <path d="M16 2L20.5 10.5L30 12L22 20L24 30L16 25L8 30L10 20L2 12L11.5 10.5L16 2Z"/>
-                            <circle cx="16" cy="16" r="4" fill="currentColor"/>
-                        </svg>
+<div class="relative flex size-full min-h-screen flex-col overflow-x-hidden " style='font-family: "Space Grotesk", "Noto Sans", sans-serif;'>
+    <!-- Navigation Header -->
+    <header class="flex items-center justify-between whitespace-nowrap border-b border-solid-1 border-b-[#34C759] px-10 py-4 shadow-lg sticky top-0 header-blur z-50">
+        <div class="flex items-center gap-3 text-white">
+            <div class="size-10 text-[#00ffcc] logo-glow cursor-pointer">
+                <svg
+                        fill="none"
+                        viewBox="0 0 48 48"
+                        xmlns="http://www.w3.org/2000/svg"
+                        class="w-10 h-10"
+                >
+                    <path
+                            clip-rule="evenodd"
+                            d="M24 18.4228L42 11.475V34.3663C42 34.7796 41.7457 35.1504 41.3601 35.2992L24 42V18.4228Z"
+                            fill="currentColor"
+                            fill-rule="evenodd"
+                    />
+                    <path
+                            clip-rule="evenodd"
+                            d="M24 8.18819L33.4123 11.574L24 15.2071L14.5877 11.574L24 8.18819ZM9 15.8487L21 20.4805V37.6263L9 32.9945V15.8487ZM27 37.6263V20.4805L39 15.8487V32.9945L27 37.6263ZM25.354 2.29885C24.4788 1.98402 23.5212 1.98402 22.646 2.29885L4.98454 8.65208C3.7939 9.08038 3 10.2097 3 11.475V34.3663C3 36.0196 4.01719 37.5026 5.55962 38.098L22.9197 44.7987C23.6149 45.0671 24.3851 45.0671 25.0803 44.7987L42.4404 38.098C43.9828 37.5026 45 36.0196 45 34.3663V11.475C45 10.2097 44.2061 9.08038 43.0155 8.65208L25.354 2.29885Z"
+                            fill="currentColor"
+                            fill-rule="evenodd"
+                    />
+                </svg>
+            </div>
+            <h2 class="text-white text-xl font-bold leading-tight tracking-[-0.015em] neon-text">
+                GameArenaX
+            </h2>
+        </div>
+        <nav class="flex flex-1 justify-end gap-2 right-0">
+            <!-- Nav links (always visible) -->
+            <nav class="flex items-center  gap-5">
+                <a class="text-gray-300 nav-link" href="../index2.html">Home</a>
+                <a class="text-gray-300 nav-link text-sm sm:text-base">
+      <span class="inline-flex items-center space-x-1">
+        <span class="relative flex w-1.5 h-1.5">
+          <span class="absolute inline-flex w-full h-full rounded-full bg-[#ff0000] opacity-80 animate-ping"></span>
+          <span class="relative w-1.5 h-1.5 bg-[#ff0000] rounded-full"></span>
+        </span>
+        <span class="font-medium">Live</span>
+      </span>
+                </a>
+                <a class="text-gray-300  nav-link" href="../tournament.html">Tournaments</a>
+                <a class="text-gray-300  nav-link" href="AllStreamers.html">Streamers</a>
+                <a class="text-gray-300  nav-link" href="clan_directory.html">Clans</a>
+                <a class="text-gray-300  nav-link" href="AllPlayers.html">Players</a>
+            </nav>
+
+            <!-- Login button (only visible before login) -->
+            <button id="loginBtnNav"
+                    class="flex min-w-[100px] max-w-[400px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-9 px-5 border-2 border-[#22c55e] text-[#22c55e] text-sm font-semibold tracking-wide relative transition-all duration-300 ease-in-out hover:text-white"
+                    onclick="openLoginModal()">
+                <span class="relative z-10">Login</span>
+                <span class="absolute inset-0 rounded-full border-2 border-[#22c55e] opacity-50 transition-all duration-500 ease-in-out hover:scale-110 hover:opacity-100"></span>
+                <span class="absolute inset-0 bg-gradient-to-r from-[#22c55e] to-[#16a34a] opacity-0 rounded-full transition-opacity duration-300 ease-in-out hover:opacity-20"></span>
+            </button>
+
+            <!-- Player profile (only visible after login) -->
+            <div class="flex items-center space-x-3" id="userProfile" style="display: none">
+                <span class="hidden sm:block text-sm font-medium" id="usernameDisplay"></span>
+                <!--user dropdown menu for edit profile,Apply as a streamer,Apply as a player and logout-->
+                <div class="relative inline-block text-left">
+                    <div>
+                        <button id="userDropdownBtn" type="button" class="text-green-400 hover:text-green-300 transition-colors">
+                            <i class="fas fa-chevron-down text-sm transition-transform duration-200" id="dropdownArrow"></i>
+                        </button>
                     </div>
-                    <div class="ml-3">
-                        <h1 class="text-xl font-bold text-text-primary">GameArenaX</h1>
-                        <p class="text-xs text-text-secondary">Clan Portal</p>
+                    <div id="userDropdown" class="hidden absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-black">
+                        <a href="../streamer/streamer_profile_edit.html" class="block px-4 py-2 text-sm text-white hover:bg-gray-700">Edit Profile</a>
+                        <a href="../player/player_application.html" class="block px-4 py-2 text-sm text-white hover:bg-gray-700">Apply as a Player</a>
+                        <!--
+                                            <a href=""  id="logoutBtn" class="block px-4 py-2 text-sm text-red-400 hover:bg-gray-700">Logout</a>
+                        -->
+                        <!-- &lt;!&ndash; Logout button (only visible after login) &ndash;&gt;
+                         <div class="flex items-center gap-4">
+                             <button id="logoutBtn" class="text-red-400 hover:text-red-300 transition-colors">
+                                 <span class="hidden sm:block">Logout</span>
+                                 <i class="fas fa-sign-out-alt text-xl"></i>
+                             </button>
+                         </div>-->
                     </div>
                 </div>
-
-                <!-- Navigation -->
-                <nav class="hidden md:block">
-                    <div class="ml-10 flex items-baseline space-x-4">
-                        <a href="clan_directory.html" class="text-text-secondary hover:text-text-primary hover:bg-surface-800 px-3 py-2 rounded-md text-sm font-medium transition-hover">
-                            Clan Directory
-                        </a>
-                        <a href="clan_profile.html" class="text-text-secondary hover:text-text-primary hover:bg-surface-800 px-3 py-2 rounded-md text-sm font-medium transition-hover">
-                            Clan Profile
-                        </a>
-                        <a href="create_clan.html" class="bg-accent text-white px-3 py-2 rounded-md text-sm font-medium">
-                            Create Clan
-                        </a>
-                    </div>
-                </nav>
-
-                <!-- Mobile menu button -->
-                <div class="md:hidden">
-                    <button type="button" id="mobile-menu-button" class="bg-surface-800 inline-flex items-center justify-center p-2 rounded-md text-text-secondary hover:text-text-primary hover:bg-surface-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-accent">
-                        <svg class="block h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
-                        </svg>
-                    </button>
-                </div>
             </div>
-        </div>
-
-        <!-- Mobile menu -->
-        <div class="md:hidden hidden" id="mobile-menu">
-            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-surface-800">
-                <a href="clan_directory.html" class="text-text-secondary hover:text-text-primary hover:bg-surface-700 block px-3 py-2 rounded-md text-base font-medium">
-                    Clan Directory
-                </a>
-                <a href="clan_profile.html" class="text-text-secondary hover:text-text-primary hover:bg-surface-700 block px-3 py-2 rounded-md text-base font-medium">
-                    Clan Profile
-                </a>
-                <a href="create_clan.html" class="bg-accent text-white block px-3 py-2 rounded-md text-base font-medium">
-                    Create Clan
-                </a>
-            </div>
-        </div>
+        </nav>
     </header>
 
     <!-- Main Content -->
     <main class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <!-- Page Header -->
         <div class="mb-8">
-            <h1 class="text-3xl font-bold text-text-primary mb-2">Create Your Clan</h1>
-            <p class="text-text-secondary">Establish a new esports community and lead your team to victory</p>
+            <div class="flex items-center mb-4">
+                <a href="../index2.html" class="text-text-secondary hover:text-primary transition-colors mr-4">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+                    </svg>
+                </a>
+                <div>
+                    <h1 class="text-3xl font-bold text-gaming-heading">Create Your Clan</h1>
+                    <p class="text-text-secondary">Establish a new esports community and lead your team to victory</p>
+                </div>
+            </div>
         </div>
 
         <!-- Create Clan Form -->
@@ -160,7 +217,7 @@
                             Clan Name <span class="text-error">*</span>
                         </label>
                         <div class="relative">
-                            <input type="text" id="clan-name" name="clanName" required maxlength="50" class="block w-full px-4 py-3 border border-gaming bg-surface-800 rounded-md text-text-primary placeholder-text-secondary focus:outline-none focus:ring-2 focus:ring-accent focus:border-accent transition-gaming" placeholder="Enter your clan name..." />
+                            <input  id="clan-name" name="clanName" required maxlength="50" class="block w-full px-4 py-3 border border-gaming bg-surface-800 rounded-md text-text-primary placeholder-text-secondary focus:outline-none focus:ring-2 focus:ring-accent focus:border-accent transition-gaming" placeholder="Enter your clan name..." />
                             <div id="name-check" class="absolute right-3 top-3 hidden">
                                 <svg id="name-available" class="w-6 h-6 text-accent hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
@@ -182,7 +239,7 @@
                         <label for="clan-email" class="block text-sm font-medium text-text-primary mb-2">
                             Contact Email <span class="text-error">*</span>
                         </label>
-                        <input type="email" id="clan-email" name="clanEmail" required class="block w-full px-4 py-3 border border-gaming bg-surface-800 rounded-md text-text-primary placeholder-text-secondary focus:outline-none focus:ring-2 focus:ring-accent focus:border-accent transition-gaming" placeholder="clan@example.com" />
+                        <input id="clan-email" name="clanEmail" required class="block w-full px-4 py-3 border border-gaming bg-surface-800 rounded-md text-text-primary placeholder-text-secondary focus:outline-none focus:ring-2 focus:ring-accent focus:border-accent transition-gaming" placeholder="clan@example.com" />
                         <p class="text-text-secondary text-xs mt-1">Primary contact email for clan communications</p>
                     </div>
 
@@ -222,7 +279,7 @@
                             Member Limit
                         </label>
                         <div class="space-y-3">
-                            <input type="range" id="member-limit" name="memberLimit" min="10" max="100" value="50" class="w-full h-2 bg-surface-800 rounded-lg appearance-none cursor-pointer accent-accent" />
+                            <input type="range" id="member-limit" name="memberLimit" min="10" max="100" value="50" class="w-full h-2 bg-secondary rounded-lg appearance-none cursor-pointer accent-accent" />
                             <div class="flex justify-between items-center">
                                 <span class="text-text-secondary text-sm">10 members</span>
                                 <div class="bg-accent/10 px-4 py-2 rounded-lg border border-accent/30">
@@ -279,17 +336,23 @@
             </div>
 
             <!-- Form Actions -->
-            <div class="flex flex-col sm:flex-row gap-4 pt-6">
-                <button type="submit" id="create-btn" class="flex-1 bg-accent hover:bg-accent-600 text-white font-semibold py-4 px-8 rounded-md transition-gaming flex items-center justify-center">
-                    <svg id="create-spinner" class="animate-spin -ml-1 mr-3 h-5 w-5 text-white hidden" fill="none" viewBox="0 0 24 24">
-                        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"/>
-                        <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"/>
-                    </svg>
-                    <span id="create-text">Create Clan</span>
-                </button>
-                <button type="button" id="cancel-btn" class="sm:w-auto w-full bg-surface-800 hover:bg-surface-700 text-text-primary border border-gaming font-semibold py-4 px-8 rounded-md transition-gaming">
-                    Cancel
-                </button>
+
+            <!-- Action Buttons -->
+            <div class="flex flex-col sm:flex-row justify-between items-center gap-4 pt-6">
+                <div class="flex flex-col sm:flex-row gap-3 w-full sm:w-auto">
+                    <button
+                            type="button"
+                            class="px-6 py-3 bg-surface-700 hover:bg-surface-800 border border-surface-700 rounded-gaming text-text-primary font-medium transition-all btn-gaming focus:outline-none focus:ring-2 focus:ring-surface-700 focus:ring-offset-2 focus:ring-offset-background"
+                    >
+                        Cancel
+                    </button>
+                    <button
+                            type="submit"
+                            class="px-8 py-3 bg-gradient-to-r from-primary to-accent hover:from-primary-600 hover:to-accent-600 rounded-gaming text-background font-semibold transition-all btn-gaming focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background shadow-gaming glow-primary"
+                    >
+                        Create Clan
+                    </button>
+                </div>
             </div>
         </form>
     </main>
@@ -327,248 +390,24 @@
             </div>
         </div>
     </footer>
+</div>
 
-    <script>
-        // Mobile menu toggle
-        document.getElementById('mobile-menu-button').addEventListener('click', function() {
-            const mobileMenu = document.getElementById('mobile-menu');
-            mobileMenu.classList.toggle('hidden');
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const slider = document.getElementById("member-limit");
+        const output = document.getElementById("member-limit-display");
+
+        // Set initial value (in case the HTML default changes)
+        output.textContent = slider.value;
+
+        // Update on slider move
+        slider.addEventListener("input", () => {
+            output.textContent = slider.value;
         });
-
-        // Character counter for description
-        const descriptionTextarea = document.getElementById('clan-description');
-        const charCount = document.getElementById('char-count');
-        
-        descriptionTextarea.addEventListener('input', function() {
-            const count = this.value.length;
-            charCount.textContent = `${count}/1000`;
-            
-            if (count > 900) {
-                charCount.classList.add('text-warning');
-                charCount.classList.remove('text-text-secondary');
-            } else if (count === 1000) {
-                charCount.classList.add('text-error');
-                charCount.classList.remove('text-warning', 'text-text-secondary');
-            } else {
-                charCount.classList.add('text-text-secondary');
-                charCount.classList.remove('text-warning', 'text-error');
-            }
-        });
-
-        // Member limit slider
-        const memberLimitSlider = document.getElementById('member-limit');
-        const memberLimitDisplay = document.getElementById('member-limit-display');
-        
-        memberLimitSlider.addEventListener('input', function() {
-            memberLimitDisplay.textContent = this.value;
-        });
-
-        // Clan name availability check (simulated)
-        const clanNameInput = document.getElementById('clan-name');
-        const nameCheck = document.getElementById('name-check');
-        const nameAvailable = document.getElementById('name-available');
-        const nameTaken = document.getElementById('name-taken');
-        const nameFeedback = document.getElementById('name-feedback');
-        const nameAvailableText = document.getElementById('name-available-text');
-        const nameTakenText = document.getElementById('name-taken-text');
-
-        let nameCheckTimeout;
-        clanNameInput.addEventListener('input', function() {
-            const name = this.value.trim();
-            
-            if (name.length < 3) {
-                nameCheck.classList.add('hidden');
-                nameFeedback.classList.add('hidden');
-                return;
-            }
-
-            clearTimeout(nameCheckTimeout);
-            nameCheckTimeout = setTimeout(() => {
-                // Simulate API call
-                const isAvailable = !['Phoenix Legends', 'Storm Raiders', 'Cyber Knights', 'Shadow Wolves'].includes(name);
-                
-                nameCheck.classList.remove('hidden');
-                nameFeedback.classList.remove('hidden');
-                
-                if (isAvailable) {
-                    nameAvailable.classList.remove('hidden');
-                    nameTaken.classList.add('hidden');
-                    nameAvailableText.classList.remove('hidden');
-                    nameTakenText.classList.add('hidden');
-                    clanNameInput.classList.remove('border-error');
-                    clanNameInput.classList.add('border-accent');
-                } else {
-                    nameAvailable.classList.add('hidden');
-                    nameTaken.classList.remove('hidden');
-                    nameAvailableText.classList.add('hidden');
-                    nameTakenText.classList.remove('hidden');
-                    clanNameInput.classList.remove('border-accent');
-                    clanNameInput.classList.add('border-error');
-                }
-            }, 500);
-        });
-
-        // Clan type selection
-        const clanTypeOptions = document.querySelectorAll('.clan-type-option');
-        clanTypeOptions.forEach(option => {
-            option.addEventListener('click', function() {
-                const radio = this.querySelector('input[type="radio"]');
-                radio.checked = true;
-                
-                // Update visual selection
-                clanTypeOptions.forEach(opt => {
-                    opt.classList.remove('border-accent', 'bg-accent/5');
-                    opt.classList.add('border-gaming');
-                });
-                
-                this.classList.remove('border-gaming');
-                this.classList.add('border-accent', 'bg-accent/5');
-            });
-        });
-
-        // File upload handling
-        function setupFileUpload(dropZoneId, inputId, previewId, imageId, removeId, uploadContentId) {
-            const dropZone = document.getElementById(dropZoneId);
-            const input = document.getElementById(inputId);
-            const preview = document.getElementById(previewId);
-            const image = document.getElementById(imageId);
-            const removeBtn = document.getElementById(removeId);
-            const uploadContent = document.getElementById(uploadContentId);
-
-            dropZone.addEventListener('click', () => input.click());
-            
-            dropZone.addEventListener('dragover', (e) => {
-                e.preventDefault();
-                dropZone.classList.add('border-accent', 'bg-accent/5');
-            });
-            
-            dropZone.addEventListener('dragleave', (e) => {
-                e.preventDefault();
-                dropZone.classList.remove('border-accent', 'bg-accent/5');
-            });
-            
-            dropZone.addEventListener('drop', (e) => {
-                e.preventDefault();
-                dropZone.classList.remove('border-accent', 'bg-accent/5');
-                const files = e.dataTransfer.files;
-                if (files.length > 0) {
-                    handleFile(files[0]);
-                }
-            });
-            
-            input.addEventListener('change', (e) => {
-                if (e.target.files.length > 0) {
-                    handleFile(e.target.files[0]);
-                }
-            });
-            
-            removeBtn.addEventListener('click', (e) => {
-                e.stopPropagation();
-                preview.classList.add('hidden');
-                uploadContent.classList.remove('hidden');
-                input.value = '';
-            });
-            
-            function handleFile(file) {
-                const reader = new FileReader();
-                reader.onload = (e) => {
-                    image.src = e.target.result;
-                    uploadContent.classList.add('hidden');
-                    preview.classList.remove('hidden');
-                };
-                reader.readAsDataURL(file);
-            }
-        }
-
-        // Setup file uploads
-        setupFileUpload('logo-drop-zone', 'logo-input', 'logo-preview', 'logo-image', 'remove-logo', 'logo-upload-content');
-        setupFileUpload('banner-drop-zone', 'banner-input', 'banner-preview', 'banner-image', 'remove-banner', 'banner-upload-content');
-
-        // Form submission
-        document.getElementById('create-clan-form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            const createBtn = document.getElementById('create-btn');
-            const createSpinner = document.getElementById('create-spinner');
-            const createText = document.getElementById('create-text');
-            const clanName = document.getElementById('clan-name').value;
-            
-            // Show loading state
-            createBtn.disabled = true;
-            createSpinner.classList.remove('hidden');
-            createText.textContent = 'Creating Clan...';
-            
-            // Simulate API call
-            setTimeout(() => {
-                // Hide loading state
-                createBtn.disabled = false;
-                createSpinner.classList.add('hidden');
-                createText.textContent = 'Create Clan';
-                
-                // Show success modal
-                document.getElementById('created-clan-name').textContent = clanName;
-                document.getElementById('success-modal').classList.remove('hidden');
-            }, 2000);
-        });
-
-        // Cancel button
-        document.getElementById('cancel-btn').addEventListener('click', function() {
-            if (confirm('Are you sure you want to cancel? All entered information will be lost.')) {
-                window.location.href = 'clan_directory.html';
-            }
-        });
-
-        // Success modal actions
-        document.getElementById('view-clan-btn').addEventListener('click', function() {
-            window.location.href = 'clan_profile.html';
-        });
-
-        document.getElementById('invite-members-btn').addEventListener('click', function() {
-            // Would navigate to member invitation page
-            alert('Invite members feature coming soon!');
-        });
-
-        // Close modal when clicking outside
-        document.getElementById('success-modal').addEventListener('click', function(e) {
-            if (e.target === this) {
-                this.classList.add('hidden');
-            }
-        });
-
-        // Form validation
-        function validateForm() {
-            const clanName = document.getElementById('clan-name').value.trim();
-            const clanEmail = document.getElementById('clan-email').value.trim();
-            const clanType = document.querySelector('input[name="clanType"]:checked');
-            
-            let isValid = true;
-            
-            // Reset previous validation styles
-            document.querySelectorAll('.border-error').forEach(el => {
-                el.classList.remove('border-error');
-            });
-            
-            if (!clanName) {
-                document.getElementById('clan-name').classList.add('border-error');
-                isValid = false;
-            }
-            
-            if (!clanEmail || !clanEmail.includes('@')) {
-                document.getElementById('clan-email').classList.add('border-error');
-                isValid = false;
-            }
-            
-            if (!clanType) {
-                isValid = false;
-            }
-            
-            return isValid;
-        }
-
-        // Real-time validation
-        document.getElementById('clan-name').addEventListener('blur', validateForm);
-        document.getElementById('clan-email').addEventListener('blur', validateForm);
-    </script>
-<script id="dhws-dataInjector" src="../public/dhws-data-injector.js"></script>
+    });
+</script>
+<script src="../assets/jq/jquery-3.7.1.min.js"></script>
+<script src="../assets/js/signup.js"></script>
+<script src="../assets/js/create_clan.js"></script>
 </body>
 </html>
