@@ -17,13 +17,13 @@ function initializeUI() {
         if (loginBtn) loginBtn.style.display = "none";
         if (registerBtn) registerBtn.style.display = "none";
         if (logoutBtn) logoutBtn.style.display = "flex";
-
+/*
         const currentPage = window.location.pathname.split("/").pop();
         if (role === "Admin" && currentPage !== "adminDashboard.html") {
             window.location.href = "adminDashboard.html";
         } else if (role === "User" && currentPage !== "index2.html") {
             window.location.href = "index2.html";
-        }
+        }*/
     } else {
         if (loginBtn) loginBtn.style.display = "flex";
         if (registerBtn) registerBtn.style.display = "flex";
@@ -57,6 +57,7 @@ $("#loginBtn").click(function () {
             localStorage.setItem("role", data.data.role);
             localStorage.setItem("username", data.data.username);
             localStorage.setItem("email",data.data.email);
+            localStorage.setItem("id",data.data.uuid);
 
 
             $("#email").val("");
@@ -77,9 +78,7 @@ $("#loginBtn").click(function () {
 
             if (data.data.role === "Admin") {
                 window.location.href = "adminDashboard.html";
-            } else if (data.data.role === "User") {
-                window.location.href = "index2.html";
-            }else if (data.data.role === "Player") {
+            } else{
                 window.location.href = "index2.html";
             }
         },
