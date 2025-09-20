@@ -1,4 +1,4 @@
-let uploadImageUrl = "";
+let uploadedImageUrl = "";
 
 $(document).ready(function () {
     const email = localStorage.getItem("email");

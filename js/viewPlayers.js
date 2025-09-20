@@ -13,6 +13,8 @@ function loadPlayers() {
             `);
         },
         success: function(response) {
+
+            console.log("Players API response:", response);
             let playersGrid = $("#playersGrid");
             playersGrid.empty();
 
@@ -30,7 +32,7 @@ function loadPlayers() {
                 } else {
                     players.forEach(player => {
                         // Online status
-                        let onlineStatusBadge = player.online
+                        let onlineStatusBadge = player.isOnline
                             ? `<span class="status-badge online-status">Online</span>`
                             : `<span class="status-badge offline-status">Offline</span>`;
 
