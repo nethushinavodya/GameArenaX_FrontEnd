@@ -15,9 +15,9 @@
     <!--fontawesome-->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" rel="stylesheet"/>
     <!--css-->
-    <link href="../assets/css/home.css" rel="stylesheet" type="text/css"/>
-    <link href="../assets/css/main.css" rel="stylesheet" type="text/css"/>
-    <link href="../assets/css/tailwind.css" rel="stylesheet" type="text/css"/>
+    <link href="assets/css/home.css" rel="stylesheet" type="text/css"/>
+    <link href="assets/css/main.css" rel="stylesheet" type="text/css"/>
+    <link href="assets/css/tailwind.css" rel="stylesheet" type="text/css"/>
     <style>
         /* Add this to your CSS to improve the dropdown appearance */
         #userDropdown {
@@ -65,7 +65,7 @@
     <nav class="flex flex-1 justify-end gap-2 right-0">
         <!-- Nav links (always visible) -->
         <nav class="flex items-center  gap-5">
-            <a class="text-gray-300 nav-link" href="../index2.html">Home</a>
+            <a class="text-gray-300 nav-link" href="index2.html">Home</a>
             <a class="text-gray-300 nav-link text-sm sm:text-base">
       <span class="inline-flex items-center space-x-1">
         <span class="relative flex w-1.5 h-1.5">
@@ -101,8 +101,8 @@
                     </button>
                 </div>
                 <div id="userDropdown" class="hidden absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-black">
-                    <a href="../player/player_profile.html" class="block px-4 py-2 text-sm text-white hover:bg-gray-700">View Profile</a>
-                    <a href="../streamer/streamer_application.html" class="block px-4 py-2 text-sm text-white hover:bg-gray-700">Apply as a Streamer</a>
+                    <a href="player_profile.html" class="block px-4 py-2 text-sm text-white hover:bg-gray-700">View Profile</a>
+                    <a href="streamer_application.html" class="block px-4 py-2 text-sm text-white hover:bg-gray-700">Apply as a Streamer</a>
                     <!--
                                         <a href=""  id="logoutBtn" class="block px-4 py-2 text-sm text-red-400 hover:bg-gray-700">Logout</a>
                     -->
@@ -234,7 +234,6 @@
                     <label  class="block text-gray-300 text-sm font-medium mb-2">Country</label>
                     <select class="w-full bg-surface-800 border border-surface-700 rounded-gaming px-4 py-3 text-text-primary form-field-gaming focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary" id="editCountry" required>
                         <option value=""> Select your country </option>
-                        <option value="Afghanistan"> </option>
                         <option value="Afghanistan">Afghanistan</option>
                         <option value="Åland Islands">Åland Islands</option>
                         <option value="Albania">Albania</option>
@@ -601,8 +600,8 @@
             </button>
         </div>
         <nav class="space-y-4">
-            <a href="../player/player_profile.html" class="block text-text-secondary hover:text-text-primary py-2">Profile</a>
-            <a href="../streamer/streamer_application.html" class="block text-text-secondary hover:text-text-primary py-2">Become Streamer</a>
+            <a href="player_profile.html" class="block text-text-secondary hover:text-text-primary py-2">Profile</a>
+            <a href="streamer_application.html" class="block text-text-secondary hover:text-text-primary py-2">Become Streamer</a>
             <a href="tournaments.html" class="block text-text-secondary hover:text-text-primary py-2">Tournaments</a>
         </nav>
     </div>
@@ -622,7 +621,7 @@
         $("#logoutBtn").on("click", function (e) {
             e.preventDefault();
             localStorage.removeItem("username");
-            window.location.href = "../index2.html"; // logout → back to home
+            window.location.href = "index2.html"; // logout → back to home
         });
     });
     // Close modal when clicking outside
@@ -782,8 +781,8 @@
         document.getElementById('loginBtnNav').style.display = 'none';
     }
 </script>
-<script src="../assets/jq/jquery-3.7.1.min.js"></script>
-<script src="../assets/js/signup.js"></script>
-<script src="../assets/js/playerProfileEdit.js"></script>
+<script src="assets/jq/jquery-3.7.1.min.js"></script>
+<script src="js/signup.js"></script>
+<script src="js/playerProfileEdit.js"></script>
 </body>
 </html>
