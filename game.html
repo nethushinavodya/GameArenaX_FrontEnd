@@ -643,13 +643,13 @@
     </div>
 </div>
 
-<script src="../assets/jq/jquery-3.7.1.min.js"></script>
-<script src="../assets/js/games.js"></script>
+<script src="assets/jq/jquery-3.7.1.min.js"></script>
+<script src="js/games.js"></script>
 <script>
     $(document).ready(function() {
         const token = localStorage.getItem("token");
         if (!token) {
-            window.location.href = "index.html";
+            window.location.href = "index2.html";
             return;
         }
 
@@ -660,7 +660,7 @@
         if (confirm("Do you really want to logout?")) {
             localStorage.removeItem("token");
             localStorage.removeItem("username");
-            window.location.href = "index.html";
+            window.location.href = "index2.html";
         }
     });
 </script>
