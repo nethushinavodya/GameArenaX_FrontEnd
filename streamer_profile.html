@@ -15,9 +15,9 @@
     <!--fontawesome-->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" rel="stylesheet"/>
     <!--css-->
-    <link href="../assets/css/home.css" rel="stylesheet" type="text/css"/>
-    <link href="../assets/css/main.css" rel="stylesheet" type="text/css"/>
-    <link href="../assets/css/tailwind.css" rel="stylesheet" type="text/css"/>
+    <link href="assets/css/home.css" rel="stylesheet" type="text/css"/>
+    <link href="assets/css/main.css" rel="stylesheet" type="text/css"/>
+    <link href="assets/css/tailwind.css" rel="stylesheet" type="text/css"/>
     <style>
         /* Add this to your CSS to improve the dropdown appearance */
         #userDropdown {
@@ -66,8 +66,8 @@
         <nav class="flex flex-1 justify-end gap-2 right-0">
             <!-- Nav links (always visible) -->
             <nav class="flex items-center  gap-5">
-                <a class="text-gray-300 nav-link" href="../index2.html">Home</a>
-                <a class="text-gray-300 nav-link text-sm sm:text-base">
+                <a class="text-gray-300 nav-link" href="index2.html">Home</a>
+                <a class="text-gray-300 nav-link text-sm sm:text-base" href="liveStreamings.html">
           <span class="inline-flex items-center space-x-1">
             <span class="relative flex w-1.5 h-1.5">
               <span class="absolute inline-flex w-full h-full rounded-full bg-[#ff0000] opacity-80 animate-ping"></span>
@@ -76,10 +76,8 @@
             <span class="font-medium">Live</span>
           </span>
                 </a>
-                <a class="text-gray-300  nav-link" href="../tournament.html">Tournaments</a>
-                <a class="text-gray-300  nav-link" href="AllStreamers.html">Streamers</a>
+                <a class="text-gray-300  nav-link" href="tournament.html">Tournaments</a>
                 <a class="text-gray-300  nav-link" href="clan_directory.html">Clans</a>
-                <a class="text-gray-300  nav-link" href="AllPlayers.html">Players</a>
             </nav>
 
             <!-- Login button (only visible before login) -->
@@ -102,11 +100,8 @@
                         </button>
                     </div>
                     <div id="userDropdown" class="hidden absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-black">
-                        <a href="../streamer/streamer_profile_edit.html" class="block px-4 py-2 text-sm text-white hover:bg-gray-700">Edit Profile</a>
-                        <a href="../player/player_application.html" class="block px-4 py-2 text-sm text-white hover:bg-gray-700">Apply as a Player</a>
-                        <!--
-                                            <a href=""  id="logoutBtn" class="block px-4 py-2 text-sm text-red-400 hover:bg-gray-700">Logout</a>
-                        -->
+                        <a href="streamer_profile_edit.html" class="block px-4 py-2 text-sm text-white hover:bg-gray-700">Edit Profile</a>
+                        <a href=""  id="logoutBtn" class="block px-4 py-2 text-sm text-red-400 hover:bg-gray-700">Logout</a>
                         <!-- &lt;!&ndash; Logout button (only visible after login) &ndash;&gt;
                          <div class="flex items-center gap-4">
                              <button id="logoutBtn" class="text-red-400 hover:text-red-300 transition-colors">
@@ -125,7 +120,7 @@
         <!-- Page Header -->
         <div class="mb-8">
             <div class="flex items-center mb-4">
-                <a href="../index2.html" class="text-text-secondary hover:text-primary transition-colors mr-4">
+                <a href="index2.html" class="text-text-secondary hover:text-primary transition-colors mr-4">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
                     </svg>
@@ -389,7 +384,7 @@
                     </div>
                     <h3 class="text-lg font-semibold text-gaming-heading mb-2">Create a tournament</h3>
                     <p class="text-text-secondary text-sm mb-4">Start a tournament and invite your audience</p>
-                    <a href="../create_tournament.html" class="inline-flex items-center justify-center w-full px-4 py-2 bg-secondary text-background font-medium rounded-gaming btn-gaming hover:bg-secondary-600 focus:outline-none focus:ring-2 focus:ring-secondary focus:ring-offset-2 focus:ring-offset-surface">
+                    <a href="create_tournament.html" class="inline-flex items-center justify-center w-full px-4 py-2 bg-secondary text-background font-medium rounded-gaming btn-gaming hover:bg-secondary-600 focus:outline-none focus:ring-2 focus:ring-secondary focus:ring-offset-2 focus:ring-offset-surface">
                         Create Tournament
                     </a>
                 </div>
@@ -437,9 +432,9 @@
                 </button>
             </div>
             <nav class="space-y-4">
-                <a href="streamer_profile_view.html" class="block text-primary font-medium py-2">Profile</a>
-                <a href="stream_dashboard.html" class="block text-text-secondary hover:text-text-primary py-2">Dashboard</a>
-                <a href="tournaments.html" class="block text-text-secondary hover:text-text-primary py-2">Tournaments</a>
+                <a href="streamer_profile.html" class="block text-primary font-medium py-2">Profile</a>
+                <a href="index2.html" class="block text-text-secondary hover:text-text-primary py-2">Dashboard</a>
+                <a href="tournament.html" class="block text-text-secondary hover:text-text-primary py-2">Tournaments</a>
             </nav>
         </div>
     </div>
@@ -459,7 +454,7 @@
         $("#logoutBtn").on("click", function (e) {
             e.preventDefault();
             localStorage.removeItem("username");
-            window.location.href = "../index2.html"; // logout → back to home
+            window.location.href = "index2.html"; // logout → back to home
         });
     });
     // Close modal when clicking outside
@@ -621,8 +616,8 @@
         document.getElementById('loginBtnNav').style.display = 'none';
     }
 </script>
-<script src="../assets/jq/jquery-3.7.1.min.js"></script>
-<script src="../assets/js/signup.js"></script>
-<script src="../assets/js/streamerProfile.js"></script>
+<script src="assets/jq/jquery-3.7.1.min.js"></script>
+<script src="js/signup.js"></script>
+<script src="js/streamerProfile.js"></script>
 </body>
 </html>
