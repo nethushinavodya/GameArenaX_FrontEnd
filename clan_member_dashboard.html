@@ -77,7 +77,7 @@
           </span>
                     </a>
                     <a class="text-gray-300  nav-link" href="tournament.html">Tournaments</a>
-                    <a class="text-green-400 font-semibold  nav-link" href="clan/clan_directory.html">Clans</a>
+                    <a class="text-green-400 font-semibold  nav-link" href="clan_directory.html">Clans</a>
                 </nav>
 
                 <!-- Login button (only visible before login) -->
@@ -99,8 +99,8 @@
                         </div>
                         <div id="userDropdown" class="hidden absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-black">
                             <a href="" id="viewProfile" class="block px-4 py-2 text-sm text-white hover:bg-gray-700">View Profile</a>
-                            <a href="player/player_application.html" class="block px-4 py-2 text-sm text-white hover:bg-gray-700" id="applyAsPlayer">Apply as a Player</a>
-                            <a href="streamer/streamer_application.html" class="block px-4 py-2 text-sm text-white hover:bg-gray-700" id="applyAsStreamer">Apply as a Streamer</a>
+                            <a href="player_application.html" class="block px-4 py-2 text-sm text-white hover:bg-gray-700" id="applyAsPlayer">Apply as a Player</a>
+                            <a href="streamer_application.html" class="block px-4 py-2 text-sm text-white hover:bg-gray-700" id="applyAsStreamer">Apply as a Streamer</a>
                             <a href=""  id="logoutBtn" class="block px-4 py-2 text-sm text-red-400 hover:bg-gray-700">Logout</a>
                             <!-- &lt;!&ndash; Logout button (only visible after login) &ndash;&gt;
                              <div class="flex items-center gap-4">
@@ -286,84 +286,19 @@
                         </div>
                     </div>
                 </div>
+
+
+                <div id="joinRequestsContainer" class="bg-surface rounded-lg border border-accent/20 p-6 shadow-gaming-subtle">
+                    <div class="flex items-center justify-between mb-4">
+                        <h3 class="text-lg font-semibold text-text-primary">Join Requests</h3>
+                    </div>
+
+                    <div id="joinRequestsList" class="space-y-3 max-h-60 overflow-y-auto">
+                        <!-- JS eken dynamic requests load wenawa -->
+                    </div>
+                </div>
             </div>
         </main>
-
-        <div class="w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 space-y-6">
-            <!-- Online Members -->
-            <div class="bg-surface rounded-lg border border-accent/20 p-6 shadow-gaming-subtle">
-                <div class="flex items-center justify-between mb-4">
-                    <h3 class="text-lg font-semibold text-text-primary">Clan Members</h3>
-                    <span class="bg-accent/10 text-accent text-sm font-medium px-2 py-1 rounded-full">15 online</span>
-                </div>
-                <div class="space-y-3 max-h-60 overflow-y-auto">
-                    <div class="flex items-center space-x-3">
-                        <div class="relative">
-                            <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=40&h=40&fit=crop&crop=face" alt="DragonSlayer99" class="w-10 h-10 rounded-full" />
-                            <div class="absolute -bottom-1 -right-1 w-4 h-4 bg-accent rounded-full border-2 border-surface"></div>
-                        </div>
-                        <div class="flex-1">
-                            <div class="flex items-center space-x-2">
-                                <p class="text-sm font-medium text-text-primary">DragonSlayer99</p>
-                                <span class="inline-flex items-center px-1.5 py-0.5 rounded text-xs font-medium bg-warning/10 text-warning">Leader</span>
-                            </div>
-                            <p class="text-xs text-text-secondary">Playing Valorant</p>
-                        </div>
-                    </div>
-
-                    <div class="flex items-center space-x-3">
-                        <div class="relative">
-                            <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=40&h=40&fit=crop&crop=face" alt="CyberNinja" class="w-10 h-10 rounded-full" />
-                            <div class="absolute -bottom-1 -right-1 w-4 h-4 bg-accent rounded-full border-2 border-surface"></div>
-                        </div>
-                        <div class="flex-1">
-                            <div class="flex items-center space-x-2">
-                                <p class="text-sm font-medium text-text-primary">CyberNinja</p>
-                                <span class="inline-flex items-center px-1.5 py-0.5 rounded text-xs font-medium bg-accent/10 text-accent">Officer</span>
-                            </div>
-                            <p class="text-xs text-text-secondary">In lobby</p>
-                        </div>
-                    </div>
-
-                    <div class="flex items-center space-x-3">
-                        <div class="relative">
-                            <img src="https://images.unsplash.com/photo-1494790108755-2616b6e7a515?w=40&h=40&fit=crop&crop=face" alt="StormRider" class="w-10 h-10 rounded-full" />
-                            <div class="absolute -bottom-1 -right-1 w-4 h-4 bg-accent rounded-full border-2 border-surface"></div>
-                        </div>
-                        <div class="flex-1">
-                            <p class="text-sm font-medium text-text-primary">StormRider</p>
-                            <p class="text-xs text-text-secondary">Online</p>
-                        </div>
-                    </div>
-
-                    <div class="flex items-center space-x-3">
-                        <div class="relative">
-                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=40&h=40&fit=crop&crop=face" alt="ThunderBolt" class="w-10 h-10 rounded-full" />
-                            <div class="absolute -bottom-1 -right-1 w-4 h-4 bg-accent rounded-full border-2 border-surface"></div>
-                        </div>
-                        <div class="flex-1">
-                            <p class="text-sm font-medium text-text-primary">ThunderBolt</p>
-                            <p class="text-xs text-text-secondary">Playing CS2</p>
-                        </div>
-                    </div>
-
-                    <div class="flex items-center space-x-3">
-                        <div class="relative">
-                            <img src="https://images.unsplash.com/photo-1568602471122-7832951cc4c5?w=40&h=40&fit=crop&crop=face" alt="You" class="w-10 h-10 rounded-full" />
-                            <div class="absolute -bottom-1 -right-1 w-4 h-4 bg-accent rounded-full border-2 border-surface"></div>
-                        </div>
-                        <div class="flex-1">
-                            <p class="text-sm font-medium text-accent">You</p>
-                            <p class="text-xs text-text-secondary">Online</p>
-                        </div>
-                    </div>
-                </div>
-                <button class="w-full mt-4 text-sm text-accent hover:text-accent-600 font-medium transition-hover">
-                    View All Members
-                </button>
-            </div>
-
-        </div>
         <!-- Leave Clan Confirmation Modal -->
         <div id="leave-clan-modal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50 hidden">
             <div class="bg-surface rounded-lg border border-error/20 max-w-md w-full p-6 shadow-gaming transform transition-all">
@@ -739,8 +674,10 @@
         const role = localStorage.getItem('role');
         if (role === 'Player') {
             document.getElementById('applyAsPlayer').style.display = 'none';
+            document.getElementById('applyAsStreamer').style.display = 'none';
         }else if (role === 'Streamer') {
             document.getElementById('applyAsStreamer').style.display = 'none';
+            document.getElementById('applyAsPlayer').style.display = 'none';
         }
 
         console.log(role);
@@ -810,13 +747,13 @@
 
         switch (role) {
             case "Player":
-                profilePage = "player/player_profile.html";
+                profilePage = "player_profile.html";
                 break;
             case "Streamer":
-                profilePage = "streamer/streamer_profile.html";
+                profilePage = "streamer_profile.html";
                 break;
             case "User":
-                profilePage = "user/user_profile_view.html";
+                profilePage = "user_profile_view.html";
                 break;
             default:
                 toastr.error("Unknown role!");
@@ -834,7 +771,7 @@
     }
 </script>
 <script src="assets/jq/jquery-3.7.1.min.js"></script>
-<script src="assets/js/signup.js"></script>
-<script src="assets/js/clan_member_dashboard.js"></script>
+<script src="js/signup.js"></script>
+<script src="js/clan_member_dashboard.js"></script>
 </body>
 </html>

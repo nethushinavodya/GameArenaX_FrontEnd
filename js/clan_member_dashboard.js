@@ -78,18 +78,19 @@ function displayMemberDetails(member) {
 
 let clanData = [];
 let currentMember = [];
+let joinReq = [];
+let clanId = "";
 
 $(document).ready(function() {
     const token = localStorage.getItem("token");
     const urlParams = new URLSearchParams(window.location.search);
-    const clanId = urlParams.get('clanId');
+    clanId = urlParams.get('clanId');
 
     console.log("clanId:", clanId);
     if (!clanId) {
         toastr.error("Missing clanId parameter in the URL");
         return;
     }
-
     $.ajax({
         url: `http://localhost:8080/api/v1/clan/getById?id=${clanId}`,
         method: "GET",
@@ -148,10 +149,112 @@ function setData() {
 
     // Setup leave clan modal
     setupLeaveClanModal();
+
+    //set Join request
+    setUpJoinReq();
 }
 
+function setUpJoinReq() {
+    let token = localStorage.getItem("token");
+
+    console.log("Clan ID:", clanId);
+    $.ajax({
+        url: `http://localhost:8080/api/v1/join-request/getByClanId?clanId=${encodeURIComponent(clanId)}`,
+        method: "GET",
+        headers: {
+            "Authorization": "Bearer " + token
+        },
+        success: function (res) {
+            console.log("Join Request Response Data:", res);
+            renderJoinRequests(res.data);
+        },
+        error: function (xhr) {
+            console.error("Error:", xhr);
+            toastr.error("Failed to load member details");
+        }
+    });
+}
+function renderJoinRequests(requests) {
+    let container = $("#joinRequestsList");
+    container.empty();
+
+    requests.forEach(req => {
+        let player = req.player;
+        let requestId = req.id;
+
+        let requestHtml = `
+            <div class="flex items-center space-x-3 border border-accent/10 rounded-lg p-2" data-request-id="${requestId}">
+                <div class="relative">
+                    <img src="${player.imageUrl}" alt="${player.playerName}" class="w-10 h-10 rounded-full" />
+                    <div class="absolute -bottom-1 -right-1 w-4 h-4 ${player.isOnline ? "bg-accent" : "bg-gray-400"} rounded-full border-2 border-surface"></div>
+                </div>
+                <div class="flex-1 min-w-0">
+                    <div class="flex items-center space-x-2 mb-1">
+                        <span class="text-sm font-medium text-text-primary">${player.playerName}</span>
+                    </div>
+                    <p class="text-sm text-text-primary break-words">${req.message}</p>
+                </div>
+                <button onclick="acceptRequest(${requestId})" class="bg-accent hover:bg-accent-600 text-white p-2 rounded-lg transition-gaming">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                    </svg>
+                </button>
+                <button onclick="rejectRequest(${requestId})" class="bg-error hover:bg-error-600 text-white p-2 rounded-lg transition-gaming">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                    </svg>
+                </button>
+            </div>
+        `;
+
+        container.append(requestHtml);
+    });
+}
+
+function acceptRequest(requestId) {
+    let token = localStorage.getItem("token");
+
+    console.log("Request ID:", requestId);
+    $.ajax({
+        url: `http://localhost:8080/api/v1/join-request/accept?id=${requestId}`,
+        method: "POST",
+        headers: {
+            "Authorization": "Bearer " + token
+        },
+        success: function () {
+            toastr.success("Request accepted!");
+            $(`[data-request-id='${requestId}']`).remove();
+            setUpJoinReq();
+        },
+        error: function (xhr) {
+            console.error("Error:", xhr);
+            toastr.error("Failed to accept request");
+        }
+    });
+}
+
+function rejectRequest(requestId) {
+    let token = localStorage.getItem("token");
+
+    $.ajax({
+        url: `http://localhost:8080/api/v1/join-request/delete?id=${requestId}`,
+        method: "DELETE",
+        headers: {
+            "Authorization": "Bearer " + token
+        },
+        success: function () {
+            toastr.info("Request rejected!");
+            $(`[data-request-id='${requestId}']`).remove();
+        },
+        error: function (xhr) {
+            console.error("Error:", xhr);
+            toastr.error("Failed to reject request");
+        }
+    });
+}
+
+
 function updateClanHeader() {
-    // Update clan logo
     if (clanData.clanLogoUrl) {
         $('#clanLogo').attr('src', clanData.clanLogoUrl);
     }
@@ -221,7 +324,7 @@ function updateMemberList() {
 
         // For demo purposes, using placeholder images and names
         // In a real scenario, you'd fetch player details for each member
-        const playerName = isCurrentUser ? 'You' : `Player_${member.playerId.substring(0, 8)}`;
+        const playerName = isCurrentUser ? 'You' : `Player_${member.playerId.substring(0, 4)}`;
         const playerImage = isCurrentUser ? currentMember.player.imageUrl || 'https://images.unsplash.com/photo-1568602471122-7832951cc4c5?w=40&h=40&fit=crop&crop=face'
             : 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=40&h=40&fit=crop&crop=face';
 
@@ -290,7 +393,7 @@ function leaveClan() {
         headers: {
             "Authorization": "Bearer " + token
         },
-        success: function(res) {
+        success: function (res) {
             console.log(res);
             if (res.code === 201) {
                 toastr.success("Successfully left the clan");
@@ -301,10 +404,10 @@ function leaveClan() {
                 toastr.error("Failed to leave clan");
             }
         },
-        error: function(xhr) {
+        error: function (xhr) {
             console.error("Error leaving clan:", xhr);
             toastr.error("Failed to leave clan");
             $('#leave-clan-modal').addClass('hidden');
         }
-    });
+    })
 }

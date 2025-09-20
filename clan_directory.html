@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta charset="utf-8"/>
     <link crossorigin="" href="https://fonts.gstatic.com/" rel="preconnect"/>
@@ -14,10 +14,10 @@
     <!--fontawesome-->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" rel="stylesheet"/>
     <!--css-->
-    <link href="../assets/css/home.css" rel="stylesheet" type="text/css"/>
-    <link href="../assets/css/main3.css" rel="stylesheet" type="text/css"/>
-    <link href="../assets/css/tailwind.css" rel="stylesheet" type="text/css"/>
-    <link href="../assets/css/main.css" rel="stylesheet" type="text/css"/>
+    <link href="assets/css/home.css" rel="stylesheet" type="text/css"/>
+    <link href="assets/css/main3.css" rel="stylesheet" type="text/css"/>
+    <link href="assets/css/tailwind.css" rel="stylesheet" type="text/css"/>
+    <link href="assets/css/main.css" rel="stylesheet" type="text/css"/>
     <style>
         /* Add this to your CSS to improve the dropdown appearance */
         #userDropdown {
@@ -67,8 +67,8 @@
             <nav class="flex flex-1 justify-end gap-8">
                 <!-- Nav links (always visible) -->
                 <nav class="flex items-center  gap-8">
-                    <a class="text-gray-300 nav-link" href="../index2.html">Home</a>
-                    <a class="text-gray-300 cursor-pointer nav-link text-sm sm:text-base" href="../liveStreamings.html">
+                    <a class="text-gray-300 nav-link" href="index2.html">Home</a>
+                    <a class="text-gray-300 cursor-pointer nav-link text-sm sm:text-base" href="liveStreamings.html">
           <span class="inline-flex items-center space-x-1">
             <span class="relative flex w-1.5 h-1.5">
               <span class="absolute inline-flex w-full h-full rounded-full bg-[#ff0000] opacity-80 animate-ping"></span>
@@ -77,8 +77,11 @@
             <span class="font-medium">Live</span>
           </span>
                     </a>
-                    <a class="text-gray-300  nav-link" href="../tournament.html">Tournaments</a>
-                    <a class="text-green-400 font-semibold  nav-link" href="../clan/clan_directory.html">Clans</a>
+                    <a class="text-gray-300  nav-link" href="tournament.html">Tournaments</a>
+                    <a class="text-green-400 font-semibold  nav-link" href="clan_directory.html">Clans</a>
+
+                    <a class="text-warning font-semibold" href="payhere.html"><i class="fa-solid fa-crown"></i><span class="ml-1">Get Premium</span></a>
+
                 </nav>
 
                 <!-- Login button (only visible before login) -->
@@ -100,8 +103,8 @@
                         </div>
                         <div id="userDropdown" class="hidden absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-black">
                             <a href="" id="viewProfile" class="block px-4 py-2 text-sm text-white hover:bg-gray-700">View Profile</a>
-                            <a href="player/player_application.html" class="block px-4 py-2 text-sm text-white hover:bg-gray-700" id="applyAsPlayer">Apply as a Player</a>
-                            <a href="streamer/streamer_application.html" class="block px-4 py-2 text-sm text-white hover:bg-gray-700" id="applyAsStreamer">Apply as a Streamer</a>
+                            <a href="player_application.html" class="block px-4 py-2 text-sm text-white hover:bg-gray-700" id="applyAsPlayer">Apply as a Player</a>
+                            <a href="streamer_application.html" class="block px-4 py-2 text-sm text-white hover:bg-gray-700" id="applyAsStreamer">Apply as a Streamer</a>
                             <a href=""  id="logoutBtn" class="block px-4 py-2 text-sm text-red-400 hover:bg-gray-700">Logout</a>
                             <!-- &lt;!&ndash; Logout button (only visible after login) &ndash;&gt;
                              <div class="flex items-center gap-4">
@@ -157,7 +160,7 @@
 
                 <!-- Create Clan Button -->
                 <div class="flex items-center">
-                    <a id="createClanBtn" style="display: none;" href="../clan/create_clan.html" class="flex items-center justify-center px-4 py-2 text-sm font-medium text-white bg-accent rounded-md hover:bg-accent-hover transition-colors">
+                    <a id="createClanBtn" style="display: none;" href="create_clan.html" class="flex items-center justify-center px-4 py-2 text-sm font-medium text-white bg-accent rounded-md hover:bg-accent-hover transition-colors">
                         <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"/>
                         </svg>
@@ -186,12 +189,12 @@
         </div>
 
         <div id="request-popup" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-            <div class="bg-white rounded-lg w-96 p-6 relative">
-                <h3 class="text-lg font-semibold mb-4">Request to Join Clan</h3>
-                <textarea id="request-message" class="w-full border border-gray-300 rounded p-2 mb-4"
+            <div class="bg-background rounded-lg w-96 p-6 relative">
+                <h3 class="text-white font-semibold mb-4">Request to Join Clan</h3>
+                <textarea id="request-message" class="w-full text-white border border-gray-300 bg-secondary rounded p-2 mb-4"
                           placeholder="Type your message here"></textarea>
                 <div class="flex justify-end gap-2">
-                    <button id="request-cancel" class="px-4 py-2 bg-gray-300 rounded">Cancel</button>
+                    <button id="request-cancel" class="px-4 py-2 bg-error text-white rounded">Cancel</button>
                     <button id="request-submit" class="px-4 py-2 bg-green-500 text-white rounded">Send</button>
                 </div>
             </div>
@@ -199,155 +202,6 @@
 
         <!-- Clan Grid -->
         <div id="clan-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-            <!-- Clan Card 1 -->
-            <div class="bg-surface rounded-lg border border-gaming-light overflow-hidden shadow-gaming-subtle hover:shadow-gaming transition-gaming hover:border-gaming-strong group">
-                <div class="relative h-32 bg-gradient-to-br from-primary-600 to-primary-800">
-                    <div class="absolute inset-0 bg-black bg-opacity-20"></div>
-                    <div class="absolute bottom-4 left-4">
-                        <img id="clan-logo" src="https://images.unsplash.com/photo-1614680376573-df3480f0c6ff?q=80&w=2074&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Phoenix Legends Logo" class="w-12 h-12 rounded-lg border-2 border-accent object-cover" onerror="this.src='https://images.unsplash.com/photo-1584824486509-112e4181ff6b?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'; this.onerror=null;" />
-                    </div>
-                    <div class="absolute top-4 right-4">
-                        <span id="clanType" class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-accent text-white">
-                            OPEN
-                        </span>
-                    </div>
-                </div>
-
-                <div class="p-4">
-                    <div class="flex items-center justify-between mb-2">
-                        <h3 id="clanName" class="text-lg font-semibold text-text-primary group-hover:text-accent transition-gaming">Phoenix Legends</h3>
-                        <div class="flex items-center text-warning-500">
-                            <svg class="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20">
-                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
-                            </svg>
-                            <span id="clanRankingPoints" class="text-sm font-medium">2,450</span>
-                        </div>
-                    </div>
-
-                    <p id="clanDescription" class="text-text-secondary text-sm mb-4 line-clamp-2">Elite competitive gaming clan focused on FPS tournaments and ranked gameplay. Join our brotherhood of skilled players.</p>
-
-                    <div class="flex items-center justify-between text-sm mb-4">
-                        <div class="flex items-center text-text-secondary">
-                            <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197m13.5-9a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0z"/>
-                            </svg>
-                            <span id="clanMembersCount">45/50 members</span>
-                        </div>
-                        <div id="clanSlotsAvailable" class="text-accent font-medium">
-                            5 slots available
-                        </div>
-                    </div>
-
-                    <div class="flex items-center justify-between text-xs text-text-secondary mb-4">
-                        <span id="clanLeader">Leader: DragonSlayer</span>
-                        <span id="clanCreated">Created: 03/15/2024</span>
-                    </div>
-
-                    <a href="clan_profile.html" class="w-full bg-accent hover:bg-accent-600 text-white font-medium py-2 px-4 rounded-md transition-gaming text-center block">
-                        View Details
-                    </a>
-                </div>
-            </div>
-            <!-- Additional Clan Cards (5-8) -->
-            <div class="bg-surface rounded-lg border border-gaming-light overflow-hidden shadow-gaming-subtle hover:shadow-gaming transition-gaming hover:border-gaming-strong group">
-                <div class="relative h-32 bg-gradient-to-br from-accent-600 to-accent-800">
-                    <div class="absolute inset-0 bg-black bg-opacity-20"></div>
-                    <div class="absolute bottom-4 left-4">
-                        <img src="https://images.pexels.com/photos/442576/pexels-photo-442576.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Neon Guardians Logo" class="w-12 h-12 rounded-lg border-2 border-accent object-cover" onerror="this.src='https://images.unsplash.com/photo-1584824486509-112e4181ff6b?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'; this.onerror=null;" />
-                    </div>
-                    <div class="absolute top-4 right-4">
-                        <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-accent text-white">
-                            OPEN
-                        </span>
-                    </div>
-                </div>
-
-                <div class="p-4">
-                    <div class="flex items-center justify-between mb-2">
-                        <h3 class="text-lg font-semibold text-text-primary group-hover:text-accent transition-gaming">Neon Guardians</h3>
-                        <div class="flex items-center text-warning-500">
-                            <svg class="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20">
-                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
-                            </svg>
-                            <span class="text-sm font-medium">1,650</span>
-                        </div>
-                    </div>
-
-                    <p class="text-text-secondary text-sm mb-4 line-clamp-2">Rising stars in the competitive scene. Active community with regular training sessions and tournaments.</p>
-
-                    <div class="flex items-center justify-between text-sm mb-4">
-                        <div class="flex items-center text-text-secondary">
-                            <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197m13.5-9a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0z"/>
-                            </svg>
-                            <span>18/35 members</span>
-                        </div>
-                        <div class="text-accent font-medium">
-                            17 slots available
-                        </div>
-                    </div>
-
-                    <div class="flex items-center justify-between text-xs text-text-secondary mb-4">
-                        <span>Leader: NeonKnight</span>
-                        <span>Created: 07/10/2024</span>
-                    </div>
-
-                    <a href="clan_profile.html" class="w-full bg-accent hover:bg-accent-600 text-white font-medium py-2 px-4 rounded-md transition-gaming text-center block">
-                        View Details
-                    </a>
-                </div>
-            </div>
-
-            <!-- Continue with more clan cards... -->
-            <div class="bg-surface rounded-lg border border-gaming-light overflow-hidden shadow-gaming-subtle hover:shadow-gaming transition-gaming hover:border-gaming-strong group">
-                <div class="relative h-32 bg-gradient-to-br from-warning-600 to-warning-800">
-                    <div class="absolute inset-0 bg-black bg-opacity-20"></div>
-                    <div class="absolute bottom-4 left-4">
-                        <img src="https://images.pixabay.com/photo/2017/03/10/09/47/teamwork-2132549_1280.jpg" alt="Golden Eagles Logo" class="w-12 h-12 rounded-lg border-2 border-accent object-cover" onerror="this.src='https://images.unsplash.com/photo-1584824486509-112e4181ff6b?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'; this.onerror=null;" />
-                    </div>
-                    <div class="absolute top-4 right-4">
-                        <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-warning text-white">
-                            REQUEST
-                        </span>
-                    </div>
-                </div>
-
-                <div class="p-4">
-                    <div class="flex items-center justify-between mb-2">
-                        <h3 class="text-lg font-semibold text-text-primary group-hover:text-accent transition-gaming">Golden Eagles</h3>
-                        <div class="flex items-center text-warning-500">
-                            <svg class="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20">
-                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
-                            </svg>
-                            <span class="text-sm font-medium">2,200</span>
-                        </div>
-                    </div>
-
-                    <p class="text-text-secondary text-sm mb-4 line-clamp-2">Strategic gameplay focused clan with emphasis on teamwork and coordination. Looking for dedicated team players.</p>
-
-                    <div class="flex items-center justify-between text-sm mb-4">
-                        <div class="flex items-center text-text-secondary">
-                            <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197m13.5-9a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0z"/>
-                            </svg>
-                            <span>22/30 members</span>
-                        </div>
-                        <div class="text-accent font-medium">
-                            8 slots available
-                        </div>
-                    </div>
-
-                    <div class="flex items-center justify-between text-xs text-text-secondary mb-4">
-                        <span>Leader: EagleEye</span>
-                        <span>Created: 02/28/2024</span>
-                    </div>
-
-                    <a href="clan_profile.html" class="w-full bg-accent hover:bg-accent-600 text-white font-medium py-2 px-4 rounded-md transition-gaming text-center block">
-                        View Details
-                    </a>
-                </div>
-            </div>
-
             <!-- Add more clan cards to reach 24 total... -->
             <!-- Cards 7-24 would follow the same pattern with different data -->
         </div>
@@ -417,274 +271,6 @@
     </footer>
     </div>
 </div>
-<script>
-    $(document).ready(function () {
-        const token = localStorage.getItem("token");
-        const $grid = $("#clan-grid");
-
-        $.ajax({
-            url: "http://localhost:8080/api/v1/clan/getAll",
-            method: "GET",
-            dataType: "json",
-            headers: {
-                "Authorization": "Bearer " + token
-            },
-            success: function (res) {
-                console.log("Received clans:", res);
-                if (!res || !Array.isArray(res.data)) {
-                    $grid.html('<p class="text-red-500">No clans found.</p>');
-                    return;
-                }
-                $grid.empty();
-                $.each(res.data, function (_, clan) {
-                    $grid.append(createClanCard(clan));
-                });
-            },
-            error: function (xhr, status, err) {
-                console.error("Failed to load clans:", err);
-                $grid.html('<p class="text-red-500">Failed to load clans.</p>');
-            }
-        });
-
-
-
-        function createClanCard(clan) {
-            currentRequestClanId = clan.id;
-            // Default images
-            const logo = clan.clanLogoUrl ||
-                "https://images.unsplash.com/photo-1584824486509-112e4181ff6b?q=80&w=2940&auto=format&fit=crop";
-            const banner = clan.bannerUrl ||
-                "https://images.unsplash.com/photo-1584824486509-112e4181ff6b?q=80&w=2940&auto=format&fit=crop";
-
-            const typeColor = clan.clanType === "REQUEST" ? "bg-warning" : "bg-accent";
-            const memberCount = (clan.memberLimit - clan.availableSlots) || 0;
-
-            // Decide button look & action type
-            let btnColor = "#34d399";
-            let btnLabel = "Join";
-            let btnAction = "join";
-
-            switch (clan.clanType) {
-                case "REQUEST":
-                    btnColor = "#FF9900";
-                    btnLabel = "Request";
-                    btnAction = "request";
-                    break;
-                case "CLOSED":
-                    btnColor = "#DC2626";
-                    btnLabel = "Closed";
-                    btnAction = "closed";
-                    break;
-                case "OPEN":
-                default:
-                    btnColor = "#34d399";
-                    btnLabel = "Join";
-                    btnAction = "join";
-                    break;
-            }
-
-            // Return full card HTML
-            return `
-    <div class="bg-surface rounded-lg border border-gaming-light overflow-hidden shadow-gaming-subtle hover:shadow-gaming transition-gaming hover:border-gaming-strong group">
-
-        <!-- Header -->
-        <div class="relative h-32 bg-gradient-to-br from-primary-600 to-primary-800">
-            <div class="h-32 w-full bg-center bg-cover"
-                 style="background-image:url('${banner}');"></div>
-            <div class="absolute inset-0 bg-black bg-opacity-20"></div>
-
-            <div class="absolute bottom-4 left-4">
-                <img src="${logo}" alt="${clan.name || "Clan"} Logo"
-                     class="w-12 h-12 rounded-lg border-2 border-accent object-cover"
-                     onerror="this.src='https://images.unsplash.com/photo-1584824486509-112e4181ff6b?q=80&w=2940&auto=format&fit=crop'; this.onerror=null;">
-            </div>
-
-            <div class="absolute top-4 right-4">
-                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${typeColor} text-white">
-                    ${clan.clanType}
-                </span>
-            </div>
-        </div>
-
-        <!-- Body -->
-        <div class="p-4">
-            <div class="flex items-center justify-between mb-2">
-                <h3 class="text-lg font-semibold text-text-primary group-hover:text-accent transition-gaming">
-                    ${clan.name || "Unnamed Clan"}
-                </h3>
-                <div class="flex items-center text-warning-500">
-                    <svg class="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20">
-                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
-                    </svg>
-                    <span class="text-sm font-medium">${clan.rankingPoints ?? 0}</span>
-                </div>
-            </div>
-
-            <p class="text-text-secondary text-sm mb-4 line-clamp-2">
-                ${clan.description || "No description provided."}
-            </p>
-
-            <div class="flex items-center justify-between text-sm mb-4">
-                <div class="flex items-center text-text-secondary">
-                    <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                              d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197m13.5-9a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0z"/>
-                    </svg>
-                    <span>${memberCount}/${clan.memberLimit || 0} members</span>
-                </div>
-                <div class="text-accent font-medium">
-                    ${clan.availableSlots || 0} slots available
-                </div>
-            </div>
-
-            <div class="flex items-center justify-between text-xs text-text-secondary mb-4">
-                <span>Leader: ${clan.leader?.playerName || "Unknown"}</span>
-                <span>Created: ${formatDate(clan.createdAt)}</span>
-            </div>
-        </div>
-
-        <!-- Single button with data attributes -->
-        <div>
-            <button type="button"
-                class="block w-full py-2 text-center text-sm font-medium text-white rounded-b-lg clan-btn"
-                data-id="${clan.id}"
-                data-action="${btnAction}"
-                style="background-color:${btnColor};">
-                ${btnLabel}
-
-            </button>
-        </div>
-    </div>`;
-        }
-
-        let currentRequestClanId = null;
-
-// Listen for clicks on clan buttons
-        document.addEventListener("click", e => {
-            const btn = e.target.closest(".clan-btn");
-            if (!btn) return;
-
-            const clanId = btn.dataset.id;
-            const action = btn.dataset.action;
-
-            if (action === "join") {
-                joinClan(clanId); // existing join logic
-            } else if (action === "request") {
-                currentRequestClanId = clanId;
-                openRequestPopup();
-            } else {
-                toastr.error("This clan is closed.");
-            }
-        });
-
-// Open popup
-        function openRequestPopup() {
-            const popup = document.getElementById("request-popup");
-            const textarea = document.getElementById("request-message");
-            textarea.value = "";
-            popup.classList.remove("hidden");
-        }
-
-// Close popup
-        document.getElementById("request-cancel").addEventListener("click", () => {
-            document.getElementById("request-popup").classList.add("hidden");
-        });
-
-// Submit request
-        document.getElementById("request-submit").addEventListener("click", () => {
-            const message = document.getElementById("request-message").value.trim();
-            if (!message) {
-                toastr.error("Please type a message.");
-                return;
-            }
-
-            // Example playerId from your session/localStorage
-            const useId = localStorage.getItem("id");
-            console.log("Sending join request for clan:", currentRequestClanId);
-            console.log("Player ID:", useId);
-            console.log("Message:", message);
-
-            let token = localStorage.getItem("token");
-
-
-            // Send request via AJAX/fetch
-            $.ajax({
-                url: "http://localhost:8080/api/v1/join-request/create",
-                method: "POST",
-                headers: {
-                    "Authorization": "Bearer " + token,
-                    "Content-Type": "application/json",
-                },
-                dataType: "json",
-                data:JSON.stringify({
-                    playerId: useId,
-                    clanId: currentRequestClanId,
-                    message: message,
-                    status: "PENDING"
-                }),
-                success: function (res) {
-                    console.log("Join request successful:", res);
-                    toastr.success("Join request sent successfully!");
-
-                    const btn = $(`.clan-btn[data-id='${currentRequestClanId}']`);
-                    btn.text("Requested");
-                    btn.prop("disabled", true);
-                    btn.css("background-color", "#9CA3AF"); // gray color
-
-                    //window.location.href = "clan/clan_member_dashboard.html";
-                },
-                error: function (xhr) {
-                    console.error("Error:", xhr);
-                    toastr.error("Failed to send join request. Please try again later.");
-                }
-            });
-        });
-
-
-
-        function joinClan(clanId) {
-            console.log("Joining clan:", clanId);
-            let userId = localStorage.getItem("id");
-            let token = localStorage.getItem("token");
-            console.log("Joining clan:", clanId);
-            console.log("User ID:", userId);
-
-
-            $.ajax({
-                url: "http://localhost:8080/api/v1/clan-member/join",
-                method: "POST",
-                dataType: "json",
-                headers: {
-                    "Authorization": "Bearer " + token
-                },
-                data: {
-                    "clanId": clanId,
-                    "playerId": userId
-                },
-                success: function (res) {
-                    console.log("Join successful:", res);
-                    toastr.success("Joined clan successfully!");
-
-                    const btn = $(`.clan-btn[data-id='${clanId}']`);
-                    btn.text("Joined");
-                    btn.prop("disabled", true);
-                    btn.css("background-color", "#9CA3AF"); // gray color
-                    //     load clan member dashboard
-                    window.location.href = `../clan_member_dashboard.html?clanId=${clanId}`;
-                },
-                error: function (xhr) {
-                    console.error("Error:", xhr);
-                    toastr.error("Failed to send join request. Please try again later.");
-                }
-            });
-
-        }
-        function formatDate(isoString) {
-            if (!isoString) return "N/A";
-            return new Date(isoString).toLocaleDateString("en-US");
-        }
-    });
-</script>
 <script>
     // Modal functions
     function openLoginModal() {
@@ -855,8 +441,10 @@
         const role = localStorage.getItem('role');
         if (role === 'Player') {
             document.getElementById('applyAsPlayer').style.display = 'none';
+            document.getElementById('applyAsStreamer').style.display = 'none';
         }else if (role === 'Streamer') {
             document.getElementById('applyAsStreamer').style.display = 'none';
+            document.getElementById('applyAsPlayer').style.display = 'none';
         }
 
         console.log(role);
@@ -926,13 +514,13 @@
 
         switch (role) {
             case "Player":
-                profilePage = "player/player_profile.html";
+                profilePage = "player_profile.html";
                 break;
             case "Streamer":
-                profilePage = "streamer/streamer_profile.html";
+                profilePage = "streamer_profile.html";
                 break;
             case "User":
-                profilePage = "user/user_profile_view.html";
+                profilePage = "user_profile_view.html";
                 break;
             default:
                 toastr.error("Unknown role!");
@@ -949,10 +537,8 @@
         document.getElementById('loginBtnNav').style.display = 'none';
     }
 </script>
-<script src="../assets/jq/jquery-3.7.1.min.js"></script>
-<script src="../assets/js/signup.js"></script>
-<!--
-<script src="../assets/js/clans.js"></script>
--->
+<script src="assets/jq/jquery-3.7.1.min.js"></script>
+<script src="js/signup.js"></script>
+<script src="js/clans.js"></script>
 </body>
 </html>
