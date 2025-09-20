@@ -88,7 +88,9 @@
           </span>
                 </a>
                 <a class="text-green-400 font-semibold  nav-link" href="tournament.html">Tournaments</a>
-                <a class="text-gray-300  nav-link" href="clan/clan_directory.html">Clans</a>
+                <a class="text-gray-300  nav-link" href="clan_directory.html">Clans</a>
+
+                <a class="text-warning font-semibold" href="payhere.html"><i class="fa-solid fa-crown"></i><span class="ml-1">Get Premium</span></a>
             </nav>
 
             <!-- Login button (only visible before login) -->
@@ -110,8 +112,8 @@
                     </div>
                     <div id="userDropdown" class="hidden absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-black">
                         <a href="" id="viewProfile" class="block px-4 py-2 text-sm text-white hover:bg-gray-700">View Profile</a>
-                        <a href="player/player_application.html" class="block px-4 py-2 text-sm text-white hover:bg-gray-700" id="applyAsPlayer">Apply as a Player</a>
-                        <a href="streamer/streamer_application.html" class="block px-4 py-2 text-sm text-white hover:bg-gray-700" id="applyAsStreamer">Apply as a Streamer</a>
+                        <a href="player_application.html" class="block px-4 py-2 text-sm text-white hover:bg-gray-700" id="applyAsPlayer">Apply as a Player</a>
+                        <a href="streamer_application.html" class="block px-4 py-2 text-sm text-white hover:bg-gray-700" id="applyAsStreamer">Apply as a Streamer</a>
                         <a href=""  id="logoutBtn" class="block px-4 py-2 text-sm text-red-400 hover:bg-gray-700">Logout</a>
                         <!-- &lt;!&ndash; Logout button (only visible after login) &ndash;&gt;
                          <div class="flex items-center gap-4">
@@ -129,9 +131,9 @@
 <main class="py-12">
 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center mb-12">
-            <h2 class="text-3xl md:text-4xl font-bold mb-4">Live Tournaments</h2>
+            <h2 class="text-3xl md:text-4xl font-bold mb-4">Join Tournaments</h2>
             <p class="text-text-secondary text-lg max-w-2xl mx-auto">
-                Jump into any active tournament and experience the action with our community
+                Find and join tournaments to play with other players and streamers.
             </p>
         </div>
     </div>
@@ -436,10 +438,11 @@
         const role = localStorage.getItem('role');
         if (role === 'Player') {
             document.getElementById('applyAsPlayer').style.display = 'none';
+            document.getElementById('applyAsStreamer').style.display = 'none';
         }else if (role === 'Streamer') {
             document.getElementById('applyAsStreamer').style.display = 'none';
+            document.getElementById('applyAsPlayer').style.display = 'none';
         }
-
         console.log(role);
 
         const userDropdownBtn = document.getElementById('userDropdownBtn');
@@ -507,13 +510,13 @@
 
         switch (role) {
             case "Player":
-                profilePage = "player/player_profile.html";
+                profilePage = "player_profile.html";
                 break;
             case "Streamer":
-                profilePage = "streamer/streamer_profile.html";
+                profilePage = "streamer_profile.html";
                 break;
             case "User":
-                profilePage = "user/user_profile_view.html";
+                profilePage = "user_profile_view.html";
                 break;
             default:
                 toastr.error("Unknown role!");
@@ -531,7 +534,7 @@
     }
 </script>
 <script src="assets/jq/jquery-3.7.1.min.js"></script>
-<script src="assets/js/signup.js"></script>
-<script src="assets/js/tournaments.js"></script>
+<script src="js/signup.js"></script>
+<script src="js/tournaments.js"></script>
 </body>
 </html>

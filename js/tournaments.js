@@ -191,6 +191,12 @@ let currentTournament = null; // store selected tournament
 const tournamentsMap = new Map(); // keep all tournaments for lookup
 let registeredTournamentIds = new Set(); // tournaments player already joined
 
+const role = localStorage.getItem('role');
+
+if (role === 'User') {
+    document.querySelectorAll('.register-btn').forEach(btn => btn.disabled = true);
+}
+
 // ===================== Load & Display Upcoming Tournaments =====================
 function loadUpcomingTournaments() {
     $.ajax({
@@ -318,7 +324,7 @@ function createTournamentCard(t) {
         class="w-full bg-[#f59e0b] text-black py-2 px-4 rounded-lg text-sm font-semibold
                hover:bg-[#d97706] transition-gaming register-btn"
         ${!isOpen || isJoined ? 'disabled' : ''}
-        onclick="openRegistrationModal(${t.id})">
+        onclick="openRegistrationModal(${t.id},event)">
         ${isJoined ? 'Already Registered' : (isOpen ? 'Register Now' : 'Registration Closed')}
       </button>
     `;
@@ -327,9 +333,12 @@ function createTournamentCard(t) {
 
 // ===================== Registration Modal =====================
 function openRegistrationModal(tournamentId) {
+    if (event) event.preventDefault();     // ⛔ stop default button/link action
+    if (event) event.stopPropagation();    // ⛔ stop bubbling to parent handlers
+
     const userRole = localStorage.getItem('role');
     if (userRole !== 'Player') {
-        alert('Only players can register for tournaments.');
+        toastr.error('Only players can register for tournaments.');
         return;
     }
 
