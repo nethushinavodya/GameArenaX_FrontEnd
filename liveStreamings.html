@@ -211,7 +211,10 @@
           </span>
                 </a>
                 <a class="text-gray-300  nav-link" href="tournament.html">Tournaments</a>
-                <a class="text-gray-300  nav-link" href="clan/clan_directory.html">Clans</a>
+                <a class="text-gray-300  nav-link" href="clan_directory.html">Clans</a>
+
+                <a class="text-warning font-semibold" href="payhere.html"><i class="fa-solid fa-crown"></i><span class="ml-1">Get Premium</span></a>
+
             </nav>
 
             <!-- Login button (only visible before login) -->
@@ -233,8 +236,8 @@
                     </div>
                     <div id="userDropdown" class="hidden absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-black">
                         <a href="" id="viewProfile" class="block px-4 py-2 text-sm text-white hover:bg-gray-700">View Profile</a>
-                        <a href="player/player_application.html" class="block px-4 py-2 text-sm text-white hover:bg-gray-700" id="applyAsPlayer">Apply as a Player</a>
-                        <a href="streamer/streamer_application.html" class="block px-4 py-2 text-sm text-white hover:bg-gray-700" id="applyAsStreamer">Apply as a Streamer</a>
+                        <a href="player_application.html" class="block px-4 py-2 text-sm text-white hover:bg-gray-700" id="applyAsPlayer">Apply as a Player</a>
+                        <a href="streamer_application.html" class="block px-4 py-2 text-sm text-white hover:bg-gray-700" id="applyAsStreamer">Apply as a Streamer</a>
                         <a href=""  id="logoutBtn" class="block px-4 py-2 text-sm text-red-400 hover:bg-gray-700">Logout</a>
                         <!-- &lt;!&ndash; Logout button (only visible after login) &ndash;&gt;
                          <div class="flex items-center gap-4">
@@ -449,284 +452,6 @@
     </footer>
 
 </div>
-<!--
-<script>
-    function watchTournament(tournamentId) {
-        // Add your tournament watching logic here
-        console.log('Watching tournament:', tournamentId);
-        alert('Opening ' + tournamentId + ' tournament stream!');
-        // You can redirect to a stream page or open a modal here
-        // window.location.href = 'stream/' + tournamentId + '.html';
-    }
-</script>
-<script>
-    // Modal functions
-    function openLoginModal() {
-        document.getElementById('loginModal').classList.add('active');
-    }
-
-    function openRegisterModal() {
-        document.getElementById('registerModal').classList.add('active');
-    }
-
-    function openForgotPasswordModal() {
-        closeModal('loginModal');
-        document.getElementById('forgotPasswordModal').classList.add('active');
-    }
-
-
-    function closeModal(modalId) {
-        document.getElementById(modalId).classList.remove('active');
-    }
-
-    function switchToRegister() {
-        closeModal('loginModal');
-        openRegisterModal();
-    }
-
-    function switchToLogin() {
-        closeModal('registerModal');
-        closeModal('forgotPasswordModal');
-        closeModal('otpModal');
-        openLoginModal();
-    }
-
-    // Form handlers
-    function handleLogin(event) {
-        event.preventDefault();
-        closeModal('loginModal');
-    }
-
-    function handleRegister(event) {
-        event.preventDefault();
-        closeModal('registerModal');
-    }
-
-    function handleForgotPassword(event) {
-        event.preventDefault();
-        // Add forgot password logic here
-        closeModal('forgotPasswordModal');
-        document.getElementById('otpModal').classList.add('active');
-    }
-
-    /*  function handleOTP(event) {
-          event.preventDefault();
-          // Add OTP verification logic here
-          closeModal('otpModal');
-          document.getElementById('newPasswordModal').classList.add('active');
-      }
-  */
-    function handleNewPassword(event) {
-        event.preventDefault();
-        // Add new password logic here
-        closeModal('newPasswordModal');
-        openLoginModal();
-    }
-
-
-    // Close modal when clicking outside
-    document.querySelectorAll('.modal-backdrop').forEach(backdrop => {
-        backdrop.addEventListener('click', function(e) {
-            if (e.target === backdrop) {
-                backdrop.classList.remove('active');
-            }
-        });
-    });
-    const inputs = document.querySelectorAll(".otp-input");
-
-    inputs.forEach((input, index) => {
-        input.addEventListener("input", (e) => {
-            if (e.target.value.length === 1 && index < inputs.length - 1) {
-                inputs[index + 1].focus();
-            }
-        });
-
-        input.addEventListener("keydown", (e) => {
-            if (e.key === "Backspace" && !e.target.value && index > 0) {
-                inputs[index - 1].focus();
-            }
-        });
-    });
-    function createParticle() {
-        const particle = document.createElement('div');
-        particle.className = 'particle';
-        particle.style.left = Math.random() * 100 + '%';
-
-        // Random size from 15px to 35px
-        const size = Math.random() * 6 + 3;
-        particle.style.setProperty('&#45;&#45;size', size + 'px');
-
-        // Random drift left/right
-        particle.style.setProperty('&#45;&#45;drift', (Math.random() * 100 - 50) + 'px');
-
-        // Random duration and delay
-        particle.style.animationDuration = (Math.random() * 15 + 10) + 's';
-        particle.style.animationDelay = Math.random() * 2 + 's';
-
-        const particlesContainer = document.querySelector('.particles');
-        if (particlesContainer) {
-            particlesContainer.appendChild(particle);
-
-            // Remove after animation ends
-            setTimeout(() => {
-                particle.remove();
-            }, parseFloat(particle.style.animationDuration) * 1000);
-        }
-    }
-
-    // Generate a new particle every 500ms
-    setInterval(createParticle, 500);
-
-    // Smooth scrolling for navigation links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-            e.preventDefault();
-            const target = document.querySelector(this.getAttribute('href'));
-            if (target) {
-                target.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start'
-                });
-            }
-        });
-    });
-
-    // Add scroll-triggered animations
-    const observerOptions = {
-        threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px'
-    };
-
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.style.opacity = '1';
-                entry.target.style.transform = 'translateY(0)';
-            }
-        });
-    }, observerOptions);
-
-    // Observe elements for scroll animations
-    document.querySelectorAll('.card-glow').forEach(card => {
-        card.style.opacity = '0';
-        card.style.transform = 'translateY(30px)';
-        card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-        observer.observe(card);
-    });
-
-    // Header background on scroll
-    window.addEventListener('scroll', () => {
-        const header = document.querySelector('header');
-        if (window.scrollY > 100) {
-            header.style.background = 'rgba(6, 6, 8, 0.95)';
-        } else {
-            header.style.background = 'rgba(10, 10, 15, 0.8)';
-        }
-    });
-    // User dropdown functionality
-    document.addEventListener('DOMContentLoaded', function() {
-        // if the role is player should remove the apply as a player button in the dropdown menu
-        const role = localStorage.getItem('role');
-        if (role === 'Player') {
-            document.getElementById('applyAsPlayer').style.display = 'none';
-        }else if (role === 'Streamer') {
-            document.getElementById('applyAsStreamer').style.display = 'none';
-        }
-
-        console.log(role);
-
-        const userDropdownBtn = document.getElementById('userDropdownBtn');
-        const userDropdown = document.getElementById('userDropdown');
-/*
-        const logoutBtn = document.getElementById('logoutBtn');
-*/
-
-
-        // Toggle dropdown when clicking the user icon
-        userDropdownBtn.addEventListener('click', function(e) {
-            e.stopPropagation();
-            userDropdown.classList.toggle('hidden');
-
-        });
-
-        // Close dropdown when clicking outside
-        document.addEventListener('click', function(e) {
-            if (!userDropdown.contains(e.target) && !userDropdownBtn.contains(e.target)) {
-                userDropdown.classList.add('hidden');
-            }
-        });
-
-/*
-        // Logout functionality
-        logoutBtn.addEventListener('click', function(e) {
-            e.preventDefault();
-            e.stopPropagation();
-
-            window.location.href = 'index2.html';
-
-            // Add your logout logic here
-            console.log('User logged out');
-
-            // Hide user profile and show login button
-            document.getElementById('userProfile').style.display = 'none';
-            document.getElementById('loginBtnNav').style.display = 'block';
-
-            // Close dropdown
-            userDropdown.classList.add('hidden');
-
-            // Optional: Show logout confirmation
-            // toastr.success('Successfully logged out');
-        });
-*/
-
-        // Close dropdown when clicking on menu items (optional)
-        const dropdownLinks = userDropdown.querySelectorAll('a');
-        dropdownLinks.forEach(link => {
-            link.addEventListener('click', function() {
-                userDropdown.classList.add('hidden');
-            });
-        });
-    });
-
-    // Dynamic profile link
-    $("#viewProfile").on("click", function (e) {
-
-        const role = localStorage.getItem('role');
-
-        console.log(role);
-        e.preventDefault();
-        if (!role) {
-            toastr.error("Role not found!");
-            return;
-        }
-
-        let profilePage = "";
-
-        switch (role) {
-            case "Player":
-                profilePage = "player/player_profile.html";
-                break;
-            case "Streamer":
-                profilePage = "streamer/streamer_profile.html";
-                break;
-            case "User":
-                profilePage = "user/user_profile_view.html";
-                break;
-            default:
-                toastr.error("Unknown role!");
-                return;
-        }
-
-        window.location.href = profilePage;
-    });
-
-    // Function to show user profile after successful login
-    function showUserProfile(username) {
-        document.getElementById('usernameDisplay').textContent = username;
-        document.getElementById('userProfile').style.display = 'flex';
-        document.getElementById('loginBtnNav').style.display = 'none';
-    }
-</script>-->
 <script>
     // Modal functions
     function openLoginModal() {
@@ -897,8 +622,10 @@
         const role = localStorage.getItem('role');
         if (role === 'Player') {
             document.getElementById('applyAsPlayer').style.display = 'none';
+            document.getElementById('applyAsStreamer').style.display = 'none';
         }else if (role === 'Streamer') {
             document.getElementById('applyAsStreamer').style.display = 'none';
+            document.getElementById('applyAsPlayer').style.display = 'none';
         }
 
         console.log(role);
@@ -968,13 +695,13 @@
 
         switch (role) {
             case "Player":
-                profilePage = "player/player_profile.html";
+                profilePage = "player_profile.html";
                 break;
             case "Streamer":
-                profilePage = "streamer/streamer_profile.html";
+                profilePage = "streamer_profile.html";
                 break;
             case "User":
-                profilePage = "user/user_profile_view.html";
+                profilePage = "user_profile_view.html";
                 break;
             default:
                 toastr.error("Unknown role!");
@@ -993,7 +720,7 @@
 </script>
 
 <script src="assets/jq/jquery-3.7.1.min.js"></script>
-<script src="assets/js/signup.js"></script>
-<script src="assets/js/liveStreaming.js"></script>
+<script src="js/signup.js"></script>
+<script src="js/liveStreaming.js"></script>
 </body>
 </html>

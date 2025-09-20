@@ -71,85 +71,7 @@
 <body class="bg-background min-h-screen text-text-primary font-inter">
 
 <div class="relative flex size-full min-h-screen flex-col overflow-x-hidden " style='font-family: "Space Grotesk", "Noto Sans", sans-serif;'>
-<!--
-    &lt;!&ndash; Navigation Header &ndash;&gt;
-    <header class="flex items-center justify-between whitespace-nowrap border-b border-solid-1 border-b-[#34C759] px-10 py-4 shadow-lg sticky top-0 header-blur z-50">
-        <div class="flex items-center gap-3 text-white">
-            <div class="size-10 text-[#00ffcc] logo-glow cursor-pointer">
-                <svg
-                        fill="none"
-                        viewBox="0 0 48 48"
-                        xmlns="http://www.w3.org/2000/svg"
-                        class="w-10 h-10"
-                >
-                    <path
-                            clip-rule="evenodd"
-                            d="M24 18.4228L42 11.475V34.3663C42 34.7796 41.7457 35.1504 41.3601 35.2992L24 42V18.4228Z"
-                            fill="currentColor"
-                            fill-rule="evenodd"
-                    />
-                    <path
-                            clip-rule="evenodd"
-                            d="M24 8.18819L33.4123 11.574L24 15.2071L14.5877 11.574L24 8.18819ZM9 15.8487L21 20.4805V37.6263L9 32.9945V15.8487ZM27 37.6263V20.4805L39 15.8487V32.9945L27 37.6263ZM25.354 2.29885C24.4788 1.98402 23.5212 1.98402 22.646 2.29885L4.98454 8.65208C3.7939 9.08038 3 10.2097 3 11.475V34.3663C3 36.0196 4.01719 37.5026 5.55962 38.098L22.9197 44.7987C23.6149 45.0671 24.3851 45.0671 25.0803 44.7987L42.4404 38.098C43.9828 37.5026 45 36.0196 45 34.3663V11.475C45 10.2097 44.2061 9.08038 43.0155 8.65208L25.354 2.29885Z"
-                            fill="currentColor"
-                            fill-rule="evenodd"
-                    />
-                </svg>
-            </div>
-            <h2 class="text-white text-xl font-bold leading-tight tracking-[-0.015em] neon-text">
-                GameArenaX
-            </h2>
-        </div>
-        <nav class="flex flex-1 justify-end gap-2 right-0">
-            &lt;!&ndash; Nav links (always visible) &ndash;&gt;
-            <nav class="flex items-center  gap-5">
-                <a class="text-gray-300 nav-link" href="index2.html">Home</a>
-                <a class="text-gray-300 nav-link text-sm sm:text-base" href="liveStreamings.html">
-          <span class="inline-flex items-center space-x-1">
-            <span class="relative flex w-1.5 h-1.5">
-              <span class="absolute inline-flex w-full h-full rounded-full bg-[#ff0000] opacity-80 animate-ping"></span>
-              <span class="relative w-1.5 h-1.5 bg-[#ff0000] rounded-full"></span>
-            </span>
-            <span class="font-medium">Live</span>
-          </span>
-                </a>
-                <a class="text-gray-300  nav-link" href="tournament.html">Tournaments</a>
-                <a class="text-gray-300  nav-link" href="AllStreamers.html">Streamers</a>
-                <a class="text-gray-300  nav-link" href="clan/clan_directory.html">Clans</a>
-                <a class="text-gray-300  nav-link" href="AllPlayers.html">Players</a>
-            </nav>
-
-            &lt;!&ndash; Login button (only visible before login) &ndash;&gt;
-            <button id="loginBtnNav"
-                    class="flex min-w-[100px] max-w-[400px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-9 px-5 border-2 border-[#22c55e] text-[#22c55e] text-sm font-semibold tracking-wide relative transition-all duration-300 ease-in-out hover:text-white"
-                    onclick="openLoginModal()">
-                <span class="relative z-10">Login</span>
-                <span class="absolute inset-0 rounded-full border-2 border-[#22c55e] opacity-50 transition-all duration-500 ease-in-out hover:scale-110 hover:opacity-100"></span>
-                <span class="absolute inset-0 bg-gradient-to-r from-[#22c55e] to-[#16a34a] opacity-0 rounded-full transition-opacity duration-300 ease-in-out hover:opacity-20"></span>
-            </button>
-
-            &lt;!&ndash; Player profile (only visible after login) &ndash;&gt;
-            <div class="flex items-center space-x-3" id="userProfile" style="display: none">
-                <span class="hidden sm:block text-sm font-medium" id="usernameDisplay"></span>
-                &lt;!&ndash;user dropdown menu for edit profile,Apply as a streamer,Apply as a player and logout&ndash;&gt;
-                <div class="relative inline-block text-left">
-                    <div>
-                        <button id="userDropdownBtn" type="button" class="text-green-400 hover:text-green-300 transition-colors">
-                            <i class="fas fa-chevron-down text-sm transition-transform duration-200" id="dropdownArrow"></i>
-                        </button>
-                    </div>
-                    <div id="userDropdown" class="hidden absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-black">
-                        <a href="../user/user_profile_edit.html" class="block px-4 py-2 text-sm text-white hover:bg-gray-700">Edit Profile</a>
-                        <a href="../player/player_application.html" class="block px-4 py-2 text-sm text-white hover:bg-gray-700">Apply as a Player</a>
-                        <a href="../streamer/streamer_application.html" class="block px-4 py-2 text-sm text-white hover:bg-gray-700">Apply as a Streamer</a>
-                    </div>
-                </div>
-            </div>
-        </nav>
-    </header>
--->
-
-    <!-- Dashboard Header -->
+  <!-- Dashboard Header -->
     <section class="bg-surface border-b border-surface-light">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
             <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
@@ -213,8 +135,6 @@
                         </div>
                     </div>
 
-
-
                     <!-- Main Video Player -->
                     <div class="relative aspect-video bg-black">
                         <div id="liveStreamContainer" class="w-full h-full stream-embed">
@@ -263,49 +183,94 @@
                                 </button>
                             </div>
                         </div>
+
                     </div>
 
-                    <div class="grid grid-cols-1 gap-4">
-                        <!--tournament participants list display names of the players-->
-                        <div class="p-4 border-t border-surface-light">
-                            <h2 class="text-2xl font-bold mb-4">Tournament Participants</h2>
-                            <div class="grid grid-cols-4 gap-4">
-                                <div class="bg-surface-light rounded-md p-4">
-                                    <p class="text-sm text-text-secondary">Player 1</p>
+                    <div>
+                        <!-- Live Chat -->
+                        <div class="bg-surface rounded-xl border border-surface-light ">
+                            <div class="p-4 border-b border-surface-light">
+                                <div class="flex items-center justify-between">
+                                    <h3 class="font-semibold">Tournament Chat</h3>
+                                    <div class="flex items-center space-x-2">
+                                        <div class="w-2 h-2 bg-accent rounded-full animate-pulse"></div>
+                                        <span class="text-accent text-sm font-medium">Live</span>
+                                    </div>
                                 </div>
-                                <div class="bg-surface-light rounded-md p-4">
-                                    <p class="text-sm text-text-secondary">Player 2</p>
-                                </div>
-                                <div class="bg-surface-light rounded-md p-4">
-                                    <p class="text-sm text-text-secondary">Player 3</p>
-                                </div>
-                                <div class="bg-surface-light rounded-md p-4">
-                                    <p class="text-sm text-text-secondary">Player 4</p>
+                            </div>
+
+                            <div class="h-80 overflow-y-auto p-4 space-y-3">
+                                <!-- Chat Messages -->
+                                <div class="flex items-start space-x-2">
+                                    <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?q=80&w=24&auto=format&fit=crop" alt="User" class="w-6 h-6 rounded-full flex-shrink-0" onerror="this.src='https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=24'; this.onerror=null;" />
+                                    <div class="flex-1 min-w-0">
+                                        <div class="flex items-center space-x-2">
+                                            <span class="text-primary text-sm font-medium">ProGamer2025</span>
+                                            <span class="text-text-muted text-xs">now</span>
+                                        </div>
+                                        <p class="text-text-secondary text-sm">INSANE CLUTCH! 🔥🔥🔥</p>
+                                    </div>
                                 </div>
 
-                                <div class="bg-surface-light rounded-md p-4">
-                                    <p class="text-sm text-text-secondary">Player 5</p>
-                                </div>
-                                <div class="bg-surface-light rounded-md p-4">
-                                    <p class="text-sm text-text-secondary">Player 6</p>
-                                </div>
-                                <div class="bg-surface-light rounded-md p-4">
-                                    <p class="text-sm text-text-secondary">Player 7</p>
-                                </div>
-                                <div class="bg-surface-light rounded-md p-4">
-                                    <p class="text-sm text-text-secondary">Player 8</p>
+                                <div class="flex items-start space-x-2">
+                                    <img src="https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=24" alt="User" class="w-6 h-6 rounded-full flex-shrink-0" onerror="this.src='https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=24&auto=format&fit=crop'; this.onerror=null;" />
+                                    <div class="flex-1 min-w-0">
+                                        <div class="flex items-center space-x-2">
+                                            <span class="text-primary text-sm font-medium">CS2Fan</span>
+                                            <span class="text-text-muted text-xs">1m</span>
+                                        </div>
+                                        <p class="text-text-secondary text-sm">s1mple is just different level</p>
+                                    </div>
                                 </div>
 
-                                <!--load more button use a icon in the middle-->
-                                <button class="bg-surface-light rounded-md px-3 py-1 text-sm text-text-secondary hover:text-primary transition-colors duration-200">
-                                    <svg class="w-4 h-4 inline mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                                    </svg>
-                                    Load More
-                                </button>
+                                <div class="flex items-start space-x-2">
+                                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=24&auto=format&fit=crop" alt="User" class="w-6 h-6 rounded-full flex-shrink-0" onerror="this.src='https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=24'; this.onerror=null;" />
+                                    <div class="flex-1 min-w-0">
+                                        <div class="flex items-center space-x-2">
+                                            <span class="text-primary text-sm font-medium">TournamentWatcher</span>
+                                            <span class="text-text-muted text-xs">2m</span>
+                                        </div>
+                                        <p class="text-text-secondary text-sm">This match is going to OT for sure</p>
+                                    </div>
+                                </div>
+
+                                <div class="flex items-start space-x-2">
+                                    <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?q=80&w=24&auto=format&fit=crop" alt="User" class="w-6 h-6 rounded-full flex-shrink-0" onerror="this.src='https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=24'; this.onerror=null;" />
+                                    <div class="flex-1 min-w-0">
+                                        <div class="flex items-center space-x-2">
+                                            <span class="text-primary text-sm font-medium">EsportsLover</span>
+                                            <span class="text-text-muted text-xs">3m</span>
+                                        </div>
+                                        <p class="text-text-secondary text-sm">FaZe needs to step up their game</p>
+                                    </div>
+                                </div>
+
+                                <div class="flex items-start space-x-2">
+                                    <img src="https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=24" alt="User" class="w-6 h-6 rounded-full flex-shrink-0" onerror="this.src='https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=24&auto=format&fit=crop'; this.onerror=null;" />
+                                    <div class="flex-1 min-w-0">
+                                        <div class="flex items-center space-x-2">
+                                            <span class="text-primary text-sm font-medium">StreamViewer</span>
+                                            <span class="text-text-muted text-xs">4m</span>
+                                        </div>
+                                        <p class="text-text-secondary text-sm">Best tournament of the year! 🏆</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="p-4 border-t border-surface-light">
+                                <div class="flex items-center space-x-2">
+                                    <input type="text" placeholder="Type your message..." class="flex-1 bg-surface-light border border-surface-lighter rounded-md px-3 py-2 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent" />
+                                    <button class="bg-primary text-slate-900 rounded-md p-2 hover:bg-primary-400 transition-colors duration-200">
+                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/>
+                                        </svg>
+                                    </button>
+                                </div>
                             </div>
                         </div>
+
                     </div>
+
                 </div>
             </div>
 
@@ -491,7 +456,7 @@
 </script>
 
 <script src="assets/jq/jquery-3.7.1.min.js"></script>
-<script src="assets/js/signup.js"></script>
-<script src="assets/js/live.js"></script>
+<script src="js/signup.js"></script>
+<script src="js/live.js"></script>
 </body>
 </html>

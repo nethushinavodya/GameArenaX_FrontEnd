@@ -1,20 +1,12 @@
 $(document).ready(function () {
 
     const grid = $(".grid");
-    const token = localStorage.getItem("token");
 
-    if (!token) {
-        toastr.error("Please login first!");
-        return;
-    }
 
     $.ajax({
         url: "http://localhost:8080/api/v1/tournament/getByOngoingStatus",
         method: "GET",
         dataType: "json",
-        headers: {
-            "Authorization": "Bearer " + token
-        },
         success: function (res) {
             console.log(res);
             if (!res || !res.data || res.data.length === 0) {

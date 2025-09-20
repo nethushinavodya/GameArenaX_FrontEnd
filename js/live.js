@@ -11,9 +11,7 @@ $(document).ready(function () {
     $.ajax({
         url: `http://localhost:8080/api/v1/tournament/getTournamentById?id=${encodeURIComponent(tournamentId)}`,
         method: "GET",
-        headers: {
-            "Authorization": "Bearer " + token
-        },
+
         success: function(res) {
             console.log("Tournament data:", res.data);
             const tournament = res.data; // directly use the object, not an array
