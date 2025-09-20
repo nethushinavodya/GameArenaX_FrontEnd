@@ -14,9 +14,9 @@
     <!--fontawesome-->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" rel="stylesheet"/>
     <!--css-->
-    <link href="../assets/css/home.css" rel="stylesheet" type="text/css"/>
-    <link href="../assets/css/main.css" rel="stylesheet" type="text/css"/>
-    <link href="../assets/css/tailwind.css" rel="stylesheet" type="text/css"/>
+    <link href="assets/css/home.css" rel="stylesheet" type="text/css"/>
+    <link href="assets/css/main.css" rel="stylesheet" type="text/css"/>
+    <link href="assets/css/tailwind.css" rel="stylesheet" type="text/css"/>
     <style>
         /* Add this to your CSS to improve the dropdown appearance */
         #userDropdown {
@@ -65,8 +65,8 @@
         <nav class="flex flex-1 justify-end gap-2 right-0">
             <!-- Nav links (always visible) -->
             <nav class="flex items-center  gap-5">
-                <a class="text-gray-300 nav-link" href="../index2.html">Home</a>
-                <a class="text-gray-300 nav-link text-sm sm:text-base">
+                <a class="text-gray-300 nav-link" href="index2.html">Home</a>
+                <a class="text-gray-300 nav-link text-sm sm:text-base" href="liveStreamings.html">
           <span class="inline-flex items-center space-x-1">
             <span class="relative flex w-1.5 h-1.5">
               <span class="absolute inline-flex w-full h-full rounded-full bg-[#ff0000] opacity-80 animate-ping"></span>
@@ -75,10 +75,8 @@
             <span class="font-medium">Live</span>
           </span>
                 </a>
-                <a class="text-gray-300  nav-link" href="AllTournament.html">Tournaments</a>
-                <a class="text-gray-300  nav-link" href="AllStreamers.html">Streamers</a>
+                <a class="text-gray-300  nav-link" href="tournament.html">Tournaments</a>
                 <a class="text-gray-300  nav-link" href="clan_directory.html">Clans</a>
-                <a class="text-gray-300  nav-link" href="AllPlayers.html">Players</a>
             </nav>
 
             <!-- Login button (only visible before login) -->
@@ -101,8 +99,8 @@
                         </button>
                     </div>
                     <div id="userDropdown" class="hidden absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-black">
-                        <a href="../streamer/streamer_profile_edit.html" class="block px-4 py-2 text-sm text-white hover:bg-gray-700">Edit Profile</a>
-                        <a href="../player/player_application.html" class="block px-4 py-2 text-sm text-white hover:bg-gray-700">Apply as a Player</a>
+                        <a href="streamer_profile_edit.html" class="block px-4 py-2 text-sm text-white hover:bg-gray-700">Edit Profile</a>
+                        <a href="player_application.html" class="block px-4 py-2 text-sm text-white hover:bg-gray-700">Apply as a Player</a>
                         <!--
                                             <a href=""  id="logoutBtn" class="block px-4 py-2 text-sm text-red-400 hover:bg-gray-700">Logout</a>
                         -->
@@ -124,7 +122,7 @@
         <!-- Page Header -->
         <div class="mb-8">
             <div class="flex items-center mb-4">
-                <a href="../index2.html" class="text-text-secondary hover:text-primary transition-colors mr-4">
+                <a href="index2.html" class="text-text-secondary hover:text-primary transition-colors mr-4">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
                     </svg>
@@ -168,7 +166,6 @@
                         <label  class="block text-sm font-medium text-text-primary mb-2">Country *</label>
                         <select id="country" name="country" required class="w-full px-4 py-3 bg-surface-800 border border-surface-700 rounded-gaming text-text-primary focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary form-field-gaming">
                             <option value="">Select Your Country</option>
-                            <option value="Afghanistan"> </option>
                             <option value="Afghanistan">Afghanistan</option>
                             <option value="Åland Islands">Åland Islands</option>
                             <option value="Albania">Albania</option>
@@ -522,8 +519,8 @@
                 </button>
             </div>
             <nav class="space-y-4">
-                <a href="../user/user_profile_view.html" class="block text-text-secondary hover:text-text-primary py-2">Profile</a>
-                <a href="../streamer/streamer_application.html" class="block text-text-secondary hover:text-text-primary py-2">Streamer</a>
+                <a href="user_profile_view.html" class="block text-text-secondary hover:text-text-primary py-2">Profile</a>
+                <a href="streamer_application.html" class="block text-text-secondary hover:text-text-primary py-2">Streamer</a>
                 <a href="player_application.html" class="block text-primary font-medium py-2">Player</a>
             </nav>
         </div>
@@ -563,39 +560,6 @@
         document.getElementById('aboutCount').textContent = count;
     });
 
-    // Form submission
-    document.getElementById('playerApplicationForm').addEventListener('submit', function(e) {
-        e.preventDefault();
-
-        // Get form data
-        const formData = new FormData(this);
-        const playerData = {
-            email: formData.get('email'),
-            playerName: formData.get('playerName'),
-            role: formData.get('role'),
-            country: formData.get('country'),
-            about: formData.get('about'),
-            games: formData.getAll('games')
-        };
-
-        // Basic validation
-        if (!playerData.email || !playerData.playerName || !playerData.role || !playerData.country || !playerData.about) {
-            alert('Please fill in all required fields.');
-            return;
-        }
-
-        if (playerData.games.length === 0) {
-            alert('Please select at least one game.');
-            return;
-        }
-
-        // Log the data (replace with actual submission logic)
-        console.log('Player Data:', playerData);
-
-        // Show success modal
-        document.getElementById('successModal').classList.remove('hidden');
-    });
-
     // Reset form
     function resetForm() {
         if (confirm('Are you sure you want to reset the form? All entered data will be lost.')) {
@@ -609,8 +573,8 @@
         document.getElementById('successModal').classList.add('hidden');
     }
 </script>
-<script src="../assets/jq/jquery-3.7.1.min.js"></script>
-<script src="../assets/js/signup.js"></script>
-<script src="../assets/js/playerApplication.js"></script>
+<script src="assets/jq/jquery-3.7.1.min.js"></script>
+<script src="js/signup.js"></script>
+<script src="js/playerApplication.js"></script>
 </body>
 </html>

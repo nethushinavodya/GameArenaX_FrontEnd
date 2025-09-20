@@ -1130,6 +1130,10 @@ video {
   background-color: rgb(34 197 94 / var(--tw-bg-opacity, 1));
 }
 
+.text-green{
+  --tw-text-opacity: 1;
+  color: rgb(0 128 0 / var(--tw-text-opacity, 1));
+}
 .bg-success\/20{
   background-color: rgb(34 197 94 / 0.2);
 }

@@ -15,9 +15,9 @@
     <!--fontawesome-->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" rel="stylesheet"/>
     <!--css-->
-    <link href="../assets/css/home.css" rel="stylesheet" type="text/css"/>
-    <link href="../assets/css/main.css" rel="stylesheet" type="text/css"/>
-    <link href="../assets/css/tailwind.css" rel="stylesheet" type="text/css"/>
+    <link href="assets/css/home.css" rel="stylesheet" type="text/css"/>
+    <link href="assets/css/main.css" rel="stylesheet" type="text/css"/>
+    <link href="assets/css/tailwind.css" rel="stylesheet" type="text/css"/>
     <style>
         /* Add this to your CSS to improve the dropdown appearance */
         #userDropdown {
@@ -35,39 +35,6 @@
 </head>
 <body class="bg-background min-h-screen text-text-primary font-inter">
 <div class="relative flex size-full min-h-screen flex-col overflow-x-hidden " style='font-family: "Space Grotesk", "Noto Sans", sans-serif;'>
-<!--
-<nav class="bg-surface border-b border-surface-700 sticky top-0 z-50">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex justify-between items-center h-16">
-            &lt;!&ndash; Logo &ndash;&gt;
-            <div class="flex items-center">
-                <svg class="w-10 h-10 text-primary" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <rect width="40" height="40" rx="8" fill="currentColor"/>
-                    <path d="M12 16L20 24L28 16" stroke="#0F172A" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-                    <circle cx="20" cy="12" r="3" fill="#0F172A"/>
-                </svg>
-                <span class="ml-3 text-xl font-bold text-gaming-heading">GameHub</span>
-            </div>
-
-            &lt;!&ndash; Navigation Links &ndash;&gt;
-            <div class="hidden md:flex items-center space-x-8">
-                <a href="player_profile.html" class="text-primary font-medium hover:text-primary-600 transition-colors">Profile</a>
-                <a href="../streamer/streamer_application.html" class="text-text-secondary hover:text-text-primary transition-colors">Become Streamer</a>
-                <a href="tournaments.html" class="text-text-secondary hover:text-text-primary transition-colors">Tournaments</a>
-            </div>
-
-            &lt;!&ndash; Mobile Menu Button &ndash;&gt;
-            <div class="md:hidden">
-                <button type="button" class="text-text-secondary hover:text-text-primary p-2">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
-                    </svg>
-                </button>
-            </div>
-        </div>
-    </div>
-</nav>
--->
 <header class="flex items-center justify-between whitespace-nowrap border-b border-solid-1 border-b-[#34C759] px-10 py-4 shadow-lg sticky top-0 header-blur z-50">
     <div class="flex items-center gap-3 text-white">
         <div class="size-10 text-[#00ffcc] logo-glow cursor-pointer">
@@ -98,8 +65,8 @@
     <nav class="flex flex-1 justify-end gap-2 right-0">
         <!-- Nav links (always visible) -->
         <nav class="flex items-center  gap-5">
-            <a class="text-gray-300 nav-link" href="../index2.html">Home</a>
-            <a class="text-gray-300 nav-link text-sm sm:text-base">
+            <a class="text-gray-300 nav-link" href="index2.html">Home</a>
+            <a class="text-gray-300 nav-link text-sm sm:text-base" href="liveStreamings.html">
       <span class="inline-flex items-center space-x-1">
         <span class="relative flex w-1.5 h-1.5">
           <span class="absolute inline-flex w-full h-full rounded-full bg-[#ff0000] opacity-80 animate-ping"></span>
@@ -108,10 +75,8 @@
         <span class="font-medium">Live</span>
       </span>
             </a>
-            <a class="text-gray-300  nav-link" href="../tournament.html">Tournaments</a>
-            <a class="text-gray-300  nav-link" href="AllStreamers.html">Streamers</a>
-            <a class="text-gray-300  nav-link" href="../clan/clan_directory.html">Clans</a>
-            <a class="text-gray-300  nav-link" href="AllPlayers.html">Players</a>
+            <a class="text-gray-300  nav-link" href="tournament.html">Tournaments</a>
+            <a class="text-gray-300  nav-link" href="clan_directory.html">Clans</a>
         </nav>
 
         <!-- Login button (only visible before login) -->
@@ -134,8 +99,8 @@
                     </button>
                 </div>
                 <div id="userDropdown" class="hidden absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-black">
-                    <a href="../player/player_profile_edit.html" class="block px-4 py-2 text-sm text-white hover:bg-gray-700">Edit Profile</a>
-                    <a href="../streamer/streamer_application.html" class="block px-4 py-2 text-sm text-white hover:bg-gray-700">Apply as a Streamer</a>
+                    <a href="player_profile_edit.html" class="block px-4 py-2 text-sm text-white hover:bg-gray-700">Edit Profile</a>
+                    <a href="streamer_application.html" class="block px-4 py-2 text-sm text-white hover:bg-gray-700">Apply as a Streamer</a>
                     <!--
                                         <a href=""  id="logoutBtn" class="block px-4 py-2 text-sm text-red-400 hover:bg-gray-700">Logout</a>
                     -->
@@ -157,7 +122,7 @@
     <!-- Page Header -->
     <div class="mb-8">
         <div class="flex items-center mb-4">
-            <a href="../index2.html" class="text-text-secondary hover:text-primary transition-colors mr-4">
+            <a href="index2.html" class="text-text-secondary hover:text-primary transition-colors mr-4">
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
                 </svg>
@@ -384,7 +349,7 @@
                 </div>
                 <h3 class="text-lg font-semibold text-gaming-heading mb-2">Become a Streamer</h3>
                 <p class="text-text-secondary text-sm mb-4">Start streaming your gameplay and build your audience</p>
-                <a href="../streamer/streamer_application.html" class="inline-flex items-center justify-center w-full px-4 py-2 bg-accent text-background font-medium rounded-gaming btn-gaming hover:bg-accent-600 focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-surface">
+                <a href="streamer_application.html" class="inline-flex items-center justify-center w-full px-4 py-2 bg-accent text-background font-medium rounded-gaming btn-gaming hover:bg-accent-600 focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-surface">
                     Apply Now
                 </a>
             </div>
@@ -416,9 +381,9 @@
             </button>
         </div>
         <nav class="space-y-4">
-            <a href="player_profile_view.html" class="block text-primary font-medium py-2">Profile</a>
-            <a href="../streamer/streamer_application.html" class="block text-text-secondary hover:text-text-primary py-2">Become Streamer</a>
-            <a href="tournaments.html" class="block text-text-secondary hover:text-text-primary py-2">Tournaments</a>
+            <a href="player_profile.html" class="block text-primary font-medium py-2">Profile</a>
+            <a href="streamer_application.html" class="block text-text-secondary hover:text-text-primary py-2">Become Streamer</a>
+            <a href="tournament.html" class="block text-text-secondary hover:text-text-primary py-2">Tournaments</a>
         </nav>
     </div>
 </div>
@@ -599,8 +564,8 @@
         document.getElementById('loginBtnNav').style.display = 'none';
     }
 </script>
-<script src="../assets/jq/jquery-3.7.1.min.js"></script>
-<script src="../assets/js/signup.js"></script>
-<script src="../assets/js/playerProfile.js"></script>
+<script src="assets/jq/jquery-3.7.1.min.js"></script>
+<script src="js/signup.js"></script>
+<script src="js/playerProfile.js"></script>
 </body>
 </html>
