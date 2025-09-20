@@ -18,7 +18,7 @@ $(document).ready(function () {
     $("#logoutBtn").on("click", function (e) {
         e.preventDefault();
         localStorage.clear();
-        window.location.href = "../index2.html";
+        window.location.href = "index2.html";
     });
 
     // Bio section character counter
