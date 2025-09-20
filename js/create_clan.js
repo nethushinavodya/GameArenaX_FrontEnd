@@ -1,10 +1,6 @@
-// create-clan.js
-// Requires: jQuery, toastr
-// Cloudinary: cloud_name = 'dihnh3it0', upload_preset = 'MKYDGaming'
-
-let uploadedLogoUrl = "";    // Cloudinary URL for clan logo
-let uploadedBannerUrl = "";  // Cloudinary URL for clan banner
-let createdClanId = null;    // set after successful creation
+let uploadedLogoUrl = "";
+let uploadedBannerUrl = "";
+let createdClanId = null;
 
 $(document).ready(function () {
     const token = localStorage.getItem("token");
@@ -87,7 +83,6 @@ $(document).ready(function () {
         $("#banner-upload-content").removeClass("hidden");
     }
 
-    // ---------- Drag & drop & file handling ----------
     function setupDropZone(dropZone, input, maxSizeBytes, type) {
         // click opens file picker
         dropZone.on("click", () => input.click());
@@ -132,12 +127,9 @@ $(document).ready(function () {
         } else {
             showBannerPreview(objectUrl);
         }
-
-        // Upload to Cloudinary
         uploadToCloudinary(file, type);
     }
 
-    // Initialize drop zones
     setupDropZone($logoDropZone, $logoInput, 2 * 1024 * 1024, "logo");     // 2MB
     setupDropZone($bannerDropZone, $bannerInput, 5 * 1024 * 1024, "banner"); // 5MB
 
@@ -151,7 +143,6 @@ $(document).ready(function () {
         $bannerInput.val("");
     });
 
-    // ---------- Cloudinary upload ----------
     async function uploadToCloudinary(file, type) {
         const $statusToastId = `uploading-${type}`;
         toastr.info(`Uploading ${type}...`, { timeOut: 0, extendedTimeOut: 0, closeButton: true, tapToDismiss: false });
@@ -186,13 +177,11 @@ $(document).ready(function () {
         }
     }
 
-    // ---------- Clan name availability (debounced) ----------
     let nameCheckTimer = null;
     const NAME_CHECK_DELAY = 600; // ms
 
     $clanName.on("input", function () {
         const value = $(this).val().trim();
-        // hide feedback while typing
         $nameCheck.addClass("hidden");
         $nameAvailableSvg.addClass("hidden");
         $nameTakenSvg.addClass("hidden");
@@ -203,67 +192,21 @@ $(document).ready(function () {
         if (!value) return;
 
         nameCheckTimer = setTimeout(() => {
-/*
-            checkClanNameAvailability(value);
-*/
+
         }, NAME_CHECK_DELAY);
     });
 
-/*
-    async function checkClanNameAvailability(name) {
-        try {
-            // Example endpoint — adjust if your backend differs
-            const url = `http://localhost:8080/api/v1/clans/checkName?name=${encodeURIComponent(name)}`;
-            $.ajax({
-                method: "GET",
-                url,
-                headers: {
-                    Authorization: "Bearer " + localStorage.getItem("token"),
-                    "Content-Type": "application/json"
-                },
-                success: function (res) {
-                    // Expected: { available: true } or similar. We'll be defensive.
-                    const available = (res && (res.available === true || res.code === 200 || res.data === true));
-                    $nameCheck.removeClass("hidden");
-                    if (available) {
-                        $nameAvailableSvg.removeClass("hidden");
-                        $nameAvailableText.removeClass("hidden");
-                        $nameTakenSvg.addClass("hidden");
-                        $nameTakenText.addClass("hidden");
-                    } else {
-                        $nameTakenSvg.removeClass("hidden");
-                        $nameTakenText.removeClass("hidden");
-                        $nameAvailableSvg.addClass("hidden");
-                        $nameAvailableText.addClass("hidden");
-                    }
-                },
-                error: function (xhr) {
-                    console.error("Name check error:", xhr);
-                    // If server can't be reached, don't block user - just show nothing
-                    $nameCheck.addClass("hidden");
-                }
-            });
-        } catch (err) {
-            console.error("Name check exception:", err);
-            $nameCheck.addClass("hidden");
-        }
-    }
-*/
-
-    // ---------- Character counter ----------
     $charCount.text(`${$desc.val().length}/1000`);
     $desc.on("input", function () {
         const len = $(this).val().length;
         $charCount.text(`${len}/1000`);
     });
 
-    // ---------- Member limit slider ----------
     $memberLimitDisplay.text($memberLimitRange.val());
     $memberLimitRange.on("input change", function () {
         $memberLimitDisplay.text($(this).val());
     });
 
-    // ---------- Clan type clickable cards ----------
     $clanTypeOptions.on("click", function (e) {
         e.preventDefault();
         $clanTypeOptions.removeClass("border-accent/50 bg-accent/5");
@@ -271,7 +214,6 @@ $(document).ready(function () {
         $(this).find("input[type=radio]").prop("checked", true);
     });
 
-    // ---------- Submit form ----------
     $createForm.on("submit", async function (e) {
         e.preventDefault();
 
@@ -297,7 +239,6 @@ $(document).ready(function () {
             return;
         }
 
-        // Ensure images are uploaded if selected
         const logoFileSelected = $logoInput[0].files && $logoInput[0].files.length > 0;
         const bannerFileSelected = $bannerInput[0].files && $bannerInput[0].files.length > 0;
 
@@ -310,7 +251,6 @@ $(document).ready(function () {
             return;
         }
 
-        // Prepare payload for backend (DTO-like)
         const payload = {
             name: name,
             description: description || null,
@@ -318,20 +258,17 @@ $(document).ready(function () {
             clanLogoUrl: uploadedLogoUrl || null,
             bannerUrl: uploadedBannerUrl || null,
             memberLimit: memberLimit,
-            // availableSlots: you can send - server may calculate; we'll set memberLimit by default
-            availableSlots: memberLimit, // server may override if it needs to subtract leader
-            clanType: clanType, // OPEN | REQUEST | CLOSED
+            availableSlots: memberLimit,
+            clanType: clanType,
             rankingPoints: 0
         };
-
-        // Disable submit button
         const $submitBtn = $createForm.find("button[type=submit]");
         $submitBtn.prop("disabled", true).text("Creating...");
 
         try {
             const res = await $.ajax({
                 method: "POST",
-                url: "http://localhost:8080/api/v1/clan/create", // adjust endpoint if different
+                url: "http://localhost:8080/api/v1/clan/create",
                 headers: {
                     Authorization: "Bearer " + localStorage.getItem("token"),
                     "Content-Type": "application/json"
@@ -341,11 +278,9 @@ $(document).ready(function () {
 
             console.log("Create clan response:", res);
 
-            // Expecting backend to return created clan id and name
             const successful = res && (res.code === 200 || res.code === 201 || res.message === "Success" || res.data);
             if (successful) {
-                // attempt to extract id & name
-                const clanData = res.data || res; // adapt to different response shapes
+                const clanData = res.data || res;
                 createdClanId = (clanData && (clanData.id || clanData.clanId || clanData.data && clanData.data.id)) || null;
                 const createdName = (clanData && (clanData.name || clanData.clanName || clanData.data && clanData.data.name)) || name;
 
@@ -357,14 +292,13 @@ $(document).ready(function () {
                 // Wire up the modal buttons
                 $("#view-clan-btn").off("click").on("click", function () {
                     if (createdClanId) {
-                        window.location.href = `clan_profile.html?id=${createdClanId}`;
+                        window.location.href = `clan_member_dashboard.html?id=${createdClanId}`;
                     } else {
-                        window.location.href = `clan_profile.html?name=${encodeURIComponent(createdName)}`;
+                        window.location.href = `clan_member_dashboard.html?name=${encodeURIComponent(createdName)}`;
                     }
                 });
 
                 $("#invite-members-btn").off("click").on("click", function () {
-                    // open invite members flow; adjust the URL accordingly
                     if (createdClanId) {
                         window.location.href = `clan_invite.html?clanId=${createdClanId}`;
                     } else {

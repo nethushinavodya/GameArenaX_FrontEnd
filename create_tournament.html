@@ -67,8 +67,8 @@
     <nav class="flex flex-1 justify-end gap-2 right-0">
         <!-- Nav links (always visible) -->
         <nav class="flex items-center  gap-5">
-            <a class="text-gray-300 nav-link" href="../index2.html">Home</a>
-            <a class="text-gray-300 nav-link text-sm sm:text-base">
+            <a class="text-gray-300 nav-link" href="index2.html">Home</a>
+            <a class="text-gray-300 nav-link text-sm sm:text-base" href="liveStreamings.html">
       <span class="inline-flex items-center space-x-1">
         <span class="relative flex w-1.5 h-1.5">
           <span class="absolute inline-flex w-full h-full rounded-full bg-[#ff0000] opacity-80 animate-ping"></span>
@@ -77,10 +77,8 @@
         <span class="font-medium">Live</span>
       </span>
             </a>
-            <a class="text-gray-300  nav-link" href="AllTournament.html">Tournaments</a>
-            <a class="text-gray-300  nav-link" href="AllStreamers.html">Streamers</a>
+            <a class="text-gray-300  nav-link" href="tournament.html">Tournaments</a>
             <a class="text-gray-300  nav-link" href="clan_directory.html">Clans</a>
-            <a class="text-gray-300  nav-link" href="AllPlayers.html">Players</a>
         </nav>
 
         <!-- Login button (only visible before login) -->
@@ -103,8 +101,8 @@
                     </button>
                 </div>
                 <div id="userDropdown" class="hidden absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-black">
-                    <a href="../user/user_profile_view.html" class="block px-4 py-2 text-sm text-white hover:bg-gray-700">View Profile</a>
-                    <a href="../player/player_application.html" class="block px-4 py-2 text-sm text-white hover:bg-gray-700">Apply as a Player</a>
+                    <a href="user_profile_view.html" class="block px-4 py-2 text-sm text-white hover:bg-gray-700">View Profile</a>
+                    <a href="player_application.html" class="block px-4 py-2 text-sm text-white hover:bg-gray-700">Apply as a Player</a>
                     <!--
                                         <a href=""  id="logoutBtn" class="block px-4 py-2 text-sm text-red-400 hover:bg-gray-700">Logout</a>
                     -->
@@ -195,7 +193,7 @@
                             min="4"
                             max="1000"
                             placeholder="16"
-                            class="w-full px-4 py-3 bg-surface-800 border border-surface-700 rounded-gaming text-text-primary placeholder-text-secondary focus:border-primary focus:ring-2 focus:ring-primary/20 focus:ring-offset-2 focus:ring-offset-surface-800 focus:outline-none transition-all form-field-gaming"
+                            class="w-full px-4 text-black py-3 bg-surface-800 border border-surface-700 rounded-gaming text-text-primary placeholder-text-secondary focus:border-primary focus:ring-2 focus:ring-primary/20 focus:ring-offset-2 focus:ring-offset-surface-800 focus:outline-none transition-all form-field-gaming"
                     >
 
                 </div>
@@ -212,7 +210,7 @@
                             step="0.01"
                             min="0"
                             placeholder="1000.00"
-                            class="w-full px-4 py-3 bg-surface-800 border border-surface-700 rounded-gaming text-text-primary placeholder-text-secondary focus:border-primary focus:ring-2 focus:ring-primary/20 focus:ring-offset-2 focus:ring-offset-surface-800 focus:outline-none transition-all form-field-gaming resize-none">
+                            class="w-full text-black px-4 py-3 bg-surface-800 border border-surface-700 rounded-gaming text-text-primary placeholder-text-secondary focus:border-primary focus:ring-2 focus:ring-primary/20 focus:ring-offset-2 focus:ring-offset-surface-800 focus:outline-none transition-all form-field-gaming resize-none">
                 </div>
 
                 <!-- Description -->
@@ -245,7 +243,7 @@
                             id="startDate"
                             name="startDate"
                             required
-                            class="w-full px-4 py-3 bg-surface-800 border border-surface-700 rounded-gaming text-text-primary focus:border-primary focus:ring-2 focus:ring-primary/20 focus:ring-offset-2 focus:ring-offset-surface-800 focus:outline-none transition-all form-field-gaming"
+                            class="w-full text-black px-4 py-3 bg-surface-800 border border-surface-700 rounded-gaming text-text-primary focus:border-primary focus:ring-2 focus:ring-primary/20 focus:ring-offset-2 focus:ring-offset-surface-800 focus:outline-none transition-all form-field-gaming"
                     >
                 </div>
 
@@ -259,7 +257,7 @@
                             id="endDate"
                             name="endDate"
                             required
-                            class="w-full px-4 py-3 bg-surface-800 border border-surface-700 rounded-gaming text-text-primary focus:border-primary focus:ring-2 focus:ring-primary/20 focus:ring-offset-2 focus:ring-offset-surface-800 focus:outline-none transition-all form-field-gaming"
+                            class="w-full text-black px-4 py-3 bg-surface-800 border border-surface-700 rounded-gaming text-text-primary focus:border-primary focus:ring-2 focus:ring-primary/20 focus:ring-offset-2 focus:ring-offset-surface-800 focus:outline-none transition-all form-field-gaming"
                     >
                 </div>
             </div>
@@ -458,6 +456,6 @@
     }
 </script>
 <script src="assets/jq/jquery-3.7.1.min.js"></script>
-<script src="assets/js/signup.js"></script>
+<script src="js/signup.js"></script>
 </body>
 </html>

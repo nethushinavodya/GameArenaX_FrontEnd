@@ -1,14 +1,13 @@
 $(document).ready(function () {
+    isJoinedClan();
     const token = localStorage.getItem("token");
+    const role = localStorage.getItem("role");
     const $grid = $("#clan-grid");
 
     $.ajax({
         url: "http://localhost:8080/api/v1/clan/getAll",
         method: "GET",
         dataType: "json",
-        headers: {
-            "Authorization": "Bearer " + token
-        },
         success: function (res) {
             console.log("Received clans:", res);
             if (!res || !Array.isArray(res.data)) {
@@ -27,10 +26,8 @@ $(document).ready(function () {
     });
 
 
-
     function createClanCard(clan) {
         currentRequestClanId = clan.id;
-        // Default images
         const logo = clan.clanLogoUrl ||
             "https://images.unsplash.com/photo-1584824486509-112e4181ff6b?q=80&w=2940&auto=format&fit=crop";
         const banner = clan.bannerUrl ||
@@ -125,13 +122,13 @@ $(document).ready(function () {
 
         <!-- Single button with data attributes -->
         <div>
-            <button type="button"
+            <button type="button" id="joinClanBtn"
                 class="block w-full py-2 text-center text-sm font-medium text-white rounded-b-lg clan-btn"
                 data-id="${clan.id}"
                 data-action="${btnAction}"
                 style="background-color:${btnColor};">
                 ${btnLabel}
-                
+
             </button>
         </div>
     </div>`;
@@ -141,6 +138,11 @@ $(document).ready(function () {
 
 // Listen for clicks on clan buttons
     document.addEventListener("click", e => {
+        const role = localStorage.getItem("role");
+        if (role === "User") {
+            toastr.error("You should be a player to join the clan");
+            return;
+        }
         const btn = e.target.closest(".clan-btn");
         if (!btn) return;
 
@@ -246,11 +248,12 @@ $(document).ready(function () {
                 toastr.success("Joined clan successfully!");
 
                 const btn = $(`.clan-btn[data-id='${clanId}']`);
+
                 btn.text("Joined");
                 btn.prop("disabled", true);
                 btn.css("background-color", "#9CA3AF"); // gray color
-            //     load clan member dashboard
-                window.location.href = "../../clan_member_dashboard.html";
+                //     load clan member dashboard
+                window.location.href = `clan_member_dashboard.html?playerId=${userId}&clanId=${clanId}`;
             },
             error: function (xhr) {
                 console.error("Error:", xhr);
@@ -264,3 +267,30 @@ $(document).ready(function () {
         return new Date(isoString).toLocaleDateString("en-US");
     }
 });
+function isJoinedClan() {
+    const token = localStorage.getItem("token");
+    const userName = localStorage.getItem("username");
+    console.log("Username:", userName);
+    $.ajax({
+        url: `http://localhost:8080/api/v1/clan/isJoinedClan?username=${encodeURIComponent(userName)}`,
+        method: "GET",
+        headers: {
+            "Authorization": "Bearer " + token
+        },
+        success: function (res) {
+            console.log(res);
+            if (res.code === 200) {
+                console.log("Joined Clan Data:", res.data);
+                window.location.href = `clan_member_dashboard.html?clanId=${res.data.clan.id}`;
+            }else {
+                window.location.href = "clan_directory.html";
+            }
+        },
+        error: function (xhr) {
+            console.error("Error:", xhr);
+        //  be a player to join a clan
+            toastr.error("Become a player to join a clan");
+                $(".clan-btn").prop("disabled", true);
+        }
+    });
+}
