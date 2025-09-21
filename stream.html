@@ -1,0 +1,862 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tournament Stream Dashboard</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        :root {
+            --bg-primary: #0a0a0a;
+            --bg-secondary: #1a1a1a;
+            --bg-tertiary: #262626;
+            --text-primary: #ffffff;
+            --text-secondary: #a1a1aa;
+            --accent: #3b82f6;
+            --accent-hover: #2563eb;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+            --border: #404040;
+        }
+
+        body {
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+        }
+
+        .bg-surface { background-color: var(--bg-secondary); }
+        .bg-surface-700 { background-color: var(--bg-tertiary); }
+        .bg-surface-800 { background-color: #171717; }
+        .bg-background { background-color: var(--bg-primary); }
+        .text-text-primary { color: var(--text-primary); }
+        .text-text-secondary { color: var(--text-secondary); }
+        .text-primary { color: var(--accent); }
+        .text-success { color: var(--success); }
+        .text-accent { color: #06b6d4; }
+        .bg-primary { background-color: var(--accent); }
+        .bg-primary:hover { background-color: var(--accent-hover); }
+        .bg-success { background-color: var(--success); }
+        .bg-warning { background-color: var(--warning); }
+        .bg-danger { background-color: var(--danger); }
+        .border-surface-700 { border-color: var(--border); }
+        .rounded-gaming { border-radius: 12px; }
+        .rounded-gaming-card { border-radius: 16px; }
+
+        .match-card {
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .match-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(59, 130, 246, 0.1), transparent);
+            transition: left 0.5s;
+        }
+
+        .match-card:hover::before {
+            left: 100%;
+        }
+
+        .match-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .player-card {
+            transition: all 0.2s ease;
+            cursor: pointer;
+        }
+
+        .player-card:hover {
+            background-color: rgba(59, 130, 246, 0.1);
+            border-color: var(--accent);
+        }
+
+        .player-card.winner {
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.2), rgba(16, 185, 129, 0.1));
+            border-color: var(--success);
+        }
+
+        .action-button {
+            transition: all 0.2s ease;
+            transform: scale(0);
+            opacity: 0;
+        }
+
+        .match-card:hover .action-button {
+            transform: scale(1);
+            opacity: 1;
+        }
+
+        .modal {
+            backdrop-filter: blur(8px);
+            background: rgba(0, 0, 0, 0.8);
+        }
+
+        .modal-content {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+        }
+
+        .pulse-dot {
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .tab-btn.active {
+            background: linear-gradient(135deg, var(--accent), #1e40af);
+            color: white;
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, var(--accent), #06b6d4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+    </style>
+</head>
+<body class="min-h-screen">
+<div class="p-4 lg:p-6">
+    <!-- Tournament Header -->
+    <div class="bg-surface border border-surface-700 rounded-gaming-card p-6 mb-6">
+        <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+            <div class="flex-1">
+                <h1 class="text-3xl font-bold gradient-text mb-2" id="tournament-name">Loading Tournament...</h1>
+                <div class="flex flex-wrap gap-4 text-sm text-text-secondary">
+                    <span id="tournament-game">Game: Loading...</span>
+                    <span id="tournament-date">Date: Loading...</span>
+                    <span id="tournament-participants">Participants: 0/0</span>
+                    <span id="tournament-prize">Prize Pool: $0</span>
+                </div>
+            </div>
+            <div class="flex items-center gap-4">
+                <div class="flex items-center gap-2 text-success font-semibold">
+                    <div class="w-2 h-2 bg-success rounded-full pulse-dot"></div>
+                    <span>LIVE</span>
+                </div>
+                <div class="bg-success text-white px-4 py-2 rounded-full text-sm font-semibold" id="tournament-status">
+                    ONGOING
+                </div>
+                <div class="flex gap-2">
+                    <button class="px-4 py-2 bg-surface-700 hover:bg-surface border border-surface-700 hover:border-primary text-text-primary hover:text-primary rounded-gaming transition-all" onclick="refreshTournament()">
+                        🔄 Refresh
+                    </button>
+                    <button class="px-4 py-2 bg-primary hover:bg-primary text-white rounded-gaming transition-all" onclick="updateBrackets()">
+                        📊 Update Brackets
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Dashboard Grid -->
+    <div class="grid grid-cols-1 lg:grid-cols-4 gap-6">
+        <!-- Main Content Area -->
+        <div class="lg:col-span-3">
+            <div class="bg-surface border border-surface-700 rounded-gaming-card overflow-hidden">
+                <!-- Tab Navigation -->
+                <div class="flex bg-surface-700 border-b border-surface-700">
+                    <button class="flex-1 px-6 py-4 text-primary bg-surface font-medium tab-btn active transition-all" data-tab="bracket">
+                        🏆 Tournament Bracket
+                    </button>
+                    <button class="flex-1 px-6 py-4 text-text-secondary hover:text-primary hover:bg-surface-700 font-medium tab-btn transition-all" data-tab="participants">
+                        👥 Participants
+                    </button>
+                    <button class="flex-1 px-6 py-4 text-text-secondary hover:text-primary hover:bg-surface-700 font-medium tab-btn transition-all" data-tab="settings">
+                        ⚙️ Stream Settings
+                    </button>
+                </div>
+
+                <!-- Tab Content -->
+                <div class="p-6">
+                    <!-- Bracket Tab -->
+                    <div id="bracket-tab" class="tab-content">
+                        <div class="space-y-6" id="bracket-container">
+                            <!-- Matches will be populated here -->
+                            <div class="text-center py-8 text-text-secondary">
+                                <div class="animate-spin w-8 h-8 border-2 border-accent border-t-transparent rounded-full mx-auto mb-4"></div>
+                                Loading tournament bracket...
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Participants Tab -->
+                    <div id="participants-tab" class="tab-content hidden">
+                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4" id="participants-container">
+                            <!-- Participants will be populated here -->
+                        </div>
+                    </div>
+
+                    <!-- Settings Tab -->
+                    <div id="settings-tab" class="tab-content hidden">
+                        <div class="space-y-6">
+                            <div class="bg-surface-800 border border-surface-700 rounded-gaming p-6">
+                                <h3 class="text-xl font-semibold text-primary mb-4">🎮 Stream Configuration</h3>
+                                <div class="space-y-4">
+                                    <div>
+                                        <label class="block text-sm font-medium text-text-secondary mb-2">Stream URL</label>
+                                        <input type="text" id="stream-url-input" class="w-full px-3 py-2 bg-background border border-surface-700 rounded-gaming text-text-primary focus:border-primary focus:outline-none transition-colors" placeholder="https://your-stream-url.com">
+                                    </div>
+                                    <div>
+                                        <label class="block text-sm font-medium text-text-secondary mb-2">Stream Title</label>
+                                        <input type="text" id="stream-title-input" class="w-full px-3 py-2 bg-background border border-surface-700 rounded-gaming text-text-primary focus:border-primary focus:outline-none transition-colors" placeholder="Tournament Stream Title">
+                                    </div>
+                                    <button class="px-6 py-2 bg-primary hover:bg-primary text-white rounded-gaming transition-colors">
+                                        💾 Update Stream Info
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Chat Sidebar -->
+        <div class="lg:col-span-1">
+            <div class="bg-surface border border-surface-700 rounded-gaming-card h-full flex flex-col">
+                <!-- Chat Header -->
+                <div class="p-4 bg-surface-700 border-b border-surface-700">
+                    <h3 class="text-lg font-semibold text-primary mb-2">💬 Live Chat</h3>
+                    <div class="flex gap-4 text-xs text-text-secondary">
+                        <span id="viewer-count">0 viewers</span>
+                        <span id="message-count">0 messages</span>
+                    </div>
+                </div>
+
+                <!-- Chat Messages -->
+                <div class="flex-1 p-4 overflow-y-auto" id="chat-messages" style="max-height: 400px;">
+                    <div class="space-y-3">
+                        <!-- Sample messages -->
+                        <div class="bg-surface-800 rounded-gaming p-3">
+                            <div class="flex justify-between items-center mb-1">
+                                <span class="text-sm font-medium text-primary">StreamViewer1</span>
+                                <span class="text-xs text-text-secondary">2:34 PM</span>
+                            </div>
+                            <p class="text-sm text-text-primary">Great tournament! Who's your pick to win? 🏆</p>
+                        </div>
+                        <div class="bg-surface-800 rounded-gaming p-3">
+                            <div class="flex justify-between items-center mb-1">
+                                <span class="text-sm font-medium text-accent">GameMaster</span>
+                                <span class="text-xs text-text-secondary">2:35 PM</span>
+                            </div>
+                            <p class="text-sm text-text-primary">The matches are so close! Amazing plays 🎯</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Chat Input -->
+                <div class="p-4 bg-surface-800 border-t border-surface-700">
+                    <textarea id="chat-input" class="w-full px-3 py-2 bg-background border border-surface-700 rounded-gaming text-text-primary text-sm resize-none focus:border-primary focus:outline-none transition-colors" rows="2" placeholder="Type your message..."></textarea>
+                    <button class="w-full mt-2 px-4 py-2 bg-primary hover:bg-primary text-white rounded-gaming transition-colors font-medium" onclick="sendMessage()">
+                        📤 Send Message
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Winner Selection Modal -->
+<div id="winner-modal" class="modal fixed inset-0 z-50 flex items-center justify-center hidden">
+    <div class="modal-content rounded-gaming-card p-6 max-w-md w-full mx-4">
+        <div class="flex justify-between items-center mb-6">
+            <h3 class="text-xl font-semibold gradient-text">🏆 Select Match Winner</h3>
+            <button onclick="closeWinnerModal()" class="text-text-secondary hover:text-text-primary text-2xl transition-colors">&times;</button>
+        </div>
+
+        <div class="space-y-4" id="winner-selection">
+            <!-- Winner selection will be populated here -->
+        </div>
+
+        <div class="flex gap-3 mt-6">
+            <button onclick="closeWinnerModal()" class="flex-1 px-4 py-2 bg-surface-700 hover:bg-surface border border-surface-700 text-text-primary rounded-gaming transition-colors">
+                Cancel
+            </button>
+            <button onclick="confirmWinner()" class="flex-1 px-4 py-2 bg-success hover:bg-green-600 text-white rounded-gaming transition-colors font-medium">
+                Confirm Winner
+            </button>
+        </div>
+    </div>
+</div>
+
+<script>
+    let tournamentData = null;
+    let matchesData = [];
+    let currentMessages = [];
+    let selectedMatch = null;
+    let selectedWinner = null;
+    let token = localStorage.getItem('token') || 'demo_token';
+
+    // Get tournament ID from URL
+    function getTournamentId() {
+        const urlParams = new URLSearchParams(window.location.search);
+        console.log(urlParams.get('tournamentId'));
+        return urlParams.get('tournamentId') || '1'; // Default for demo
+    }
+
+    // Initialize dashboard
+    document.addEventListener('DOMContentLoaded', function() {
+        const tournamentId = getTournamentId();
+        if (tournamentId) {
+            loadTournamentData(tournamentId);
+            loadMatches(tournamentId);
+            initializeTabs();
+            startChatSimulation();
+        }
+    });
+
+    // Load tournament data
+    function loadTournamentData(tournamentId) {
+        // For demo purposes, using mock data
+        updateTournamentHeader();
+
+
+        $.ajax({
+            url: `http://localhost:8080/api/v1/tournament/getTournamentById?id=${tournamentId}`,
+            type: 'GET',
+            headers: {
+                'Authorization': 'Bearer ' + token
+            },
+            success: function(response) {
+                if (response.code === 201 && response.data) {
+                    tournamentData = response.data;
+                    updateTournamentHeader();
+                    loadParticipants();
+                }
+            },
+            error: function(xhr) {
+                console.error('Error loading tournament:', xhr.responseText);
+            }
+        });
+
+    }
+
+    // Load matches
+    function loadMatches(tournamentId) {
+        // Mock data for demo
+
+        renderBracket();
+        loadParticipants();
+
+
+        $.ajax({
+            url: `http://localhost:8080/api/v1/brackets/getTournamentBrackets/${tournamentId}`,
+            type: 'GET',
+            headers: {
+                'Authorization': 'Bearer ' + token
+            },
+            success: function(response) {
+                if (response && Array.isArray(response)) {
+                    matchesData = response;
+                    renderBracket();
+                }
+            },
+            error: function(xhr) {
+                console.error('Error loading matches:', xhr.responseText);
+            }
+        });
+
+    }
+
+    // Update tournament header
+    function updateTournamentHeader() {
+        if (!tournamentData) return;
+
+        document.getElementById('tournament-name').textContent = tournamentData.name;
+        document.getElementById('tournament-game').textContent = `Game: ${tournamentData.game?.name || 'Unknown'}`;
+        document.getElementById('tournament-date').textContent = `Date: ${tournamentData.startDate} - ${tournamentData.endDate}`;
+        document.getElementById('tournament-participants').textContent = `Participants: ${tournamentData.maxParticipants}`;
+        document.getElementById('tournament-prize').textContent = `Prize Pool: $${tournamentData.prizePool?.toLocaleString() || '0'}`;
+
+        const statusElement = document.getElementById('tournament-status');
+        statusElement.textContent = tournamentData.status;
+
+        // Update status styling
+        statusElement.className = 'px-4 py-2 rounded-full text-sm font-semibold';
+        switch(tournamentData.status) {
+            case 'ONGOING':
+                statusElement.className += ' bg-success text-white';
+                break;
+            case 'PENDING':
+                statusElement.className += ' bg-warning text-white';
+                break;
+            case 'COMPLETED':
+                statusElement.className += ' bg-surface-700 text-text-primary';
+                break;
+        }
+    }
+
+    // Render tournament bracket
+    function renderBracket() {
+        const container = document.getElementById('bracket-container');
+
+        if (!matchesData.length) {
+            container.innerHTML = '<div class="text-center py-8 text-text-secondary">No matches found</div>';
+            return;
+        }
+
+        // Group matches by round
+        const rounds = {};
+        matchesData.forEach(match => {
+            if (!rounds[match.round]) {
+                rounds[match.round] = [];
+            }
+            rounds[match.round].push(match);
+        });
+
+        let html = '';
+        Object.keys(rounds).sort().forEach(round => {
+            html += `
+                    <div class="bg-surface-800 border border-surface-700 rounded-gaming p-4">
+                        <h3 class="text-lg font-semibold text-accent mb-4">🏆 Round ${round}</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                `;
+
+            rounds[round].forEach(match => {
+                const statusClass = getMatchStatusClass(match.status);
+                const canSetWinner = match.status !== 'COMPLETED' && match.playerA?.playerId && match.playerB?.playerId;
+
+                html += `
+                        <div class="match-card bg-background border border-surface-700 rounded-gaming p-4 relative">
+                            <div class="flex justify-between items-center mb-3">
+                                <span class="text-sm text-text-secondary font-mono">⚔️ Match ${match.matchNumber}</span>
+                                <div class="flex items-center gap-2">
+                                    <span class="px-2 py-1 rounded text-xs font-semibold ${statusClass}">
+                                        ${match.status}
+                                    </span>
+                                    ${canSetWinner ? `
+                                        <button onclick="openWinnerModal(${match.id})" class="action-button px-3 py-1 bg-primary hover:bg-blue-600 text-white rounded text-xs font-medium transition-all">
+                                            Set Winner
+                                        </button>
+                                    ` : ''}
+                                </div>
+                            </div>
+                            <div class="space-y-2">
+                                <div class="player-card flex items-center justify-between p-3 bg-surface rounded-gaming border border-surface-700 ${match.winner === match.playerA?.playerId ? 'winner' : ''}">
+                                    <div class="flex items-center gap-3">
+                                        <div class="w-8 h-8 bg-primary rounded-full flex items-center justify-center text-white font-semibold text-sm">
+                                            ${match.playerA?.playerId ? match.playerA.playerId.charAt(0).toUpperCase() : 'P'}
+                                        </div>
+                                        <div>
+                                            <div class="font-medium text-text-primary">${match.playerA?.playerId || 'TBD'}</div>
+                                            ${match.playerA?.clanName ? `<div class="text-xs text-text-secondary">${match.playerA.clanName}</div>` : ''}
+                                        </div>
+                                    </div>
+                                    ${match.winner === match.playerA?.playerId ? '<span class="text-success font-semibold">🏆 WINNER</span>' : ''}
+                                </div>
+
+                                <div class="text-center text-text-secondary text-sm py-1">⚡ VS ⚡</div>
+
+                                <div class="player-card flex items-center justify-between p-3 bg-surface rounded-gaming border border-surface-700 ${match.winner === match.playerB?.playerId ? 'winner' : ''}">
+                                    <div class="flex items-center gap-3">
+                                        <div class="w-8 h-8 bg-accent rounded-full flex items-center justify-center text-white font-semibold text-sm">
+                                            ${match.playerB?.playerId ? match.playerB.playerId.charAt(0).toUpperCase() : 'P'}
+                                        </div>
+                                        <div>
+                                            <div class="font-medium text-text-primary">${match.playerB?.playerId || 'TBD'}</div>
+                                            ${match.playerB?.clanName ? `<div class="text-xs text-text-secondary">${match.playerB.clanName}</div>` : ''}
+                                        </div>
+                                    </div>
+                                    ${match.winner === match.playerB?.playerId ? '<span class="text-success font-semibold">🏆 WINNER</span>' : ''}
+                                </div>
+                            </div>
+                        </div>
+                    `;
+            });
+
+            html += '</div></div>';
+        });
+
+        container.innerHTML = html;
+    }
+
+    // Get match status styling
+    function getMatchStatusClass(status) {
+        switch(status) {
+            case 'PENDING':
+                return 'bg-warning text-white';
+            case 'ONGOING':
+                return 'bg-primary text-white';
+            case 'COMPLETED':
+                return 'bg-success text-white';
+            default:
+                return 'bg-surface-700 text-text-primary';
+        }
+    }
+
+    // Open winner selection modal
+    function openWinnerModal(matchId) {
+        selectedMatch = matchesData.find(match => match.id === matchId);
+        if (!selectedMatch) return;
+
+        const modal = document.getElementById('winner-modal');
+        const selectionDiv = document.getElementById('winner-selection');
+
+        let html = `
+                <div class="text-center mb-4 text-text-secondary">
+                    Select the winner for Match ${selectedMatch.matchNumber}
+                </div>
+            `;
+
+        if (selectedMatch.playerA?.playerId) {
+            html += `
+                    <div class="player-option p-4 border border-surface-700 rounded-gaming cursor-pointer hover:border-primary transition-colors" onclick="selectPlayer('${selectedMatch.playerA.id}')">
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 bg-primary rounded-full flex items-center justify-center text-white font-semibold">
+                                ${selectedMatch.playerA.playerId.charAt(0).toUpperCase()}
+                            </div>
+                            <div>
+                                <div class="font-medium text-text-primary">${selectedMatch.playerA.playerId}</div>
+                                ${selectedMatch.playerA.clanName ? `<div class="text-sm text-text-secondary">${selectedMatch.playerA.clanName}</div>` : ''}
+                            </div>
+                        </div>
+                    </div>
+                `;
+        }
+
+        if (selectedMatch.playerB?.playerId) {
+            html += `
+                    <div class="player-option p-4 border border-surface-700 rounded-gaming cursor-pointer hover:border-primary transition-colors mt-3" onclick="selectPlayer('${selectedMatch.playerB.id}')">
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 bg-accent rounded-full flex items-center justify-center text-white font-semibold">
+                                ${selectedMatch.playerB.playerId.charAt(0).toUpperCase()}
+                            </div>
+                            <div>
+                                <div class="font-medium text-text-primary">${selectedMatch.playerB.playerId}</div>
+                                ${selectedMatch.playerB.clanName ? `<div class="text-sm text-text-secondary">${selectedMatch.playerB.clanName}</div>` : ''}
+                            </div>
+                        </div>
+                    </div>
+                `;
+        }
+
+        selectionDiv.innerHTML = html;
+        modal.classList.remove('hidden');
+        selectedWinner = null;
+    }
+
+    // Select player as winner
+    function selectPlayer(playerId) {
+        console.log(selectedMatch)
+        console.log("Selected player:", playerId);
+        selectedWinner = playerId;
+
+        // Update UI to show selection
+        document.querySelectorAll('.player-option').forEach(option => {
+            option.classList.remove('border-success', 'bg-success', 'bg-opacity-20');
+            option.classList.add('border-surface-700');
+        });
+
+        event.currentTarget.classList.remove('border-surface-700');
+        event.currentTarget.classList.add('border-success', 'bg-success', 'bg-opacity-20');
+    }
+
+    // Confirm winner selection
+    function confirmWinner() {
+        if (!selectedMatch || !selectedWinner) {
+            alert('Please select a winner first!');
+            return;
+        }
+
+        // Update winner using the API
+        updateWinner(selectedMatch.id, selectedWinner);
+    }
+
+    // Close winner modal
+    function closeWinnerModal() {
+        document.getElementById('winner-modal').classList.add('hidden');
+        selectedMatch = null;
+        selectedWinner = null;
+    }
+
+    // Update winner function
+    function updateWinner(matchID, winnerId) {
+        console.log(`Setting winner for match ${matchID}: ${winnerId}`);
+
+        $.ajax({
+            url: `http://localhost:8080/api/v1/brackets/${matchID}/result?winnerId=${winnerId}`,
+            method: "PUT",
+            headers: {
+                "Authorization": "Bearer " + token,
+            },
+            success: function (res) {
+                console.log('Winner updated successfully:', res);
+                // Update local data and refresh UI
+                const match = matchesData.find(m => m.id === matchID);
+                if (match) {
+                    match.winner = winnerId;
+                    match.status = 'COMPLETED';
+                    renderBracket();
+                    closeWinnerModal();
+
+                    // Add success notification to chat
+                    addChatMessage({
+                        user: 'System',
+                        message: `🏆 Match ${match.matchNumber} completed! Winner: ${winnerId}`,
+                        time: new Date()
+                    });
+                }
+            },
+            error: function (xhr) {
+                console.error('Error updating winner:', xhr);
+                alert('Failed to update winner. Please try again.');
+            }
+        });
+    }
+
+    // Load participants
+    function loadParticipants() {
+        // Extract participants from matches
+        const participants = new Set();
+        matchesData.forEach(match => {
+            if (match.playerA?.playerId) participants.add(JSON.stringify({id: match.playerA.playerId, clan: match.playerA.clanName}));
+            if (match.playerB?.playerId) participants.add(JSON.stringify({id: match.playerB.playerId, clan: match.playerB.clanName}));
+        });
+
+        const container = document.getElementById('participants-container');
+        let html = '';
+
+        Array.from(participants).forEach(participantStr => {
+            const participant = JSON.parse(participantStr);
+            const wins = matchesData.filter(match => match.winner === participant.id).length;
+            const totalMatches = matchesData.filter(match =>
+                match.playerA?.playerId === participant.id || match.playerB?.playerId === participant.id
+            ).length;
+
+            html += `
+                    <div class="bg-surface-800 border border-surface-700 rounded-gaming p-4 hover:border-primary transition-colors">
+                        <div class="flex items-center gap-3 mb-3">
+                            <div class="w-12 h-12 bg-gradient-to-r from-primary to-accent rounded-full flex items-center justify-center text-white font-bold text-lg">
+                                ${participant.id.charAt(0).toUpperCase()}
+                            </div>
+                            <div>
+                                <div class="font-medium text-text-primary">${participant.id}</div>
+                                ${participant.clan ? `<div class="text-sm text-text-secondary">${participant.clan}</div>` : ''}
+                            </div>
+                        </div>
+                        <div class="flex justify-between text-sm">
+                            <span class="text-success">🏆 ${wins} Wins</span>
+                            <span class="text-text-secondary">📊 ${totalMatches} Matches</span>
+                        </div>
+                    </div>
+                `;
+        });
+
+        container.innerHTML = html || '<div class="text-center py-8 text-text-secondary col-span-full">No participants found</div>';
+    }
+
+    // Initialize tabs
+    function initializeTabs() {
+        const tabButtons = document.querySelectorAll('.tab-btn');
+
+        tabButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                const tabName = this.getAttribute('data-tab');
+                switchTab(tabName);
+            });
+        });
+    }
+
+    // Switch tabs
+    function switchTab(tabName) {
+        // Update button states
+        document.querySelectorAll('.tab-btn').forEach(btn => {
+            btn.classList.remove('active', 'text-primary', 'bg-surface');
+            btn.classList.add('text-text-secondary');
+        });
+
+        document.querySelector(`[data-tab="${tabName}"]`).classList.add('active', 'text-primary', 'bg-surface');
+        document.querySelector(`[data-tab="${tabName}"]`).classList.remove('text-text-secondary');
+
+        // Show/hide content
+        document.querySelectorAll('.tab-content').forEach(content => {
+            content.classList.add('hidden');
+        });
+
+        document.getElementById(`${tabName}-tab`).classList.remove('hidden');
+    }
+
+    // Chat simulation
+    function startChatSimulation() {
+        const messages = [
+            { user: 'GameFan123', message: 'This tournament is intense! 🔥', time: new Date() },
+            { user: 'ProGamer', message: 'Who do you think will win? 🤔', time: new Date() },
+            { user: 'StreamLover', message: 'Great stream quality! 📺✨', time: new Date() },
+            { user: 'TourneyFan', message: 'These matches are so close! 😱', time: new Date() },
+            { user: 'GamerPro', message: 'Amazing plays from both teams! 🎮', time: new Date() }
+        ];
+
+        let messageIndex = 0;
+        const messageInterval = setInterval(() => {
+            if (messageIndex < messages.length) {
+                addChatMessage(messages[messageIndex]);
+                messageIndex++;
+            } else {
+                // Reset and continue with random messages
+                messageIndex = 0;
+                clearInterval(messageInterval);
+
+                // Continue with random messages
+                setInterval(() => {
+                    const randomMessages = [
+                        'Great tournament! 🏆',
+                        'Who\'s winning next? 🤔',
+                        'This is epic! 🔥',
+                        'Amazing stream! ⭐',
+                        'Go team! 💪'
+                    ];
+                    const randomUser = `Viewer${Math.floor(Math.random() * 1000)}`;
+                    const randomMessage = randomMessages[Math.floor(Math.random() * randomMessages.length)];
+
+                    addChatMessage({
+                        user: randomUser,
+                        message: randomMessage,
+                        time: new Date()
+                    });
+                }, 8000);
+            }
+        }, 3000);
+
+        // Update viewer count periodically
+        setInterval(() => {
+            const viewerCount = Math.floor(Math.random() * 200 + 300);
+            document.getElementById('viewer-count').textContent = `${viewerCount} viewers`;
+        }, 10000);
+
+        // Initial viewer count
+        document.getElementById('viewer-count').textContent = `${Math.floor(Math.random() * 200 + 300)} viewers`;
+        document.getElementById('message-count').textContent = `${currentMessages.length} messages`;
+    }
+
+    // Add chat message
+    function addChatMessage(message) {
+        const chatContainer = document.getElementById('chat-messages');
+        const timeStr = message.time.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+
+        const messageDiv = document.createElement('div');
+        messageDiv.className = 'bg-surface-800 rounded-gaming p-3 animate-fadeIn';
+
+        const userColor = message.user === 'System' ? 'text-success' :
+            message.user === 'You' ? 'text-accent' : 'text-primary';
+
+        messageDiv.innerHTML = `
+                <div class="flex justify-between items-center mb-1">
+                    <span class="text-sm font-medium ${userColor}">${message.user}</span>
+                    <span class="text-xs text-text-secondary">${timeStr}</span>
+                </div>
+                <p class="text-sm text-text-primary">${message.message}</p>
+            `;
+
+        chatContainer.appendChild(messageDiv);
+        chatContainer.scrollTop = chatContainer.scrollHeight;
+
+        currentMessages.push(message);
+        document.getElementById('message-count').textContent = `${currentMessages.length} messages`;
+
+        // Limit messages to prevent memory issues
+        if (currentMessages.length > 50) {
+            currentMessages.shift();
+            chatContainer.removeChild(chatContainer.firstChild);
+        }
+    }
+
+    // Send message
+    function sendMessage() {
+        const input = document.getElementById('chat-input');
+        const message = input.value.trim();
+
+        if (message) {
+            addChatMessage({
+                user: 'You',
+                message: message,
+                time: new Date()
+            });
+            input.value = '';
+        }
+    }
+
+    // Allow Enter to send message
+    document.getElementById('chat-input').addEventListener('keypress', function(e) {
+        if (e.key === 'Enter' && !e.shiftKey) {
+            e.preventDefault();
+            sendMessage();
+        }
+    });
+
+    // Refresh tournament
+    function refreshTournament() {
+        const tournamentId = getTournamentId();
+        if (tournamentId) {
+            // Show loading state
+            document.getElementById('bracket-container').innerHTML = `
+                    <div class="text-center py-8 text-text-secondary">
+                        <div class="animate-spin w-8 h-8 border-2 border-accent border-t-transparent rounded-full mx-auto mb-4"></div>
+                        Refreshing tournament data...
+                    </div>
+                `;
+
+            // Simulate loading delay
+            setTimeout(() => {
+                loadTournamentData(tournamentId);
+                loadMatches(tournamentId);
+
+                addChatMessage({
+                    user: 'System',
+                    message: '🔄 Tournament data refreshed!',
+                    time: new Date()
+                });
+            }, 1000);
+        }
+    }
+
+    // Update brackets
+    function updateBrackets() {
+        const tournamentId = getTournamentId();
+        if (tournamentId) {
+            loadMatches(tournamentId);
+
+            addChatMessage({
+                user: 'System',
+                message: '📊 Brackets updated!',
+                time: new Date()
+            });
+        }
+    }
+
+    // Close modal when clicking outside
+    document.getElementById('winner-modal').addEventListener('click', function(e) {
+        if (e.target === this) {
+            closeWinnerModal();
+        }
+    });
+
+    // Add CSS animation classes
+    const style = document.createElement('style');
+    style.textContent = `
+            @keyframes fadeIn {
+                from { opacity: 0; transform: translateY(10px); }
+                to { opacity: 1; transform: translateY(0); }
+            }
+            .animate-fadeIn {
+                animation: fadeIn 0.3s ease-out;
+            }
+        `;
+    document.head.appendChild(style);
+</script>
+</body>
+</html>

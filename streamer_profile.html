@@ -400,9 +400,34 @@
                     </div>
                     <h3 class="text-lg font-semibold text-gaming-heading mb-2">Go Live</h3>
                     <p class="text-text-secondary text-sm mb-4">Start streaming to your audience</p>
-                    <button class="inline-flex items-center justify-center w-full px-4 py-2 bg-error border-error text-background font-medium rounded-gaming btn-gaming hover:bg-error-600 focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-surface">
+                    <button onclick="openStreamModal()"
+                            class="inline-flex items-center justify-center w-full px-4 py-2 bg-error border-error text-background font-medium rounded-gaming btn-gaming hover:bg-error-600 focus:outline-none focus:ring-2 focus:ring-error focus:ring-offset-2 focus:ring-offset-surface">
                         🔴 Start Stream
                     </button>
+                </div>
+            </div>
+        </div>
+
+        <!--streame Model -->
+        <div id="streamModal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+            <div class="bg-surface rounded-lg shadow-lg p-6 w-full max-w-md">
+                <h2 class="text-xl font-semibold mb-4 text-gaming-heading">Start Stream</h2>
+
+                <!-- Tournament Dropdown -->
+                <label class="block mb-2 text-sm font-medium text-text-secondary">Select Tournament</label>
+                <select id="tournamentSelect" class="w-full p-2 mb-4 border rounded bg-surface-700 text-text-primary">
+                    <option value="">-- Select Tournament --</option>
+                </select>
+
+                <!-- Stream URL Input -->
+                <label class="block mb-2 text-sm font-medium text-text-secondary">Stream URL</label>
+                <input  id="streamUrl" placeholder="Enter your stream URL"
+                        class="w-full p-2 mb-4 border rounded bg-surface-700 text-text-primary" />
+
+                <!-- Buttons -->
+                <div class="flex justify-end gap-2">
+                    <button onclick="closeStreamModal()" class="px-4 py-2 bg-gray-600 text-white rounded hover:bg-gray-700">Cancel</button>
+                    <button onclick="startStream()" class="px-4 py-2 bg-accent text-white rounded hover:bg-accent/80">Go Live 🚀</button>
                 </div>
             </div>
         </div>

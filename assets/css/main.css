@@ -1847,7 +1847,10 @@ video {
 .focus\:ring-primary\/20:focus{
   --tw-ring-color: rgb(0 212 170 / 0.2);
 }
-
+.focus\:ring-error:focus{
+  --tw-ring-opacity: 1;
+  --tw-ring-color: rgb(220 38 38 / var(--tw-ring-opacity, 1));
+}
 .focus\:ring-secondary:focus{
   --tw-ring-opacity: 1;
   --tw-ring-color: rgb(30 58 138 / var(--tw-ring-opacity, 1));

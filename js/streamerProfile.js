@@ -103,4 +103,98 @@ document.addEventListener("DOMContentLoaded", function () {
         console.error("Error loading profile:", xhr.responseText);
     }
 });
+
 });
+
+
+// Open modal
+function openStreamModal() {
+    document.getElementById("streamModal").classList.remove("hidden");
+
+    // Load tournaments from API
+    getTournamentsByStreamer();
+}
+
+// Close modal
+function closeStreamModal() {
+    document.getElementById("streamModal").classList.add("hidden");
+}
+
+// Populate dropdown
+function getTournamentsByStreamer(){
+    let token = localStorage.getItem("token");
+    let email = localStorage.getItem("email");
+
+    $.ajax({
+        url: `http://localhost:8080/api/v1/tournament/getUpcomingTournamentsByStreamer?email=${email}`,
+    type: "GET",
+        dataType: "json",
+        headers: {
+        Authorization: "Bearer " + token
+    },
+    success: function(res){
+        console.log("Tournaments:", res);
+
+        let select = document.getElementById("tournamentSelect");
+        select.innerHTML = '<option value="">-- Select Tournament --</option>';
+
+        // Check if multiple tournaments (array)
+        if (Array.isArray(res.data)) {
+            res.data.forEach(t => {
+                let option = document.createElement("option");
+                option.value = t.id;
+                option.textContent = t.name;
+                select.appendChild(option);
+            });
+        }
+        // Check if single tournament (object)
+        else if (res.data) {
+            let t = res.data;
+            let option = document.createElement("option");
+            option.value = t.id;
+            option.textContent = t.name;
+            select.appendChild(option);
+        }
+    },
+    error: function(xhr){
+        console.error("Error loading tournaments:", xhr.responseText);
+    }
+});
+}
+
+function startStream(){
+    let tournamentId = document.getElementById("tournamentSelect").value;
+    let streamUrl = document.getElementById("streamUrl").value;
+
+    console.log(tournamentId  ,  streamUrl)
+
+    if(!tournamentId || !streamUrl){
+        alert("Please select a tournament and enter stream URL!");
+        return;
+    }
+    // Example: Send to backend
+    let token = localStorage.getItem("token");
+
+    $.ajax({
+        url: "http://localhost:8080/api/v1/tournament/startTournament",
+        type: "POST",
+        contentType: "application/json",
+        data: JSON.stringify({
+            id: tournamentId,
+            StreamerEmail: streamUrl
+        }),
+        headers: {
+            Authorization: "Bearer " + token
+        },
+        success: function(res){
+            console.log(res);
+            alert("Stream started successfully!");
+            window.location.href=`stream.html?tournamentId=${tournamentId}`;
+            closeStreamModal();
+        },
+        error: function(xhr){
+            console.error("Error starting stream:", xhr.responseText);
+        }
+    });
+
+}
