@@ -1,36 +1,29 @@
 let gamesData = [];
 let currentEditGameId = null;
 
-// Initialize
 document.addEventListener('DOMContentLoaded', () => {
     getGames();
     setupEventListeners();
 });
 
-// Event listeners
 function setupEventListeners() {
-    // Add Game Modal
     document.getElementById('gameForm')?.addEventListener('submit', handleAddGame);
     document.getElementById('updateGameForm')?.addEventListener('submit', handleEditGame);
 
-    // Close modals on backdrop click
     document.querySelectorAll('.modal-backdrop').forEach(modal => {
         modal.addEventListener('click', e => {
             if (e.target === modal) closeModal(modal.id);
         });
     });
 
-    // Image preview - Add Game
     $('#gameLogoFile').on('change', function () {
         previewImage(this, '#gameLogoPreview');
     });
 
-    // Image preview - Edit Game
     $('#updateGameLogoFile').on('change', function () {
         previewImage(this, '#updateGameLogoPreview');
     });
 
-    // Logout
     $("#logoutBtn").click(() => {
         if (confirm("Do you really want to logout?")) {
             localStorage.removeItem("token");
@@ -40,7 +33,6 @@ function setupEventListeners() {
     });
 }
 
-// Preview image
 function previewImage(input, previewId) {
     const file = input.files[0];
     if (file) {
@@ -50,7 +42,6 @@ function previewImage(input, previewId) {
     } else $(previewId).addClass('hidden').attr('src', '');
 }
 
-// Fetch games
 function getGames() {
     $.ajax({
         url: 'http://localhost:8080/api/v1/games/AllGames',
@@ -64,7 +55,6 @@ function getGames() {
     });
 }
 
-// Render game cards
 function renderGames() {
     const container = $('#gamesGrid');
     container.empty();
@@ -102,7 +92,6 @@ function renderGames() {
     });
 }
 
-// Open Add Modal
 function openAddModal() {
     currentEditGameId = null;
     $('#gameForm')[0].reset();
@@ -113,7 +102,6 @@ function openAddModal() {
     document.body.style.overflow = 'hidden';
 }
 
-// Open Edit Modal
 function openEditGameModal(gameId) {
     const game = gamesData.find(g => g.gameId === gameId);
     if (!game) return;
@@ -130,19 +118,16 @@ function openEditGameModal(gameId) {
     document.body.style.overflow = 'hidden';
 }
 
-// Close modal
 function closeModal(modalId) {
     document.getElementById(modalId).classList.remove('active');
     document.body.style.overflow = 'auto';
 }
 
-// Add Game handler
 function handleAddGame(e) {
     e.preventDefault();
 
     const gameName = $('#gameName').val().trim();
 
-    // Check if the name already exists
     const exists = gamesData.some(g => g.name.toLowerCase() === gameName.toLowerCase());
     if (exists) {
         toastr.error('A game with this name already exists!');
@@ -207,14 +192,12 @@ function handleAddGame(e) {
     });
 }
 
-// Edit Game handler
 function handleEditGame(e) {
     e.preventDefault();
     if (!currentEditGameId) return;
 
     const gameName = $('#updateGameName').val().trim();
 
-    // Check if another game has the same name
     const exists = gamesData.some(g => g.name.toLowerCase() === gameName.toLowerCase() && g.gameId !== currentEditGameId);
     if (exists) {
         toastr.error('A game with this name already exists!');
@@ -242,7 +225,6 @@ function handleEditGame(e) {
     } else updateGameAPI(updateGameData);
 }
 
-// Toggle game active/inactive
 function toggleGameStatus(gameId, isActive) {
     const game = gamesData.find(g => g.gameId === gameId);
     if (!game) return;
@@ -261,7 +243,6 @@ function toggleGameStatus(gameId, isActive) {
     });
 }
 
-// Update game API
 function updateGameAPI(data) {
     $.ajax({
         url: 'http://localhost:8080/api/v1/games/update',
@@ -273,7 +254,6 @@ function updateGameAPI(data) {
     });
 }
 
-// Cloudinary upload helper
 function uploadImageToCloudinary(file, callback) {
     const formData = new FormData();
     formData.append('file', file);
@@ -291,13 +271,11 @@ function uploadImageToCloudinary(file, callback) {
     });
 }
 
-// Placeholder logo
 function generatePlaceholderLogo(name) {
     const initials = name.split(' ').map(w => w[0]).join('').slice(0,3).toUpperCase();
     return `https://placehold.co/80x80/22c55e/ffffff?text=${initials}`;
 }
 
-// Add to your existing setupEventListeners function
 $('#searchInput').on('input', function() {
     const searchTerm = $(this).val().trim();
     filterGames(searchTerm);
@@ -319,7 +297,6 @@ function getGames() {
     });
 }
 
-// Real-time filter function - no search button needed
 function filterGames(searchTerm) {
     if (!searchTerm) {
         gamesData = [...originalGamesData];
