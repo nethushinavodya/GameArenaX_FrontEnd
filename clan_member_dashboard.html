@@ -78,6 +78,7 @@
                     </a>
                     <a class="text-gray-300  nav-link" href="tournament.html">Tournaments</a>
                     <a class="text-green-400 font-semibold  nav-link" href="clan_directory.html">Clans</a>
+                    <a class="text-warning font-semibold" href="payhere.html"><i class="fa-solid fa-crown"></i><span class="ml-1">Get Premium</span></a>
                 </nav>
 
                 <!-- Login button (only visible before login) -->
@@ -101,6 +102,7 @@
                             <a href="" id="viewProfile" class="block px-4 py-2 text-sm text-white hover:bg-gray-700">View Profile</a>
                             <a href="player_application.html" class="block px-4 py-2 text-sm text-white hover:bg-gray-700" id="applyAsPlayer">Apply as a Player</a>
                             <a href="streamer_application.html" class="block px-4 py-2 text-sm text-white hover:bg-gray-700" id="applyAsStreamer">Apply as a Streamer</a>
+
                             <a href=""  id="logoutBtn" class="block px-4 py-2 text-sm text-red-400 hover:bg-gray-700">Logout</a>
                             <!-- &lt;!&ndash; Logout button (only visible after login) &ndash;&gt;
                              <div class="flex items-center gap-4">
@@ -172,133 +174,85 @@
 
             <div class="lg:col-span-2">
                 <!-- Chat Section -->
-                <div class="bg-surface rounded-lg border border-accent/20 p-6 mb-6  ">
+                <div class="bg-surface rounded-lg border border-accent/20 p-6 mb-6">
+
                     <!-- Chat Header -->
                     <div class="border-b border-gaming-light p-4 flex items-center justify-between">
                         <div class="flex items-center space-x-3">
                             <div class="bg-accent/10 rounded-lg p-2">
                                 <svg class="w-5 h-5 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/>
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                          d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/>
                                 </svg>
                             </div>
                             <div>
                                 <h3 class="font-semibold text-text-primary">Clan Chat</h3>
                                 <p class="text-xs text-text-secondary">
-                                <span class="inline-flex items-center">
-                                    <span class="w-2 h-2 bg-accent rounded-full mr-2"></span>
-                                    15 online
-                                </span>
+                        <span class="inline-flex items-center">
+                            <span class="w-2 h-2 bg-accent rounded-full mr-2"></span>
+                            <span id="online-count">0 online</span>
+                        </span>
                                 </p>
                             </div>
                         </div>
                         <button id="chat-settings" class="text-text-secondary hover:text-text-primary transition-hover">
                             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z"/>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                      d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z"/>
                             </svg>
                         </button>
                     </div>
 
                     <!-- Chat Messages -->
                     <div id="chat-messages" class="flex-1 overflow-y-auto p-4 space-y-4">
-                        <!-- System Message -->
-                        <div class="text-center">
-                            <div class="bg-accent/10 inline-block px-3 py-1 rounded-full">
-                                <p class="text-xs text-accent">Welcome to the clan !</p>
-                            </div>
-                        </div>
-
-                        <!-- Messages -->
-                        <div class="flex items-start space-x-3">
-                            <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=32&h=32&fit=crop&crop=face" alt="User" class="w-8 h-8 rounded-full flex-shrink-0" />
-                            <div class="flex-1 min-w-0">
-                                <div class="flex items-center space-x-2 mb-1">
-                                    <span class="text-sm font-medium text-text-primary">DragonSlayer99</span>
-                                    <span class="inline-flex items-center px-1.5 py-0.5 rounded text-xs font-medium bg-warning/10 text-warning">Leader</span>
-                                    <span class="text-xs text-text-secondary">2:30 PM</span>
-                                </div>
-                                <p class="text-sm text-text-primary break-words">Hey everyone! Tournament registration is now open. Let me know if you want to participate 🎮</p>
-                            </div>
-                        </div>
-
-                        <div class="flex items-start space-x-3">
-                            <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=32&h=32&fit=crop&crop=face" alt="User" class="w-8 h-8 rounded-full flex-shrink-0" />
-                            <div class="flex-1 min-w-0">
-                                <div class="flex items-center space-x-2 mb-1">
-                                    <span class="text-sm font-medium text-text-primary">CyberNinja</span>
-                                    <span class="inline-flex items-center px-1.5 py-0.5 rounded text-xs font-medium bg-accent/10 text-accent">Officer</span>
-                                    <span class="text-xs text-text-secondary">2:32 PM</span>
-                                </div>
-                                <p class="text-sm text-text-primary break-words">Count me in! What's the prize pool?</p>
-                            </div>
-                        </div>
-
-                        <div class="flex items-start space-x-3">
-                            <img src="https://images.unsplash.com/photo-1494790108755-2616b6e7a515?w=32&h=32&fit=crop&crop=face" alt="User" class="w-8 h-8 rounded-full flex-shrink-0" />
-                            <div class="flex-1 min-w-0">
-                                <div class="flex items-center space-x-2 mb-1">
-                                    <span class="text-sm font-medium text-text-primary">StormRider</span>
-                                    <span class="text-xs text-text-secondary">2:35 PM</span>
-                                </div>
-                                <p class="text-sm text-text-primary break-words">I'm interested too! When is it?</p>
-                            </div>
-                        </div>
-
-                        <div class="flex items-start space-x-3">
-                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=32&h=32&fit=crop&crop=face" alt="User" class="w-8 h-8 rounded-full flex-shrink-0" />
-                            <div class="flex-1 min-w-0">
-                                <div class="flex items-center space-x-2 mb-1">
-                                    <span class="text-sm font-medium text-text-primary">ThunderBolt</span>
-                                    <span class="text-xs text-text-secondary">2:38 PM</span>
-                                </div>
-                                <p class="text-sm text-text-primary break-words">Let's dominate this tournament! 💪</p>
-                            </div>
-                        </div>
-
-                        <!-- Your message -->
-                        <div class="flex items-start space-x-3">
-                            <img src="https://images.unsplash.com/photo-1568602471122-7832951cc4c5?w=32&h=32&fit=crop&crop=face" alt="You" class="w-8 h-8 rounded-full flex-shrink-0" />
-                            <div class="flex-1 min-w-0">
-                                <div class="flex items-center space-x-2 mb-1">
-                                    <span class="text-sm font-medium text-accent">You</span>
-                                    <span class="text-xs text-text-secondary">2:40 PM</span>
-                                </div>
-                                <p class="text-sm text-text-primary break-words">Sounds great! I'm ready to compete 🔥</p>
-                            </div>
-                        </div>
+                        <!-- JS will append chat messages here -->
                     </div>
 
                     <!-- Chat Input -->
                     <div class="border-t border-gaming-light p-4">
                         <div class="flex items-center space-x-3">
                             <div class="flex-1 relative">
-                                <input type="text" id="chat-input" placeholder="Type a message..." class="w-full px-4 py-2 pr-12 border border-gaming bg-surface-800 rounded-lg text-text-primary placeholder-text-secondary focus:outline-none focus:ring-2 focus:ring-accent focus:border-accent transition-gaming" />
-                                <button id="emoji-btn" class="absolute right-3 top-2 text-text-secondary hover:text-text-primary transition-hover">
-                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                                    </svg>
-                                </button>
+                                <input type="text" id="chat-input"
+                                       placeholder="Type a message..."
+                                       class="w-full px-4 py-2 pr-12 border border-gaming bg-surface-800 rounded-lg text-text-primary placeholder-text-secondary focus:outline-none focus:ring-2 focus:ring-accent focus:border-accent transition-gaming"/>
                             </div>
-                            <button id="send-message" class="bg-accent hover:bg-accent-600 text-white p-2 rounded-lg transition-gaming">
+                            <button id="send-message"
+                                    onclick="sendMessage()"
+                                    class="bg-accent hover:bg-accent-600 text-white p-2 rounded-lg transition-gaming">
                                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/>
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                          d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/>
                                 </svg>
                             </button>
                         </div>
                     </div>
                 </div>
 
-
+                <!-- Join Requests -->
                 <div id="joinRequestsContainer" class="bg-surface rounded-lg border border-accent/20 p-6 shadow-gaming-subtle">
                     <div class="flex items-center justify-between mb-4">
                         <h3 class="text-lg font-semibold text-text-primary">Join Requests</h3>
                     </div>
-
                     <div id="joinRequestsList" class="space-y-3 max-h-60 overflow-y-auto">
-                        <!-- JS eken dynamic requests load wenawa -->
+                        <!-- JS will load requests here -->
                     </div>
                 </div>
             </div>
+
         </main>
+
+        <div class="w-full mx-auto px-4 sm:px-6 lg:px-8 py-6">
+
+            <div id="memberListContainer" class=" bg-surface rounded-lg border border-accent/20 p-6 shadow-gaming-subtle">
+                <div class="flex items-center justify-between mb-4">
+                    <h3 class="text-lg font-semibold text-text-primary">Members</h3>
+                </div>
+
+                <div id="memberList" class="space-y-3 max-h-60 overflow-y-auto">
+
+                </div>
+            </div>
+        </div>
         <!-- Leave Clan Confirmation Modal -->
         <div id="leave-clan-modal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50 hidden">
             <div class="bg-surface rounded-lg border border-error/20 max-w-md w-full p-6 shadow-gaming transform transition-all">
@@ -335,7 +289,10 @@
     </div>
 </div>
 
-
+<script src="https://cdn.jsdelivr.net/npm/sockjs-client@1/dist/sockjs.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/stompjs@2.3.3/lib/stomp.min.js"></script>
+<script src="assets/jq/jquery-3.7.1.min.js"></script>
+<script src="js/clanSocket.js"></script>
 <script>
     // Mobile menu toggle
     document.getElementById('mobile-menu-button').addEventListener('click', function() {
@@ -343,83 +300,6 @@
         mobileMenu.classList.toggle('hidden');
     });
 
-    // Chat functionality
-    const chatInput = document.getElementById('chat-input');
-    const sendMessageBtn = document.getElementById('send-message');
-    const chatMessages = document.getElementById('chat-messages');
-
-    function sendMessage() {
-        const message = chatInput.value.trim();
-        if (!message) return;
-
-        // Create new message element
-        const messageDiv = document.createElement('div');
-        messageDiv.className = 'flex items-start space-x-3';
-        messageDiv.innerHTML = `
-                <img src="https://images.unsplash.com/photo-1568602471122-7832951cc4c5?w=32&h=32&fit=crop&crop=face" alt="You" class="w-8 h-8 rounded-full flex-shrink-0" />
-                <div class="flex-1 min-w-0">
-                    <div class="flex items-center space-x-2 mb-1">
-                        <span class="text-sm font-medium text-accent">You</span>
-                        <span class="text-xs text-text-secondary">${new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}</span>
-                    </div>
-                    <p class="text-sm text-text-primary break-words">${message}</p>
-                </div>
-            `;
-
-        chatMessages.appendChild(messageDiv);
-        chatMessages.scrollTop = chatMessages.scrollHeight;
-        chatInput.value = '';
-
-        // Simulate other member responses
-        setTimeout(() => {
-            const responses = [
-                "Great point!",
-                "I agree!",
-                "Let's do it!",
-                "Count me in!",
-                "Sounds good!",
-                "👍"
-            ];
-            const names = ["CyberNinja", "DragonSlayer99", "StormRider", "ThunderBolt"];
-            const avatars = [
-                "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=32&h=32&fit=crop&crop=face",
-                "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=32&h=32&fit=crop&crop=face",
-                "https://images.unsplash.com/photo-1494790108755-2616b6e7a515?w=32&h=32&fit=crop&crop=face",
-                "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=32&h=32&fit=crop&crop=face"
-            ];
-
-            const randomIndex = Math.floor(Math.random() * names.length);
-            const randomResponse = responses[Math.floor(Math.random() * responses.length)];
-            const responseDiv = document.createElement('div');
-            responseDiv.className = 'flex items-start space-x-3';
-            responseDiv.innerHTML = `
-                    <img src="${avatars[randomIndex]}" alt="Member" class="w-8 h-8 rounded-full flex-shrink-0" />
-                    <div class="flex-1 min-w-0">
-                        <div class="flex items-center space-x-2 mb-1">
-                            <span class="text-sm font-medium text-text-primary">${names[randomIndex]}</span>
-                            ${randomIndex === 0 ? '<span class="inline-flex items-center px-1.5 py-0.5 rounded text-xs font-medium bg-accent/10 text-accent">Officer</span>' : ''}
-                            ${randomIndex === 1 ? '<span class="inline-flex items-center px-1.5 py-0.5 rounded text-xs font-medium bg-warning/10 text-warning">Leader</span>' : ''}
-                            <span class="text-xs text-text-secondary">${new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}</span>
-                        </div>
-                        <p class="text-sm text-text-primary break-words">${randomResponse}</p>
-                    </div>
-                `;
-            chatMessages.appendChild(responseDiv);
-            chatMessages.scrollTop = chatMessages.scrollHeight;
-        }, 1000 + Math.random() * 3000);
-    }
-
-    sendMessageBtn.addEventListener('click', sendMessage);
-    chatInput.addEventListener('keypress', function(e) {
-        if (e.key === 'Enter') {
-            sendMessage();
-        }
-    });
-
-    // Auto-scroll chat to bottom on load
-    if (chatMessages) {
-        chatMessages.scrollTop = chatMessages.scrollHeight;
-    }
 
     // Leave clan modal functionality
     const leaveClanBtn = document.getElementById('leave-clan-btn');

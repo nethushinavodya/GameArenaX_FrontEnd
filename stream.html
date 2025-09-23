@@ -302,6 +302,7 @@
     let selectedWinner = null;
     let token = localStorage.getItem('token') || 'demo_token';
 
+
     // Get tournament ID from URL
     function getTournamentId() {
         const urlParams = new URLSearchParams(window.location.search);
@@ -313,12 +314,31 @@
     document.addEventListener('DOMContentLoaded', function() {
         const tournamentId = getTournamentId();
         if (tournamentId) {
+            generateBrackets(tournamentId)
             loadTournamentData(tournamentId);
             loadMatches(tournamentId);
             initializeTabs();
             startChatSimulation();
         }
     });
+
+
+    function generateBrackets (tournamentId){
+        $.ajax({
+            url: `http://localhost:8080/api/v1/brackets/generate/${tournamentId}`,
+            method: "POST",
+            headers: {
+                "Authorization": "Bearer " + token
+            },
+            success: function (res) {
+                console.log(res);
+
+            },
+            error: function (xhr) {
+                console.error("Error:", xhr);
+            }
+        })
+    }
 
     // Load tournament data
     function loadTournamentData(tournamentId) {
@@ -349,8 +369,8 @@
     // Load matches
     function loadMatches(tournamentId) {
         // Mock data for demo
-
-        renderBracket();
+        console.log("Loading matches for tournament:", tournamentId);
+        //renderBracket();
         loadParticipants();
 
 
@@ -361,6 +381,7 @@
                 'Authorization': 'Bearer ' + token
             },
             success: function(response) {
+                console.log(response);
                 if (response && Array.isArray(response)) {
                     matchesData = response;
                     renderBracket();
